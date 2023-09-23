@@ -3,30 +3,20 @@ require('dotenv').config();
 module.exports = {
   development: {
     dialect: 'postgres',
-    host: process.env.DATABASE_URL || 'localhost',
-    port: 5432,
-    username: 'elari',
-    password: 'Mwi5VpKFvabakGQo6xKXjpkej0Mj3q4Z',
-    database: 'turistic',
-    ssl: true,
-    dialectOptions: {
-      ssl: {
-        require: true,
-      },
-    },
+    host: 'containers-us-west-199.railway.app',
+    port: 8052,
+    username: 'postgres',
+    password: 'zFn4yMQm8TWKvWegGHKg',
+    database: 'railway',
+
   },
   production: {
     dialect: 'postgres',
-    host: process.env.DATABASE_URL || 'localhost',
-    port: 5432,
-    username: 'elari',
-    password: 'Mwi5VpKFvabakGQo6xKXjpkej0Mj3q4Z',
-    database: 'turistic',
-    ssl: true,
-    dialectOptions: {
-      ssl: {
-        require: true,
-      },
-    },
+    host: 'containers-us-west-199.railway.app',
+    port: 8052,
+    username: 'postgres',
+    password: 'zFn4yMQm8TWKvWegGHKg',
+    database: 'railway',
+
   },
 };
