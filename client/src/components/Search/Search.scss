@@ -1,0 +1,137 @@
+.search-container {
+
+  .btn-search {
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
+
+    border-radius: 2rem;
+    width: 140px;
+    height: 30px;
+
+
+  }
+
+  .btn-search:hover {
+    transition: all 0.2s;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, 0.122);
+  }
+
+  .search-button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+
+    border-radius: 2rem;
+    width: 480px;
+    height: 50px;
+  }
+
+  .input-container {
+    display: flex;
+    justify-content: flex-end;
+    height: 30px;
+
+
+  }
+  .input-container button{
+    display: flex;
+    align-items: center;
+    background-color: #05a1a1;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    padding: 0.35rem 1rem;
+    justify-content: center;
+    width: 40px;
+    position: absolute;
+    margin-right: 2px;
+
+  }
+
+  .input-container input {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
+    border-radius: 2rem;
+    width: 300px;
+    border: none;
+    outline: none;
+  }
+  .input-container input:focus {
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, 0.122);
+  }
+
+
+
+
+  .linea {
+    height: 0.8rem;
+    width: 8rem;
+  }
+
+  .search-span input {
+    /* display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 1rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
+  
+    border-radius: 2rem;
+    width: 480px; */
+    background-color: black;
+    margin-left: 26.3em;
+
+  }
+
+  .search-icon {
+    margin-right: 5px;
+  }
+}
+.search-for h2{
+  text-align: center;
+  margin-top: 50px;
+}
+
+.x-search {
+  text-align: end;
+  margin-right: 20px;
+  cursor: pointer;
+  font-size: 40px;
+}
+
+@media only screen and (max-width: 480px) {
+  .search-container {
+    .btn-search {
+      display: none;
+    }
+
+    .search-icon {
+
+      font-size: 16px;
+    }
+
+
+  }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .search-container {
+    margin-top: -5px;
+
+    .btn-search {
+      width: 320px;
+      height: 30px;
+    }
+  }
+}

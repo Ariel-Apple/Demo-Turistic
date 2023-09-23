@@ -1,0 +1,310 @@
+.card-container {
+  margin-bottom: 500px;
+}
+
+.cards-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 100px;
+  margin-top: 30px;
+  margin-bottom: 150px;
+  align-self: flex-start;
+}
+
+
+
+#skeleton {
+  width: 270px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 15px;
+
+}
+
+.register-button {
+  background-color: #05A1A1;
+}
+
+.loading-skeleton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 100px;
+  margin-top: 30px;
+  margin-bottom: 150px;
+  align-self: flex-start;
+}
+
+.card-box {
+  position: relative;
+  margin-bottom: 2rem;
+  justify-content: center;
+  display: grid;
+  transition: transform 0.3s ease;
+  /* Transición del cambio de escala durante 0.3 segundos con función de timing "ease" */
+  transform-origin: center center;
+  /* Establecer el punto de transformación en el centro del elemento */
+}
+
+
+
+
+.summary-card {
+  position: relative;
+  margin-left: 10px;
+  width: 270px;
+  margin-top: 5px;
+  font-size: 11px;
+  color: gray;
+  transition: top 0.5s ease, width 0.5s ease, transform 0.5s ease;
+  /* Agrega "transform" a la transición */
+  transform: scale(0.8);
+  /* Escala inicial para ocultar la tarjeta */
+  opacity: 0;
+  /* Configura la opacidad inicial para ocultar la tarjeta */
+}
+
+.card-box:hover .summary-card {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+.stay-price {
+  position: absolute;
+}
+
+
+.price-none {
+  position: relative;
+  left: 0;
+  width: 270px;
+  margin-top: 5px;
+  font-size: 11px;
+  color: gray;
+  transition: top 0.5s ease, width 0.5s ease, transform 0.5s ease;
+  /* Agrega "transform" a la transición */
+
+}
+
+.card-box:hover .price-none {}
+
+.card-box:hover .stay-price {
+  display: none;
+}
+
+.card-box:hover {
+  transform: scale(1.1);
+  position: relative;
+}
+
+
+.card-box:hover .shadow-card {
+  box-shadow: 0px 0px 50px rgb(210, 210, 210);
+
+  border-radius: 15px;
+  /* Corrige "trasition" a "transform" y ajusta el valor a 1 para mantener el tamaño original */
+}
+
+
+
+
+.avatar {
+  width: 30px;
+  height: 30;
+  left: 200;
+
+}
+
+.text-link {
+  text-decoration: none;
+  color: black;
+
+}
+
+.text-link img {
+  border-radius: 15px;
+
+}
+
+.card-title {
+  text-decoration: none;
+  color: black;
+  margin-left: 10px;
+
+}
+
+.swiper-container {
+  height: 270px;
+  width: 270px;
+  overflow: hidden;
+}
+
+.card-img {
+  height: 270px;
+  width: 270px;
+  object-fit: cover;
+
+
+}
+
+.card-info-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.card-box .swiper-pagination-bullet-active {
+  background-color: var(--white) !important;
+}
+
+@media only screen and (max-width: 1000px) {
+
+  .swiper-container,
+  .card-img {
+    height: 400px;
+    width: 40vw;
+  }
+
+  .card-box:hover {
+    transform: scale(1);
+    /* Escala el elemento en un 30% (1.3 veces) al pasar el cursor por encima */
+    position: relative;
+  }
+
+  .summary-card {
+    display: grid;
+    margin-top: 10px; /* Ejemplo: cambiar el margen superior */
+    font-size: 14px; /* Ejemplo: cambiar el tamaño de fuente */
+    color: black; /* Ejemplo: cambiar el color de texto */
+    transform: none; /* Ejemplo: eliminar la transformación */
+    opacity: 1;
+  }
+
+  .stay-price {
+    display: none;
+  }
+
+  .card-box:hover .shadow-card {
+    box-shadow: none;
+  
+  
+    /* Corrige "trasition" a "transform" y ajusta el valor a 1 para mantener el tamaño original */
+  }
+
+
+
+}
+
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
+
+  .swiper-container,
+  .card-img {
+    max-height: 400px;
+    width: 90vw;
+  }
+
+  .cards-flex {
+    padding: 0px;
+  }
+
+  .card-box:hover {
+    transform: scale(1);
+    /* Escala el elemento en un 30% (1.3 veces) al pasar el cursor por encima */
+    position: relative;
+  }
+
+  .stay-price {
+    display: none;
+  }
+
+  #skeleton {
+    max-height: 400px;
+    width: 90vw;
+  }
+
+  .summary-card {
+    display: grid;
+    margin-top: 10px; /* Ejemplo: cambiar el margen superior */
+    font-size: 14px; /* Ejemplo: cambiar el tamaño de fuente */
+    color: black; /* Ejemplo: cambiar el color de texto */
+    transform: none; /* Ejemplo: eliminar la transformación */
+    opacity: 1; 
+  }
+  .card-box:hover .shadow-card {
+    box-shadow: none;
+  
+  
+    /* Corrige "trasition" a "transform" y ajusta el valor a 1 para mantener el tamaño original */
+  }
+}
+
+
+@media only screen and (max-width: 480px) {
+
+  .swiper-container,
+  .card-img {
+    max-height: 300px;
+    width: 90vw;
+  }
+
+  .cards-flex {
+    padding: 0px;
+    margin-top: 30px;
+  }
+
+  .card-box:hover {
+    transform: scale(1);
+    /* Escala el elemento en un 30% (1.3 veces) al pasar el cursor por encima */
+    position: relative;
+  }
+
+  .summary-card {
+    display: grid;
+    margin-top: 10px; /* Ejemplo: cambiar el margen superior */
+    font-size: 14px; /* Ejemplo: cambiar el tamaño de fuente */
+    color: black; /* Ejemplo: cambiar el color de texto */
+    transform: none; /* Ejemplo: eliminar la transformación */
+    opacity: 1; 
+  }
+  .card-box:hover .shadow-card {
+    box-shadow: none;
+  
+  
+    /* Corrige "trasition" a "transform" y ajusta el valor a 1 para mantener el tamaño original */
+  }
+  .stay-price {
+    display: none;
+  }
+
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1728px) {
+
+  .swiper-container,
+  .card-img {
+    max-height: 300px;
+    width: 20vw;
+  }
+
+  .cards-flex {
+    gap: 50px;
+
+  }
+
+  .card-box {
+    margin-bottom: 100px;
+  }
+}

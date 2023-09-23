@@ -1,0 +1,27 @@
+.input-global {
+    outline: none;
+    }
+    
+    .input-global:focus {
+        box-shadow: 0px 0px 5px #05A1A1 ;
+    }
+    
+
+    .button-color {
+        background-color: #05A1A1;
+    }
+
+    .button-color :hover{
+        background-color: #05A1A1;
+    }
+
+    .text-color {
+        color: #05A1A1;
+        cursor: pointer;
+    }
+
+ /*    .swal-btn  {
+        text-decoration: none;
+        color: white;
+        
+    } */
