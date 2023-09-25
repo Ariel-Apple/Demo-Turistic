@@ -16,9 +16,8 @@ function Card() {
   const dispatch = useDispatch();
   const allPost = useSelector((state) => state.allPost);
   const token = useSelector((state) => state.token);
-  console.log(allPost);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  console.log(allPost);
   function getRandomColor() {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -42,27 +41,63 @@ function Card() {
       localStorage.setItem("avatarBackgroundColor", newColor);
     }
     setTimeout(() => {
-      setIsLoading(false); // Cambiar el estado de isLoading a "false" después de cierto tiempo
-    }, 1000);
+      setIsLoading(false);
+    }, 2000);
   }, [dispatch, storedBackgroundColor, token]);
+
+  useEffect(() => {
+    let totalImagesToLoad = 0;
+    allPost.forEach((data) => {
+      data.Posts.forEach((info) => {
+        totalImagesToLoad += info.imageFile.length;
+      });
+    });
+
+    let loadedImages = 0;
+
+    function handleImageLoad() {
+      loadedImages++;
+      if (loadedImages === totalImagesToLoad) {
+        setImagesLoaded(true);
+      }
+    }
+
+    if (totalImagesToLoad > 0) {
+      allPost.forEach((data) => {
+        data.Posts.forEach((info) => {
+          info.imageFile.forEach((imageSrc) => {
+            const img = new Image();
+            img.src = imageSrc;
+            img.onload = handleImageLoad;
+          });
+        });
+      });
+    } else {
+      setImagesLoaded(true);
+    }
+  }, [allPost]);
+
+  const totalLength = allPost ? allPost.reduce((sum, post) => sum + post.Posts.length, 0) : 0;
+
+  console.log(totalLength);
 
   return (
     <>
-      {allPost.length > 0 ? (
-        <div className="card-container">
-          {isLoading ? (
-            <Grid className="loading-skeleton">
-              {Array.from(new Array(allPost.length)).map((item, index) => (
-                <Box key={index}>
-                  <Skeleton variant="rectangular" id="skeleton" />
-                  <Box sx={{ pt: 0.5 }}>
-                    <Skeleton width="50%" />
-                    <Skeleton width="30%" />
-                  </Box>
+      <div className="card-container">
+        {isLoading ? (
+          <Grid className="loading-skeleton">
+            {Array.from(new Array(totalLength)).map((item, index) => (
+              <Box key={index}>
+                <Skeleton variant="rectangular" id="skeleton" />
+                <Box sx={{ pt: 0.5 }}>
+                  <Skeleton width="50%" />
+                  <Skeleton width="30%" />
                 </Box>
-              ))}
-            </Grid>
-          ) : (
+              </Box>
+            ))}
+          </Grid>
+        ) : (
+          imagesLoaded  && (
             <div className="cards-flex">
               {allPost.map((data, i) =>
                 data.Posts.map((info, index) => (
@@ -89,7 +124,13 @@ function Card() {
                                 to={"/rooms/" + info.id}
                                 className="text-link"
                               >
-                                <h3 className="card-title">{info.title}</h3>
+                                {info.title.split(' ').length > 2 ? (
+                                  <h3 className="card-title">
+                                    {info.title.split(' ').slice(0, 2).join(' ')}...
+                                  </h3>
+                                ) : (
+                                  <h3 className="card-title">{info.title}</h3>
+                                )}
                               </Link>
                               <div>
                                 <Avatar
@@ -121,8 +162,6 @@ function Card() {
                                 >
                                   Gratis
                                 </span>{" "}
-                                {/*     <span style={{ fontWeight: "600" }}>$50</span>{" "} */}
-                                {/* {info.stay} */}
                               </p>
                             </p>
                             <p className="summary-card">{info.summary}</p>
@@ -166,8 +205,6 @@ function Card() {
                                 >
                                   ${info.price}
                                 </span>{" "}
-                                {/*     <span style={{ fontWeight: "600" }}>$50</span>{" "} */}
-                                {/* {info.stay} */}
                                 por persona
                               </p>
                             </p>
@@ -180,29 +217,9 @@ function Card() {
                 ))
               )}
             </div>
-          )}
-        </div>
-      ) : (
-        <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
-          <div className="text-center">
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Aún no hay publicaciones.
-            </h1>
-            <p className="mt-6 text-base leading-7 text-gray-600">
-              Sé el primero en publicar, regístrate y publica la primera
-              publicación.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 register-button"
-              >
-                Registrate
-              </a>
-            </div>
-          </div>
-        </main>
-      )}
+          )
+        )}
+      </div>
     </>
   );
 }

@@ -50,6 +50,9 @@ console.log(hostessuser);
 
   }, [dispatch, idHostess]);
 
+
+
+  
   return (
     <Layout style={{ minHeight: "100vh" }}>
       
@@ -89,7 +92,6 @@ console.log(hostessuser);
               minHeight: "100%", // Establecer la altura del contenido al 100%
             }}
           >
-            {hostessuser.id ? (
               <div className="cards-flex">
                 {hostessuser.Posts &&
                   hostessuser.Posts.map((data, dataIndex) => (
@@ -103,7 +105,13 @@ console.log(hostessuser);
                       </Carousel>
 
                       <div className="card-info-flex">
-                        <h3 className="card-title">{data.title}</h3>
+                      {data.title.split(' ').length > 2 ? (
+                                <h3 className="card-title">
+                                  {data.title.split(' ').slice(0, 2).join(' ')}...
+                                </h3>
+                              ) : (
+                                <h3 className="card-title">{data.title}</h3>
+                              )}
                         <div>
                           <Avatar
                             sx={{
@@ -115,17 +123,7 @@ console.log(hostessuser);
                           </Avatar>
                         </div>
                       </div>
-                      <p>
-                        <p
-                          style={{
-                            margin: "0.2rem",
-                            fontSize: "1rem",
-                            color: "var(--black)",
-                          }}
-                        >
-                          <span style={{ fontWeight: "600" }}>{data.summary}</span>{" "}
-                        </p>
-                      </p>
+                
                       {data.price ? (
                         <p
                           className="stay-price"
@@ -146,9 +144,12 @@ console.log(hostessuser);
                             color: "var(--black)",
                           }}
                         >
-                          <span style={{ fontWeight: "600" }}>Gratis</span> {data.stay}
+                          <span style={{ fontWeight: "600", marginLeft:'10px' }}>Gratis</span> {data.people}
                         </p>
+                        
                       )}
+                         
+
                       <div className="button-container">
                         <Button variant="primary">Actualizar</Button>
                         <Button variant="danger" onClick={() => handleEliminarClick(data.id)}>
@@ -158,11 +159,7 @@ console.log(hostessuser);
                     </div>
                   ))}
               </div>
-            ) : (
-              <div>
-                <h1>Sección donde va a poder editar o eliminar publicación</h1>
-              </div>
-            )}
+         
             {/* Modal de Confirmación */}
             <Modal show={showModal} onHide={handleCancelarClick}>
               <Modal.Header closeButton>

@@ -23,7 +23,7 @@ const upload = multer({ storage: storage });
 
 
 
-router.post('/post', authenticate, upload.array('imageFile', 100), PostTuristic);
+router.post('/post', authenticate, upload.array('imageFile', 1000), PostTuristic);
 router.get('/turistic', AllTuristic)
 
 router.get('/turistic/:idTuristic', DetailsTuristic)
