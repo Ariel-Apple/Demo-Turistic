@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   Post.init(
     {
       // Atributos del modelo 'Post'
-      title: DataTypes.TEXT,
+      title: DataTypes.STRING,
       price: DataTypes.FLOAT,
       people: DataTypes.STRING,
       summary: DataTypes.STRING,

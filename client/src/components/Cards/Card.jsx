@@ -17,33 +17,15 @@ function Card() {
   const allPost = useSelector((state) => state.allPost);
   const token = useSelector((state) => state.token);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-
-  function getRandomColor() {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
-  const storedBackgroundColor = localStorage.getItem("avatarBackgroundColor");
-  const [avatarBackgroundColor, setAvatarBackgroundColor] = React.useState(
-    storedBackgroundColor || getRandomColor()
-  );
-
+console.log(allPost);
   useEffect(() => {
     dispatch(AllPostTuristic());
     dispatch(dataPersonal(token));
-    if (!storedBackgroundColor) {
-      const newColor = getRandomColor();
-      setAvatarBackgroundColor(newColor);
-      localStorage.setItem("avatarBackgroundColor", newColor);
-    }
+
     setTimeout(() => {
       setIsLoading(false);
     }, 2000);
-  }, [dispatch, storedBackgroundColor, token]);
+  }, [dispatch, token]);
 
   useEffect(() => {
     let totalImagesToLoad = 0;
@@ -79,7 +61,6 @@ function Card() {
 
   const totalLength = allPost ? allPost.reduce((sum, post) => sum + post.Posts.length, 0) : 0;
 
-  console.log(totalLength);
 
   return (
     <>
@@ -135,9 +116,10 @@ function Card() {
                               <div>
                                 <Avatar
                                   sx={{
-                                    width: 32,
-                                    height: 32,
-                                    marginRight: "10px",
+                                    width: 25,
+                                    height: 25,
+                                    backgroundColor: data.backgroundColor
+
                                   }}
                                 >
                                   {data.name && data.name[0].toUpperCase()}
@@ -192,9 +174,9 @@ function Card() {
                               <div>
                                 <Avatar
                                   sx={{
-                                    width: 32,
-                                    height: 32,
-                                    marginRight: "10px",
+                                    width: 25,
+                                    height: 25,
+                                    backgroundColor: data.backgroundColor
                                   }}
                                 >
                                   {data.name && data.name[0].toUpperCase()}

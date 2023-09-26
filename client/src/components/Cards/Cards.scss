@@ -1,5 +1,4 @@
 .card-container {
-  margin-bottom: 500px;
 }
 
 .cards-flex {
@@ -49,6 +48,8 @@
   /* Transición del cambio de escala durante 0.3 segundos con función de timing "ease" */
   transform-origin: center center;
   /* Establecer el punto de transformación en el centro del elemento */
+  
+
 }
 
 
@@ -57,21 +58,21 @@
 .summary-card {
   position: relative;
   margin-left: 10px;
-  width: 270px;
+  width: 250px;
   margin-top: 5px;
+  bottom: 5px;
   font-size: 11px;
   color: gray;
-  transition: top 0.5s ease, width 0.5s ease, transform 0.5s ease;
-  /* Agrega "transform" a la transición */
-  transform: scale(0.8);
-  /* Escala inicial para ocultar la tarjeta */
+ 
   opacity: 0;
-  /* Configura la opacidad inicial para ocultar la tarjeta */
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .card-box:hover .summary-card {
   transform: scale(1);
   opacity: 1;
+  
 }
 
 
@@ -92,7 +93,6 @@
 
 }
 
-.card-box:hover .price-none {}
 
 .card-box:hover .stay-price {
   display: none;
@@ -106,7 +106,6 @@
 
 .card-box:hover .shadow-card {
   box-shadow: 0px 0px 50px rgb(210, 210, 210);
-
   border-radius: 15px;
   /* Corrige "trasition" a "transform" y ajusta el valor a 1 para mantener el tamaño original */
 }
@@ -306,5 +305,11 @@
 
   .card-box {
     margin-bottom: 100px;
+  }
+  .summary-card {
+    width: 230px;
+  }
+  .shadow-card {
+    width: 257px;
   }
 }

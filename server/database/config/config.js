@@ -18,9 +18,9 @@ module.exports = {
     password: 'zFn4yMQm8TWKvWegGHKg',
     database: 'railway',
 
-  },  
+  },   
 
-/*    development: {
+  /*  development: {
     dialect: 'postgres',
     host:  'localhost',
     port: 5432,

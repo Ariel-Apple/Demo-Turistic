@@ -25,6 +25,9 @@ module.exports = {
       phone: {
         type: Sequelize.STRING,
       },
+      backgroundColor: {
+        type: Sequelize.STRING,
+      },
       role: {
         type: Sequelize.STRING,
       },

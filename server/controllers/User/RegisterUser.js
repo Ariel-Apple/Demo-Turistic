@@ -3,6 +3,15 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 module.exports = {
   RegisterUser: async (req, res) => {
     const { name, lastName, password, email, phone } = req.body;
@@ -25,18 +34,24 @@ module.exports = {
         role = 'admin';
       }
 
+      const backgroundColor = getRandomColor(); // Genera un color aleatorio
+      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+      const capitalizedLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+
+
       const newUser = await User.create({
-        name,
-        lastName,
+        name: capitalizedName,
+        lastName: capitalizedLastName,
         email,
         password: hashedPassword,
         phone,
         role,
+        backgroundColor: backgroundColor, // Asigna el color aleatorio al usuario
       });
 
       const tokenPayload = { id: newUser.id, role: newUser.role };
       const expiresIn = '8h';
-      const token = jwt.sign(tokenPayload, process.env.FIRMA_TOKEN , { expiresIn });
+      const token = jwt.sign(tokenPayload, process.env.FIRMA_TOKEN, { expiresIn });
 
       console.log('Usuario creado correctamente');
       return res.json({ token });

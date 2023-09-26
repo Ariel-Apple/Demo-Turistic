@@ -2,6 +2,10 @@
 const path = require('path');
 const { STRING } = require('sequelize');
 
+
+
+
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -13,7 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING(500),
       },
       price: {
         type: Sequelize.FLOAT,
@@ -22,10 +26,10 @@ module.exports = {
         type: Sequelize.STRING,
       },
       summary: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(10000),
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(10000),
       },
       imageFile: {
         type: Sequelize.ARRAY(Sequelize.STRING), // Almacena la ruta de la imagen en el sistema de archivos
@@ -43,7 +47,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       infoImportant: {
-        type: Sequelize.ARRAY(Sequelize.STRING), 
+        type: Sequelize.ARRAY(Sequelize.STRING(10000)), 
       },
       hoursAtetionsInitial: {
         type: Sequelize.STRING,
@@ -52,11 +56,14 @@ module.exports = {
         type: Sequelize.STRING,
       },
       reservedDates: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
+        type: Sequelize.ARRAY(Sequelize.STRING(10000)), 
+
       },
       listDetails: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.ARRAY(Sequelize.STRING(3000)), 
+
       },
+   
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

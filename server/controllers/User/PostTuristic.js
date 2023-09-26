@@ -70,14 +70,18 @@ module.exports = {
               const parsedReservedDates = typeof reservedDates === 'string' ? JSON.parse(reservedDates) : [];
               const parsedListDetails = typeof listDetails === 'string' ? JSON.parse(listDetails) : [];
               const parsedInfoImportant = typeof infoImportant === 'string' ? JSON.parse(infoImportant) : [];
+              const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+              const capitalizedSummary = summary.charAt(0).toUpperCase() + summary.slice(1);
+              const capitalizedDescription = description.charAt(0).toUpperCase() + description.slice(1);
+
 
               if (status === "Privado") {
                 const newPost = await Post.create({
-                  title,
+                  title: capitalizedTitle,
                   price,
                   people,
-                  summary,
-                  description,
+                  summary: capitalizedSummary,
+                  description: capitalizedDescription,
                   status,
                   continent,
                   country,
@@ -97,9 +101,9 @@ module.exports = {
                 res.status(201).json({ message: 'Post creado exitosamente' });
               } else if (status === "Público") {
                 const newPostPublic = await Post.create({
-                  title,
-                  summary,
-                  description,
+                  title:capitalizedTitle,
+                  summary: capitalizedSummary,
+                  description: capitalizedDescription,
                   status,
                   imageFile: imageUrls,
                 });

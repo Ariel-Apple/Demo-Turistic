@@ -111,6 +111,9 @@ export default function CardDetails() {
   const detailpost = useSelector((state) => state.detailpost);
   const dispatch = useDispatch();
 
+  console.log(detailpost.Users && detailpost.Users[0].backgroundColor);
+
+
   React.useEffect(() => {
     dispatch(DetailsPostTuristic(idTuristic));
     setTimeout(() => {
@@ -467,8 +470,6 @@ export default function CardDetails() {
                     <div className="title-continent">
                       <h1>{detailpost.title}</h1>
                       {/*    <h1 className="title">Lagos</h1> */}
-                   
-                 
                     </div>
                     <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
                       <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
@@ -530,66 +531,63 @@ export default function CardDetails() {
                 Lugar para visitar.
               </h1>
 
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex">
-                Anfitrión:{" "}
-               {detailpost.Users && detailpost.Users[0].name} 
-              
-                <Avatar sx={{ width: 32, height: 32 }}>
-                  {detailpost.Users && detailpost.Users[0].name[0].toUpperCase()}
-                  
-                </Avatar>
-              </h1>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
+  Anfitrión: {detailpost.Users && detailpost.Users[0].name }
+   
+    <Avatar
+    sx={{
+      width: 32,
+      height: 32,
+      backgroundColor: detailpost.Users && detailpost.Users[0].backgroundColor
+    }}
+  >
+    {detailpost.Users && detailpost.Users[0].name[0].toUpperCase()}
+  </Avatar>
+</h1>
+
               <div>
-                       {detailpost.continent} {/* <Flag name={countries[0].countryCode} /> */} {detailpost.country}
-                      </div> 
+                {detailpost.continent}{" "}
+                {/* <Flag name={countries[0].countryCode} /> */}{" "}
+                {detailpost.country}
+              </div>
 
               <div className="horizontal-line-with-o">
                 <div className="line"></div> {/* Línea a la izquierda */}
               </div>
             </div>
-           
+
             {/* Options */}
-            <div className={ detailpost.status === "Privado" ? "card-reserve" : ""}>
+            <div
+              className={detailpost.status === "Privado" ? "card-reserve" : ""}
+            >
               <div className="mt-4 lg:row-span-3 lg:mt-0 ">
                 <h2 className="sr-only">Product information</h2>
                 <p className="text-3xl tracking-tight text-gray-900">
-                  {detailpost.price ? (
-                    <span>
-                      
-                    ${detailpost.price} 
-                    </span>
-                    
-                  ):null}
+                  {detailpost.price ? <span>${detailpost.price}</span> : null}
                   <div>
                     <div className="space-y-6">
                       <h3 className="text-base text-gray-900">
-                        {
-                          detailpost.people ? (
-                            <div>
-                              <Diversity3RoundedIcon /> 
-
+                        {detailpost.people ? (
+                          <div>
+                            <Diversity3RoundedIcon />
                             {detailpost.people} personas
-                            </div>
-                          ) :null
-
-                        }
-                        
+                          </div>
+                        ) : null}
                       </h3>
                     </div>
                     {detailpost.status === "Privado" ? (
-
                       <div style={wrapperStyle}>
-                      <Space direction="vertical" size={12}>
-                        <RangePicker
-                          defaultValue={[
-                            dayjs("2015/01/01", dateFormat),
-                            dayjs("2015/01/01", dateFormat),
-                          ]}
-                          format={dateFormat}
+                        <Space direction="vertical" size={12}>
+                          <RangePicker
+                            defaultValue={[
+                              dayjs("2015/01/01", dateFormat),
+                              dayjs("2015/01/01", dateFormat),
+                            ]}
+                            format={dateFormat}
                           />
-                      </Space>
-                    </div>
-                          ):null}
+                        </Space>
+                      </div>
+                    ) : null}
                   </div>
                 </p>
 
@@ -600,107 +598,99 @@ export default function CardDetails() {
 
                   {/* Sizes */}
                   {detailpost.status === "Privado" ? (
-
-                  <button
-                    type="submit"
-                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                  >
-                    Reservar
-                  </button>
-                  ): (
+                    <button
+                      type="submit"
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                    >
+                      Reservar
+                    </button>
+                  ) : (
                     <div
-                    type="submit"
-                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                  >
-                    Gratis
-                  </div>
+                      type="submit"
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                    >
+                      Gratis
+                    </div>
                   )}
-
                 </form>
               </div>
             </div>
 
-           
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
               {/* Description and details */}
-       
+
               <div className="space-y-6">
-                  <p className="text-base text-gray-900">
-                     {detailpost.summary} 
-       
-                  </p>
+                <p className="text-base text-gray-900">{detailpost.summary}</p>
+              </div>
+              {detailpost.status === "Privado" ? (
+                <div>
+                  <div className="horizontal-line-with-o">
+                    <div className="line"></div> {/* Línea a la izquierda */}
+                  </div>
+
+                  <div className="mt-10">
+                    <h2 className="text-sm font-medium text-gray-900">
+                      Dias de atención al cliente de {detailpost.daysAtentions}.
+                    </h2>
+
+                    <p className="text-sm text-gray-600">
+                      de {detailpost.hoursAtetionsInitial}am a{" "}
+                      {detailpost.hoursAtentionsFinally}pm
+                    </p>
+                  </div>
                 </div>
-   {detailpost.status === "Privado" ? (
-    <div>
-
-              <div className="horizontal-line-with-o">
-                <div className="line"></div> {/* Línea a la izquierda */}
-              </div>
-
-     <div className="mt-10">
-                <h2 className="text-sm font-medium text-gray-900">
-                  Dias de atención al cliente de {detailpost.daysAtentions}.
-                </h2>
-
-                <p className="text-sm text-gray-600">de {detailpost.hoursAtetionsInitial}am a {detailpost.hoursAtentionsFinally}pm</p>
-              </div>
-    </div>
-                ):null}
-
-
-
+              ) : null}
 
               <div className="mt-10">
-              {detailpost.status === "Privado" ? (
-<div>
-
-              <div className="horizontal-line-with-o">
-                <div className="line"></div> {/* Línea a la izquierda */}
-              </div>
-                <h3 className="text-sm font-medium text-gray-900">
-                  El lugar cuenta con:
-                </h3>
-
-                <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                  {detailpost.listDetails && detailpost.listDetails.map(list => (
-
-                    <li className="text-gray-400">
-                    <span className="text-gray-600">{list}</span>
-                  </li>
-                    ))}
-                </ul>
-                    </div>
-
-):null}        
-
-                <div className="mt-10">
-
                 {detailpost.status === "Privado" ? (
-<div>
+                  <div>
+                    <div className="horizontal-line-with-o">
+                      <div className="line"></div> {/* Línea a la izquierda */}
+                    </div>
+                    <h3 className="text-sm font-medium text-gray-900">
+                      El lugar cuenta con:
+                    </h3>
 
-                  <div className="horizontal-line-with-o">
-                  <div className="line"></div> {/* Línea a la izquierda */}
-                </div>
-                  <h2 className="text-sm font-medium text-gray-900">
-                    información importante
-                  </h2>
-
-                  <p className="text-sm text-gray-600">
                     <ul
                       role="list"
                       className="list-disc space-y-2 pl-4 text-sm"
-                      >
-                      {detailpost.infoImportant && detailpost.infoImportant.map(list => (
-
-                        <li className="text-gray-400">
-                        <span className="text-gray-600">{list}</span>
-                      </li>
-                        ))} 
-                    
+                    >
+                      {detailpost.listDetails &&
+                        detailpost.listDetails.map((list) => (
+                          <li className="text-gray-400">
+                            <span className="text-gray-600">{list}</span>
+                          </li>
+                        ))}
                     </ul>
-                  </p>
-                        </div>
-                        ) : null}
+                  </div>
+                ) : null}
+
+                <div className="mt-10">
+                  {detailpost.status === "Privado" ? (
+                    <div>
+                      <div className="horizontal-line-with-o">
+                        <div className="line"></div>{" "}
+                        {/* Línea a la izquierda */}
+                      </div>
+                      <h2 className="text-sm font-medium text-gray-900">
+                        información importante
+                      </h2>
+
+                      <p className="text-sm text-gray-600">
+                        <ul
+                          role="list"
+                          className="list-disc space-y-2 pl-4 text-sm"
+                        >
+                          {detailpost.infoImportant &&
+                            detailpost.infoImportant.map((list) => (
+                              <li className="text-gray-400">
+                                <span className="text-gray-600">{list}</span>
+                              </li>
+                            ))}
+                        </ul>
+                      </p>
+                    </div>
+                  ) : null}
                 </div>
                 <div className="horizontal-line-with-o">
                   <div className="line"></div> {/* Línea a la izquierda */}
@@ -711,7 +701,7 @@ export default function CardDetails() {
                   </h2>
 
                   <p className="text-sm text-gray-600">
-                     {detailpost.description} 
+                    {detailpost.description}
                   </p>
                 </div>
               </div>

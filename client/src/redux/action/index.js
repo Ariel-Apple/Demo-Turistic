@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-export const AllPostTuristic = () => {
+ export const AllPostTuristic = () => {
   return async (dispach) => {
     const res = await axios.get('https://demo-turistic-production.up.railway.app/turistic');
     const data = res.data.User
@@ -75,34 +75,45 @@ export const AllPostTuristic = () => {
  }
  
  
- export const UserLogin = (email, password) => {
+export const UserLogin = (email, password) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("https://demo-turistic-production.up.railway.app/auth/login", {
-        email,
-        password,
-      });
- 
-      // Verifica si la respuesta es exitosa y tiene un token
-      if (response.status === 200 && response.data.token) {
-        // Almacena el token en el local storage
-        localStorage.setItem("token", response.data.token);
- 
-        // Despacha la acción de éxito de inicio de sesión con el token
-        dispatch({
-          type: "LOGIN_SUCCESS",
-          payload: response.data.token,
+      const isServerOnline = await checkServerStatus(); // Verificar si el servidor está en línea
+
+      if (isServerOnline) {
+        const response = await axios.post("https://demo-turistic-production.up.railway.app/auth/login", {
+          email,
+          password,
         });
+
+        if (response.status === 200 && response.data.token) {
+          localStorage.setItem("token", response.data.token);
+
+          dispatch({
+            type: "LOGIN_SUCCESS",
+            payload: response.data.token,
+          });
+        } else {
+          throw new Error("Error durante el inicio de sesión.");
+        }
       } else {
-        // Si no se cumple la condición anterior, lanza un error
-        throw new Error("Error during login.");
+        localStorage.removeItem("token"); // Elimina el token si el servidor no está disponible
+        throw new Error("El servidor no está disponible.");
       }
     } catch (error) {
-      // En caso de error, dispara la acción de error de inicio de sesión
       dispatch({ type: "LOGIN_ERROR" });
     }
   };
- };
+};
+
+const checkServerStatus = async () => {
+  try {
+    const response = await axios.get("https://demo-turistic-production.up.railway.app/status");
+    return response.status === 200;
+  } catch (error) {
+    return false;
+  }
+};
  
  
  export const UserLogout = (payload) => {
@@ -165,7 +176,7 @@ export const AllPostTuristic = () => {
         payload: data
     })
   }
- };  
+ };   
 
 
 
@@ -251,32 +262,43 @@ export const UserRegister = (payload) => {
 
 
 export const UserLogin = (email, password) => {
- return async (dispatch) => {
-   try {
-     const response = await axios.post("http://localhost:4000/auth/login", {
-       email,
-       password,
-     });
+  return async (dispatch) => {
+    try {
+      const isServerOnline = await checkServerStatus(); // Verificar si el servidor está en línea
 
-     // Verifica si la respuesta es exitosa y tiene un token
-     if (response.status === 200 && response.data.token) {
-       // Almacena el token en el local storage
-       localStorage.setItem("token", response.data.token);
+      if (isServerOnline) {
+        const response = await axios.post("http://localhost:4000/auth/login", {
+          email,
+          password,
+        });
 
-       // Despacha la acción de éxito de inicio de sesión con el token
-       dispatch({
-         type: "LOGIN_SUCCESS",
-         payload: response.data.token,
-       });
-     } else {
-       // Si no se cumple la condición anterior, lanza un error
-       throw new Error("Error during login.");
-     }
-   } catch (error) {
-     // En caso de error, dispara la acción de error de inicio de sesión
-     dispatch({ type: "LOGIN_ERROR" });
-   }
- };
+        if (response.status === 200 && response.data.token) {
+          localStorage.setItem("token", response.data.token);
+
+          dispatch({
+            type: "LOGIN_SUCCESS",
+            payload: response.data.token,
+          });
+        } else {
+          throw new Error("Error durante el inicio de sesión.");
+        }
+      } else {
+        localStorage.removeItem("token"); // Elimina el token si el servidor no está disponible
+        throw new Error("El servidor no está disponible.");
+      }
+    } catch (error) {
+      dispatch({ type: "LOGIN_ERROR" });
+    }
+  };
+};
+
+const checkServerStatus = async () => {
+  try {
+    const response = await axios.get("http://localhost:4000/status");
+    return response.status === 200;
+  } catch (error) {
+    return false;
+  }
 };
 
 
@@ -340,4 +362,4 @@ export const OnlyAllPost = () => {
        payload: data
    })
  }
-};    */
+};     */

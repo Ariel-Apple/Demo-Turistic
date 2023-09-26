@@ -1380,7 +1380,7 @@ export default function FormStepper() {
               <div className="loading-overlay">
                 <div>
                   <BeatLoader color="#05A1A1" size="80" />
-                  <h2>Publicando</h2>
+                  <h2>Publicando  </h2>
                 </div>
               </div>
             ) : (

@@ -15,7 +15,6 @@ export default function BasicCard() {
   const datapersonal = useSelector((state) => state.datapersonal);
   const token = useSelector((state) => state.token);
 
-  console.log(datapersonal);
   useEffect(() => {
     dispatch(dataPersonal(token));
   }, [token]);

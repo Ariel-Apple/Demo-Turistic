@@ -32,14 +32,13 @@ export default function BasicMenu() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const datapersonal = useSelector(state => state.datapersonal);
-
-
   const [openPublic, setOpenPublic] = React.useState(false);
   const [openLogout, setOpenLogout] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
-
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isModalOpenRegister, setIsModalOpenRegister] = React.useState(false);
+
+  console.log(datapersonal);
 
   const showModalRegister = () => {
     setAnchorEl(null);
@@ -117,7 +116,7 @@ export default function BasicMenu() {
   };
   React.useEffect(() => {
     dispatch(dataPersonal(token))
-  }, [token]);
+  }, [dispatch, token]);
 
   const handleLogout = () => {
     // Realizar el cierre de sesión en Redux
@@ -131,26 +130,7 @@ export default function BasicMenu() {
     // Redirigir al usuario a la página de inicio de sesión
   };
 
-  function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  };
-  const storedBackgroundColor = localStorage.getItem('avatarBackgroundColor');
-  const [avatarBackgroundColor, setAvatarBackgroundColor] = React.useState(
-    storedBackgroundColor || getRandomColor()
-  );
-
-  React.useEffect(() => {
-    if (!storedBackgroundColor) {
-      const newColor = getRandomColor();
-      setAvatarBackgroundColor(newColor);
-      localStorage.setItem('avatarBackgroundColor', newColor);
-    }
-  }, [storedBackgroundColor]);
+ 
   return (
     <div className="account-menu">
       <div
@@ -199,7 +179,7 @@ export default function BasicMenu() {
 
                   {token ? (
                     
-                    <Avatar sx={{ width: 32, height: 32, backgroundColor: avatarBackgroundColor }} >{datapersonal.name && datapersonal.name[0].toUpperCase()}</Avatar>
+                    <Avatar sx={{ width: 32, height: 32, backgroundColor: datapersonal.backgroundColor }} >{datapersonal.name && datapersonal.name[0].toUpperCase()}</Avatar>
                   ) : (
                     <Avatar sx={{ width: 32, height: 32 }}></Avatar>
                   )}
@@ -209,7 +189,7 @@ export default function BasicMenu() {
           </Tooltip>
         </Box>
       </div>
-      {token === null ? (
+      {!token ? (
         <div>
         <Menu
           id="basic-menu"
