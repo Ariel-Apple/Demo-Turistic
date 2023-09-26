@@ -165,9 +165,9 @@ function Card() {
                               </p>
                             </p>
                             
-                            {info.summary.split(' ').length > 12 ? (
+                            {info.summary.split(' ').length > 8 ? (
                                   <p className="summary-card">
-                                    {info.summary.split(' ').slice(0, 12).join(' ')}...
+                                    {info.summary.split(' ').slice(0, 8).join(' ')}...
                                   </p>
                                 ) : (
                                   <p className="summary-card">{info.summary}</p>
@@ -222,9 +222,9 @@ function Card() {
                                 por persona
                               </p>
                             </p>
-                            {info.summary.split(' ').length > 12 ? (
+                            {info.summary.split(' ').length > 8 ? (
                                   <p className="summary-card">
-                                    {info.summary.split(' ').slice(0, 12).join(' ')}...
+                                    {info.summary.split(' ').slice(0, 8).join(' ')}...
                                   </p>
                                 ) : (
                                   <p className="summary-card">{info.summary}</p>
