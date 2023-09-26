@@ -167,7 +167,7 @@ function Card() {
                             
                             {info.summary.split(' ').length > 12 ? (
                                   <p className="summary-card">
-                                    {info.title.split(' ').slice(0, 12).join(' ')}...
+                                    {info.summary.split(' ').slice(0, 12).join(' ')}...
                                   </p>
                                 ) : (
                                   <p className="summary-card">{info.summary}</p>
@@ -224,7 +224,7 @@ function Card() {
                             </p>
                             {info.summary.split(' ').length > 12 ? (
                                   <p className="summary-card">
-                                    {info.title.split(' ').slice(0, 12).join(' ')}...
+                                    {info.summary.split(' ').slice(0, 12).join(' ')}...
                                   </p>
                                 ) : (
                                   <p className="summary-card">{info.summary}</p>
