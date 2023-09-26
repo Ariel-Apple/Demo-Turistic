@@ -164,7 +164,15 @@ function Card() {
                                 </span>{" "}
                               </p>
                             </p>
-                            <p className="summary-card">{info.summary}</p>
+                            
+                            {info.summary.split(' ').length > 20 ? (
+                                  <p className="summary-card">
+                                    {info.title.split(' ').slice(0, 20).join(' ')}...
+                                  </p>
+                                ) : (
+                                  <p className="summary-card">{info.summary}</p>
+
+                                )}
                           </div>
                         ) : (
                           <div className="shadow-card">
@@ -173,7 +181,13 @@ function Card() {
                                 to={"/rooms/" + info.id}
                                 className="text-link"
                               >
-                                <h3 className="card-title">{info.title}</h3>
+                                    {info.title.split(' ').length > 2 ? (
+                                  <h3 className="card-title">
+                                    {info.title.split(' ').slice(0, 2).join(' ')}...
+                                  </h3>
+                                ) : (
+                                  <h3 className="card-title">{info.title}</h3>
+                                )}
                               </Link>
                               <div>
                                 <Avatar
@@ -208,7 +222,14 @@ function Card() {
                                 por persona
                               </p>
                             </p>
-                            <p className="summary-card">{info.summary}</p>
+                            {info.summary.split(' ').length > 20 ? (
+                                  <p className="summary-card">
+                                    {info.title.split(' ').slice(0, 20).join(' ')}...
+                                  </p>
+                                ) : (
+                                  <p className="summary-card">{info.summary}</p>
+
+                                )}
                           </div>
                         )}
                       </Link>
