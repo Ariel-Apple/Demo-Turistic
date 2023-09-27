@@ -198,15 +198,15 @@ input[type="number"] {
 }
 
 .btn-reserva {
-  background-color: #05a1a1;
+  background-color: #8B008B ;
 }
 
 .btn-reserva:hover {
-  background-color: #05a1a1;
+  background-color: #8B008B ;
 }
 
 .btn-reserva:active {
-  border-color: #05a1a1;
+  border-color: #8B008B ;
 }
 
 .img-mini img {

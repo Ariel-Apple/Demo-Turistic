@@ -63,7 +63,6 @@ console.log(allPost);
 
 
   return (
-    <>
       <div className="card-container">
         {isLoading ? (
           <Grid className="loading-skeleton">
@@ -223,7 +222,6 @@ console.log(allPost);
           )
         )}
       </div>
-    </>
   );
 }
 

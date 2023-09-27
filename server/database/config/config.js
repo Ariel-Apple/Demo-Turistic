@@ -18,7 +18,7 @@ module.exports = {
     password: 'zFn4yMQm8TWKvWegGHKg',
     database: 'railway',
 
-  },   
+  },  
 
   /*  development: {
     dialect: 'postgres',
@@ -37,5 +37,5 @@ module.exports = {
     password: 'password',
     database: 'turistic',
    
-  },  */
+  },   */
 };

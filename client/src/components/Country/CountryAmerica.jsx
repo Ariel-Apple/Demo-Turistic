@@ -153,7 +153,7 @@ export default function CountryAmerica() {
         <Tab
           sx={{
             '&:focus': {
-              color: '#05A1A1',
+              color: '#8B008B',
             },
             display: 'flex',
             flexDirection: 'column',

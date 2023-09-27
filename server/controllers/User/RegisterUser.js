@@ -50,8 +50,7 @@ module.exports = {
       });
 
       const tokenPayload = { id: newUser.id, role: newUser.role };
-      const expiresIn = '8h';
-      const token = jwt.sign(tokenPayload, process.env.FIRMA_TOKEN, { expiresIn });
+      const token = jwt.sign(tokenPayload, process.env.FIRMA_TOKEN );
 
       console.log('Usuario creado correctamente');
       return res.json({ token });

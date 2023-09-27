@@ -1,5 +1,4 @@
-.card-container {
-}
+
 
 .cards-flex {
   display: flex;
@@ -24,7 +23,7 @@
 }
 
 .register-button {
-  background-color: #05A1A1;
+  background-color: #8B008B;
 }
 
 .loading-skeleton {
@@ -277,6 +276,10 @@
     color: black; /* Ejemplo: cambiar el color de texto */
     transform: none; /* Ejemplo: eliminar la transformación */
     opacity: 1; 
+  }
+  .card-box {
+    margin-top: 50px;
+    margin-bottom: -80px;
   }
   .card-box:hover .shadow-card {
     box-shadow: none;

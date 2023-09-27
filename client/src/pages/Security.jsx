@@ -16,7 +16,7 @@ export default function Security() {
       <Header />
       {isLoading ? (
         <div className="loading-container">
-          <BeatLoader color="#05A1A1" size="80" />
+          <BeatLoader color="#8B008B" size="80" />
         </div>
       ) : (
         <div>

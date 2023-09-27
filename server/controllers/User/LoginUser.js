@@ -30,8 +30,7 @@ module.exports = {
         role: user.role,
       };
 
-      const expiresIn = '8h';
-      const token = jwt.sign(tokenPayload, process.env.FIRMA_TOKEN, { expiresIn });
+      const token = jwt.sign(tokenPayload, process.env.FIRMA_TOKEN);
 
       console.log('Inicio de sesión exitoso');
       return res.json({ token });
