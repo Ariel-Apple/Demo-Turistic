@@ -3,6 +3,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import "./header.scss";
+import "./../../Loading.scss";
+
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import IconButton from "@mui/material/IconButton";
@@ -26,7 +28,25 @@ import LoginForms from "../LoginForms/LoginForms";
 import {  Modal } from 'antd';
 import RegisterForm from "../RegisterForm/RegisterForm";
 
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { message, Upload } from 'antd';
 
+const getBase64 = (img, callback) => {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result));
+  reader.readAsDataURL(img);
+};
+const beforeUpload = (file) => {
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+  if (!isJpgOrPng) {
+    message.error('You can only upload JPG/PNG file!');
+  }
+  const isLt2M = file.size / 1024 / 1024 < 2;
+  if (!isLt2M) {
+    message.error('Image must smaller than 2MB!');
+  }
+  return isJpgOrPng && isLt2M;
+};
 
 export default function BasicMenu() {
   const dispatch = useDispatch();
@@ -37,8 +57,37 @@ export default function BasicMenu() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isModalOpenRegister, setIsModalOpenRegister] = React.useState(false);
+  const [isModalOpenPublic, setIsModalOpenPublic] = React.useState(false);
+  const [loadingAvatar, setLoadingAvatar] = React.useState(false);
+  const [imageUrl, setImageUrl] = React.useState();
 
   console.log(datapersonal);
+
+  const handleChangeAvatar = (info) => {
+    if (info.file.status === 'uploading') {
+      setLoadingAvatar(true);
+      return;
+    }
+    if (info.file.status === 'done') {
+      // Get this url from response in real world.
+      getBase64(info.file.originFileObj, (url) => {
+        setLoadingAvatar(false);
+        setImageUrl(url);
+      });
+    }
+  };
+  const uploadButton = (
+    <div>
+      
+      {loadingAvatar ? <LoadingOutlined /> : <PlusOutlined />}
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+      </div>
+    </div>
+  );
 
   const showModalRegister = () => {
     setAnchorEl(null);
@@ -59,9 +108,18 @@ export default function BasicMenu() {
     setAnchorEl(null);
     setIsModalOpenRegister(false);
     setIsModalOpen(true);
-
+    setOpenPublic(false)
   };
 
+  const showModalPublic = () => {
+    setAnchorEl(null);
+    setIsModalOpenPublic(true)
+  };
+
+  const modalCancel = () => {
+    setAnchorEl(null);
+    setIsModalOpenPublic(false)
+  }
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -74,7 +132,7 @@ export default function BasicMenu() {
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(false); // Cambiar el estado de isLoading a "false" después de cierto tiempo
-    }, 1000);
+    }, 2000);
   }, []);
 
   const handleClickOpenLogout = () => {
@@ -102,6 +160,7 @@ export default function BasicMenu() {
     setAnchorEl(null);
     setOpenPublic(false);
   };
+
 
   const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -295,12 +354,10 @@ export default function BasicMenu() {
               Modo anfitrión
             </MenuItem>
             </Link>
-            <Link to='/public'>
 
-              <MenuItem onClick={handleClose} className="menu-items">
+              <MenuItem onClick={showModalPublic} className="menu-items">
                 Publicar
               </MenuItem>
-            </Link>
             <>
 
               <Button variant="transparent" onClick={handleClickOpenLogout}>
@@ -356,16 +413,69 @@ export default function BasicMenu() {
           </DialogContent>
           <DialogActions className="btn-modal" >
 
-            <Link to="/auth/login">
 
-              <Button>Iniciar sesión</Button>
-            </Link>
+              <Button onClick={showModal}>Iniciar sesión</Button>
             <Button onClick={handleClosePublic} >
               Cancelar
             </Button>
           </DialogActions>
 
         </Dialog>
+      </div>
+      <div>
+      <Dialog
+        open={isModalOpenPublic}
+        onClose={handleClosePublic}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          <>
+  
+  <Upload
+    name="avatar"
+    listType="picture-circle"
+    className="avatar-uploader"
+    showUploadList={false}
+    action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+    beforeUpload={beforeUpload}
+    onChange={handleChangeAvatar}
+    
+    
+  >
+    {imageUrl ? (
+      <img
+        src={imageUrl}
+        alt="avatar"
+        
+        style={{
+          width: '100%',
+        }}
+      />
+    ) : (
+      uploadButton
+    )}
+  </Upload>
+</>
+
+          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">
+            aca va los input de validacion
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions className="btn-modal" >
+        <Button onClick={modalCancel} autoFocus>
+            Cancelar
+          </Button>
+ <Link to="/public">
+          <Button>Publicar</Button>
+ </Link>
+       
+        </DialogActions>
+
+      </Dialog>
       </div>
     </div>
   );

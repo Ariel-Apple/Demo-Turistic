@@ -11,7 +11,6 @@ export default function PersonalInfo() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const datapersonal = useSelector((state) => state.datapersonal);
@@ -19,8 +18,7 @@ console.log(datapersonal);
 
   useEffect(() => {
     dispatch(dataPersonal(token));
-    setUser(token);
-  }, [token, user]);
+  }, [dispatch]);
   return (
     <div className="personal-container">
       <div className="px-4 sm:px-0">

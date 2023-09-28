@@ -9,7 +9,9 @@ import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import { useSelector, useDispatch } from "react-redux";
 import { AllPostTuristic, dataPersonal } from "../../redux/action";
-import { list2 } from "../../assets/cards-list";
+import IconButton from "@mui/material/IconButton";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 function Card() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +19,14 @@ function Card() {
   const allPost = useSelector((state) => state.allPost);
   const token = useSelector((state) => state.token);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-console.log(allPost);
+  console.log(allPost);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
   useEffect(() => {
     dispatch(AllPostTuristic());
     dispatch(dataPersonal(token));
@@ -59,175 +68,204 @@ console.log(allPost);
     }
   }, [allPost]);
 
-  const totalLength = allPost ? allPost.reduce((sum, post) => sum + post.Posts.length, 0) : 0;
-
+  const totalLength = allPost
+    ? allPost.reduce((sum, post) => sum + post.Posts.length, 0)
+    : 0;
 
   return (
-      <div className="card-container">
-        {isLoading ? (
-          <Grid className="loading-skeleton">
-            {Array.from(new Array(totalLength)).map((item, index) => (
-              <Box key={index}>
-                <Skeleton variant="rectangular" id="skeleton" />
-                <Box sx={{ pt: 0.5 }}>
-                  <Skeleton width="50%" />
-                  <Skeleton width="30%" />
-                </Box>
+    <div className="card-container">
+      {isLoading ? (
+        <Grid className="loading-skeleton">
+          {Array.from(new Array(totalLength)).map((item, index) => (
+            <Box key={index}>
+              <Skeleton variant="rectangular" id="skeleton" />
+              <Box sx={{ pt: 0.5 }}>
+                <Skeleton width="50%" />
+                <Skeleton width="30%" />
               </Box>
-            ))}
-          </Grid>
-        ) : (
-          imagesLoaded  && (
-            <div className="cards-flex">
-              {allPost.map((data, i) =>
-                data.Posts.map((info, index) => (
-                  <div className="card-box" key={index}>
+            </Box>
+          ))}
+        </Grid>
+      ) : (
+        imagesLoaded && (
+          <div className="cards-flex">
+            {allPost.map((data, i) =>
+              data.Posts.map((info, index) => (
+                <div className="card-box" key={index}>
+                 {/*  <IconButton
+                    onClick={toggleFavorite}
+                    color={isFavorite ? "secondary" : "default"}
+                    className="favorite-button"
+                  >
+                    {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                  </IconButton> */}
+
+                  <div className="carousel-container">
                     <Carousel interval={null} className="swiper-container">
                       {info.imageFile.map((imageSrc, imageIndex) => (
                         <Carousel.Item key={imageIndex}>
                           <Link to={"/rooms/" + info.id} className="text-link">
-                            <img
-                              src={imageSrc}
-                              alt={imageSrc}
-                              className="card-img"
-                            />
+                            <div className="image-container">
+                              <img
+                                src={imageSrc}
+                                alt={imageSrc}
+                                className="card-img"
+                              />
+                            </div>
                           </Link>
                         </Carousel.Item>
                       ))}
                     </Carousel>
-                    <div className="desc-hover">
-                      <Link to={"/rooms/" + info.id} className="text-link">
-                        {info.status === "Público" ? (
-                          <div className="shadow-card">
-                            <div className="card-info-flex">
-                              <Link
-                                to={"/rooms/" + info.id}
-                                className="text-link"
-                              >
-                                {info.title.split(' ').length > 2 ? (
-                                  <h3 className="card-title">
-                                    {info.title.split(' ').slice(0, 2).join(' ')}...
-                                  </h3>
-                                ) : (
-                                  <h3 className="card-title">{info.title}</h3>
-                                )}
-                              </Link>
-                              <div>
-                                <Avatar
-                                  sx={{
-                                    width: 25,
-                                    height: 25,
-                                    backgroundColor: data.backgroundColor,
-                                    marginRight: "10px",
-                                    marginTop: "5px"
-
-                                  }}
-                                >
-                                  {data.name && data.name[0].toUpperCase()}
-                                </Avatar>
-                              </div>
-                            </div>
-
-                            <p>
-                              <p
-                                style={{
-                                  margin: "0.2rem",
-                                  fontSize: "1rem",
-                                  color: "var(--black)",
-                                }}
-                                className="price-none"
-                              >
-                                <span
-                                  style={{
-                                    fontWeight: "600",
-                                    marginLeft: "10px",
-                                  }}
-                                >
-                                  Gratis
-                                </span>{" "}
-                              </p>
-                            </p>
-                            
-                            {info.summary.split(' ').length > 8 ? (
-                                  <p className="summary-card">
-                                    {info.summary.split(' ').slice(0, 8).join(' ')}...
-                                  </p>
-                                ) : (
-                                  <p className="summary-card">{info.summary}</p>
-
-                                )}
-                          </div>
-                        ) : (
-                          <div className="shadow-card">
-                            <div className="card-info-flex">
-                              <Link
-                                to={"/rooms/" + info.id}
-                                className="text-link"
-                              >
-                                    {info.title.split(' ').length > 2 ? (
-                                  <h3 className="card-title">
-                                    {info.title.split(' ').slice(0, 2).join(' ')}...
-                                  </h3>
-                                ) : (
-                                  <h3 className="card-title">{info.title}</h3>
-                                )}
-                              </Link>
-                              <div>
-                                <Avatar
-                                  sx={{
-                                    width: 25,
-                                    height: 25,
-                                    backgroundColor: data.backgroundColor,
-                                    marginRight: "10px",
-                                    marginTop: "5px"
-
-
-                                  }}
-                                >
-                                  {data.name && data.name[0].toUpperCase()}
-                                </Avatar>
-                              </div>
-                            </div>
-
-                            <p>
-                              <p
-                                style={{
-                                  margin: "0.2rem",
-                                  fontSize: "1rem",
-                                  color: "var(--black)",
-                                }}
-                                className="price-none"
-                              >
-                                <span
-                                  style={{
-                                    fontWeight: "600",
-                                    marginLeft: "10px",
-                                  }}
-                                >
-                                  ${info.price}
-                                </span>{" "}
-                                por persona
-                              </p>
-                            </p>
-                            {info.summary.split(' ').length > 8 ? (
-                                  <p className="summary-card">
-                                    {info.summary.split(' ').slice(0, 8).join(' ')}...
-                                  </p>
-                                ) : (
-                                  <p className="summary-card">{info.summary}</p>
-
-                                )}
-                          </div>
-                        )}
-                      </Link>
-                    </div>
                   </div>
-                ))
-              )}
-            </div>
-          )
-        )}
-      </div>
+
+                  <div className="desc-hover">
+                    <Link to={"/rooms/" + info.id} className="text-link">
+                      {info.status === "Público" ? (
+                        <div className="shadow-card">
+                          <div className="card-info-flex">
+                            <Link
+                              to={"/rooms/" + info.id}
+                              className="text-link"
+                            >
+                              {info.title.split(" ").length > 2 ? (
+                                <h3 className="card-title">
+                                  {info.title
+                                    .split(" ")
+                                    .slice(0, 2)
+                                    .join(" ")}
+                                  ...
+                                </h3>
+                              ) : (
+                                <h3 className="card-title">{info.title}</h3>
+                              )}
+                            </Link>
+                            <div>
+                              <Avatar
+                                sx={{
+                                  width: 25,
+                                  height: 25,
+                                  backgroundColor: data.backgroundColor,
+                                  marginRight: "10px",
+                                  marginTop: "5px",
+                                }}
+                              >
+                                {data.name &&
+                                  data.name[0].toUpperCase()}
+                              </Avatar>
+                            </div>
+                          </div>
+
+                          <p>
+                            <p
+                              style={{
+                                margin: "0.2rem",
+                                fontSize: "1rem",
+                                color: "var(--black)",
+                              }}
+                              className="price-none"
+                            >
+                              <span
+                                style={{
+                                  fontWeight: "600",
+                                  marginLeft: "10px",
+                                }}
+                              >
+                                Gratis
+                              </span>{" "}
+                            </p>
+                          </p>
+
+                          {info.summary.split(" ").length > 4 ? (
+                            <p className="summary-card">
+                              {info.summary
+                                .split(" ")
+                                .slice(0, 4)
+                                .join(" ")}...
+                            </p>
+                          ) : (
+                            <p className="summary-card">
+                              {info.summary}
+                            </p>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="shadow-card">
+                          <div className="card-info-flex">
+                            <Link
+                              to={"/rooms/" + info.id}
+                              className="text-link"
+                            >
+                              {info.title.split(" ").length > 2 ? (
+                                <h3 className="card-title">
+                                  {info.title
+                                    .split(" ")
+                                    .slice(0, 2)
+                                    .join(" ")}
+                                  ...
+                                </h3>
+                              ) : (
+                                <h3 className="card-title">{info.title}</h3>
+                              )}
+                            </Link>
+                            <div>
+                              <Avatar
+                                sx={{
+                                  width: 25,
+                                  height: 25,
+                                  backgroundColor: data.backgroundColor,
+                                  marginRight: "10px",
+                                  marginTop: "5px",
+                                }}
+                              >
+                                {data.name &&
+                                  data.name[0].toUpperCase()}
+                              </Avatar>
+                            </div>
+                          </div>
+
+                          <p>
+                            <p
+                              style={{
+                                margin: "0.2rem",
+                                fontSize: "1rem",
+                                color: "var(--black)",
+                              }}
+                              className="price-none"
+                            >
+                              <span
+                                style={{
+                                  fontWeight: "600",
+                                  marginLeft: "10px",
+                                }}
+                              >
+                                ${info.price}
+                              </span>{" "}
+                              por persona
+                            </p>
+                          </p>
+                          {info.summary.split(" ").length > 4 ? (
+                            <p className="summary-card">
+                              {info.summary
+                                .split(" ")
+                                .slice(0, 4)
+                                .join(" ")}...
+                            </p>
+                          ) : (
+                            <p className="summary-card">
+                              {info.summary}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </Link>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        )
+      )}
+    </div>
   );
 }
 

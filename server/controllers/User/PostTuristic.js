@@ -5,7 +5,6 @@ require('dotenv').config();
 const multer = require('multer');
 const path = require('path');
 
-// Configuración de almacenamiento con Multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, '../../uploads'));
@@ -18,7 +17,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Configuración de Cloudinary
 cloudinary.config({
   cloud_name: 'dz0lruj7k',
   api_key: '128323134832632',
@@ -33,9 +31,8 @@ module.exports = {
         return res.status(400).send('No se han proporcionado archivos.');
       }
 
-      const imageUrls = []; // Para almacenar las URL de las imágenes cargadas
+      const imageUrls = [];
 
-      // Función para cargar una imagen en Cloudinary
       const uploadImageToCloudinary = async (file) => {
         try {
           const cloudinaryUploadResult = await cloudinary.uploader.upload(file.path, {
@@ -44,78 +41,67 @@ module.exports = {
             fetch_format: 'auto',
           });
           console.log('Imagen subida a Cloudinary:', cloudinaryUploadResult.secure_url);
-          imageUrls.push(cloudinaryUploadResult.secure_url);
+          return cloudinaryUploadResult.secure_url;
         } catch (error) {
           console.error('Error al cargar la imagen en Cloudinary:', error);
+          throw error;
         }
       };
 
-      // Carga de imágenes en paralelo con un intervalo de 1 segundo
-      const files = req.files;
-      let currentIndex = 0;
+      const uploadPromises = req.files.map(uploadImageToCloudinary);
 
-      const uploadInterval = setInterval(async () => {
-        if (currentIndex < files.length) {
-          await uploadImageToCloudinary(files[currentIndex]);
-          currentIndex++;
-        } else {
-          clearInterval(uploadInterval); // Detiene la carga cuando se han subido todas las imágenes
-          
-          // Continúa con el resto de tu código para crear la publicación y responder al cliente
-          jwt.verify(authorization, process.env.FIRMA_TOKEN, async (err, decoded) => {
-            if (err) {
-              return res.sendStatus(401);
-            } else {
-              const { title, price, people, summary, description, status, continent, infoImportant, daysAtentions, reservedDates, listDetails, hoursAtetionsInitial, hoursAtentionsFinally, country } = req.body;
-              const parsedReservedDates = typeof reservedDates === 'string' ? JSON.parse(reservedDates) : [];
-              const parsedListDetails = typeof listDetails === 'string' ? JSON.parse(listDetails) : [];
-              const parsedInfoImportant = typeof infoImportant === 'string' ? JSON.parse(infoImportant) : [];
-              const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
-              const capitalizedSummary = summary.charAt(0).toUpperCase() + summary.slice(1);
-              const capitalizedDescription = description.charAt(0).toUpperCase() + description.slice(1);
+      const uploadedImageUrls = await Promise.all(uploadPromises);
 
-
-              if (status === "Privado") {
-                const newPost = await Post.create({
-                  title: capitalizedTitle,
-                  price,
-                  people,
-                  summary: capitalizedSummary,
-                  description: capitalizedDescription,
-                  status,
-                  continent,
-                  country,
-                  daysAtentions,
-                  hoursAtetionsInitial,
-                  hoursAtentionsFinally,
-                  infoImportant: parsedInfoImportant,
-                  reservedDates: parsedReservedDates,
-                  listDetails: parsedListDetails,
-                  imageFile: imageUrls,
-                });
-
-                // Asociación automática del usuario que está creando la publicación
-                const userId = decoded.id;
-                await newPost.addUser(userId);
-                console.log('Post creado correctamente');
-                res.status(201).json({ message: 'Post creado exitosamente' });
-              } else if (status === "Público") {
-                const newPostPublic = await Post.create({
-                  title:capitalizedTitle,
-                  summary: capitalizedSummary,
-                  description: capitalizedDescription,
-                  status,
-                  imageFile: imageUrls,
-                });
-                const userId = decoded.id;
-                await newPostPublic.addUser(userId);
-                console.log('Post creado correctamente');
-                res.status(201).json({ message: 'Post creado exitosamente' });
-              }
-            }
-          });
+      jwt.verify(authorization, process.env.FIRMA_TOKEN, async (err, decoded) => {
+        if (err) {
+          return res.sendStatus(401);
         }
-      }, 500); // Cada 1000 ms (1 segundo)
+
+        const { title, price, people, summary, description, status, continent, infoImportant, daysAtentions, reservedDates, listDetails, hoursAtetionsInitial, hoursAtentionsFinally, country } = req.body;
+        const parsedReservedDates = typeof reservedDates === 'string' ? JSON.parse(reservedDates) : [];
+        const parsedListDetails = typeof listDetails === 'string' ? JSON.parse(listDetails) : [];
+        const parsedInfoImportant = typeof infoImportant === 'string' ? JSON.parse(infoImportant) : [];
+        const capitalizedTitle = title.charAt(0).toUpperCase() + title.slice(1);
+        const capitalizedSummary = summary.charAt(0).toUpperCase() + summary.slice(1);
+        const capitalizedDescription = description.charAt(0).toUpperCase() + description.slice(1);
+
+        if (status === "Privado") {
+          const newPost = await Post.create({
+            title: capitalizedTitle,
+            price,
+            people,
+            summary: capitalizedSummary,
+            description: capitalizedDescription,
+            status,
+            continent,
+            country,
+            daysAtentions,
+            hoursAtetionsInitial,
+            hoursAtentionsFinally,
+            infoImportant: parsedInfoImportant,
+            reservedDates: parsedReservedDates,
+            listDetails: parsedListDetails,
+            imageFile: uploadedImageUrls,
+          });
+
+          const userId = decoded.id;
+          await newPost.addUser(userId);
+          console.log('Post creado correctamente');
+          res.status(201).json({ message: 'Post creado exitosamente' });
+        } else if (status === "Público") {
+          const newPostPublic = await Post.create({
+            title: capitalizedTitle,
+            summary: capitalizedSummary,
+            description: capitalizedDescription,
+            status,
+            imageFile: uploadedImageUrls,
+          });
+          const userId = decoded.id;
+          await newPostPublic.addUser(userId);
+          console.log('Post creado correctamente');
+          res.status(201).json({ message: 'Post creado exitosamente' });
+        }
+      });
 
     } catch (error) {
       console.error('Error al crear el post:', error);

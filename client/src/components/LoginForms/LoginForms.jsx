@@ -12,7 +12,7 @@ import BeatLoader from "react-loading";
 
 import RegisterForm from "../RegisterForm/RegisterForm";
 
-export default function LoginForms() {
+export default function LoginForms({setIsModalOpen}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +23,6 @@ export default function LoginForms() {
   const [fullscreen, setFullscreen] =React.useState(true);
 
   const [isModalOpenRegister, setIsModalOpenRegister] = React.useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   const showModalRegister = () => {
     setIsModalOpenRegister(true);
@@ -36,11 +35,7 @@ export default function LoginForms() {
   const handleCancelRegister = () => {
     setIsModalOpenRegister(false);
   };
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();

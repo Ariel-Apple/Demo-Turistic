@@ -12,6 +12,27 @@
   align-self: flex-start;
 }
 
+.carousel-container {
+  position: relative;
+}
+
+.btn-favorite {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1; /* Asegura que el botón esté por encima del carrusel */
+}
+.favorite-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.carousel-with-button {
+  margin-top: 50px; /* Ajusta el espacio entre el botón y el carrusel según sea necesario */
+}
+
+
 
 
 #skeleton {
@@ -52,7 +73,7 @@
 .card-box:hover {
   transform: scale(1.1);
   position: relative;
-  box-shadow: 0px 0px 10px black;
+  box-shadow: 3px 5px 5px rgb(3, 32, 51, 8);
 
 }
 
@@ -61,12 +82,11 @@
 .summary-card {
   position: relative;
   margin-left: 10px;
-  width: 250px;
   margin-top: 5px;
   bottom: 5px;
   font-size: 11px;
   color: gray;
- 
+ width: 250px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;

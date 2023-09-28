@@ -1266,9 +1266,9 @@ export default function FormStepper() {
               <Button
                 onClick={handleNext}
                 sx={{
-                  backgroundColor: "#05A1A1",
+                  backgroundColor: "#8B008B",
                   color: "white",
-                  ":hover": { backgroundColor: "#05A1A1", color: "white" },
+                  ":hover": { backgroundColor: "#8B008B", color: "white" },
                 }}
                 type="button"
               >
@@ -1362,9 +1362,9 @@ export default function FormStepper() {
               <Button
                 onClick={handleNextImage}
                 sx={{
-                  backgroundColor: "#05A1A1",
+                  backgroundColor: "#8B008B",
                   color: "white",
-                  ":hover": { backgroundColor: "#05A1A1", color: "white" },
+                  ":hover": { backgroundColor: "#8B008B", color: "white" },
                 }}
                 type="button"
               >
@@ -1552,10 +1552,10 @@ export default function FormStepper() {
                       <Box />
                       <Button
                         sx={{
-                          backgroundColor: "#05A1A1",
+                          backgroundColor: "#8B008B",
                           color: "white",
                           ":hover": {
-                            backgroundColor: "#05A1A1",
+                            backgroundColor: "#8B008B",
                             color: "white",
                           },
                         }}
@@ -1582,9 +1582,9 @@ export default function FormStepper() {
           sx={{
             marginBottom: 5,
             matginTop: 5,
-            backgroundColor: "#05A1A1",
+            backgroundColor: "#8B008B",
             color: "white",
-            ":hover": { backgroundColor: "#05A1A1", color: "white" },
+            ":hover": { backgroundColor: "#8B008B", color: "white" },
           }}
         >
           Cancelar
