@@ -501,7 +501,7 @@ export default function CardDetails() {
                       </div>
                       <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
                         <img
-                          src={detailpost.imageFile[2]}
+                          src={detailpost.imageFile[3]}
                           /*  src={product.images[3].src} */
                           alt="Not found"
                           className="h-full w-full object-cover object-center hover-image"

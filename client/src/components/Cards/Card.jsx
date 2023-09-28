@@ -117,7 +117,9 @@ console.log(allPost);
                                   sx={{
                                     width: 25,
                                     height: 25,
-                                    backgroundColor: data.backgroundColor
+                                    backgroundColor: data.backgroundColor,
+                                    marginRight: "10px",
+                                    marginTop: "5px"
 
                                   }}
                                 >
@@ -175,7 +177,11 @@ console.log(allPost);
                                   sx={{
                                     width: 25,
                                     height: 25,
-                                    backgroundColor: data.backgroundColor
+                                    backgroundColor: data.backgroundColor,
+                                    marginRight: "10px",
+                                    marginTop: "5px"
+
+
                                   }}
                                 >
                                   {data.name && data.name[0].toUpperCase()}
