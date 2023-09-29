@@ -106,11 +106,18 @@ export default function CardDetails() {
     bottom: false,
     right: false,
   });
-  const [show, setShow] = React.useState(false);
+
   const [isLoading, setIsLoading] = React.useState(true);
   const detailpost = useSelector((state) => state.detailpost);
   const dispatch = useDispatch();
+  const values = [true];
+  const [fullscreen, setFullscreen] = React.useState(true);
+  const [detailsModal, setDetailsModal] = React.useState(false);
 
+  function handleShow(breakpoint) {
+    setFullscreen(breakpoint);
+    setDetailsModal(true);
+  }
   console.log(detailpost.Users && detailpost.Users[0].backgroundColor);
 
 
@@ -398,20 +405,14 @@ export default function CardDetails() {
     { name: "Zimbabwe", countryCode: "zw" },
   ];
 
-  const list = (anchor) => (
+  const list = () => (
     <div>
       <Box sx={{ display: "grids" }}>
-        <List className="list-drawer">
-          <h3
-            className="btn-list"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
-          >
-            &times;
-          </h3>
-          <div className="drawer-details">
+        <List >
+        
+          <div className="container-image" >
             {detailpost.imageFile.map((img, index) => (
-              <div onClick={handleShowVistPreview} className="drawer-image">
+              <div className="modal-image">
                 <img src={img} alt="not found" />
               </div>
             ))}
@@ -463,10 +464,8 @@ export default function CardDetails() {
               </div>
             </div>
           ) : (
-            <div>
-              {["top"].map((anchor) => (
-                <React.Fragment key={anchor}>
-                  <div onClick={toggleDrawer(anchor, true)}>
+            <>
+                  <div >
                     <div className="title-continent">
                       <h1>{detailpost.title}</h1>
                       {/*    <h1 className="title">Lagos</h1> */}
@@ -506,22 +505,31 @@ export default function CardDetails() {
                           alt="Not found"
                           className="h-full w-full object-cover object-center hover-image"
                         />
-                        <Fab size="small" id="icons-details" aria-label="add">
+                        
+                      <div>
+
+                        {values.map((v, idx) => (
+                          <div key={idx} className="me-2 mb-2" onClick={() => handleShow(v)}>
+           <Fab size="small" id="icons-details" aria-label="add">
                           <AddIcon />
                         </Fab>
+        </div>
+      ))}
                       </div>
                     </div>
                   </div>
-                  <Drawer
-                    anchor={anchor}
-                    open={state[anchor]}
-                    onClose={toggleDrawer(anchor, false)}
-                  >
-                    {list(anchor)}
-                  </Drawer>
-                </React.Fragment>
-              ))}
-            </div>
+                  <Modal show={detailsModal} fullscreen={fullscreen} onHide={() => setDetailsModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        {list()}
+          
+        </Modal.Body>
+      </Modal>
+          </div>
+            
+            </>
           )}
 
           {/* Product info */}

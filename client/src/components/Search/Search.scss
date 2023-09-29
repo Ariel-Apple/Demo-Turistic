@@ -1,14 +1,12 @@
 .search-container {
-
   .btn-search {
     align-items: center;
     gap: 0.5rem;
     padding: 0.35rem 1rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
 
     border-radius: 2rem;
     width: 140px;
-    height: 30px;
+    height: 32px;
 
 
   }
@@ -16,7 +14,6 @@
   .btn-search:hover {
     transition: all 0.2s;
     cursor: pointer;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, 0.122);
   }
 
   .search-button {
@@ -47,9 +44,9 @@
     display: flex;
     padding: 0.35rem 1rem;
     justify-content: center;
-    width: 40px;
+    width: 35px;
+    height: 32px;
     position: absolute;
-    margin-right: 2px;
 
   }
 
@@ -59,24 +56,26 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.35rem 1rem;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
-    border-radius: 2rem;
+    border-radius: 1rem; /* Bordes más redondeados */
     width: 300px;
-    border: none;
+    height: 32px;
+    border: 1px solid #ccc; /* Grosor y color del borde */
     outline: none;
   }
+
   .input-container input:focus {
     transition: all 0.2s;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, 0.122);
   }
 
 
 
 
-  .linea {
-    height: 0.8rem;
-    width: 8rem;
+
+  .vertical-line {
+    border-left: 1px solid #ccc; /* Establece el borde izquierdo como una línea sólida de 1 píxel y color gris (#ccc) */
+    height: 100%; /* Establece la altura al 100% del contenedor */
   }
+  
 
   .search-span input {
     /* display: flex;

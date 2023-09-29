@@ -1,75 +1,35 @@
-import React, { useState } from 'react';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { message, Upload } from 'antd';
-const getBase64 = (img, callback) => {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-};
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+function Example() {
+  const values = [true];
+  const [fullscreen, setFullscreen] = useState(true);
+  const [detailsModal, setDetailsModal] = useState(false);
+
+  function handleShow(breakpoint) {
+    setFullscreen(breakpoint);
+    setDetailsModal(true);
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-};
-const App = () => {
-  const [loadingAvatar, setLoadingAvatar] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
-  const handleChangeAvatar = (info) => {
-    if (info.file.status === 'uploading') {
-      setLoadingAvatar(true);
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoadingAvatar(false);
-        setImageUrl(url);
-      });
-    }
-  };
-  const uploadButton = (
-    <div>
-      {loadingAvatar ? <LoadingOutlined /> : <PlusOutlined />}
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
-    </div>
-  );
+
   return (
     <>
-  
-      <Upload
-        name="avatar"
-        listType="picture-circle"
-        className="avatar-uploader"
-        showUploadList={false}
-        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-        beforeUpload={beforeUpload}
-        onChange={handleChangeAvatar}
-      >
-        {imageUrl ? (
-          <img
-            src={imageUrl}
-            alt="avatar"
-            style={{
-              width: '100%',
-            }}
-          />
-        ) : (
-          uploadButton
-        )}
-      </Upload>
+      {values.map((v, idx) => (
+        <Button key={idx} className="me-2 mb-2" onClick={() => handleShow(v)}>
+          Full screen
+          {typeof v === 'string' && `below ${v.split('-')[0]}`}
+        </Button>
+      ))}
+      <Modal show={detailsModal} fullscreen={fullscreen} onHide={() => setDetailsModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          
+        </Modal.Body>
+      </Modal>
     </>
   );
-};
-export default App;
+}
+
+export default Example;

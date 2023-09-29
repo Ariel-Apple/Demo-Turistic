@@ -1,7 +1,7 @@
 .title-continent {
   font-size: 30px;
   font-weight: 600;
-text-align: center;
+  text-align: center;
 
 }
 
@@ -15,16 +15,24 @@ text-align: center;
 
 .list-drawer {
   height: 100vh;
+  width: 100%;
 }
 
-
-.drawer-image img {
-
-  cursor: pointer;
-  min-height:  450px;
-  max-width: 850px;
-  
+.container-image {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
+
+.modal-image img {
+  flex-grow: 1;
+  flex-basis: 200;
+  width: 100%;
+  height: 50vh;
+
+}
+
 .flex-name {
   display: flex;
   gap: 10px;
@@ -82,6 +90,7 @@ text-align: center;
   width: 850px;
   height: 550px;
 }
+
 .close-button-modal {
   position: absolute;
   top: 10px;
@@ -125,23 +134,33 @@ text-align: center;
   color: #fff;
   background-color: #8B008B;
 }
+
 .anfitrion-avatar {
   display: flex;
   gap: 10px;
 }
+
 @media only screen and (max-width: 480px) {
   #skeleton1 {
-    height: 250px;
+    height: 300px;
   }
-  #icons-details {
-  
-    margin-left: 330px;
-  
-  }
-  .card-reserve {
-  width: 350px;
-  box-shadow: 0px 0px 0px;
 
+  #icons-details {
+
+    margin-left: 330px;
+
+  }
+
+  .card-reserve {
+    width: 350px;
+    box-shadow: 0px 0px 0px;
+
+  }
+
+  .drawer-image img {
+    width: 550px;
+    height: 350px;
+    object-fit: cover;
   }
 }
 
@@ -150,23 +169,23 @@ text-align: center;
     width: 750px;
     height: 420px;
   }
+
   .card-reserve {
-  box-shadow: 0px 0px 0px;
+    box-shadow: 0px 0px 0px;
 
   }
+
   #icons-details {
-  
+
     margin-left: 480px;
-  
+
   }
 }
 
 
-@media only screen and (min-width: 1025px) and (max-width: 1728px) {
+@media only screen and (min-width: 1024px) and (max-width: 1728px) {
   .card-reserve {
     width: 350px;
-  
-    }
+
+  }
 }
-
-
