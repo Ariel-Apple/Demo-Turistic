@@ -226,8 +226,8 @@
 
 
     .slide {
-        height: 100%;
-        width: 100%; /* Cambia esto a 25% para mostrar 2 elementos a la vez */
+        height: 80vh;
+        width: 90%; /* Cambia esto a 25% para mostrar 2 elementos a la vez */
         display: flex;
         justify-content: center;
       }
@@ -254,6 +254,7 @@
         display: flex;
         gap: 50px;
         width: 100%;
+        
         justify-content: center;
     }
 
@@ -261,10 +262,12 @@
     .splide__arrow--prev,
     .splide__arrow--next {
       background-color: #8B008B; /* Cambia a tu color deseado */
+       height: 80px;
+       width: 80px;
     }
     
     /* Cambia el color del icono de flecha (usualmente una fuente de iconos) */
-    .splide__arrow::before {
+    .splide__arrow--next {
       color: #ffffff; /* Cambia a tu color deseado */
     }
     
@@ -282,7 +285,16 @@
 
 @media only screen and (max-width: 480px) {
     .filter-container {
-
+        .slide {
+            width: 100%;
+        }
+        .splide__arrow--prev,
+        .splide__arrow--next {
+          background-color: #8b008b78; /* Cambia a tu color deseado */
+           height: 30px;
+           width: 30px;
+           margin-top: -160px;
+        }
         .filter-lagos {
             
             height: 250px;
@@ -395,7 +407,9 @@ gap: 10px;
 
 @media only screen and (min-width: 1024px) and (max-width: 1728px) {
     .filter-container {
-
+     .slide {
+        width: 100%;
+     }
         .filter-lagos {
         
             height: 500px;

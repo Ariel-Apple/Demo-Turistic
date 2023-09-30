@@ -7,7 +7,7 @@
   flex-wrap: wrap;
   padding: 1rem;
   gap: 100px;
-  margin-top: 30px;
+  margin-top: -50px;
   margin-bottom: 150px;
   align-self: flex-start;
 }
@@ -61,7 +61,7 @@
 
 .card-box {
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: -50px;
   justify-content: center;
   display: grid;
   transition: transform 0.3s ease;
@@ -73,7 +73,7 @@
 .card-box:hover {
   transform: scale(1.1);
   position: relative;
-  box-shadow: 3px 5px 5px rgb(3, 32, 51, 8);
+  box-shadow: 3px 5px 5px rgb(173, 173, 173);
 
 }
 
@@ -281,7 +281,7 @@
 
   .cards-flex {
     padding: 0px;
-    margin-top: 30px;
+    margin-top: -80px;
   }
 
   .card-box:hover {
@@ -299,6 +299,8 @@
     color: black; /* Ejemplo: cambiar el color de texto */
     transform: none; /* Ejemplo: eliminar la transformación */
     opacity: 1; 
+    width: 300px;
+
   }
   .card-box {
     margin-top: 50px;
@@ -318,7 +320,7 @@
 
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1728px) {
+@media only screen and (min-width: 1024px) and (max-width: 1728px) {
 
   .swiper-container,
   .card-img {
@@ -334,6 +336,7 @@
 
   .card-box {
     width: 20vw;
+    margin-bottom: 10px;
 
   }
   .summary-card {

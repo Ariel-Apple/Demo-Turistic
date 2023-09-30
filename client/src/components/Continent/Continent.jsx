@@ -111,31 +111,31 @@ function Continent() {
       <div className="continent-container">
         <Button   onClick={handleClickAmerica}>
           <div className="continent">
-            <img src={america} alt="not found" />
+            <img src={america} alt="not found" id="continent" />
             <p>America</p>
           </div>
         </Button>
         <Button  onClick={handleClickEurope}>
           <div className="continent">
-            <img src={europa} alt="not found" />
+            <img src={europa} alt="not found" id="continent" />
             <p>Europa</p>
           </div>
         </Button>
         <Button onClick={handleClickAsia}>
-          <div className="continent">
-            <img src={asia} alt="not found" />
+          <div className="continent" >
+            <img src={asia} alt="not found" id="continent"/>
             <p>Asia</p>
           </div>
         </Button>
         <Button onClick={handleClickAfrica}>
-          <div className="continent">
-            <img src={africa} alt="not found" />
+          <div className="continent" >
+            <img src={africa} alt="not found" id="continent" />
             <p>Africa</p>
           </div>
         </Button>
         <Button  onClick={handleClickOceania}>
           <div className="continent">
-            <img src={america} alt="not found" />
+            <img src={america} alt="not found"  id="continent"/>
             <p>Oceania</p>
           </div>
         </Button>

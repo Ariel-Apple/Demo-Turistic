@@ -35,7 +35,7 @@ import { DatePicker, Space } from "antd";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import Avatar from "@mui/material/Avatar";
-
+import { Image } from 'antd';
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
@@ -464,13 +464,14 @@ export default function CardDetails() {
               </div>
             </div>
           ) : (
-            <>
-                  <div >
+            <div>
+                      {values.map((v, idx) => (
+                                                    <div key={idx} className="me-2 mb-2" onClick={() => handleShow(v)}>
                     <div className="title-continent">
                       <h1>{detailpost.title}</h1>
                       {/*    <h1 className="title">Lagos</h1> */}
                     </div>
-                    <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+                    <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image">
                       <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
                         <img
                           src={detailpost.imageFile[0]}
@@ -507,17 +508,17 @@ export default function CardDetails() {
                         />
                         
                       <div>
-
-                        {values.map((v, idx) => (
-                          <div key={idx} className="me-2 mb-2" onClick={() => handleShow(v)}>
+                          
+                                             
            <Fab size="small" id="icons-details" aria-label="add">
-                          <AddIcon />
+                          <AddIcon />{detailpost.imageFile.length}
                         </Fab>
         </div>
-      ))}
                       </div>
                     </div>
+
                   </div>
+                    ))}
                   <Modal show={detailsModal} fullscreen={fullscreen} onHide={() => setDetailsModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title></Modal.Title>
@@ -529,29 +530,31 @@ export default function CardDetails() {
       </Modal>
           </div>
             
-            </>
           )}
 
           {/* Product info */}
           <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                Lugar para visitar.
-              </h1>
 
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
   Anfitrión: {detailpost.Users && detailpost.Users[0].name }
-   
+   <div className="avatar-container">
+
     <Avatar
     sx={{
-      width: 32,
-      height: 32,
+
+      width: 80,
+      height: 80,
       backgroundColor: detailpost.Users && detailpost.Users[0].backgroundColor
     }}
-  >
+    >
     {detailpost.Users && detailpost.Users[0].name[0].toUpperCase()}
   </Avatar>
+    </div>
 </h1>
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                Lugar para visitar.
+              </h1>
 
               <div>
                 {detailpost.continent}{" "}

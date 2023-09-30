@@ -127,7 +127,7 @@ function Card() {
                               to={"/rooms/" + info.id}
                               className="text-link"
                             >
-                              {info.title.split(" ").length > 2 ? (
+                             {/*  {info.title.split(" ").length > 2 ? (
                                 <h3 className="card-title">
                                   {info.title
                                     .split(" ")
@@ -135,9 +135,8 @@ function Card() {
                                     .join(" ")}
                                   ...
                                 </h3>
-                              ) : (
+                              ) : ( */}
                                 <h3 className="card-title">{info.title}</h3>
-                              )}
                             </Link>
                             <div>
                               <Avatar
@@ -175,11 +174,11 @@ function Card() {
                             </p>
                           </p>
 
-                          {info.summary.split(" ").length > 4 ? (
+                          {info.summary.split(" ").length > 15 ? (
                             <p className="summary-card">
                               {info.summary
                                 .split(" ")
-                                .slice(0, 4)
+                                .slice(0, 15)
                                 .join(" ")}...
                             </p>
                           ) : (
@@ -195,7 +194,7 @@ function Card() {
                               to={"/rooms/" + info.id}
                               className="text-link"
                             >
-                              {info.title.split(" ").length > 2 ? (
+                            {/*   {info.title.split(" ").length > 2 ? (
                                 <h3 className="card-title">
                                   {info.title
                                     .split(" ")
@@ -203,9 +202,8 @@ function Card() {
                                     .join(" ")}
                                   ...
                                 </h3>
-                              ) : (
+                              ) : ( */}
                                 <h3 className="card-title">{info.title}</h3>
-                              )}
                             </Link>
                             <div>
                               <Avatar
@@ -243,11 +241,11 @@ function Card() {
                               por persona
                             </p>
                           </p>
-                          {info.summary.split(" ").length > 4 ? (
+                          {info.summary.split(" ").length > 15 ? (
                             <p className="summary-card">
                               {info.summary
                                 .split(" ")
-                                .slice(0, 4)
+                                .slice(0, 15)
                                 .join(" ")}...
                             </p>
                           ) : (

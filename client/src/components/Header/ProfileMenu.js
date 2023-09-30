@@ -356,7 +356,7 @@ export default function BasicMenu() {
             </Link>
 
               <MenuItem onClick={showModalPublic} className="menu-items">
-                Publicar
+              Unase placee enc como anfitrion
               </MenuItem>
             <>
 

@@ -39,7 +39,8 @@
   margin-left: 30px;
 }
 .navbar-logo {
-  height: 4rem;
+  width: 80px;
+ /*  height: 4rem; */
   margin-left: -25px;
 }
 
@@ -210,6 +211,9 @@
     display: none;
 
 
+  }
+  .navbar-logo {
+    width: 70px;
   }
 }
 

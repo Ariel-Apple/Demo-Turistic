@@ -1,8 +1,7 @@
 .title-continent {
   font-size: 30px;
   font-weight: 600;
-  text-align: center;
-
+  margin-left: 22%;
 }
 
 .btn-list {
@@ -35,7 +34,7 @@
 
 .flex-name {
   display: flex;
-  gap: 10px;
+  gap: 390px;
 }
 
 .card-reserve {
@@ -123,10 +122,12 @@
 
 #icons-details {
   color: #fff;
-  background-color: #8B008B;
+  background-color: #8b008b7e;
   position: absolute;
-  margin-top: -50px;
-  margin-left: 280px;
+  margin-top: -90px;
+  margin-left: 250px;
+  width: 80px;
+  height: 80px;
 
 }
 
@@ -140,14 +141,21 @@
   gap: 10px;
 }
 
+.avatar-container{
+  position: absolute;
+  margin-left: 600px;
+}
+
 @media only screen and (max-width: 480px) {
   #skeleton1 {
-    height: 300px;
+    width: 100%;
   }
 
   #icons-details {
-
-    margin-left: 330px;
+    width: 50px;
+    height: 50px;
+    margin-left: 320px;
+    margin-top: -52px;
 
   }
 
@@ -161,6 +169,13 @@
     width: 550px;
     height: 350px;
     object-fit: cover;
+  }
+  .avatar-container{
+    position: absolute;
+    margin-left: 270px;
+  }
+  .fixed-image {
+
   }
 }
 
@@ -187,5 +202,11 @@
   .card-reserve {
     width: 350px;
 
+  }
+
+  .title-continent {
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 8%;
   }
 }
