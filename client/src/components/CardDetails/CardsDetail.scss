@@ -12,7 +12,19 @@
   background-color: #fff;
 }
 
-
+.mobile-details {
+  display: none;
+}
+.carrusel-scroll{
+ margin-top: -650px;
+  width: 60vh;
+  position: fixed;
+  z-index: 2;
+}
+.details-carrusel-fixed img {
+  width: 60vh;
+  height: 40vh;
+}
 
 .list-drawer {
   height: 100vh;
@@ -138,7 +150,7 @@
   margin-left: 250px;
   width: 80px;
   height: 80px;
-
+z-index: 2;
 }
 
 #icons-details:hover {
@@ -165,7 +177,6 @@
   border-top: 1px solid var(--grey);
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
   background-color: white;
-  padding-top: 13px;
   padding-bottom: 14px;
 
 }
@@ -177,7 +188,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 280px;
+  width: 230px;
+  height: 40px;
   background-color: #8B008B;
 }
 
@@ -194,15 +206,17 @@
   #skeleton1 {
     width: 100%;
   }
-  .footer-container {
-    display: none;
+ 
+  .mobile-details {
+    display: flex;
   }
 
   #icons-details {
     width: 50px;
     height: 50px;
-    margin-left: 300px;
-    margin-top: -52px;
+    margin-left: 320px;
+    margin-top: 280px;
+    position: fixed;
 
   }
   .title-continent {
@@ -229,9 +243,21 @@
     display: flex;
    justify-content: center;
   }
-  .footer-details {
-    display: none;
+ .carrusel-container {
+  display: none;
+ }
+  .mobile-ocult {
+  display: none;
   }
+  .mobile-details {
+    position: fixed;
+    z-index: 2;
+
+  }
+  .mobile-anfitrion {
+   margin-top: 350px;
+  }
+  
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
@@ -266,6 +292,14 @@
   .hover-image {
     width: 750px;
     height: 420px;
+  }
+  .carrusel-container {
+    display: none;
+   }
+   .mobile-details {
+    position: fixed;
+    z-index: 2;
+
   }
 }
 

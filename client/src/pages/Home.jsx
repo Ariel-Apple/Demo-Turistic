@@ -3,8 +3,7 @@ import Header from "../components/Header";
 import Continent from "../components/Continent/Continent";
 import FooterHome from "../components/FooterHome/FooterHome";
 import Cards from "../components/Cards/Card";
-import { useSelector, useDispatch } from "react-redux";
-import { AllPostTuristic } from "../redux/action";
+
 
 
 function Home() {
@@ -19,7 +18,8 @@ function Home() {
         <Cards />
       
       </div>
-      <div >
+      <div>
+     
 
       <FooterHome />
       </div>

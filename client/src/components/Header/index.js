@@ -28,7 +28,6 @@ function Header() {
           <BasicMenu />
         </div>
       </div>
-      <SimpleBottomNavigation />
     </div>
   );
 }
