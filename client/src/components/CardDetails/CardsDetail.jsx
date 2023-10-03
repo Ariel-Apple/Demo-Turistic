@@ -35,7 +35,8 @@ import { DatePicker, Space } from "antd";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import Avatar from "@mui/material/Avatar";
-import { Image } from 'antd';
+import { Image } from "antd";
+import FaooterDetails from "../FaooterDetails/FaooterDetails";
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
@@ -113,13 +114,13 @@ export default function CardDetails() {
   const values = [true];
   const [fullscreen, setFullscreen] = React.useState(true);
   const [detailsModal, setDetailsModal] = React.useState(false);
+  const [cardReserve, setCardReserve] = React.useState(false);
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setDetailsModal(true);
   }
   console.log(detailpost.Users && detailpost.Users[0].backgroundColor);
-
 
   React.useEffect(() => {
     dispatch(DetailsPostTuristic(idTuristic));
@@ -156,6 +157,10 @@ export default function CardDetails() {
   };
   const Close = () => {
     setVistPreview(false);
+  };
+
+  const OpenReserCard = () => {
+    setCardReserve(true);
   };
   const countries = [
     { name: "Afghanistan", countryCode: "af" },
@@ -407,34 +412,21 @@ export default function CardDetails() {
 
   const list = () => (
     <div>
-      <Box sx={{ display: "grids" }}>
-        <List >
-        
-          <div className="container-image" >
-            {detailpost.imageFile.map((img, index) => (
-              <div className="modal-image">
-                <img src={img} alt="not found" />
-              </div>
-            ))}
+ <Box sx={{ display: "grids" }}>
+  <List>
+    <div className="container-image">
+      {detailpost.imageFile.map((img, index) => (
+        <Image.PreviewGroup key={index} items={[{ src: img }]}>
+          <div className="modal-image" style={{ zIndex: 2 }}>
+            <Image src={img} alt={`Imagen ${index + 1}`}  width='100%' height='50vh'  />
           </div>
-        </List>
-      </Box>
+        </Image.PreviewGroup>
+      ))}
+    </div>
+  </List>
+</Box>
 
-      {VistPreview && (
-        <div class="overlay">
-          <span onClick={Close} class="close-button-modal">
-            &times;
-          </span>
 
-          <Carousel fade>
-            {detailpost.imageFile.map((img, index) => (
-              <Carousel.Item className="img-carrusel">
-                <img src={img} alt="Not found" />
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </div>
-      )}
     </div>
   );
 
@@ -465,93 +457,97 @@ export default function CardDetails() {
             </div>
           ) : (
             <div>
-                      {values.map((v, idx) => (
-                                                    <div key={idx} className="me-2 mb-2" onClick={() => handleShow(v)}>
-                    <div className="title-continent">
-                      <h1>{detailpost.title}</h1>
-                      {/*    <h1 className="title">Lagos</h1> */}
-                    </div>
-                    <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image">
-                      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-                        <img
-                          src={detailpost.imageFile[0]}
-                          /*   src={product.images[0].src} */
-                          alt="Not found"
-                          className="h-full w-full object-cover object-center hover-image"
-                        />
-                      </div>
-
-                      <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
-                          <img
-                            src={detailpost.imageFile[1]}
-                            /*  src={product.images[1].src} */
-                            alt="Not found"
-                            className="h-full w-full object-cover object-center hover-image"
-                          />
-                        </div>
-                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                          <img
-                            src={detailpost.imageFile[2]}
-                            /* src={product.images[2].src} */
-                            alt="Not found"
-                            className="h-full w-full object-cover object-center hover-image"
-                          />
-                        </div>
-                      </div>
-                      <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-                        <img
-                          src={detailpost.imageFile[3]}
-                          /*  src={product.images[3].src} */
-                          alt="Not found"
-                          className="h-full w-full object-cover object-center hover-image"
-                        />
-                        
-                      <div>
-                          
-                                             
-           <Fab size="small" id="icons-details" aria-label="add">
-                          <AddIcon />{detailpost.imageFile.length}
-                        </Fab>
-        </div>
-                      </div>
-                    </div>
-
+              {values.map((v, idx) => (
+                <div
+                  key={idx}
+                  className="me-2 mb-2"
+                  onClick={() => handleShow(v)}
+                >
+                  <div className="title-continent">
+                    <h1>{detailpost.title}</h1>
+                    {/*    <h1 className="title">Lagos</h1> */}
                   </div>
-                    ))}
-                  <Modal show={detailsModal} fullscreen={fullscreen} onHide={() => setDetailsModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-        {list()}
-          
-        </Modal.Body>
-      </Modal>
-          </div>
-            
+                  <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image">
+                    <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                      <img
+                        src={detailpost.imageFile[0]}
+                        /*   src={product.images[0].src} */
+                        alt="Not found"
+                        className="h-full w-full object-cover object-center hover-image"
+                      />
+                    </div>
+
+                    <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                      <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
+                        <img
+                          src={detailpost.imageFile[1]}
+                          /*  src={product.images[1].src} */
+                          alt="Not found"
+                          className="h-full w-full object-cover object-center hover-image"
+                        />
+                      </div>
+                      <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                        <img
+                          src={detailpost.imageFile[2]}
+                          /* src={product.images[2].src} */
+                          alt="Not found"
+                          className="h-full w-full object-cover object-center hover-image"
+                        />
+                      </div>
+                    </div>
+                    <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                      <img
+                        src={detailpost.imageFile[3]}
+                        /*  src={product.images[3].src} */
+                        alt="Not found"
+                        className="h-full w-full object-cover object-center hover-image"
+                      />
+
+                      <div>
+                        <Fab size="small" id="icons-details" aria-label="add">
+                          <AddIcon />
+                          {detailpost.imageFile.length}
+                        </Fab>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+      <Modal
+  show={detailsModal}
+  fullscreen={fullscreen}
+  onHide={() => setDetailsModal(false)}
+>
+  <Modal.Header closeButton>
+    <Modal.Title></Modal.Title>
+  </Modal.Header>
+  <Modal.Body>
+      {list()}
+  </Modal.Body>
+</Modal>
+
+            </div>
           )}
 
           {/* Product info */}
           <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
-  Anfitrión: {detailpost.Users && detailpost.Users[0].name }
-   <div className="avatar-container">
-
-    <Avatar
-    sx={{
-
-      width: 80,
-      height: 80,
-      backgroundColor: detailpost.Users && detailpost.Users[0].backgroundColor
-    }}
-    >
-    {detailpost.Users && detailpost.Users[0].name[0].toUpperCase()}
-  </Avatar>
-    </div>
-</h1>
+                Anfitrión: {detailpost.Users && detailpost.Users[0].name}
+                <div className="avatar-container">
+                  <Avatar
+                    sx={{
+                      width: 80,
+                      height: 80,
+                      backgroundColor:
+                        detailpost.Users && detailpost.Users[0].backgroundColor,
+                    }}
+                  >
+                    {detailpost.Users &&
+                      detailpost.Users[0].name[0].toUpperCase()}
+                  </Avatar>
+                </div>
+              </h1>
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                 Lugar para visitar.
               </h1>
@@ -568,64 +564,70 @@ export default function CardDetails() {
             </div>
 
             {/* Options */}
-            <div
-              className={detailpost.status === "Privado" ? "card-reserve" : ""}
-            >
-              <div className="mt-4 lg:row-span-3 lg:mt-0 ">
-                <h2 className="sr-only">Product information</h2>
-                <p className="text-3xl tracking-tight text-gray-900">
-                  {detailpost.price ? <span>${detailpost.price}</span> : null}
-                  <div>
-                    <div className="space-y-6">
-                      <h3 className="text-base text-gray-900">
-                        {detailpost.people ? (
-                          <div>
-                            <Diversity3RoundedIcon />
-                            {detailpost.people} personas
-                          </div>
-                        ) : null}
-                      </h3>
-                    </div>
-                    {detailpost.status === "Privado" ? (
-                      <div style={wrapperStyle}>
-                        <Space direction="vertical" size={12}>
-                          <RangePicker
-                            defaultValue={[
-                              dayjs("2015/01/01", dateFormat),
-                              dayjs("2015/01/01", dateFormat),
-                            ]}
-                            format={dateFormat}
-                          />
-                        </Space>
+
+            {cardReserve && (
+              <div
+                className={
+                  detailpost.status === "Privado" ? "card-reserve" : ""
+                }
+              >
+                <div className="mt-4 lg:row-span-3 lg:mt-0 ">
+                  <h2 className="sr-only">Product information</h2>
+                  <p className="text-3xl tracking-tight text-gray-900">
+                    {detailpost.price ? <span>${detailpost.price}</span> : null}
+                    <div>
+                      <div className="space-y-6">
+                        <h3 className="text-base text-gray-900">
+                          {detailpost.people ? (
+                            <div>
+                              <Diversity3RoundedIcon />
+                              {detailpost.people} personas
+                            </div>
+                          ) : null}
+                        </h3>
                       </div>
-                    ) : null}
-                  </div>
-                </p>
+                      {detailpost.status === "Privado" ? (
+                        <div style={wrapperStyle}>
+                          <Space direction="vertical" size={12}>
+                            <RangePicker
+                              defaultValue={[
+                                dayjs("2015/01/01", dateFormat),
+                                dayjs("2015/01/01", dateFormat),
+                              ]}
+                              format={dateFormat}
+                            />
+                          </Space>
+                        </div>
+                      ) : null}
+                    </div>
+                  </p>
 
-                {/* Reviews */}
+                  {/* Reviews */}
 
-                <form className="mt-10">
-                  {/* Colors */}
+                  <form className="mt-10">
+                    {/* Colors */}
 
-                  {/* Sizes */}
-                  {detailpost.status === "Privado" ? (
-                    <button
-                      type="submit"
-                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                    >
-                      Reservar
-                    </button>
-                  ) :  null
-                  /*   <div
+                    {/* Sizes */}
+                    {
+                      detailpost.status === "Privado" ? (
+                        <button
+                          type="submit"
+                          className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                        >
+                          Reservar
+                        </button>
+                      ) : null
+                      /*   <div
                       type="submit"
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
                     >
                       Gratis
                     </div> */
-                  }
-                </form>
+                    }
+                  </form>
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
               {/* Description and details */}
@@ -720,6 +722,17 @@ export default function CardDetails() {
           </div>
         </div>
       </div>
+      {detailpost.status === "Privado" && (
+        <div className="footer-details">
+          <button
+            onClick={OpenReserCard}
+            type="submit"
+            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
+          >
+            Reservar
+          </button>
+        </div>
+      )}
     </div>
   );
 }
