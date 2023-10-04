@@ -24,6 +24,15 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import Avatar from "@mui/material/Avatar";
 import { Image } from "antd";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+
+
+
+
+
+
+
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
@@ -41,8 +50,14 @@ export default function CardDetails() {
   const detailpost = useSelector((state) => state.detailpost);
   const dispatch = useDispatch();
   const values = [true];
+  const valuesMobile = [true];
+
   const [fullscreen, setFullscreen] = React.useState(true);
+  const [fullscreenMobile, setFullscreenMobile] = React.useState(true);
+
   const [detailsModal, setDetailsModal] = React.useState(false);
+  const [detailsCardReserve, setDetailsCardReserve] = React.useState(false);
+
   const [cardReserve, setCardReserve] = React.useState(false);
   const [scrollPosition, setScrollPosition] = React.useState(0);
 
@@ -60,6 +75,11 @@ export default function CardDetails() {
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setDetailsModal(true);
+  }
+
+  function handleShowMobile(breakpoint) {
+    setFullscreenMobile(breakpoint);
+    setDetailsCardReserve(true);
   }
   console.log(detailpost.Users && detailpost.Users[0].backgroundColor);
 
@@ -81,6 +101,7 @@ export default function CardDetails() {
     setCardReserve(true);
   };
 
+
   const list = () => (
     <div>
       <Box sx={{ display: "grids" }}>
@@ -88,7 +109,7 @@ export default function CardDetails() {
           <div className="container-image">
             {detailpost.imageFile.map((img, index) => (
               <Image.PreviewGroup key={index} items={[{ src: img }]}>
-                <div className="modal-image" style={{ zIndex: 2 }}>
+                <div  style={{ zIndex: 2 }}>
                   <Image
                     src={img}
                     alt={`Imagen ${index + 1}`}
@@ -135,13 +156,15 @@ export default function CardDetails() {
                 <div
                   key={idx}
                   className="me-2 mb-2"
-                  onClick={() => handleShow(v)}
                 >
                   <div className="title-continent">
                     <h1>{detailpost.title}</h1>
                     {/*    <h1 className="title">Lagos</h1> */}
                   </div>
-                    <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image">
+                    <div 
+                  onClick={() => handleShow(v)}
+                    
+                    className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image">
                       <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
                         <img
                           src={detailpost.imageFile[0]}
@@ -206,11 +229,20 @@ export default function CardDetails() {
               ))}
 
 {scrollPosition >= 300 && (
-           <div className="mx-auto max-w-2xl carrusel-container">
+           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8  carrusel-container">
            <div className="carrusel-scroll">
-             <Carousel data-bs-theme="dark">
+           <Splide
+        options={{
+          type: "slide", // Tipo de transición (slide)
+          perPage: 3, // Número de elementos a mostrar en un slide
+          perMove: 1, // Número de elementos a mover en cada transición
+        }}
+        >
+
                {detailpost.imageFile.map((img, index) => (
-                 <Carousel.Item key={index}>
+                 <SplideSlide >
+
+                 
                    <div className="details-carrusel-fixed">
                      <img
                        src={img}
@@ -218,9 +250,10 @@ export default function CardDetails() {
                        className="h-full w-full object-cover object-center"
                      />
                    </div>
-                 </Carousel.Item>
+                   </SplideSlide>
                ))}
-             </Carousel>
+                   </Splide>
+
            </div>
          </div>
                   )}
@@ -433,15 +466,109 @@ export default function CardDetails() {
       </div>
       {detailpost.status === "Privado" && (
         <div className="footer-details">
+          <div className='btn-footer-container'>
+
           <button
             onClick={OpenReserCard}
             type="submit"
             className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
-          >
+            >
             Reservar
           </button>
+            </div>
         </div>
       )}
+
+      <div>
+      {detailpost.status === "Privado" && (
+        <div className="footer-details-mobile">
+          <div className='btn-footer-container'>
+
+            <button
+            type="submit"
+            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
+            onClick={() => handleShowMobile()}
+            >
+            Reservar
+          </button>
+            </div>
+            <Modal
+                show={detailsCardReserve}
+                fullscreen={fullscreenMobile}
+                onHide={() => setDetailsCardReserve(false)}
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+
+                   <div
+                className={
+                  detailpost.status === "Privado" ? "card-reserve" : ""
+                }
+              >
+                <div className="mt-4 lg:row-span-3 lg:mt-0 ">
+                  <h2 className="sr-only">Product information</h2>
+                  <p className="text-3xl tracking-tight text-gray-900">
+                    {detailpost.price ? <span>${detailpost.price}</span> : null}
+                    <div>
+                      <div className="space-y-6">
+                        <h3 className="text-base text-gray-900">
+                          {detailpost.people ? (
+                            <div>
+                              <Diversity3RoundedIcon />
+                              {detailpost.people} personas
+                            </div>
+                          ) : null}
+                        </h3>
+                      </div>
+                      {detailpost.status === "Privado" ? (
+                        <div style={wrapperStyle}>
+                          <Space direction="vertical" size={12}>
+                            <RangePicker
+                              defaultValue={[
+                                dayjs("2015/01/01", dateFormat),
+                                dayjs("2015/01/01", dateFormat),
+                              ]}
+                              format={dateFormat}
+                            />
+                          </Space>
+                        </div>
+                      ) : null}
+                    </div>
+                  </p>
+
+                  {/* Reviews */}
+
+                  <form className="mt-10">
+                    {/* Colors */}
+
+                    {/* Sizes */}
+                    {
+                      detailpost.status === "Privado" ? (
+                        <button
+                          type="submit"
+                          className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                        >
+                          Reservar
+                        </button>
+                      ) : null
+                      /*   <div
+                      type="submit"
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                    >
+                      Gratis
+                    </div> */
+                    }
+                  </form>
+                </div>
+              </div>
+                </Modal.Body>
+              </Modal>
+        </div>
+        
+      )}
+      </div>
     </div>
   );
 }
