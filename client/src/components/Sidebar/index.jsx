@@ -44,41 +44,42 @@ const validate = (input) => {
   if (!input.status) {
     errors.status = "El estado es requerido";
   }
-if (input.status === "Privado") {
-  
+  if (input.status === "Privado") {
     if (!input.price) {
       errors.price = "El precio es requerido";
     }
 
     if (!input.people) {
       errors.people = "La capacidad es requerida";
-  }
+    }
 
+    if (!input.continent) {
+      errors.continent = "El continente es requerido";
+    }
+    if (!input.country) {
+      errors.country = "El país es requerido";
+    }
+    if (!input.daysAtentions) {
+      errors.daysAtentions = "Los dias de atencion al cliente es requerido";
+    }
+    if (!input.hoursAtetionsInitial) {
+      errors.hoursAtetionsInitial =
+        "El horario de inicio de atencion al cliente es requerido";
+    }
+    if (!input.hoursAtentionsFinally) {
+      errors.hoursAtentionsFinally =
+        "El horario de final de atencion al cliente es requerido";
+    }
+    if (!input.reservedDates) {
+      errors.reservedDates =
+        "Los dias no disponibles tienen que estar seleccionado";
+    }
 
-  if (!input.continent) {
-    errors.continent = "El continente es requerido";
+    if (!input.listDetails) {
+      errors.listDetails =
+        "Los dias no disponibles tienen que estar seleccionado";
+    }
   }
-  if (!input.country) {
-    errors.country = "El país es requerido";
-  }
-  if (!input.daysAtentions) {
-    errors.daysAtentions = "Los dias de atencion al cliente es requerido";
-  }
-  if (!input.hoursAtetionsInitial) {
-    errors.hoursAtetionsInitial = "El horario de inicio de atencion al cliente es requerido";
-  }
-  if (!input.hoursAtentionsFinally) {
-    errors.hoursAtentionsFinally = "El horario de final de atencion al cliente es requerido";
-  }
-  if (!input.reservedDates) {
-    errors.reservedDates = "Los dias no disponibles tienen que estar seleccionado";
-  }
-
-  if (!input.listDetails) {
-    errors.listDetails = "Los dias no disponibles tienen que estar seleccionado";
-  }
-}
-
 
   return errors;
 };
@@ -124,7 +125,7 @@ export default function FormStepper() {
     ampmFinally: "",
     reservedDates: [],
     listDetails: [],
-    infoImportant:[]
+    infoImportant: [],
   });
 
   console.log(show.infoImportant);
@@ -177,7 +178,6 @@ export default function FormStepper() {
       infoImportant: updatedDetails,
     }));
   };
-
 
   const [calendarOpen, setCalendarOpen] = useState(false);
 
@@ -251,7 +251,6 @@ export default function FormStepper() {
       formData.append("reservedDates", JSON.stringify(show.reservedDates));
       formData.append("listDetails", JSON.stringify(show.listDetails));
       formData.append("infoImportant", JSON.stringify(show.infoImportant));
-
 
       show.images.forEach((image, index) => {
         formData.append("imageFile", image);
@@ -420,7 +419,49 @@ export default function FormStepper() {
     return isDisabled;
   };
 
-  const options = ["1", "2", "3", "4", "5", "6","7", "8", "9","10", "11", "12","13", "14", "15","16", "17", "18","19", "20", "21", "22", "23", "24", "25", "26","27", "28", "29","30", "31", "32","33", "34", "35","36", "37", "38","39", "40"];
+  const options = [
+    "Sin limites",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31",
+    "32",
+    "33",
+    "34",
+    "35",
+    "36",
+    "37",
+    "38",
+    "39",
+    "40",
+  ];
   const status = ["Público", "Privado"];
   const continent = ["América", "Europa", "Asia", "África", "Oceanía"];
   const daysatention = [
@@ -783,9 +824,9 @@ export default function FormStepper() {
                         defaultValue={show.summary}
                         onChange={handleSummary}
                       />
-                             <Form.Control.Feedback type="invalid">
-                             Por favor se requiere resumen.
-                          </Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        Por favor se requiere resumen.
+                      </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group
                       className="mb-3"
@@ -800,22 +841,28 @@ export default function FormStepper() {
                         defaultValue={show.description}
                         onChange={handleDescription}
                       />
-                       <Form.Control.Feedback type="invalid">
-                             Por favor se requiere descripción.
-                          </Form.Control.Feedback>
+                      <Form.Control.Feedback type="invalid">
+                        Por favor se requiere descripción.
+                      </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
                 </Form>
               </div>
 
               <div className="action-private">
-                <div className={show.status === "Privado" ? "action-box" : ""}>
-                  {show.status === "Privado" ? (
-                    <Form.Group
-                      as={Col}
-                      className="mb-3"
-                      controlId="validationCustomContinent"
-                    >
+                <div
+                  className={
+                    show.status === "Privado" || show.status === "Público"
+                      ? "action-box"
+                      : ""
+                  }
+                >
+                  <Form.Group
+                    as={Col}
+                    className="mb-3"
+                    controlId="validationCustomContinent"
+                  >
+                    {show.status === "Privado" && (
                       <Row className="mb-3">
                         <Form.Label className="label-continent">
                           Continente
@@ -839,20 +886,60 @@ export default function FormStepper() {
                           Por favor seleccione un continente.
                         </Form.Control.Feedback>
                       </Row>
-                      {show.continent === "América" ? (
-                        <div>
-                          <Row className="mb-3">
+                    )}
+                    {show.status === 'Privado' && (
+                      <div>
+
+
+                    {show.continent === "América" ? (
+                      <div>
+                        <Row className="mb-3">
+                          <Form.Label>País</Form.Label>
+                          <Form.Select
+                            defaultValue={show.country}
+                            onChange={handleCountry}
+                            aria-label="Pais"
+                            required
+                            isInvalid={!show.country && validated}
+                            className="mb-3"
+                          >
+                            <option value="">Seleccione una opción</option>
+                            {america.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </Form.Select>
+                          <Form.Control.Feedback type="invalid">
+                            Por favor seleccione un país.
+                          </Form.Control.Feedback>
+                        </Row>
+                      </div>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+
+                    {show.continent === "Europa" ? (
+                      <div>
+                        <Row className="mb-3">
+                          <Form.Group
+                            as={Col}
+                            className="mb-3"
+                            controlId="validationCustomContinent"
+                          >
                             <Form.Label>País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
                               aria-label="Pais"
                               required
-                          isInvalid={!show.country && validated}
+                              isInvalid={!show.country && validated}
                               className="mb-3"
                             >
                               <option value="">Seleccione una opción</option>
-                              {america.map((option) => (
+                              {europa.map((option) => (
                                 <option key={option} value={option}>
                                   {option}
                                 </option>
@@ -861,157 +948,126 @@ export default function FormStepper() {
                             <Form.Control.Feedback type="invalid">
                               Por favor seleccione un país.
                             </Form.Control.Feedback>
-                          </Row>
-                        </div>
-                      ) : (
-                        <div>
-                          {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                        </div>
-                      )}
-
-                      {show.continent === "Europa" ? (
-                        <div>
-                          <Row className="mb-3">
-                            <Form.Group
-                              as={Col}
-                              className="mb-3"
-                              controlId="validationCustomContinent"
-                            >
-                              <Form.Label>País</Form.Label>
-                              <Form.Select
-                                defaultValue={show.country}
-                                onChange={handleCountry}
-                                aria-label="Pais"
-                                required
-                          isInvalid={!show.country && validated}
-                                className="mb-3"
-                              >
-                                <option value="">Seleccione una opción</option>
-                                {europa.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </Form.Select>
-                              <Form.Control.Feedback type="invalid">
-                                Por favor seleccione un país.
-                              </Form.Control.Feedback>
-                            </Form.Group>
-                          </Row>
-                        </div>
-                      ) : (
-                        <div>
-                          {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                        </div>
-                      )}
-                      {show.continent === "Asia" ? (
-                        <div>
-                          <Row className="mb-3">
-                            <Form.Group
-                              as={Col}
-                              className="mb-3"
-                              controlId="validationCustomContinent"
-                            >
-                              <Form.Label>País</Form.Label>
-                              <Form.Select
-                                defaultValue={show.country}
-                                onChange={handleCountry}
-                                aria-label="Pais"
-                                required
-                                isInvalid={!show.country && validated}
-                                className="mb-3"
-                              >
-                                <option value="">Seleccione una opción</option>
-                                {asia.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </Form.Select>
-                              <Form.Control.Feedback type="invalid">
-                                Por favor seleccione un país.
-                              </Form.Control.Feedback>
-                            </Form.Group>
-                          </Row>
-                        </div>
-                      ) : (
-                        <div>
-                          {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                        </div>
-                      )}
-
-                      {show.continent === "África" ? (
-                        <Row className="mb-3">
-                          <div>
-                            <Form.Group
-                              as={Col}
-                              className="mb-3"
-                              controlId="validationCustomContinent"
-                            >
-                              <Form.Label>País</Form.Label>
-                              <Form.Select
-                                defaultValue={show.country}
-                                onChange={handleCountry}
-                                aria-label="Pais"
-                                required
-                                isInvalid={!show.country && validated}
-                                className="mb-3"
-                              >
-                                <option value="">Seleccione una opción</option>
-                                {africa.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </Form.Select>
-                              <Form.Control.Feedback type="invalid">
-                                Por favor seleccione un país.
-                              </Form.Control.Feedback>
-                            </Form.Group>
-                          </div>
+                          </Form.Group>
                         </Row>
-                      ) : (
-                        <div>
-                          {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                        </div>
-                      )}
-
-                      {show.continent === "Oceanía" ? (
-                        <div>
-                          <Row className="mb-3">
-                            <Form.Group
-                              as={Col}
+                      </div>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+                    {show.continent === "Asia" ? (
+                      <div>
+                        <Row className="mb-3">
+                          <Form.Group
+                            as={Col}
+                            className="mb-3"
+                            controlId="validationCustomContinent"
+                          >
+                            <Form.Label>País</Form.Label>
+                            <Form.Select
+                              defaultValue={show.country}
+                              onChange={handleCountry}
+                              aria-label="Pais"
+                              required
+                              isInvalid={!show.country && validated}
                               className="mb-3"
-                              controlId="validationCustomContinent"
                             >
-                              <Form.Label>País</Form.Label>
-                              <Form.Select
-                                defaultValue={show.country}
-                                onChange={handleCountry}
-                                aria-label="Pais"
-                                required
-                                isInvalid={!show.country && validated}
-                                className="mb-3"
-                              >
-                                <option value="">Seleccione una opción</option>
-                                {oceania.map((option) => (
-                                  <option key={option} value={option}>
-                                    {option}
-                                  </option>
-                                ))}
-                              </Form.Select>
-                              <Form.Control.Feedback type="invalid">
-                                Por favor seleccione un país.
-                              </Form.Control.Feedback>
-                            </Form.Group>
-                          </Row>
-                        </div>
-                      ) : (
-                        <div>
-                          {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                        </div>
-                      )}
+                              <option value="">Seleccione una opción</option>
+                              {asia.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione un país.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </Row>
+                      </div>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
 
+                    {show.continent === "África" ? (
+                      <Row className="mb-3">
+                        <div>
+                          <Form.Group
+                            as={Col}
+                            className="mb-3"
+                            controlId="validationCustomContinent"
+                          >
+                            <Form.Label>País</Form.Label>
+                            <Form.Select
+                              defaultValue={show.country}
+                              onChange={handleCountry}
+                              aria-label="Pais"
+                              required
+                              isInvalid={!show.country && validated}
+                              className="mb-3"
+                            >
+                              <option value="">Seleccione una opción</option>
+                              {africa.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione un país.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </div>
+                      </Row>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+
+                    {show.continent === "Oceanía" ? (
+                      <div>
+                        <Row className="mb-3">
+                          <Form.Group
+                            as={Col}
+                            className="mb-3"
+                            controlId="validationCustomContinent"
+                          >
+                            <Form.Label>País</Form.Label>
+                            <Form.Select
+                              defaultValue={show.country}
+                              onChange={handleCountry}
+                              aria-label="Pais"
+                              required
+                              isInvalid={!show.country && validated}
+                              className="mb-3"
+                            >
+                              <option value="">Seleccione una opción</option>
+                              {oceania.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione un país.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </Row>
+                      </div>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+
+                      </div>
+                    )}
+
+                    {show.status === "Privado" && (
                       <Row className="mb-3">
                         <Form.Group
                           as={Col}
@@ -1035,61 +1091,271 @@ export default function FormStepper() {
                             ))}
                           </Form.Select>
                           <Form.Control.Feedback type="invalid">
-                            Por favor seleccione el horario de atencion al cliente.
+                            Por favor seleccione el horario de atencion al
+                            cliente.
                           </Form.Control.Feedback>
                         </Form.Group>
                       </Row>
+                    )}
 
-                      {show.daysAtentions ? (
-                        <Row className="mb-3">
-                          <div className="hours-container">
-                            <TextField
-                              id="hours"
-                              label="Abre"
-                              type="time"
-                              className="mb-3"
-                              value={show.hoursAtetionsInitial}
-                              onChange={handleHoursinitial}
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                              inputProps={{
-                                step: 300, // paso en segundos (5 minutos)
-                              }}
-                              required
-                              isInvalid={!show.hoursAtetionsInitial && validated}
-                            />
+                    {show.daysAtentions ? (
+                      <Row className="mb-3">
+                        <div className="hours-container">
+                          <TextField
+                            id="hours"
+                            label="Abre"
+                            type="time"
+                            className="mb-3"
+                            value={show.hoursAtetionsInitial}
+                            onChange={handleHoursinitial}
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                            inputProps={{
+                              step: 300, // paso en segundos (5 minutos)
+                            }}
+                            required
+                            isInvalid={!show.hoursAtetionsInitial && validated}
+                          />
 
-                            <h5>Hasta</h5>
-                            <TextField
-                              id="hours"
-                              label="Cierre"
-                              type="time"
-                              value={show.hoursAtentionsFinally}
-                              onChange={handleHoursFinally}
-                              className="mb-3"
-                              InputLabelProps={{
-                                shrink: true,
-                              }}
-                              inputProps={{
-                                step: 300, // paso en segundos (5 minutos)
-                              }}
-                              required
-                              isInvalid={!show.hoursAtentionsFinally && validated}
-                            />
-                          </div>
-                        </Row>
-                      ) : (
-                        <div></div>
-                      )}
+                          <h5>Hasta</h5>
+                          <TextField
+                            id="hours"
+                            label="Cierre"
+                            type="time"
+                            value={show.hoursAtentionsFinally}
+                            onChange={handleHoursFinally}
+                            className="mb-3"
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                            inputProps={{
+                              step: 300, // paso en segundos (5 minutos)
+                            }}
+                            required
+                            isInvalid={!show.hoursAtentionsFinally && validated}
+                          />
+                        </div>
+                      </Row>
+                    ) : (
+                      <div></div>
+                    )}
 
+
+
+                    
+                    {show.status === "Público" && (
                       <Row className="mb-3">
                         <Form.Group
                           as={Col}
                           className="mb-3 bottom-people"
                           controlId="validationCustomCapacidad"
                         >
-                          <Form.Label>Capacidad de persona</Form.Label>
+                        <Form.Label className="label-continent">
+                          Continente
+                        </Form.Label>
+                        <Form.Select
+                          defaultValue={show.continent}
+                          onChange={handleContinent}
+                          aria-label="Continente"
+                          className="mb-3"
+                          required
+                          isInvalid={!show.continent && validated}
+                        >
+                          <option value="">Seleccione una opción</option>
+                          {continent.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </Form.Select>
+                        <Form.Control.Feedback type="invalid">
+                          Por favor seleccione un continente.
+                        </Form.Control.Feedback>
+                        {show.status === 'Público' && (
+                      <div>
+
+
+                    {show.continent === "América" ? (
+                      <div>
+                        <Row className="mb-3">
+                          <Form.Label>País</Form.Label>
+                          <Form.Select
+                            defaultValue={show.country}
+                            onChange={handleCountry}
+                            aria-label="Pais"
+                            required
+                            isInvalid={!show.country && validated}
+                            className="mb-3"
+                          >
+                            <option value="">Seleccione una opción</option>
+                            {america.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </Form.Select>
+                          <Form.Control.Feedback type="invalid">
+                            Por favor seleccione un país.
+                          </Form.Control.Feedback>
+                        </Row>
+                      </div>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+
+                    {show.continent === "Europa" ? (
+                      <div>
+                        <Row className="mb-3">
+                          <Form.Group
+                            as={Col}
+                            className="mb-3"
+                            controlId="validationCustomContinent"
+                          >
+                            <Form.Label>País</Form.Label>
+                            <Form.Select
+                              defaultValue={show.country}
+                              onChange={handleCountry}
+                              aria-label="Pais"
+                              required
+                              isInvalid={!show.country && validated}
+                              className="mb-3"
+                            >
+                              <option value="">Seleccione una opción</option>
+                              {europa.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione un país.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </Row>
+                      </div>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+                    {show.continent === "Asia" ? (
+                      <div>
+                        <Row className="mb-3">
+                          <Form.Group
+                            as={Col}
+                            className="mb-3"
+                            controlId="validationCustomContinent"
+                          >
+                            <Form.Label>País</Form.Label>
+                            <Form.Select
+                              defaultValue={show.country}
+                              onChange={handleCountry}
+                              aria-label="Pais"
+                              required
+                              isInvalid={!show.country && validated}
+                              className="mb-3"
+                            >
+                              <option value="">Seleccione una opción</option>
+                              {asia.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione un país.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </Row>
+                      </div>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+
+                    {show.continent === "África" ? (
+                      <Row className="mb-3">
+                        <div>
+                          <Form.Group
+                            as={Col}
+                            className="mb-3"
+                            controlId="validationCustomContinent"
+                          >
+                            <Form.Label>País</Form.Label>
+                            <Form.Select
+                              defaultValue={show.country}
+                              onChange={handleCountry}
+                              aria-label="Pais"
+                              required
+                              isInvalid={!show.country && validated}
+                              className="mb-3"
+                            >
+                              <option value="">Seleccione una opción</option>
+                              {africa.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione un país.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </div>
+                      </Row>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+
+                    {show.continent === "Oceanía" ? (
+                      <div>
+                        <Row className="mb-3">
+                          <Form.Group
+                            as={Col}
+                            className="mb-3"
+                            controlId="validationCustomContinent"
+                          >
+                            <Form.Label>País</Form.Label>
+                            <Form.Select
+                              defaultValue={show.country}
+                              onChange={handleCountry}
+                              aria-label="Pais"
+                              required
+                              isInvalid={!show.country && validated}
+                              className="mb-3"
+                            >
+                              <option value="">Seleccione una opción</option>
+                              {oceania.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione un país.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </Row>
+                      </div>
+                    ) : (
+                      <div>
+                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                      </div>
+                    )}
+
+                      </div>
+                    )}
+                          <Form.Label
+                        
+                          >
+                            Capacidad de persona
+                          </Form.Label>
                           <Form.Select
                             defaultValue={show.people}
                             onChange={handlePeople}
@@ -1097,7 +1363,6 @@ export default function FormStepper() {
                             required
                             isInvalid={!show.people && validated}
                             className="mb-3"
-                           
                           >
                             <option value="">Seleccione una opción</option>
                             {options.map((option) => (
@@ -1107,64 +1372,186 @@ export default function FormStepper() {
                             ))}
                           </Form.Select>
                           <Form.Control.Feedback type="invalid">
-                            Por favor seleccione una opción de capacidad de personas.
+                            Por favor seleccione una opción de capacidad de
+                            personas.
                           </Form.Control.Feedback>
                         </Form.Group>
-                      </Row>
-                      <Row className="mb-3">
-                    {show.status === "Privado" ? (
-                      <div>
-                        <span>El lugas cuenta con:</span>
-                        <Card >
-                          <Card.Body>
-                            <Card.Text >
-                              {show.listDetails.map((detail, index) => (
-                                <span
-                                  key={index}
-                                  className="mr-2"
-                                  style={{ fontSize: "14px", maxHeight: '80px' }}
-                                >
-                                  {detail}
-                                  <button
-                                    variant="danger"
-                                    onClick={() => handleDeleteDetail(index)}
-                                    size="sm"
-                                    className="ml-2"
+                        <div>
+                          <span
+                            className={
+                              show.status === "Público" ? "label-status" : ""
+                            }
+                          >
+                            El lugas cuenta con:
+                          </span>
+                          <Card>
+                            <Card.Body>
+                              <Card.Text>
+                                {show.listDetails.map((detail, index) => (
+                                  <span
+                                    key={index}
+                                    className="mr-2"
+                                    style={{
+                                      fontSize: "14px",
+                                      maxHeight: "80px",
+                                    }}
                                   >
-                                    X
-                                  </button>
-                                  |
-                                </span>
-                              ))}
-                            </Card.Text>
-                          </Card.Body>
-                        </Card>
-                        <Form.Group className="d-flex">
-                          <Form.Control
-                            type="text"
-                            placeholder="Nuevo detalle"
-                            value={detail}
-                            onChange={handleDetailChange}
-                            className="flex-grow-1 mr-2"
+                                    {detail}
+                                    <button
+                                      variant="danger"
+                                      onClick={() => handleDeleteDetail(index)}
+                                      size="sm"
+                                      className="ml-2"
+                                    >
+                                      X
+                                    </button>
+                                    |
+                                  </span>
+                                ))}
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
+                          <Form.Group className="d-flex">
+                            <Form.Control
+                              type="text"
+                              placeholder="Nuevo detalle"
+                              value={detail}
+                              onChange={handleDetailChange}
+                              className="flex-grow-1 mr-2"
+                              required
+                              isInvalid={!show.listDetails && validated}
+                            />
+                            <Button variant="primary" onClick={handleAddDetail}>
+                              Agregar
+                            </Button>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione una opción de capacidad de
+                              personas.
+                            </Form.Control.Feedback>
+                          </Form.Group>
+                        </div>
+                        <div>
+                          <Form.Label
+                            className={
+                              show.status === "Público" ? "label-status" : ""
+                            }
+                          >
+                            Informacion importante:
+                          </Form.Label>
+                          <Card>
+                            <Card.Body>
+                              <Card.Text>
+                                {show.infoImportant.map((important, index) => (
+                                  <span
+                                    key={index}
+                                    className="mr-2"
+                                    style={{
+                                      fontSize: "14px",
+                                      maxHeight: "80px",
+                                    }}
+                                  >
+                                    {important}
+                                    <button
+                                      variant="danger"
+                                      onClick={() => handleDeleteInfo(index)}
+                                      size="sm"
+                                      className="ml-2"
+                                    >
+                                      X
+                                    </button>
+                                    |
+                                  </span>
+                                ))}
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
+                          <Form.Group className="d-flex">
+                            <Form.Control
+                              type="text"
+                              placeholder="Nuevo detalle"
+                              value={info}
+                              onChange={handleInfoChange}
+                              required
+                              isInvalid={!show.infoImportant && validated}
+                            />
+                            <Button variant="primary" onClick={handleAddInfo}>
+                              Agregar
+                            </Button>
+                          </Form.Group>
+                        </div>
+                      </Row>
+                      
+                    )}
+
+                    <Row className="mb-3">
+                      {show.status === "Privado" ? (
+                        <div>
+                          <span>El lugas cuenta con:</span>
+                          <Card>
+                            <Card.Body>
+                              <Card.Text>
+                                {show.listDetails.map((detail, index) => (
+                                  <span
+                                    key={index}
+                                    className="mr-2"
+                                    style={{
+                                      fontSize: "14px",
+                                      maxHeight: "80px",
+                                    }}
+                                  >
+                                    {detail}
+                                    <button
+                                      variant="danger"
+                                      onClick={() => handleDeleteDetail(index)}
+                                      size="sm"
+                                      className="ml-2"
+                                    >
+                                      X
+                                    </button>
+                                    |
+                                  </span>
+                                ))}
+                              </Card.Text>
+                            </Card.Body>
+                          </Card>
+                          <Form.Group
+                          as={Col}
+                          className="mb-3 bottom-people"
+                          controlId="validationCustomCapacidad"
+                        >
+                          <Form.Label
+                            className={
+                              show.status === "Privado" ? "label-status" : ""
+                            }
+                          >
+                            Capacidad de persona
+                          </Form.Label>
+                          <Form.Select
+                            defaultValue={show.people}
+                            onChange={handlePeople}
+                            aria-label="Capacidad de persona"
                             required
-                            isInvalid={!show.listDetails && validated}
-                          />
-                          <Button variant="primary" onClick={handleAddDetail}>
-                            Agregar
-                          </Button>
+                            isInvalid={!show.people && validated}
+                            className="mb-3"
+                          >
+                            <option value="">Seleccione una opción</option>
+                            {options.map((option) => (
+                              <option key={option} value={option}>
+                                {option}
+                              </option>
+                            ))}
+                          </Form.Select>
                           <Form.Control.Feedback type="invalid">
-                            Por favor seleccione una opción de capacidad de personas.
+                            Por favor seleccione una opción de capacidad de
+                            personas.
                           </Form.Control.Feedback>
                         </Form.Group>
-                      </div>
-                    ) : (
-                      <div></div>
-                    )}
-                  </Row>
-                    </Form.Group>
-                  ) : (
-                    <div></div>
-                  )}
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </Row>
+                  </Form.Group>
                 </div>
                 <div className={show.status === "Privado" ? "rest-info" : ""}>
                   <Row className="mb-3">
@@ -1173,7 +1560,6 @@ export default function FormStepper() {
                         className="label-calendar"
                         direction="vertical"
                         size={12}
-                        
                       >
                         <Button onClick={toggleCalendar}>
                           Abrir/Cerrar Calendario
@@ -1185,27 +1571,26 @@ export default function FormStepper() {
                           onChange={handleDateSelect}
                           disabledDate={disabledDate}
                           showToday={false}
-                      
-                        
                         />
                       </Space>
-                    ) : (
-                      null
-                    )}
+                    ) : null}
                   </Row>
-            
+
                   <Row className="mb-3">
                     {show.status === "Privado" ? (
                       <div>
                         <span>Informacion importante:</span>
-                        <Card >
+                        <Card>
                           <Card.Body>
                             <Card.Text>
                               {show.infoImportant.map((important, index) => (
                                 <span
                                   key={index}
                                   className="mr-2"
-                                  style={{ fontSize: "14px", maxHeight: '80px' }}
+                                  style={{
+                                    fontSize: "14px",
+                                    maxHeight: "80px",
+                                  }}
                                 >
                                   {important}
                                   <button
@@ -1250,7 +1635,7 @@ export default function FormStepper() {
                 pt: 2,
                 justifyContent: "center",
                 gap: "60px",
-                marginBottom: '60px'
+                marginBottom: "60px",
               }}
             >
               <Button
@@ -1380,7 +1765,7 @@ export default function FormStepper() {
               <div className="loading-overlay">
                 <div>
                   <BeatLoader color="#8B008B" size="80" />
-                  <h2>Publicando  </h2>
+                  <h2>Publicando </h2>
                 </div>
               </div>
             ) : (
@@ -1538,7 +1923,7 @@ export default function FormStepper() {
                         pt: 2,
                         justifyContent: "center",
                         gap: "60px",
-                        marginBottom: '60px'
+                        marginBottom: "60px",
                       }}
                     >
                       <Button

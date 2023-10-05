@@ -94,6 +94,11 @@ module.exports = {
             summary: capitalizedSummary,
             description: capitalizedDescription,
             status,
+            continent,
+            country,
+            infoImportant: parsedInfoImportant,
+            listDetails: parsedListDetails,
+
             imageFile: uploadedImageUrls,
           });
           const userId = decoded.id;

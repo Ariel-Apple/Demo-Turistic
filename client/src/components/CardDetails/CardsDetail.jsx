@@ -60,7 +60,7 @@ export default function CardDetails() {
 
   const [cardReserve, setCardReserve] = React.useState(false);
   const [scrollPosition, setScrollPosition] = React.useState(0);
-
+  const splideRef = React.useRef(null);
   React.useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -101,7 +101,27 @@ export default function CardDetails() {
     setCardReserve(true);
   };
 
+  React.useEffect(() => {
+    const splide = splideRef.current;
 
+    let interval;
+
+    if (splide) {
+      splide.on('mounted', () => {
+        interval = setInterval(() => {
+          splide.go('+1');
+        }, 3000); // Cambia de imagen cada 3 segundos (ajusta el intervalo según lo desees)
+      });
+
+      splide.on('destroy', () => {
+        clearInterval(interval);
+      });
+    }
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
   const list = () => (
     <div>
       <Box sx={{ display: "grids" }}>
@@ -109,12 +129,13 @@ export default function CardDetails() {
           <div className="container-image">
             {detailpost.imageFile.map((img, index) => (
               <Image.PreviewGroup key={index} items={[{ src: img }]}>
-                <div  style={{ zIndex: 2 }}>
+                <div  style={{ zIndex: 2,}}>
                   <Image
                     src={img}
                     alt={`Imagen ${index + 1}`}
                     width="100%"
                     height="50vh"
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
               </Image.PreviewGroup>
@@ -161,62 +182,44 @@ export default function CardDetails() {
                     <h1>{detailpost.title}</h1>
                     {/*    <h1 className="title">Lagos</h1> */}
                   </div>
+                  {scrollPosition < 340 ? (
+
                     <div 
                   onClick={() => handleShow(v)}
                     
-                    className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image">
-                      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                    className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains">
+                      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
                         <img
                           src={detailpost.imageFile[0]}
                           /*   src={product.images[0].src} */
                           alt="Not found"
-                          className="h-full w-full object-cover object-center hover-image"
-                        />
+                          className="h-full w-full object-cover object-center hover-image-left"
+                       />
                       </div>
 
                       <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
-                          <img
-                            src={detailpost.imageFile[1]}
-                            /*  src={product.images[1].src} */
-                            alt="Not found"
-                            className="h-full w-full object-cover object-center hover-image"
-                          />
-                        </div>
                         <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                           <img
-                            src={detailpost.imageFile[2]}
-                            /* src={product.images[2].src} */
+                            src={detailpost.imageFile[1]}
                             alt="Not found"
-                            className="h-full w-full object-cover object-center hover-image"
-                          />
+                            className="h-full w-full object-cover object-center hover-image-center"
+                         />
+                        </div>
+                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
+                          <img
+                            src={detailpost.imageFile[2]}
+                            alt="Not found"
+                            className="h-full w-full object-cover object-center hover-image-center"
+                         />
                         </div>
                       </div>
                       <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
                         <img
                           src={detailpost.imageFile[3]}
-                          /*  src={product.images[3].src} */
                           alt="Not found"
-                          className="h-full w-full object-cover object-center hover-image mobile-ocult"
+                          className="h-full w-full object-cover object-center hover-image-left"
                         />
-                        <div className="mobile-details">
-                          <Carousel data-bs-theme="dark">
-                            {detailpost.imageFile.map((img, index) => (
-                              <Carousel.Item>
-                                <div
-                                  className="modal-image"
-                                  style={{ zIndex: 2 }}
-                                >
-                                  <img
-                                    src={img}
-                                    alt={`Imagen ${index + 1}`}
-                                    className="h-full w-full object-cover object-center"
-                                  />
-                                </div>
-                              </Carousel.Item>
-                            ))}
-                          </Carousel>
-                        </div>
+          
                         <div>
                           <Fab size="small" id="icons-details" aria-label="add">
                             <AddIcon />
@@ -225,17 +228,39 @@ export default function CardDetails() {
                         </div>
                       </div>
                     </div>
+                  ): (
+                     <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+              <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                <Skeleton variant="rectangular" id="skeleton1-wrap" />
+              </div>
+              <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
+                  <Skeleton variant="rectangular" id="skeleton2-wrap" />
+                </div>
+                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                  <Skeleton variant="rectangular" id="skeleton2-wrap" />
+                </div>
+              </div>
+
+              <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                <Skeleton variant="rectangular" id="skeleton1-wrap" />
+              </div>
+            </div>
+                  )}
+
                 </div>
               ))}
 
-{scrollPosition >= 300 && (
+{scrollPosition >= 350 && (
            <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8  carrusel-container">
            <div className="carrusel-scroll">
            <Splide
         options={{
           type: "slide", // Tipo de transición (slide)
-          perPage: 3, // Número de elementos a mostrar en un slide
+          perPage: window.innerWidth < 768 ? 1 : 3, 
           perMove: 1, // Número de elementos a mover en cada transición
+          pagination: true, // Opcional: desactiva la paginación si no la necesitas
+          cover: true, // Opcional: ajusta las imágenes al contenedor
         }}
         >
 
@@ -486,7 +511,7 @@ export default function CardDetails() {
 
             <button
             type="submit"
-            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
+            className="footer-btn"
             onClick={() => handleShowMobile()}
             >
             Reservar

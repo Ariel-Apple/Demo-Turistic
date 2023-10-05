@@ -42,7 +42,7 @@
 
 
   
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 767px) {
     .continent-container {
         margin-top: 10px;
         button {
@@ -57,11 +57,7 @@
     }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1728px) {
-    .continent-container {
-    
-    }
-  }
+
   @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .continent-container {
         button {
