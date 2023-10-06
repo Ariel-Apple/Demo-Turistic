@@ -25,7 +25,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import LoginForms from "../LoginForms/LoginForms";
-import {  Modal } from 'antd';
+import { Modal } from 'antd';
 import RegisterForm from "../RegisterForm/RegisterForm";
 
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -52,6 +52,8 @@ export default function BasicMenu() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const datapersonal = useSelector(state => state.datapersonal);
+  const posts = useSelector(state => state.posts);
+
   const [openPublic, setOpenPublic] = React.useState(false);
   const [openLogout, setOpenLogout] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -61,7 +63,7 @@ export default function BasicMenu() {
   const [loadingAvatar, setLoadingAvatar] = React.useState(false);
   const [imageUrl, setImageUrl] = React.useState();
 
-  console.log(datapersonal);
+  console.log(posts);
 
   const handleChangeAvatar = (info) => {
     if (info.file.status === 'uploading') {
@@ -78,7 +80,7 @@ export default function BasicMenu() {
   };
   const uploadButton = (
     <div>
-      
+
       {loadingAvatar ? <LoadingOutlined /> : <PlusOutlined />}
       <div
         style={{
@@ -127,7 +129,7 @@ export default function BasicMenu() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
- 
+
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -146,7 +148,7 @@ export default function BasicMenu() {
   const handleCloseLogout = () => {
     setAnchorEl(null);
     setOpenLogout(false);
-    
+
 
   };
 
@@ -171,7 +173,7 @@ export default function BasicMenu() {
   };
   const handleClose = () => {
     setAnchorEl(null);
-   
+
   };
   React.useEffect(() => {
     dispatch(dataPersonal(token))
@@ -189,7 +191,7 @@ export default function BasicMenu() {
     // Redirigir al usuario a la página de inicio de sesión
   };
 
- 
+
   return (
     <div className="account-menu">
       <div
@@ -237,7 +239,7 @@ export default function BasicMenu() {
 
 
                   {token ? (
-                    
+
                     <Avatar sx={{ width: 32, height: 32, backgroundColor: datapersonal.backgroundColor }} >{datapersonal.name && datapersonal.name[0].toUpperCase()}</Avatar>
                   ) : (
                     <Avatar sx={{ width: 32, height: 32 }}></Avatar>
@@ -250,22 +252,22 @@ export default function BasicMenu() {
       </div>
       {!token ? (
         <div>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-          sx={{
-            ".MuiPaper-root": {
-              minWidth: "200px",
-              borderRadius: "1rem",
-              boxShadow: "0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%)",
-            },
-          }}
-        >
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+            sx={{
+              ".MuiPaper-root": {
+                minWidth: "200px",
+                borderRadius: "1rem",
+                boxShadow: "0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%)",
+              },
+            }}
+          >
 
 
 
@@ -273,45 +275,45 @@ export default function BasicMenu() {
               Iniciar sesión
             </MenuItem>
 
-        
+
             <MenuItem onClick={showModalRegister} className="menu-items">
               Registrate
             </MenuItem>
 
 
-          <MenuItem onClick={handleClickOpenPublic} className="menu-items">
-            Publicar
-          </MenuItem>
+            <MenuItem onClick={handleClickOpenPublic} className="menu-items">
+              Publicar
+            </MenuItem>
 
-          <div
-            style={{
-              height: "1px",
-              backgroundColor: "var(--grey)",
-              width: "100%",
-            }}
+            <div
+              style={{
+                height: "1px",
+                backgroundColor: "var(--grey)",
+                width: "100%",
+              }}
             />
-        </Menu>
-        <Modal
-        visible={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={null} // Esto quita los botones "Ok" y "Cancel"
-      >
-        <LoginForms />
-      </Modal>
-      <Modal
-        visible={isModalOpenRegister}
-        onOk={handleOkRegister}
-        onCancel={handleCancelRegister}
-        footer={null} // Esto quita los botones "Ok" y "Cancel"
-      >
-        <RegisterForm />
-      </Modal>
+          </Menu>
+          <Modal
+            visible={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            footer={null} // Esto quita los botones "Ok" y "Cancel"
+          >
+            <LoginForms />
+          </Modal>
+          <Modal
+            visible={isModalOpenRegister}
+            onOk={handleOkRegister}
+            onCancel={handleCancelRegister}
+            footer={null} // Esto quita los botones "Ok" y "Cancel"
+          >
+            <RegisterForm />
+          </Modal>
         </div>
-     
 
-      
-        )
+
+
+      )
         : (
           <Menu
             id="basic-menu"
@@ -347,17 +349,17 @@ export default function BasicMenu() {
             <MenuItem className="menu-items" onClick={handleClose}>
               Informacion Personal
             </MenuItem>
-            <Link to={'/anfitrion/'+ datapersonal.id}>
+            <Link to={'/anfitrion/' + datapersonal.id}>
 
 
-            <MenuItem className="menu-items" onClick={handleClose}>
-              Modo anfitrión
-            </MenuItem>
+              <MenuItem className="menu-items" onClick={handleClose}>
+                Modo anfitrión
+              </MenuItem>
             </Link>
 
-              <MenuItem onClick={showModalPublic} className="menu-items">
+            <MenuItem onClick={showModalPublic} className="menu-items">
               Unase placee enc como anfitrion
-              </MenuItem>
+            </MenuItem>
             <>
 
               <Button variant="transparent" onClick={handleClickOpenLogout}>
@@ -414,7 +416,7 @@ export default function BasicMenu() {
           <DialogActions className="btn-modal" >
 
 
-              <Button onClick={showModal}>Iniciar sesión</Button>
+            <Button onClick={showModal}>Iniciar sesión</Button>
             <Button onClick={handleClosePublic} >
               Cancelar
             </Button>
@@ -423,59 +425,59 @@ export default function BasicMenu() {
         </Dialog>
       </div>
       <div>
-      <Dialog
-        open={isModalOpenPublic}
-        onClose={handleClosePublic}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
+        <Dialog
+          open={isModalOpenPublic}
+          onClose={handleClosePublic}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
 
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-          <>
-  
-  <Upload
-    name="avatar"
-    listType="picture-circle"
-    className="avatar-uploader"
-    showUploadList={false}
-    action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-    beforeUpload={beforeUpload}
-    onChange={handleChangeAvatar}
-    
-    
-  >
-    {imageUrl ? (
-      <img
-        src={imageUrl}
-        alt="avatar"
-        
-        style={{
-          width: '100%',
-        }}
-      />
-    ) : (
-      uploadButton
-    )}
-  </Upload>
-</>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              <>
 
-          </DialogContentText>
-          <DialogContentText id="alert-dialog-description">
-            aca va los input de validacion
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions className="btn-modal" >
-        <Button onClick={modalCancel} autoFocus>
-            Cancelar
-          </Button>
- <Link to="/public">
-          <Button>Publicar</Button>
- </Link>
-       
-        </DialogActions>
+                <Upload
+                  name="avatar"
+                  listType="picture-circle"
+                  className="avatar-uploader"
+                  showUploadList={false}
+                  action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+                  beforeUpload={beforeUpload}
+                  onChange={handleChangeAvatar}
 
-      </Dialog>
+
+                >
+                  {imageUrl ? (
+                    <img
+                      src={imageUrl}
+                      alt="avatar"
+
+                      style={{
+                        width: '100%',
+                      }}
+                    />
+                  ) : (
+                    uploadButton
+                  )}
+                </Upload>
+              </>
+
+            </DialogContentText>
+            <DialogContentText id="alert-dialog-description">
+              aca va los input de validacion
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions className="btn-modal" >
+            <Button onClick={modalCancel} autoFocus>
+              Cancelar
+            </Button>
+            <Link to="/public">
+              <Button>Publicar</Button>
+            </Link>
+
+          </DialogActions>
+
+        </Dialog>
       </div>
     </div>
   );

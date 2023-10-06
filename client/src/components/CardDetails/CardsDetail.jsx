@@ -27,12 +27,6 @@ import { Image } from "antd";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
-
-
-
-
-
-
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
@@ -61,6 +55,7 @@ export default function CardDetails() {
   const [cardReserve, setCardReserve] = React.useState(false);
   const [scrollPosition, setScrollPosition] = React.useState(0);
   const splideRef = React.useRef(null);
+
   React.useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -72,6 +67,7 @@ export default function CardDetails() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setDetailsModal(true);
@@ -107,13 +103,13 @@ export default function CardDetails() {
     let interval;
 
     if (splide) {
-      splide.on('mounted', () => {
+      splide.on("mounted", () => {
         interval = setInterval(() => {
-          splide.go('+1');
+          splide.go("+1");
         }, 3000); // Cambia de imagen cada 3 segundos (ajusta el intervalo según lo desees)
       });
 
-      splide.on('destroy', () => {
+      splide.on("destroy", () => {
         clearInterval(interval);
       });
     }
@@ -129,13 +125,13 @@ export default function CardDetails() {
           <div className="container-image">
             {detailpost.imageFile.map((img, index) => (
               <Image.PreviewGroup key={index} items={[{ src: img }]}>
-                <div  style={{ zIndex: 2,}}>
+                <div >
                   <Image
                     src={img}
                     alt={`Imagen ${index + 1}`}
                     width="100%"
                     height="50vh"
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: "cover",  }}
                   />
                 </div>
               </Image.PreviewGroup>
@@ -174,27 +170,23 @@ export default function CardDetails() {
           ) : (
             <div>
               {values.map((v, idx) => (
-                <div
-                  key={idx}
-                  className="me-2 mb-2"
-                >
+                <div key={idx} className="me-2 mb-2">
                   <div className="title-continent">
                     <h1>{detailpost.title}</h1>
                     {/*    <h1 className="title">Lagos</h1> */}
                   </div>
                   {scrollPosition < 340 ? (
-
-                    <div 
-                  onClick={() => handleShow(v)}
-                    
-                    className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains">
+                    <div
+                      onClick={() => handleShow(v)}
+                      className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains"
+                    >
                       <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
                         <img
                           src={detailpost.imageFile[0]}
                           /*   src={product.images[0].src} */
                           alt="Not found"
                           className="h-full w-full object-cover object-center hover-image-left"
-                       />
+                        />
                       </div>
 
                       <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
@@ -203,73 +195,23 @@ export default function CardDetails() {
                             src={detailpost.imageFile[1]}
                             alt="Not found"
                             className="h-full w-full object-cover object-center hover-image-center"
-                         />
+                          />
                         </div>
                         <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
                           <img
                             src={detailpost.imageFile[2]}
                             alt="Not found"
                             className="h-full w-full object-cover object-center hover-image-center"
-                         />
+                          />
                         </div>
                       </div>
-                      <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                      <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ">
                         <img
                           src={detailpost.imageFile[3]}
                           alt="Not found"
                           className="h-full w-full object-cover object-center hover-image-left"
                         />
-{scrollPosition > 10 ? (
-  <div>
 
-
-  <div className="carrusel-mobile">
-  <div>
-                          <Fab size="small" id="icons-carrusel-mobile" aria-label="add">
-                            <AddIcon />
-                            {detailpost.imageFile.length}
-                          </Fab>
-                        </div>
-<Carousel>
-  {detailpost.imageFile.map((img, index) => (
-    
-    <Carousel.Item>
-        <img src= {img}  alt="not found"/>
-      
-      </Carousel.Item>
-     
-     ))}
-    </Carousel>
-</div>
-     </div>
-    ): (
-      <div >
-          <div>
-                          <Fab size="small" id="icons-details-mobile" aria-label="add">
-                            <AddIcon />
-                            {detailpost.imageFile.length}
-                          </Fab>
-                        </div>
-<div>
-
-      <Carousel>
-        {detailpost.imageFile.map((img, index) => (
-          
-          <Carousel.Item>
-              <img src= {img}  alt="not found"/>
-            
-            </Carousel.Item>
-           
-           ))}
-          </Carousel>
-           </div>
-      </div>
-    )}
-
-
-
-
-          
                         <div>
                           <Fab size="small" id="icons-details" aria-label="add">
                             <AddIcon />
@@ -278,60 +220,78 @@ export default function CardDetails() {
                         </div>
                       </div>
                     </div>
-                  ): (
-                     <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-              <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-                <Skeleton variant="rectangular" id="skeleton1-wrap" />
-              </div>
-              <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
-                  <Skeleton variant="rectangular" id="skeleton2-wrap" />
-                </div>
-                <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                  <Skeleton variant="rectangular" id="skeleton2-wrap" />
-                </div>
-              </div>
+                  ) : (
+                    <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+                      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                        <Skeleton variant="rectangular" id="skeleton1-wrap" />
+                      </div>
+                      <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
+                          <Skeleton variant="rectangular" id="skeleton2-wrap" />
+                        </div>
+                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                          <Skeleton variant="rectangular" id="skeleton2-wrap" />
+                        </div>
+                      </div>
 
-              <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-                <Skeleton variant="rectangular" id="skeleton1-wrap" />
-              </div>
-            </div>
+                      <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                        <Skeleton variant="rectangular" id="skeleton1-wrap" />
+                      </div>
+                    </div>
                   )}
-
                 </div>
               ))}
 
-{scrollPosition >= 350 && (
-           <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8  carrusel-container">
-           <div className="carrusel-scroll">
-           <Splide
-        options={{
-          type: "slide", // Tipo de transición (slide)
-          perPage:  3, 
-          perMove: 1, // Número de elementos a mover en cada transición
-          pagination: true, // Opcional: desactiva la paginación si no la necesitas
-          cover: true, // Opcional: ajusta las imágenes al contenedor
-        }}
-        >
+<div className="ocult">
+  {values.map((v, idx) => (
+  <div className={scrollPosition > 80 ? 'carrusel-mobile aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ' : 'aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg '} onClick={() => handleShow(v)}>
 
-               {detailpost.imageFile.map((img, index) => (
-                 <SplideSlide >
+    <Carousel controls={false} indicators={false}>
+      {detailpost.imageFile.map((img, index) => (
+        <Carousel.Item key={index}>
+          <div className="movile-carrusel">
+            <img src={img} alt="not found"  className="h-full w-full object-cover object-center"/>
+          </div>
+        </Carousel.Item>
+      ))}
+    </Carousel>
 
-                 
-                   <div className="details-carrusel-fixed">
-                     <img
-                       src={img}
-                       alt={`Imagen ${index + 1}`}
-                       className="h-full w-full object-cover object-center"
-                     />
-                   </div>
-                   </SplideSlide>
-               ))}
-                   </Splide>
 
-           </div>
-         </div>
-                  )}
+  </div>
+  ))}
+</div>
+
+
+
+
+
+              {scrollPosition >= 350 && (
+                <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8  carrusel-container">
+                  <div className="carrusel-scroll">
+                    <Splide
+                      options={{
+                        type: "slide", // Tipo de transición (slide)
+                        perPage: 3,
+                        perMove: 1, // Número de elementos a mover en cada transición
+                        pagination: true, // Opcional: desactiva la paginación si no la necesitas
+                        cover: true, // Opcional: ajusta las imágenes al contenedor
+                      }}
+                    >
+                      {detailpost.imageFile.map((img, index) => (
+                        <SplideSlide>
+                          <div className="details-carrusel-fixed">
+                            <img
+                              src={img}
+                              alt={`Imagen ${index + 1}`}
+                              className="h-full w-full object-cover object-center"
+                            />
+                          </div>
+                        </SplideSlide>
+                      ))}
+                    </Splide>
+                  </div>
+                </div>
+              )}
               <Modal
                 show={detailsModal}
                 fullscreen={fullscreen}
@@ -346,11 +306,10 @@ export default function CardDetails() {
           )}
 
           {/* Product info */}
-          <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 mobile-anfitrion">
+          <div className={scrollPosition > 80 ? "text-info mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 " : " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16"}>
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
                 Anfitrión: {detailpost.Users && detailpost.Users[0].name}
-             
                 <div className="avatar-container">
                   <Avatar
                     sx={{
@@ -541,108 +500,106 @@ export default function CardDetails() {
       </div>
       {detailpost.status === "Privado" && (
         <div className="footer-details">
-          <div className='btn-footer-container'>
-
-          <button
-            onClick={OpenReserCard}
-            type="submit"
-            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
+          <div className="btn-footer-container">
+            <button
+              onClick={OpenReserCard}
+              type="submit"
+              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
             >
-            Reservar
-          </button>
-            </div>
+              Reservar
+            </button>
+          </div>
         </div>
       )}
 
       <div>
-      {detailpost.status === "Privado" && (
-        <div className="footer-details-mobile">
-          <div className='btn-footer-container'>
-
-            <button
-            type="submit"
-            className="footer-btn"
-            onClick={() => handleShowMobile()}
-            >
-            Reservar
-          </button>
+        {detailpost.status === "Privado" && (
+          <div className="footer-details-mobile">
+            <div className="btn-footer-container">
+              <button
+                type="submit"
+                className="footer-btn"
+                onClick={() => handleShowMobile()}
+              >
+                Reservar
+              </button>
             </div>
             <Modal
-                show={detailsCardReserve}
-                fullscreen={fullscreenMobile}
-                onHide={() => setDetailsCardReserve(false)}
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-
-                   <div
-                className={
-                  detailpost.status === "Privado" ? "card-reserve" : ""
-                }
-              >
-                <div className="mt-4 lg:row-span-3 lg:mt-0 ">
-                  <h2 className="sr-only">Product information</h2>
-                  <p className="text-3xl tracking-tight text-gray-900">
-                    {detailpost.price ? <span>${detailpost.price}</span> : null}
-                    <div>
-                      <div className="space-y-6">
-                        <h3 className="text-base text-gray-900">
-                          {detailpost.people ? (
-                            <div>
-                              <Diversity3RoundedIcon />
-                              {detailpost.people} personas
-                            </div>
-                          ) : null}
-                        </h3>
-                      </div>
-                      {detailpost.status === "Privado" ? (
-                        <div style={wrapperStyle}>
-                          <Space direction="vertical" size={12}>
-                            <RangePicker
-                              defaultValue={[
-                                dayjs("2015/01/01", dateFormat),
-                                dayjs("2015/01/01", dateFormat),
-                              ]}
-                              format={dateFormat}
-                            />
-                          </Space>
-                        </div>
+              show={detailsCardReserve}
+              fullscreen={fullscreenMobile}
+              onHide={() => setDetailsCardReserve(false)}
+            >
+              <Modal.Header closeButton>
+                <Modal.Title></Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <div
+                  className={
+                    detailpost.status === "Privado" ? "card-reserve" : ""
+                  }
+                >
+                  <div className="mt-4 lg:row-span-3 lg:mt-0 ">
+                    <h2 className="sr-only">Product information</h2>
+                    <p className="text-3xl tracking-tight text-gray-900">
+                      {detailpost.price ? (
+                        <span>${detailpost.price}</span>
                       ) : null}
-                    </div>
-                  </p>
+                      <div>
+                        <div className="space-y-6">
+                          <h3 className="text-base text-gray-900">
+                            {detailpost.people ? (
+                              <div>
+                                <Diversity3RoundedIcon />
+                                {detailpost.people} personas
+                              </div>
+                            ) : null}
+                          </h3>
+                        </div>
+                        {detailpost.status === "Privado" ? (
+                          <div style={wrapperStyle}>
+                            <Space direction="vertical" size={12}>
+                              <RangePicker
+                                defaultValue={[
+                                  dayjs("2015/01/01", dateFormat),
+                                  dayjs("2015/01/01", dateFormat),
+                                ]}
+                                format={dateFormat}
+                              />
+                            </Space>
+                          </div>
+                        ) : null}
+                      </div>
+                    </p>
 
-                  {/* Reviews */}
+                    {/* Reviews */}
 
-                  <form className="mt-10">
-                    {/* Colors */}
+                    <form className="mt-10">
+                      {/* Colors */}
 
-                    {/* Sizes */}
-                    {
-                      detailpost.status === "Privado" ? (
-                        <button
-                          type="submit"
-                          className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                        >
-                          Reservar
-                        </button>
-                      ) : null
-                      /*   <div
+                      {/* Sizes */}
+                      {
+                        detailpost.status === "Privado" ? (
+                          <button
+                            type="submit"
+                            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                          >
+                            Reservar
+                          </button>
+                        ) : null
+                        /*   <div
                       type="submit"
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
                     >
                       Gratis
                     </div> */
-                    }
-                  </form>
+                      }
+                    </form>
+                  </div>
                 </div>
-              </div>
-                </Modal.Body>
-              </Modal>
-        </div>
-        
-      )}
+              </Modal.Body>
+            </Modal>
+          </div>
+        )}
       </div>
     </div>
   );

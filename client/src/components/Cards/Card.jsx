@@ -92,13 +92,7 @@ function Card() {
             {allPost.map((data, i) =>
               data.Posts.map((info, index) => (
                 <div className="card-box" key={index}>
-                 {/*  <IconButton
-                    onClick={toggleFavorite}
-                    color={isFavorite ? "secondary" : "default"}
-                    className="favorite-button"
-                  >
-                    {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                  </IconButton> */}
+         
 
                   <div className="carousel-container">
                     <Carousel interval={null} className="swiper-container">
