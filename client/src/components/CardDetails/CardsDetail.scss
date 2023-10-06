@@ -186,6 +186,10 @@ width: 56%;
   background-color: #8B008B;
 }
 
+.icons-details-mobile {
+  display: none;
+}
+
 #icons-details {
   color: #fff;
   background-color: #8b008b9d;
@@ -242,6 +246,15 @@ z-index: 2;
   height: 40px;
   background-color: #8B008B;
 }
+.footer-btn-mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+  background-color: #8B008B;
+}
+
 
 .footer-btn:hover {
   background-color: #8B008B;
@@ -266,7 +279,9 @@ z-index: 2;
 .img-contains {
   object-fit: cover;
 }
-
+.carrusel-mobile {
+  display: none;
+}
 
 
 
@@ -274,20 +289,55 @@ z-index: 2;
   #skeleton1 {
     height: 250px;
   }
- 
+  .carrusel-mobile {
+    display: block;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+  }
 
   .hover-image-left{
-   
+   display: none;
     height: 250px;
   
   
    }
-  
-
-  #icons-details {
+   #icons-details-mobile {
     width: 50px;
     height: 50px;
     margin-left: 300px;
+    margin-top: 20px;
+    position: fixed;
+   }
+
+
+   #icons-details-mobile {
+    width: 50px;
+    height: 50px;
+    margin-left: 300px;
+    margin-top: 150px;
+    position: fixed;
+    background-color: #8B008B;
+  color: white;
+
+   }
+   
+ #icons-carrusel-mobile {
+  width: 50px;
+  height: 50px;
+  margin-left: 300px;
+  margin-top: 150px;
+  position: fixed;
+  background-color: #8B008B;
+  color: white;
+ }
+  #icons-details {
+  /*   width: 50px;
+    height: 50px;
+    margin-left: 300px;
+    margin-top: 20px;
+    position: fixed; */
+    display: none;
 
   }
   .title-continent {
@@ -331,11 +381,19 @@ z-index: 2;
     border-top: 1px solid var(--grey);
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
     background-color: white;
-    padding-bottom: 14px;
+    height: 50px;
+    z-index: 2;
   }
   .footer-btn{
     height: 30px;
     color: white;
+    margin-top: 40px;
+  }
+  .carrusel-container {
+    display: none;
+  }
+  .mobile-anfitrion{
+    margin-top: 30px;
   }
   
 }

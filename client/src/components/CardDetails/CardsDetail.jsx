@@ -219,6 +219,56 @@ export default function CardDetails() {
                           alt="Not found"
                           className="h-full w-full object-cover object-center hover-image-left"
                         />
+{scrollPosition > 10 ? (
+  <div>
+
+
+  <div className="carrusel-mobile">
+  <div>
+                          <Fab size="small" id="icons-carrusel-mobile" aria-label="add">
+                            <AddIcon />
+                            {detailpost.imageFile.length}
+                          </Fab>
+                        </div>
+<Carousel>
+  {detailpost.imageFile.map((img, index) => (
+    
+    <Carousel.Item>
+        <img src= {img}  alt="not found"/>
+      
+      </Carousel.Item>
+     
+     ))}
+    </Carousel>
+</div>
+     </div>
+    ): (
+      <div >
+          <div>
+                          <Fab size="small" id="icons-details-mobile" aria-label="add">
+                            <AddIcon />
+                            {detailpost.imageFile.length}
+                          </Fab>
+                        </div>
+<div>
+
+      <Carousel>
+        {detailpost.imageFile.map((img, index) => (
+          
+          <Carousel.Item>
+              <img src= {img}  alt="not found"/>
+            
+            </Carousel.Item>
+           
+           ))}
+          </Carousel>
+           </div>
+      </div>
+    )}
+
+
+
+
           
                         <div>
                           <Fab size="small" id="icons-details" aria-label="add">
@@ -257,7 +307,7 @@ export default function CardDetails() {
            <Splide
         options={{
           type: "slide", // Tipo de transición (slide)
-          perPage: window.innerWidth < 768 ? 1 : 3, 
+          perPage:  3, 
           perMove: 1, // Número de elementos a mover en cada transición
           pagination: true, // Opcional: desactiva la paginación si no la necesitas
           cover: true, // Opcional: ajusta las imágenes al contenedor
