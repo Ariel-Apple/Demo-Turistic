@@ -244,20 +244,18 @@ export default function CardDetails() {
 
 <div className="ocult">
   {values.map((v, idx) => (
-  <div className={scrollPosition > 80 ? 'carrusel-mobile aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ' : 'aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg '} onClick={() => handleShow(v)}>
+    <div className={scrollPosition > 80 ? 'carrusel-mobile aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ' : 'aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg carrusel-relative'} onClick={() => handleShow(v)}>
+  <Carousel controls={false} indicators={false}>
+    {detailpost.imageFile.map((img, index) => (
+      <Carousel.Item key={index}>
+        <div className="movile-carrusel">
+          <img className="carousel-image" src={img} alt="not found" />
+        </div>
+      </Carousel.Item>
+    ))}
+  </Carousel>
+</div>
 
-    <Carousel controls={false} indicators={false}>
-      {detailpost.imageFile.map((img, index) => (
-        <Carousel.Item key={index}>
-          <div className="movile-carrusel">
-            <img src={img} alt="not found"  className="h-full w-full object-cover object-center"/>
-          </div>
-        </Carousel.Item>
-      ))}
-    </Carousel>
-
-
-  </div>
   ))}
 </div>
 
@@ -313,7 +311,9 @@ export default function CardDetails() {
           {/* Product info */}
           <div className={scrollPosition > 80 ? "text-info mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16  " : " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 "}>
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+              <div className="card-text">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
+                
                 Anfitrión: {detailpost.Users && detailpost.Users[0].name}
                 <div className="avatar-container">
                   <Avatar
@@ -333,10 +333,11 @@ export default function CardDetails() {
                 Lugar para visitar.
               </h1>
 
-              <div>
-                {detailpost.continent}{" "}
-                {/* <Flag name={countries[0].countryCode} /> */}{" "}
+              <div className="continent-country">
+                {detailpost.continent}, {" "}
                 {detailpost.country}
+              </div>
+                
               </div>
 
               <div className="horizontal-line-with-o">
@@ -414,6 +415,9 @@ export default function CardDetails() {
               {/* Description and details */}
 
               <div className="space-y-1 card-text">
+              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                    Breve resumen del lugar
+                  </h1>
                 <p className="text-base text-gray-900">{detailpost.summary}</p>
               </div>
               {detailpost.status === "Privado" ? (
@@ -423,9 +427,9 @@ export default function CardDetails() {
                   </div>
 
                   <div className="mt-10 card-text-list">
-                    <h2 className="text-sm font-medium text-gray-900">
+                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                       Dias de atención al cliente de {detailpost.daysAtentions}.
-                    </h2>
+                    </h1>
 
                     <p className="text-sm text-gray-600">
                       de {detailpost.hoursAtetionsInitial}am a{" "}
@@ -443,9 +447,9 @@ export default function CardDetails() {
                     </div>
                     <div className="card-text-list"> 
 
-                    <h3 className="text-sm font-medium text-gray-900">
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                       El lugar cuenta con:
-                    </h3>
+                    </h1>
 
                     <ul
                       role="list"
@@ -471,9 +475,9 @@ export default function CardDetails() {
                       </div>
                       <div className="card-text-list">
 
-                      <h2 className="text-sm font-medium text-gray-900">
+                      <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                         información importante
-                      </h2>
+                      </h1>
 
                       <p className="text-sm text-gray-600">
                         <ul
@@ -496,9 +500,9 @@ export default function CardDetails() {
                   <div className="line"></div> {/* Línea a la izquierda */}
                 </div>
                 <div className="mt-10 card-text">
-                  <h2 className="text-sm font-medium text-gray-900">
-                    Descripción
-                  </h2>
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                    Historia
+                  </h1>
 
                   <p className="text-sm text-gray-600 ">
                     {detailpost.description}
