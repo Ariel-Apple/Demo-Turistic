@@ -265,33 +265,38 @@ export default function CardDetails() {
 
 
 
-              {scrollPosition >= 350 && (
-                <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8  carrusel-container">
-                  <div className="carrusel-scroll">
-                    <Splide
-                      options={{
-                        type: "slide", // Tipo de transición (slide)
-                        perPage: 3,
-                        perMove: 1, // Número de elementos a mover en cada transición
-                        pagination: true, // Opcional: desactiva la paginación si no la necesitas
-                        cover: true, // Opcional: ajusta las imágenes al contenedor
-                      }}
-                    >
-                      {detailpost.imageFile.map((img, index) => (
-                        <SplideSlide>
-                          <div className="details-carrusel-fixed">
-                            <img
-                              src={img}
-                              alt={`Imagen ${index + 1}`}
-                              className="h-full w-full object-cover object-center"
-                            />
-                          </div>
-                        </SplideSlide>
-                      ))}
-                    </Splide>
-                  </div>
-                </div>
-              )}
+{scrollPosition >= 350 && (
+  <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 carrusel-container">
+    <div className="carrusel-scroll slide-up">
+      <div className="splide-container">
+        <Splide
+          options={{
+            type: "slide",
+            perPage: 3,
+            perMove: 1,
+            pagination: true,
+            cover: true,
+          }}
+        >
+          {detailpost.imageFile.map((img, index) => (
+            <SplideSlide key={index}>
+              <div className="details-carrusel-fixed">
+                <img
+                  src={img}
+                  alt={`Imagen ${index + 1}`}
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+            </SplideSlide>
+          ))}
+        </Splide>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
               <Modal
                 show={detailsModal}
                 fullscreen={fullscreen}
@@ -306,7 +311,7 @@ export default function CardDetails() {
           )}
 
           {/* Product info */}
-          <div className={scrollPosition > 80 ? "text-info mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 " : " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16"}>
+          <div className={scrollPosition > 80 ? "text-info mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16  " : " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 "}>
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
                 Anfitrión: {detailpost.Users && detailpost.Users[0].name}
@@ -408,7 +413,7 @@ export default function CardDetails() {
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
               {/* Description and details */}
 
-              <div className="space-y-6">
+              <div className="space-y-1 card-text">
                 <p className="text-base text-gray-900">{detailpost.summary}</p>
               </div>
               {detailpost.status === "Privado" ? (
@@ -417,7 +422,7 @@ export default function CardDetails() {
                     <div className="line"></div> {/* Línea a la izquierda */}
                   </div>
 
-                  <div className="mt-10">
+                  <div className="mt-10 card-text-list">
                     <h2 className="text-sm font-medium text-gray-900">
                       Dias de atención al cliente de {detailpost.daysAtentions}.
                     </h2>
@@ -436,6 +441,8 @@ export default function CardDetails() {
                     <div className="horizontal-line-with-o">
                       <div className="line"></div> {/* Línea a la izquierda */}
                     </div>
+                    <div className="card-text-list"> 
+
                     <h3 className="text-sm font-medium text-gray-900">
                       El lugar cuenta con:
                     </h3>
@@ -443,7 +450,7 @@ export default function CardDetails() {
                     <ul
                       role="list"
                       className="list-disc space-y-2 pl-4 text-sm"
-                    >
+                      >
                       {detailpost.listDetails &&
                         detailpost.listDetails.map((list) => (
                           <li className="text-gray-400">
@@ -451,6 +458,7 @@ export default function CardDetails() {
                           </li>
                         ))}
                     </ul>
+                  </div>
                   </div>
                 ) : null}
 
@@ -461,6 +469,8 @@ export default function CardDetails() {
                         <div className="line"></div>{" "}
                         {/* Línea a la izquierda */}
                       </div>
+                      <div className="card-text-list">
+
                       <h2 className="text-sm font-medium text-gray-900">
                         información importante
                       </h2>
@@ -469,7 +479,7 @@ export default function CardDetails() {
                         <ul
                           role="list"
                           className="list-disc space-y-2 pl-4 text-sm"
-                        >
+                          >
                           {detailpost.infoImportant &&
                             detailpost.infoImportant.map((list) => (
                               <li className="text-gray-400">
@@ -478,18 +488,19 @@ export default function CardDetails() {
                             ))}
                         </ul>
                       </p>
+                              </div>
                     </div>
                   ) : null}
                 </div>
                 <div className="horizontal-line-with-o">
                   <div className="line"></div> {/* Línea a la izquierda */}
                 </div>
-                <div className="mt-10">
+                <div className="mt-10 card-text">
                   <h2 className="text-sm font-medium text-gray-900">
                     Descripción
                   </h2>
 
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-600 ">
                     {detailpost.description}
                   </p>
                 </div>
