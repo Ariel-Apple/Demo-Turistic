@@ -95,6 +95,7 @@ export default function CardDetails() {
 
   const OpenReserCard = () => {
     setCardReserve(true);
+
   };
 
   React.useEffect(() => {
@@ -338,6 +339,11 @@ export default function CardDetails() {
                   detailpost.status === "Privado" ? "card-reserve" : ""
                 }
               >
+               {detailpost.status === "Privado" && (
+    <div className="absolute top-0 right-0 p-2">
+      <div style={{ fontSize: "20px", cursor: "pointer", color: '#000' }} onClick={() => setCardReserve(false)}>x</div>
+    </div>
+  )}
                 <div className="mt-4 lg:row-span-3 lg:mt-0 ">
                   <h2 className="sr-only">Product information</h2>
                   <p className="text-3xl tracking-tight text-gray-900">
@@ -369,24 +375,16 @@ export default function CardDetails() {
                     </div>
                   </p>
 
-                  {/* Reviews */}
 
                   <form className="mt-10">
-                    {/* Colors */}
-
-                    {/* Sizes */}
+          
                         <button
                           type="submit"
                           className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
                         >
                           Reservar
                         </button>
-               {/*        <div
-                      type="submit"
-                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                    >
-                      Gratis
-                    </div>  */}
+          
                   </form>
                 </div>
               </div>
@@ -549,7 +547,9 @@ export default function CardDetails() {
                     detailpost.status === "Privado" ? "card-reserve" : ""
                   }
                 >
+      
                   <div className="mt-4 lg:row-span-3 lg:mt-0 ">
+
                     <h2 className="sr-only">Product information</h2>
                     <p className="text-3xl tracking-tight text-gray-900">
                       {detailpost.price ? (
@@ -566,6 +566,7 @@ export default function CardDetails() {
                             ) : null}
                           </h3>
                         </div>
+
                         {detailpost.status === "Privado" ? (
                           <div style={wrapperStyle}>
                             <Space direction="vertical" size={12}>
@@ -581,13 +582,7 @@ export default function CardDetails() {
                         ) : null}
                       </div>
                     </p>
-
-                    {/* Reviews */}
-
-                    <form className="mt-10">
-                      {/* Colors */}
-
-                      {/* Sizes */}
+                    <form className="mt-10"> 
                       {
                         detailpost.status === "Privado" ? (
                           <button
@@ -597,12 +592,6 @@ export default function CardDetails() {
                             Reservar
                           </button>
                         ) : null
-                        /*   <div
-                      type="submit"
-                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                    >
-                      Gratis
-                    </div> */
                       }
                     </form>
                   </div>

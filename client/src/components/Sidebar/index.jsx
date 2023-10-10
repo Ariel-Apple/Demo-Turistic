@@ -18,6 +18,10 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
+import Diversity3RoundedIcon from "@mui/icons-material/Diversity3Rounded";
+import Avatar from "@mui/material/Avatar";
+import Skeleton from "@mui/material/Skeleton";
+import AddIcon from "@mui/icons-material/Add";
 
 import BeatLoader from "react-loading";
 import MenuItem from "@mui/material/MenuItem";
@@ -26,9 +30,7 @@ import dayjs from "dayjs";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import { Upload, Space, DatePicker, Select,Tag  } from "antd";
-import { Input } from 'antd';
-const { Option } = Select;
-const { TextArea } = Input;
+import Fab from "@mui/material/Fab";
 
 const steps = ["Caracterisitcas", "Fotos", "Publicar"];
 const validate = (input) => {
@@ -49,9 +51,7 @@ const validate = (input) => {
     errors.status = "El estado es requerido";
   }
   if (input.status === "Privado") {
-    if (!input.price) {
-      errors.price = "El precio es requerido";
-    }
+ 
 
     if (!input.people) {
       errors.people = "La capacidad es requerida";
@@ -112,7 +112,8 @@ export default function FormStepper() {
   const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  
+  const { RangePicker } = DatePicker;
+const dateFormat = "YYYY/MM/DD";
   const [show, setShow] = useState({
     title: "",
     price: "",
@@ -133,7 +134,6 @@ export default function FormStepper() {
     infoImportant: [],
   });
 
-  console.log(show.infoImportant);
 
   const [detail, setDetail] = useState(""); // Estado para el detalle que se está escribiendo
   const [info, setInfo] = useState(""); // Estado para el detalle que se está escribiendo
@@ -795,8 +795,8 @@ export default function FormStepper() {
 
                   <Row className="mb-3">
                     {show.status === "Privado" ||  show.status === "Público" ? (
-                      <Form.Group as={Col} controlId="validationCustomPrecio">
-                        <Form.Label>Precio</Form.Label>
+                      <Form.Group as={Col} >
+                        <Form.Label className="label-title">Precio</Form.Label>
                         <InputGroup className="mb-3">
                           <InputGroup.Text>$</InputGroup.Text>
                           <Form.Control
@@ -807,9 +807,7 @@ export default function FormStepper() {
                             required={show.status === "Privado"}
                           />
                           <InputGroup.Text>.00</InputGroup.Text>
-                          <Form.Control.Feedback type="invalid">
-                            Por favor se requiere un precio.
-                          </Form.Control.Feedback>
+                        
                         </InputGroup>
                       </Form.Group>
                     ) : (
@@ -822,7 +820,7 @@ export default function FormStepper() {
                       className="mb-3"
                       controlId="validationCustomSummary"
                     >
-                      <Form.Label>Resumen del lugar.</Form.Label>
+                      <Form.Label className="label-title">Resumen del lugar</Form.Label>
                       <Form.Control
                         as="textarea"
                         rows={3}
@@ -839,7 +837,7 @@ export default function FormStepper() {
                       controlId="validationCustomDescription"
                       required
                     >
-                      <Form.Label>Descripción</Form.Label>
+                      <Form.Label className="label-title">Descripción</Form.Label>
                       <Form.Control
                         as="textarea"
                         rows={3}
@@ -900,7 +898,7 @@ export default function FormStepper() {
                     {show.continent === "América" ? (
                       <div>
                         <Row className="mb-3">
-                          <Form.Label>País</Form.Label>
+                          <Form.Label className="label-title">País</Form.Label>
                           <Form.Select
                             defaultValue={show.country}
                             onChange={handleCountry}
@@ -935,7 +933,7 @@ export default function FormStepper() {
                             className="mb-3"
                             controlId="validationCustomContinent"
                           >
-                            <Form.Label>País</Form.Label>
+                            <Form.Label className="label-title">País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
@@ -970,7 +968,7 @@ export default function FormStepper() {
                             className="mb-3"
                             controlId="validationCustomContinent"
                           >
-                            <Form.Label>País</Form.Label>
+                            <Form.Label className="label-title">País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
@@ -1006,7 +1004,7 @@ export default function FormStepper() {
                             className="mb-3"
                             controlId="validationCustomContinent"
                           >
-                            <Form.Label>País</Form.Label>
+                            <Form.Label className="label-title">País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
@@ -1042,7 +1040,7 @@ export default function FormStepper() {
                             className="mb-3"
                             controlId="validationCustomContinent"
                           >
-                            <Form.Label>País</Form.Label>
+                            <Form.Label className="label-title">País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
@@ -1080,7 +1078,7 @@ export default function FormStepper() {
                           className="mb-3"
                           controlId="validationCustomContinent"
                         >
-                          <Form.Label>Dias y horarios de atención</Form.Label>
+                          <Form.Label className="label-title">Dias y horarios de atención</Form.Label>
                           <Form.Select
                             defaultValue={show.daysAtentions}
                             onChange={handleAttention}
@@ -1124,7 +1122,7 @@ export default function FormStepper() {
                             isInvalid={!show.hoursAtetionsInitial && validated}
                           />
 
-                          <h5>Hasta</h5>
+                          <h5 className="label-title">Hasta</h5>
                           <TextField
                             id="hours"
                             label="Cierre"
@@ -1185,7 +1183,7 @@ export default function FormStepper() {
                     {show.continent === "América" ? (
                       <div>
                         <Row className="mb-3">
-                          <Form.Label>País</Form.Label>
+                          <Form.Label className="label-title">País</Form.Label>
                           <Form.Select
                             defaultValue={show.country}
                             onChange={handleCountry}
@@ -1220,7 +1218,7 @@ export default function FormStepper() {
                             className="mb-3"
                             controlId="validationCustomContinent"
                           >
-                            <Form.Label>País</Form.Label>
+                            <Form.Label className="label-title">País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
@@ -1255,7 +1253,7 @@ export default function FormStepper() {
                             className="mb-3"
                             controlId="validationCustomContinent"
                           >
-                            <Form.Label>País</Form.Label>
+                            <Form.Label className="label-title">País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
@@ -1291,7 +1289,7 @@ export default function FormStepper() {
                             className="mb-3"
                             controlId="validationCustomContinent"
                           >
-                            <Form.Label>País</Form.Label>
+                            <Form.Label className="label-title">País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
@@ -1327,7 +1325,7 @@ export default function FormStepper() {
                             className="mb-3"
                             controlId="validationCustomContinent"
                           >
-                            <Form.Label>País</Form.Label>
+                            <Form.Label className="label-title">País</Form.Label>
                             <Form.Select
                               defaultValue={show.country}
                               onChange={handleCountry}
@@ -1358,7 +1356,7 @@ export default function FormStepper() {
                       </div>
                     )}
                           <Form.Label
-                        
+                        className="label-title"
                           >
                             Capacidad de persona
                           </Form.Label>
@@ -1391,32 +1389,32 @@ export default function FormStepper() {
                             El lugas cuenta con:
                           </span>
                           <Card>
-                            <Card.Body>
-                              <Card.Text>
-                                {show.listDetails.map((detail, index) => (
-                                  <span
-                                    key={index}
-                                    className="mr-2"
-                                    style={{
-                                      fontSize: "14px",
-                                      maxHeight: "80px",
-                                    }}
+                          <Card.Body>
+                              {show.listDetails.map((details, index) => (
+                                <span
+                                  key={index}
+                                  className="mr-2"
+                                  style={{
+                                    fontSize: "14px",
+                                    maxHeight: "80px",
+                                    background: "#DFDFDF",
+                                    padding: "5px",
+                                    borderRadius: "5px",
+                                    lineHeight: "30pt"
+                                  }}
+                                >
+                                  {details}
+                                  <button
+                                    onClick={() => handleDeleteDetail(index)}
+                                    size="sm"
+                                    className="ml-2"
                                   >
-                                    {detail}
-                                    <button
-                                      variant="danger"
-                                      onClick={() => handleDeleteDetail(index)}
-                                      size="sm"
-                                      className="ml-2"
-                                    >
-                                      X
-                                    </button>
-                                    |
-                                  </span>
-                                ))}
-                              </Card.Text>
-                            </Card.Body>
-                          </Card>
+                                    X
+                                  </button>
+                                </span>
+                              ))}
+                          </Card.Body>
+                        </Card>
                           <Form.Group className="d-flex">
                             <Form.Control
                               type="text"
@@ -1424,7 +1422,6 @@ export default function FormStepper() {
                               value={detail}
                               onChange={handleDetailChange}
                               className="flex-grow-1 mr-2"
-                              required
                               isInvalid={!show.listDetails && validated}
                             />
                             <Button variant="primary" onClick={handleAddDetail}>
@@ -1446,7 +1443,6 @@ export default function FormStepper() {
                           </Form.Label>
                           <Card>
                             <Card.Body>
-                              <Card.Text>
                                 {show.infoImportant.map((important, index) => (
                                   <span
                                     key={index}
@@ -1454,6 +1450,10 @@ export default function FormStepper() {
                                     style={{
                                       fontSize: "14px",
                                       maxHeight: "80px",
+                                      background: "#DFDFDF",
+                                      padding: "5px",
+                                      borderRadius: "5px",
+                                      lineHeight: "30pt"
                                     }}
                                   >
                                     {important}
@@ -1465,10 +1465,8 @@ export default function FormStepper() {
                                     >
                                       X
                                     </button>
-                                    |
                                   </span>
                                 ))}
-                              </Card.Text>
                             </Card.Body>
                           </Card>
                           <Form.Group className="d-flex">
@@ -1492,41 +1490,34 @@ export default function FormStepper() {
                     <Row className="mb-3">
                       {show.status === "Privado" ? (
                         <div>
-                          <span>El lugas cuenta con:</span>
-    <Space
-        direction="vertical"
-        style={{
-          width: '100%',
-        }}
-
-      >
-     <Select
-      mode="tags"
-      size="default"
-      placeholder="Please select"
-      value={show.listDetails}
-      style={{
-        width: '100%',
-      }}
-    >
-      {show.listDetails.map((detail, index) => (
-        <Option key={index} value={detail}>
-          <Tag
-            closable
-            onClose={(e) => {
-              e.preventDefault();
-              handleDeleteDetail(detail);
-            }}
-          >
-            {detail}
-          </Tag>
-        </Option>
-      ))}
-    </Select>
-
-
-</Space>
-
+                          <span className="label-title">El lugas cuenta con:</span>
+                          <Card>
+                          <Card.Body>
+                              {show.listDetails.map((details, index) => (
+                                <span
+                                  key={index}
+                                  className="mr-2"
+                                  style={{
+                                    fontSize: "14px",
+                                    maxHeight: "80px",
+                                    background: "#DFDFDF",
+                                    padding: "5px",
+                                    borderRadius: "5px",
+                                    lineHeight: "30pt"
+                                  }}
+                                >
+                                  {details}
+                                  <button
+                                    onClick={() => handleDeleteDetail(index)}
+                                    size="sm"
+                                    className="ml-2"
+                                  >
+                                    X
+                                  </button>
+                                </span>
+                              ))}
+                          </Card.Body>
+                        </Card>
                           <Form.Group className="d-flex">
                             <Form.Control
                               type="text"
@@ -1534,7 +1525,6 @@ export default function FormStepper() {
                               value={detail}
                               onChange={handleDetailChange}
                               className="flex-grow-1 mr-2"
-                              required
                               isInvalid={!show.listDetails && validated}
                             />
                             <Button variant="primary" onClick={handleAddDetail}>
@@ -1592,7 +1582,7 @@ export default function FormStepper() {
                         direction="vertical"
                         size={12}
                       >
-                        <Button onClick={toggleCalendar}>
+                        <Button onClick={toggleCalendar} className="label-title">
                           Abrir/Cerrar Calendario
                         </Button>
 
@@ -1610,10 +1600,9 @@ export default function FormStepper() {
                   <Row className="mb-3">
                     {show.status === "Privado" ? (
                       <div>
-                        <span>Informacion importante:</span>
+                        <span className="label-title">Informacion importante:</span>
                         <Card>
                           <Card.Body>
-                            <Card.Text>
                               {show.infoImportant.map((important, index) => (
                                 <span
                                   key={index}
@@ -1621,6 +1610,10 @@ export default function FormStepper() {
                                   style={{
                                     fontSize: "14px",
                                     maxHeight: "80px",
+                                    background: "#DFDFDF",
+                                    padding: "5px",
+                                    borderRadius: "5px",
+                                    lineHeight: "30pt"
                                   }}
                                 >
                                   {important}
@@ -1632,10 +1625,8 @@ export default function FormStepper() {
                                   >
                                     X
                                   </button>
-                                  |
                                 </span>
                               ))}
-                            </Card.Text>
                           </Card.Body>
                         </Card>
                         <Form.Group className="d-flex">
@@ -1809,152 +1800,282 @@ export default function FormStepper() {
               </div>
             ) : (
               <div className="bg-white">
-                <div className="pt-6">
-                  {show.title ? (
-                    <h1 className="title">{show.title}</h1>
-                  ) : (
-                    <h1 className="title">Titulo</h1>
-                  )}
-
-                  {/* Image gallery */}
-                  {["top"].map((anchor) => (
-                    <React.Fragment key={anchor}>
-                      <div>
-                        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-                          {show.images && show.images.length > 0 ? (
-                            <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+              <div className="pt-6">
+                {/* Image gallery */}
+                {isLoading ? (
+                  <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+                    <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                      <Skeleton variant="rectangular" id="skeleton1" />
+                    </div>
+                    <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                      <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
+                        <Skeleton variant="rectangular" id="skeleton2" />
+                      </div>
+                      <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                        <Skeleton variant="rectangular" id="skeleton2" />
+                      </div>
+                    </div>
+      
+                    <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                      <Skeleton variant="rectangular" id="skeleton1" />
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                      <div  className="me-2 mb-2 ">
+                        <div className="title-continent">
+                          <h1>{show.title}</h1>
+                          {/*    <h1 className="title">Lagos</h1> */}
+                        </div>
+      
+                          <div
+                            className= "mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains"
+                          >
+                            <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
                               <img
-                                src={URL.createObjectURL(show.images[0])}
-                                alt={show.error}
-                                className="h-full w-full object-cover object-center hover-image"
+                               src={URL.createObjectURL(show.images[0])}
+                                alt="Not found"
+                                className="h-full w-full object-cover object-center hover-image-left"
                               />
                             </div>
-                          ) : (
-                            <div className="x">+</div>
-                          )}
-
-                          <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                            {show.images && show.images.length > 1 ? (
-                              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
-                                <img
-                                  src={URL.createObjectURL(show.images[1])}
-                                  alt={show.images[1].alt}
-                                  className="h-full w-full object-cover object-center hover-image"
-                                />
-                              </div>
-                            ) : (
-                              <div className="x">+</div>
-                            )}
-
-                            {show.images && show.images.length > 2 ? (
+      
+                            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
                               <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                                 <img
-                                  src={URL.createObjectURL(show.images[2])}
-                                  alt={show.images[2].alt}
-                                  className="h-full w-full object-cover object-center hover-image"
+                                  src={URL.createObjectURL(show.images[1])}
+                                  alt="Not found"
+                                  className="h-full w-full object-cover object-center hover-image-center"
                                 />
                               </div>
-                            ) : (
-                              <div className="x"> +</div>
-                            )}
-                          </div>
-                          {show.images && show.images.length > 3 ? (
-                            <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
+                                <img
+                                  src={URL.createObjectURL(show.images[2])}
+                                  alt="Not found"
+                                  className="h-full w-full object-cover object-center hover-image-center"
+                                />
+                              </div>
+                            </div>
+                            <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ">
                               <img
                                 src={URL.createObjectURL(show.images[3])}
-                                alt={show.images[3].alt}
-                                className="h-full w-full object-cover object-center hover-image"
+                                alt="Not found"
+                                className="h-full w-full object-cover object-center hover-image-left"
                               />
+      
+                              <div>
+                                <Fab size="small" id="icons-details" aria-label="add">
+                                  <AddIcon />
+                                  {show.imageFile.length}
+                                </Fab>
+                              </div>
                             </div>
-                          ) : (
-                            <div className="x">+</div>
-                          )}
-                        </div>
+                          </div>
+                      
+                          
                       </div>
-                    </React.Fragment>
-                  ))}
-
-                  {/* show info */}
-                  <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-                    <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                      <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                        Lugar para quedarse. Anfitrión: {datapersonal.name}
-                      </h1>
+      
+  
+      
+      
+      
+      
+  
+      
+      
+      
+            
+                  </div>
+                )}
+      
+                {/* Product info */}
+                <div className= " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 text-info-normal">
+                  <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                    <div className="card-text">
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
+                      
+                      Anfitrión: {show.Users && show.Users[0].name}
+                      <div className="avatar-container">
+                        <Avatar
+                          sx={{
+                            width: 50,
+                            height: 50,
+                            backgroundColor:
+                            show.Users && show.Users[0].backgroundColor,
+                          }}
+                        >
+                          {show.Users &&
+                            show.Users[0].name[0].toUpperCase()}
+                        </Avatar>
+                      </div>
+                    </h1>
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                      Lugar para visitar.
+                    </h1>
+      
+                    <div className="continent-country">
+                      {show.continent}, {" "}
+                      {show.country}
                     </div>
-
-                    {/* Options */}
+                      
+                    </div>
+      
+                    <div className="horizontal-line-with-o">
+                      <div className="line"></div> {/* Línea a la izquierda */}
+                    </div>
+                  </div>
+      
+                  {/* Options */}
+      
+                    <div
+                      className={
+                        show.status === "Privado" ? "card-reserve" : ""
+                      }
+                    >
+                     {show.status === "Privado" && (
+          <div className="absolute top-0 right-0 p-2">
+            <div style={{ fontSize: "20px", cursor: "pointer", color: '#000' }}>x</div>
+          </div>
+        )}
+                      <div className="mt-4 lg:row-span-3 lg:mt-0 ">
+                        <h2 className="sr-only">Product information</h2>
+                        <p className="text-3xl tracking-tight text-gray-900">
+                          {show.price ? <span>${show.price}</span> : null}
+                          <div>
+                            <div className="space-y-6">
+                              <h3 className="text-base text-gray-900">
+                                {show.people ? (
+                                  <div>
+                                    <Diversity3RoundedIcon />
+                                    {show.people} personas
+                                  </div>
+                                ) : null}
+                              </h3>
+                            </div>
+                            {show.status === "Privado" ? (
+                              <div >
+                                <Space direction="vertical" size={12}>
+                                  <RangePicker
+                                    defaultValue={[
+                                      dayjs("2015/01/01", dateFormat),
+                                      dayjs("2015/01/01", dateFormat),
+                                    ]}
+                                    format={dateFormat}
+                                  />
+                                </Space>
+                              </div>
+                            ) : null}
+                          </div>
+                        </p>
+      
+      
+                        <form className="mt-10">
+                
+                              <button
+                                type="submit"
+                                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                              >
+                                Reservar
+                              </button>
+                
+                        </form>
+                      </div>
+                    </div>
+      
+                  <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+                    {/* Description and details */}
+      
+                    <div className="space-y-1 card-text">
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                          Breve resumen del lugar
+                        </h1>
+                      <p className="text-base text-gray-900">{show.summary}</p>
+                    </div>
                     {show.status === "Privado" ? (
-                      <div className="mt-4 lg:row-span-3 lg:mt-0">
-                        <p className="text-3xl tracking-tight text-gray-900">
-                          {show.price ? (
-                            <span>$ {show.price}</span>
-                          ) : (
-                            <span>precio</span>
-                          )}
-                          <div>
-                            <div className="space-y-6">
-                              {inputValue ? (
-                                <h3 className="text-base text-gray-900">
-                                  {inputValue}
-                                </h3>
-                              ) : (
-                                <h3 className="text-base text-gray-900">
-                                  {show.stay}
-                                </h3>
-                              )}
-                            </div>
-                          </div>
-                        </p>
-
-                        <div className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserva">
-                          Reservar
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="mt-4 lg:row-span-3 lg:mt-0">
-                        <p className="text-3xl tracking-tight text-gray-900">
-                          <div>
-                            <div className="space-y-6">
-                              {inputValue ? (
-                                <h3 className="text-base text-gray-900">
-                                  {inputValue}
-                                </h3>
-                              ) : (
-                                <h3 className="text-base text-gray-900"></h3>
-                              )}
-                            </div>
-                          </div>
-                        </p>
-
-                        <div className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserva">
-                          Gratis
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-                      {/* Description and details */}
                       <div>
-                        <div className="space-y-6">
-                          <p className="text-base text-gray-900">
-                            {show.summary && show.summary}
+                        <div className="horizontal-line-with-o">
+                          <div className="line"></div> {/* Línea a la izquierda */}
+                        </div>
+      
+                        <div className="mt-10 card-text-list">
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                            Dias de atención al cliente de {show.daysAtentions}.
+                          </h1>
+      
+                          <p className="text-sm text-gray-600">
+                            de {show.hoursAtetionsInitial}am a{" "}
+                            {show.hoursAtentionsFinally}pm
                           </p>
                         </div>
                       </div>
-
+                    ) : null}
+      
+                    <div className="mt-10">
+                        <div>
+                          <div className="horizontal-line-with-o">
+                            <div className="line"></div> {/* Línea a la izquierda */}
+                          </div>
+                          <div className="card-text-list"> 
+      
+                          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                            El lugar cuenta con:
+                          </h1>
+      
+                          <ul
+                            role="list"
+                            className="list-disc space-y-2 pl-4 text-sm"
+                            >
+                            {show.listDetails &&
+                              show.listDetails.map((list) => (
+                                <li className="text-gray-400">
+                                  <span className="text-gray-600">{list}</span>
+                                </li>
+                              ))}
+                          </ul>
+                        </div>
+                        </div>
+      
                       <div className="mt-10">
-                        <h2 className="text-sm font-medium text-gray-900">
-                          Descripción
-                        </h2>
-
-                        <div className="mt-4 space-y-6 des">
-                          <p className="text-sm text-gray-600 ">
-                            {show.description}
-                          </p>
-                        </div>
+                        {show.status === "Privado" ? (
+                          <div>
+                            <div className="horizontal-line-with-o">
+                              <div className="line"></div>{" "}
+                              {/* Línea a la izquierda */}
+                            </div>
+                            <div className="card-text-list">
+      
+                            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                              información importante
+                            </h1>
+      
+                            <p className="text-sm text-gray-600">
+                              <ul
+                                role="list"
+                                className="list-disc space-y-2 pl-4 text-sm"
+                                >
+                                {show.infoImportant &&
+                                  show.infoImportant.map((list) => (
+                                    <li className="text-gray-400">
+                                      <span className="text-gray-600">{list}</span>
+                                    </li>
+                                  ))}
+                              </ul>
+                            </p>
+                                    </div>
+                          </div>
+                        ) : null}
                       </div>
-                    </div>
-                    <div className="back-next">
+                      <div className="horizontal-line-with-o">
+                        <div className="line"></div> {/* Línea a la izquierda */}
+                      </div>
+                      <div className="mt-10 card-text">
+                      <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                          Historia
+                        </h1>
+      
+                        <p className="text-sm text-gray-600 ">
+                          {show.description}
+                        </p>
+                        <div className="back-next">
           <div className="back-next-footer">
                     <Box
                       sx={{
@@ -1991,9 +2112,12 @@ export default function FormStepper() {
                     </Box>
                     </div>
                 </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+            </div>
             )}
           </div>
         );
