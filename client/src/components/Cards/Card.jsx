@@ -98,7 +98,7 @@ function Card() {
                     <Carousel interval={null} className="swiper-container">
                       {info.imageFile.map((imageSrc, imageIndex) => (
                         <Carousel.Item key={imageIndex}>
-                          <Link to={"/rooms/" + info.id} className="text-link">
+                          <a href={"/rooms/" + info.id} className="text-link">
                             <div className="image-container">
                               <img
                                 src={imageSrc}
@@ -106,19 +106,19 @@ function Card() {
                                 className="card-img"
                               />
                             </div>
-                          </Link>
+                          </a>
                         </Carousel.Item>
                       ))}
                     </Carousel>
                   </div>
 
                   <div className="desc-hover">
-                    <Link to={"/rooms/" + info.id} className="text-link">
+                    <a href={"/rooms/" + info.id} className="text-link">
                       {info.status === "Público" ? (
                         <div className="shadow-card">
                           <div className="card-info-flex">
-                            <Link
-                              to={"/rooms/" + info.id}
+                            <a
+                              href={"/rooms/" + info.id}
                               className="text-link"
                             >
                              {/*  {info.title.split(" ").length > 2 ? (
@@ -131,7 +131,7 @@ function Card() {
                                 </h3>
                               ) : ( */}
                                 <h3 className="card-title">{info.title}</h3>
-                            </Link>
+                            </a>
                             <div>
                               <Avatar
                                 sx={{
@@ -184,8 +184,8 @@ function Card() {
                       ) : (
                         <div className="shadow-card">
                           <div className="card-info-flex">
-                            <Link
-                              to={"/rooms/" + info.id}
+                            <a
+                              href={"/rooms/" + info.id}
                               className="text-link"
                             >
                             {/*   {info.title.split(" ").length > 2 ? (
@@ -198,7 +198,7 @@ function Card() {
                                 </h3>
                               ) : ( */}
                                 <h3 className="card-title">{info.title}</h3>
-                            </Link>
+                            </a>
                             <div>
                               <Avatar
                                 sx={{
@@ -249,7 +249,7 @@ function Card() {
                           )}
                         </div>
                       )}
-                    </Link>
+                    </a>
                   </div>
                 </div>
               ))

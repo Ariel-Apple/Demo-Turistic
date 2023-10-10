@@ -18,13 +18,17 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
-import { Upload, Space, DatePicker } from "antd";
+
 import BeatLoader from "react-loading";
 import MenuItem from "@mui/material/MenuItem";
 import "dayjs/locale/es";
 import dayjs from "dayjs";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
+import { Upload, Space, DatePicker, Select,Tag  } from "antd";
+import { Input } from 'antd';
+const { Option } = Select;
+const { TextArea } = Input;
 
 const steps = ["Caracterisitcas", "Fotos", "Publicar"];
 const validate = (input) => {
@@ -108,6 +112,7 @@ export default function FormStepper() {
   const [validated, setValidated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  
   const [show, setShow] = useState({
     title: "",
     price: "",
@@ -689,6 +694,7 @@ export default function FormStepper() {
     "Vanuatu",
   ];
   //retocar
+  const [size, setSize] = useState('middle');
 
   const [infoImportant, setInfoImportant] = useState([]);
   const [word, setWord] = useState("");
@@ -773,7 +779,7 @@ export default function FormStepper() {
                       className="mb-3"
                       controlId="validationCustomStatus"
                     >
-                      <Form.Label>Titulo</Form.Label>
+                      <Form.Label className="label-title">Titulo</Form.Label>
                       <Form.Control
                         required
                         type="text"
@@ -788,7 +794,7 @@ export default function FormStepper() {
                   </Row>
 
                   <Row className="mb-3">
-                    {show.status === "Privado" ? (
+                    {show.status === "Privado" ||  show.status === "Público" ? (
                       <Form.Group as={Col} controlId="validationCustomPrecio">
                         <Form.Label>Precio</Form.Label>
                         <InputGroup className="mb-3">
@@ -1487,33 +1493,58 @@ export default function FormStepper() {
                       {show.status === "Privado" ? (
                         <div>
                           <span>El lugas cuenta con:</span>
-                          <Card>
-                            <Card.Body>
-                              <Card.Text>
-                                {show.listDetails.map((detail, index) => (
-                                  <span
-                                    key={index}
-                                    className="mr-2"
-                                    style={{
-                                      fontSize: "14px",
-                                      maxHeight: "80px",
-                                    }}
-                                  >
-                                    {detail}
-                                    <button
-                                      variant="danger"
-                                      onClick={() => handleDeleteDetail(index)}
-                                      size="sm"
-                                      className="ml-2"
-                                    >
-                                      X
-                                    </button>
-                                    |
-                                  </span>
-                                ))}
-                              </Card.Text>
-                            </Card.Body>
-                          </Card>
+    <Space
+        direction="vertical"
+        style={{
+          width: '100%',
+        }}
+
+      >
+     <Select
+      mode="tags"
+      size="default"
+      placeholder="Please select"
+      value={show.listDetails}
+      style={{
+        width: '100%',
+      }}
+    >
+      {show.listDetails.map((detail, index) => (
+        <Option key={index} value={detail}>
+          <Tag
+            closable
+            onClose={(e) => {
+              e.preventDefault();
+              handleDeleteDetail(detail);
+            }}
+          >
+            {detail}
+          </Tag>
+        </Option>
+      ))}
+    </Select>
+
+
+</Space>
+
+                          <Form.Group className="d-flex">
+                            <Form.Control
+                              type="text"
+                              placeholder="Nuevo detalle"
+                              value={detail}
+                              onChange={handleDetailChange}
+                              className="flex-grow-1 mr-2"
+                              required
+                              isInvalid={!show.listDetails && validated}
+                            />
+                            <Button variant="primary" onClick={handleAddDetail}>
+                              Agregar
+                            </Button>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione una opción de capacidad de
+                              personas.
+                            </Form.Control.Feedback>
+                          </Form.Group>
                           <Form.Group
                           as={Col}
                           className="mb-3 bottom-people"
@@ -1628,7 +1659,9 @@ export default function FormStepper() {
                 </div>
               </div>
             </div>
-            <Box
+            <div className="back-next">
+          <div className="back-next-footer">
+          <Box
               sx={{
                 display: "flex",
                 flexDirection: "row",
@@ -1660,6 +1693,9 @@ export default function FormStepper() {
                 Siguiente
               </Button>
             </Box>
+          </div>
+        </div>
+            
           </div>
         );
       case 1:
@@ -1724,7 +1760,8 @@ export default function FormStepper() {
                 </div>
               </div>
             </div>
-
+            <div className="back-next">
+          <div className="back-next-footer">
             <Box
               sx={{
                 display: "flex",
@@ -1756,6 +1793,8 @@ export default function FormStepper() {
                 Siguiente
               </Button>
             </Box>
+            </div>
+            </div>
           </>
         );
       case 2:
@@ -1915,7 +1954,8 @@ export default function FormStepper() {
                         </div>
                       </div>
                     </div>
-
+                    <div className="back-next">
+          <div className="back-next-footer">
                     <Box
                       sx={{
                         display: "flex",
@@ -1949,6 +1989,8 @@ export default function FormStepper() {
                         Publicar
                       </Button>
                     </Box>
+                    </div>
+                </div>
                   </div>
                 </div>
               </div>
@@ -1961,7 +2003,7 @@ export default function FormStepper() {
   };
   return (
     <Box>
-      <Link to="/">
+      <Link to="/" className="public-cancel">
         <Button
           variant="contained"
           sx={{

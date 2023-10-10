@@ -143,7 +143,7 @@ export default function CardDetails() {
   );
 
   return (
-    <div>
+    <div className="detail-container">
       <Header />
 
       <div className="bg-white">
@@ -170,15 +170,15 @@ export default function CardDetails() {
           ) : (
             <div>
               {values.map((v, idx) => (
-                <div key={idx} className="me-2 mb-2">
+                <div key={idx} className="me-2 mb-2 ">
                   <div className="title-continent">
                     <h1>{detailpost.title}</h1>
                     {/*    <h1 className="title">Lagos</h1> */}
                   </div>
-                  {scrollPosition < 340 ? (
+
                     <div
                       onClick={() => handleShow(v)}
-                      className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains"
+                      className= "mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains"
                     >
                       <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
                         <img
@@ -220,25 +220,8 @@ export default function CardDetails() {
                         </div>
                       </div>
                     </div>
-                  ) : (
-                    <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-                      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-                        <Skeleton variant="rectangular" id="skeleton1-wrap" />
-                      </div>
-                      <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
-                          <Skeleton variant="rectangular" id="skeleton2-wrap" />
-                        </div>
-                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                          <Skeleton variant="rectangular" id="skeleton2-wrap" />
-                        </div>
-                      </div>
-
-                      <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-                        <Skeleton variant="rectangular" id="skeleton1-wrap" />
-                      </div>
-                    </div>
-                  )}
+                
+                    
                 </div>
               ))}
 
@@ -249,7 +232,7 @@ export default function CardDetails() {
     {detailpost.imageFile.map((img, index) => (
       <Carousel.Item key={index}>
         <div className="movile-carrusel">
-          <img className="carousel-image" src={img} alt="not found" />
+          <img className={scrollPosition > 80  ?"carousel-image-relative" :"carousel-image"} src={img} alt="not found" />
         </div>
       </Carousel.Item>
     ))}
@@ -262,6 +245,7 @@ export default function CardDetails() {
 
 
 
+<div className="none-laptop">
 
 {scrollPosition >= 350 && (
   <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 carrusel-container">
@@ -292,6 +276,7 @@ export default function CardDetails() {
     </div>
   </div>
 )}
+</div>
 
 
 
@@ -309,7 +294,7 @@ export default function CardDetails() {
           )}
 
           {/* Product info */}
-          <div className={scrollPosition > 80 ? "text-info mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16  " : " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 "}>
+          <div className={scrollPosition > 80 ? "text-info mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16  " : " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 text-info-normal"}>
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <div className="card-text">
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
@@ -318,8 +303,8 @@ export default function CardDetails() {
                 <div className="avatar-container">
                   <Avatar
                     sx={{
-                      width: 80,
-                      height: 80,
+                      width: 50,
+                      height: 50,
                       backgroundColor:
                         detailpost.Users && detailpost.Users[0].backgroundColor,
                     }}
@@ -390,22 +375,18 @@ export default function CardDetails() {
                     {/* Colors */}
 
                     {/* Sizes */}
-                    {
-                      detailpost.status === "Privado" ? (
                         <button
                           type="submit"
                           className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
                         >
                           Reservar
                         </button>
-                      ) : null
-                      /*   <div
+               {/*        <div
                       type="submit"
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
                     >
                       Gratis
-                    </div> */
-                    }
+                    </div>  */}
                   </form>
                 </div>
               </div>
@@ -440,7 +421,6 @@ export default function CardDetails() {
               ) : null}
 
               <div className="mt-10">
-                {detailpost.status === "Privado" ? (
                   <div>
                     <div className="horizontal-line-with-o">
                       <div className="line"></div> {/* Línea a la izquierda */}
@@ -464,7 +444,6 @@ export default function CardDetails() {
                     </ul>
                   </div>
                   </div>
-                ) : null}
 
                 <div className="mt-10">
                   {detailpost.status === "Privado" ? (
@@ -523,7 +502,23 @@ export default function CardDetails() {
             >
               Reservar
             </button>
+            
           </div>
+          <div className="btn-footer-laptop">
+          {values.map((v, idx) => (
+
+            <button
+            onClick={() => handleShow(v)}
+            type="submit"
+            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
+            >
+              Ver fotos
+            </button>
+              ))}
+            
+          </div>
+         
+     
         </div>
       )}
 
@@ -539,6 +534,7 @@ export default function CardDetails() {
                 Reservar
               </button>
             </div>
+           
             <Modal
               show={detailsCardReserve}
               fullscreen={fullscreenMobile}

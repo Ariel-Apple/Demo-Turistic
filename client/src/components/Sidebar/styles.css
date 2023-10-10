@@ -3,11 +3,13 @@
   display: flex;
   flex-direction: column;
   margin-left: 50px;
+
 }
 
 .box-container {
   display: flex;
   gap: 150px;
+  justify-content: center;
 }
 
 .mb-3 {
@@ -15,7 +17,38 @@
   /* Por ejemplo, puedes establecer el ancho máximo para mantener el mismo tamaño */
   max-width: 350px;
 }
+.card-textarea {
+  scroll-margin: 20px;
+  overflow-y: auto;
+}
 
+.back-next{
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid var(--grey);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
+  background-color: white;
+  height: 50px;
+  z-index: 2;
+}
+.back-next-footer {
+    display: flex;
+    justify-content: center;
+}
+.public-cancel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  position: sticky;
+  top: 0;
+  background: white;
+  box-shadow: 0px 0px 3px rgb(229, 229, 229);
+  z-index: 1000;
+}
 .sidebar {
   left: 0;
   width: 650px;
@@ -69,13 +102,17 @@ input[type="number"] {
   display: flex;
   gap: 150px;
   justify-content: center;
+ /* Agrega una altura máxima para que el desplazamiento funcione */
 }
+
 .action-box {
   display: grid;
   justify-content: center;
   box-shadow: 0px 0px 50px rgb(215, 215, 215);
   width: 500px;
   border-radius: 10px;
+  overflow-y: scroll;
+  max-height: 70vh; 
 }
 .rest-info {
   display: grid;
@@ -83,7 +120,8 @@ input[type="number"] {
   box-shadow: 0px 0px 50px rgb(215, 215, 215);
   width: 500px;
   border-radius: 10px;
-  
+  overflow-y: scroll;
+  max-height: 70vh; 
 }
 
 .start-input {
@@ -92,15 +130,26 @@ input[type="number"] {
   box-shadow: 0px 0px 50px rgb(215, 215, 215);
   width: 500px;
   border-radius: 10px;
+  max-height: 70vh; 
+
 }
 .label-continent {
   margin-top: 50px;
+  font-weight: 700;
+
 }
 .label-status {
   margin-top: 50px;
+  font-weight: 700;
+}
+.label-title {
+  font-weight: 700;
+
 }
 .label-calendar {
   margin-top: 50px;
+  font-weight: 700;
+
 }
 
 .bottom-description {

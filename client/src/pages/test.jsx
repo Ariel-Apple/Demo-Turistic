@@ -1,18 +1,41 @@
-import Carousel from 'react-bootstrap/Carousel';
-
-function UncontrolledExample() {
-  return (
-    <Carousel>
-      <Carousel.Item>
-        <img text="First slide" />
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-     
-    </Carousel>
-  );
+import React, { useState } from 'react';
+import { Radio, Select, Space } from 'antd';
+const options = [];
+for (let i = 10; i < 36; i++) {
+  options.push({
+    value: i.toString(36) + i,
+    label: i.toString(36) + i,
+  });
 }
+const handleChange = (value) => {
+  console.log(`Selected: ${value}`);
+};
+const App = () => {
+  const [size, setSize] = useState('middle');
 
-export default UncontrolledExample;
+  return (
+    <>
+   
+      <Space
+        direction="vertical"
+        style={{
+          width: '100%',
+        }}
+      >
+        
+        <Select
+          mode="tags"
+          size={size}
+          placeholder="Please select"
+          defaultValue={['a10', 'c12']}
+          onChange={handleChange}
+          style={{
+            width: '100%',
+          }}
+          options={options}
+        />
+      </Space>
+    </>
+  );
+};
+export default App;

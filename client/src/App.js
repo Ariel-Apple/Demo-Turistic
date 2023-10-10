@@ -14,42 +14,25 @@ import Hostess from './pages/Hostess';
 
 
 
-
-
 function App() {
-
-
   return (
-      <Router>
-        <Routes>
+    <Router>
+      <Routes>
+        <Route exact path='/' element={<Home />} />
+        <Route exact path='/auth/login' element={<Login />} />
+        <Route exact path='/auth/register' element={<Register />} />
+        <Route exact path='/rooms/:idTuristic' element={<CardDetails />} />
+        <Route exact path='/account-settings' element={<AccountSettings />} />
+        <Route exact path='/account-settings/personal-info' element={<InfoPersonal />} />
+        <Route exact path='/account-settings/login-and-security' element={<Security />} />
+        <Route exact path='/account-settings/payment-methods' element={<PaymentUser />} />
+        <Route exact path='/public' element={<TuristicPost />} />
+        <Route exact path='/user/show' element={<Profile />} />
+        <Route exact path='/anfitrion/:idHostess' element={<Hostess />} />
+        <Route exact path='/test' element={<Test />} />
+      </Routes>
 
-
-
-
-
-          <Route exact path='/' element={<Home />} />
-          <Route exact path='/auth/login' element={<Login />} />
-          <Route exact path='/auth/register' element={<Register />} />
-          <Route exact path='/rooms/:idTuristic' element={<CardDetails />} />
-          <Route exact path='/account-settings' element={<AccountSettings />} />
-          <Route exact path='/account-settings/personal-info' element={<InfoPersonal />} />
-          <Route exact path='/account-settings/login-and-security' element={<Security />} />
-          <Route exact path='/account-settings/payment-methods' element={<PaymentUser />} />
-          <Route exact path='/public' element={<TuristicPost />} />
-          <Route exact path='/user/show' element={<Profile />} />
-          <Route exact path='/anfitrion/:idHostess' element={<Hostess/>} />
-
-
-
-
-          <Route exact path='/test' element={<Test />} />
-
-
-
-
-        </Routes>
-
-      </Router>
+    </Router>
   );
 }
 
