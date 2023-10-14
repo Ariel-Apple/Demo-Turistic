@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
- export const AllPostTuristic = () => {
+/*  export const AllPostTuristic = () => {
   return async (dispach) => {
     const res = await axios.get('https://demo-turistic-production.up.railway.app/turistic');
     const data = res.data.User
@@ -176,7 +176,7 @@ const checkServerStatus = async () => {
         payload: data
     })
   }
- };   
+ };    */
 
 
 
@@ -189,7 +189,7 @@ const checkServerStatus = async () => {
 
 
 
- /* export const AllPostTuristic = () => {
+ export const AllPostTuristic = () => {
  return async (dispach) => {
    const res = await axios.get('http://localhost:4000/turistic');
    const data = res.data.User
@@ -362,4 +362,4 @@ export const OnlyAllPost = () => {
        payload: data
    })
  }
-};     */
+};     

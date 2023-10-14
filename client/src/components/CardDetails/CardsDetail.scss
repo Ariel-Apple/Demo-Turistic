@@ -135,6 +135,9 @@ margin-left: 30px;
   bottom: 80px;
   position: fixed;
 }
+.card-reserve-mobile {
+display: none;
+}
 
 .drawer-details {
   display: grid;
@@ -302,6 +305,7 @@ display: none;
   height: 40px;
   background-color: #8B008B;
 }
+
 .footer-btn-mobile {
   display: flex;
   justify-content: center;
@@ -437,11 +441,13 @@ position: absolute;
     text-align: center;
   }
 
-  .card-reserve {
-    width: 350px;
-    box-shadow: 0px 0px 0px;
-    
-
+  .card-reserve-mobile {
+    box-shadow: 0px 0px 50px rgb(204, 204, 204);
+    justify-content: center;
+    display: flex;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  
   }
 
   .drawer-image img {
@@ -540,7 +546,6 @@ position: absolute;
     width: 350px;
     right: 50px;
     top: 518px;
-height: 420px;
   }
   .btn-reserve {
     bottom: 150px;
@@ -548,6 +553,22 @@ height: 420px;
 
   .none-laptop {
     display: none;
+  }
+
+  .footer-btn-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    background-color: black;
+    
+  }
+
+  .footer-btn-photo:hover {
+    
+    background-color: black;
+    
   }
 
   .btn-footer-laptop {

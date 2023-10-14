@@ -1,0 +1,79 @@
+.bg-image {
+  background: linear-gradient(90deg,#8b008b29 0%,#8b008b8a 100%),
+  url("../../assets/images/bg-pre.jpg");  
+  background-position: center center;
+  background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end; /* Alinea el contenido a la derecha */
+    align-items: center; /* Centra verticalmente el contenido */
+}
+
+.card-preregister {
+    padding: 10px;
+    background-color: aliceblue;
+     border-radius: 10px;
+    
+
+}
+
+.avatar-preregister {
+    margin-left: 70%;
+    margin-right: 50%;
+    margin-top: -60px;
+    margin-bottom: -20px;
+
+}
+
+.btn-preregister{
+  background-color: #8B008B;
+
+}
+.btn-preregister:hover{
+    background-color: #8B008B;
+  
+  }
+  .logo-preregister-container  {
+   margin: 0 auto;
+}
+
+.logo-preregister {
+ margin-left: 50px;
+}
+  .logo-preregister  img {
+    max-width: 300px;
+  }
+
+  .logo-text {
+    margin: 0 auto;
+  }
+
+  .logo-text img{
+    max-width: 300px;
+
+
+  }
+.logo-container-mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+    .avatar-preregister {
+        display: none;
+    }
+    .logo-preregister-container{
+      display: none;
+    }
+    .title-update {
+      display: none;
+    }
+    .logo-container-mobile {
+      display: grid;
+      max-width: 30px;
+      margin: 0 auto;
+    }
+}
+  
+  

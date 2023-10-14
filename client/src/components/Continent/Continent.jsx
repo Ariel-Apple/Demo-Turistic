@@ -4,7 +4,7 @@ import america from "../../assets/icons/icons-america.png";
 import europa from "../../assets/icons/icons-europa.png";
 import asia from "../../assets/icons/icons-asia.png";
 import africa from "../../assets/icons/icons-africa.png";
-import oceania from "../../assets/icons/icons-oceania.png";
+import oceania from "../../assets/icons/OCEANIA.png";
 
 import { useState, useEffect, useRef } from "react";
 import CountryAmerica from "../Country/CountryAmerica";
@@ -135,7 +135,7 @@ function Continent() {
         </Button>
         <Button  onClick={handleClickOceania}>
           <div className="continent">
-            <img src={america} alt="not found"  id="continent"/>
+            <img src={oceania} alt="not found"  id="oceania"/>
             <p>Oceania</p>
           </div>
         </Button>

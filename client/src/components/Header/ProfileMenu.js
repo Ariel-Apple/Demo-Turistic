@@ -1,6 +1,5 @@
 import * as React from "react";
 import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import "./header.scss";
 import "./../../Loading.scss";
@@ -26,70 +25,88 @@ import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import LoginForms from "../LoginForms/LoginForms";
 import { Modal } from 'antd';
+import BootstrapModal from "react-bootstrap/Modal";
 import RegisterForm from "../RegisterForm/RegisterForm";
+import MenuItem from "@mui/material/MenuItem";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { message, Upload } from 'antd';
-
-const getBase64 = (img, callback) => {
-  const reader = new FileReader();
-  reader.addEventListener('load', () => callback(reader.result));
-  reader.readAsDataURL(img);
-};
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!');
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
-  }
-  return isJpgOrPng && isLt2M;
-};
+const product = {
+  name: 'Basic Tee 6-Pack',
+  price: '$192',
+  href: '#',
+  breadcrumbs: [
+    { id: 1, name: 'Men', href: '#' },
+    { id: 2, name: 'Clothing', href: '#' },
+  ],
+  images: [
+    {
+      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+      alt: 'Two each of gray, white, and black shirts laying flat.',
+    },
+    {
+      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+      alt: 'Model wearing plain black basic tee.',
+    },
+    {
+      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+      alt: 'Model wearing plain gray basic tee.',
+    },
+    {
+      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
+      alt: 'Model wearing plain white basic tee.',
+    },
+  ],
+  colors: [
+    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
+    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
+    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
+  ],
+  sizes: [
+    { name: 'XXS', inStock: false },
+    { name: 'XS', inStock: true },
+    { name: 'S', inStock: true },
+    { name: 'M', inStock: true },
+    { name: 'L', inStock: true },
+    { name: 'XL', inStock: true },
+    { name: '2XL', inStock: true },
+    { name: '3XL', inStock: true },
+  ],
+  description:
+    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+  highlights: [
+    'Hand cut and sewn locally',
+    'Dyed with our proprietary colors',
+    'Pre-washed & pre-shrunk',
+    'Ultra-soft 100% cotton',
+  ],
+  details:
+    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+}
 
 export default function BasicMenu() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const datapersonal = useSelector(state => state.datapersonal);
   const posts = useSelector(state => state.posts);
-
+  const [selectedColor, setSelectedColor] = React.useState(product.colors[0])
+  const [selectedSize, setSelectedSize] = React.useState(product.sizes[2])
   const [openPublic, setOpenPublic] = React.useState(false);
   const [openLogout, setOpenLogout] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isModalOpenRegister, setIsModalOpenRegister] = React.useState(false);
-  const [isModalOpenPublic, setIsModalOpenPublic] = React.useState(false);
-  const [loadingAvatar, setLoadingAvatar] = React.useState(false);
-  const [imageUrl, setImageUrl] = React.useState();
 
-  console.log(posts);
+  const values = [true];
+  const [fullscreen, setFullscreen] = React.useState(true);
+  const [modalPublic, setModalPublic] = React.useState(false);
+  function handleShow(breakpoint) {
+    setFullscreen(breakpoint);
+    setAnchorEl(null);
+    setModalPublic(true)
+  }
 
-  const handleChangeAvatar = (info) => {
-    if (info.file.status === 'uploading') {
-      setLoadingAvatar(true);
-      return;
-    }
-    if (info.file.status === 'done') {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoadingAvatar(false);
-        setImageUrl(url);
-      });
-    }
-  };
-  const uploadButton = (
-    <div>
 
-      {loadingAvatar ? <LoadingOutlined /> : <PlusOutlined />}
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-      </div>
-    </div>
-  );
+
 
   const showModalRegister = () => {
     setAnchorEl(null);
@@ -113,15 +130,7 @@ export default function BasicMenu() {
     setOpenPublic(false)
   };
 
-  const showModalPublic = () => {
-    setAnchorEl(null);
-    setIsModalOpenPublic(true)
-  };
 
-  const modalCancel = () => {
-    setAnchorEl(null);
-    setIsModalOpenPublic(false)
-  }
   const handleOk = () => {
     setIsModalOpen(false);
   };
@@ -191,6 +200,77 @@ export default function BasicMenu() {
     // Redirigir al usuario a la página de inicio de sesión
   };
 
+
+
+  const List = () => (
+    <div>
+      <div className="text-join-initial">
+        <div>
+
+          <img src={require('../../assets/images/image-modal.png')} alt="not found" />
+        </div>
+        <div className="text-initial">
+          <p>
+            <h1>"Estamos comprometidos en dar</h1>
+          </p>
+          <p>
+            <h1>a conocer tu sitio para que forme </h1>
+          </p>
+          <p>
+            <h1>parte de los sitios más  </h1>
+          </p>
+          <p>
+            <h1> emocionantes, importantes e </h1>
+          </p>
+          <p>
+            <h1> históricos de todo el mundo y que  </h1>
+          </p>
+          <p>
+            <h1>estén disponibles en un mismo </h1>
+          </p>
+          <p>
+            <h1>
+              <span id="lugar-modal">lugar</span>
+              ." </h1>
+          </p>
+        </div>
+
+      </div>
+
+      <>
+        <div className="image-modal1">
+
+          <img src={require('../../assets/images/image-modal1.png')} alt="not found" />
+        </div>
+        <div className="text-join-family">
+
+          <h1>
+            Al unirte a {" "}
+            <span className="color-title">Place enc</span>
+            , obtendrás acceso a una audiencia diversa de viajeros y entusiastas del turismo que están buscando nuevas experiencias y destinos.
+          </h1>
+          <h2>
+            Regístrate como propietario o administrador de un sitio turístico.
+          </h2>
+          <h2>
+            Una vez que hayas creado tu perfil, podrás cargar fotos,
+          </h2>
+          <h2>
+            descripciones, horarios de operación y cualquier otra información
+          </h2>
+          <h2>
+            relevante sobre tu sitio.
+          </h2>
+          <h1> <HelpOutlineIcon id="icons-question" /> {" "}
+            ¡Únete a {" "}
+            <span className="color-title">Place enc</span> {" "}
+            y haz que tu sitio turístico forme parte del portafolio mundial de lugares turísticos!
+          </h1>
+        </div>
+      </>
+
+    </div>
+  )
 
   return (
     <div className="account-menu">
@@ -357,9 +437,18 @@ export default function BasicMenu() {
               </MenuItem>
             </Link>
 
-            <MenuItem onClick={showModalPublic} className="menu-items">
-              Unase placee enc como anfitrion
-            </MenuItem>
+            <div>
+              {values.map((v, idx) => (
+
+                <MenuItem onClick={() => handleShow(v)} className="menu-items" >
+                  Unase placee enc como anfitrion
+                </MenuItem>
+              ))}
+
+            </div>
+
+
+
             <>
 
               <Button variant="transparent" onClick={handleClickOpenLogout}>
@@ -424,62 +513,27 @@ export default function BasicMenu() {
 
         </Dialog>
       </div>
-      <div>
-        <Dialog
-          open={isModalOpenPublic}
-          onClose={handleClosePublic}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
+      <BootstrapModal
+        show={modalPublic}
+        fullscreen={fullscreen}
+        onHide={() => setModalPublic(false)}
+      >
+        <BootstrapModal.Header closeButton>
+          <BootstrapModal.Title >
 
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              <>
+            <img src={require('../../assets/logo/Nudo.png')} alt="Not found" className="logo-modal-join" />
 
-                <Upload
-                  name="avatar"
-                  listType="picture-circle"
-                  className="avatar-uploader"
-                  showUploadList={false}
-                  action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-                  beforeUpload={beforeUpload}
-                  onChange={handleChangeAvatar}
-
-
-                >
-                  {imageUrl ? (
-                    <img
-                      src={imageUrl}
-                      alt="avatar"
-
-                      style={{
-                        width: '100%',
-                      }}
-                    />
-                  ) : (
-                    uploadButton
-                  )}
-                </Upload>
-              </>
-
-            </DialogContentText>
-            <DialogContentText id="alert-dialog-description">
-              aca va los input de validacion
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions className="btn-modal" >
-            <Button onClick={modalCancel} autoFocus>
-              Cancelar
-            </Button>
-            <Link to="/public">
-              <Button>Publicar</Button>
+          </BootstrapModal.Title>
+          <div className="container-button-modal">
+            <Link to='/preregister'>
+              <Button >
+                <span>+</span> Unirse como anfitrion
+              </Button>
             </Link>
-
-          </DialogActions>
-
-        </Dialog>
-      </div>
+          </div>
+        </BootstrapModal.Header>
+        <BootstrapModal.Body>{List()}</BootstrapModal.Body>
+      </BootstrapModal>
     </div>
   );
 }
-/* onClick={handleLogout} */

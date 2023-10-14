@@ -11,6 +11,7 @@ import TuristicPost from './pages/PostTuristic';
 import Test from './pages/test';
 import Profile from './pages/Profile';
 import Hostess from './pages/Hostess';
+import PreRegister from './pages/PreRegister';
 
 
 
@@ -29,6 +30,8 @@ function App() {
         <Route exact path='/public' element={<TuristicPost />} />
         <Route exact path='/user/show' element={<Profile />} />
         <Route exact path='/anfitrion/:idHostess' element={<Hostess />} />
+        <Route exact path='/preregister' element={<PreRegister/>} />
+
         <Route exact path='/test' element={<Test />} />
       </Routes>
 

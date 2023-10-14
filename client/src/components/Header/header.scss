@@ -34,10 +34,35 @@
   width: 150px;
   height: 150px;
 }
+.logo-modal-join {
+  max-width: 50px;
+}
+.text-join-initial {
+  display: flex;
+}
+.text-initial {
+  margin-top: 180px;
+}
 
+.text-initial p h1 {
+  font-weight: 700;
+  font-size: 45px;
+
+
+}
+
+#lugar-modal {
+  color: #8B008B;
+}
+
+.image-modal1 {
+  display: flex;
+  justify-content: center;
+}
 .avatar-uploader {
   margin-left: 30px;
 }
+
 .navbar-logo {
   width: 60px;
  /*  height: 4rem; */
@@ -163,6 +188,31 @@
 
 }
 
+.text-join-family  {
+  text-align: center;
+}
+
+.color-title {
+  color: #8B008B;
+}
+
+#icons-question {
+  font-size: 40px;
+}
+.container-button-modal {
+  margin-left: 80%;
+  
+}
+
+.container-button-modal button {
+  background-color: #8B008B;
+  border-color: #8B008B;
+}
+.container-button-modal button:hover {
+  background-color: #8B008B;
+  border-color: #8B008B;
+}
+ 
 
 @media only screen and (max-width: 800px) {
 

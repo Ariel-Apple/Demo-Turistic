@@ -114,6 +114,21 @@ input[type="number"] {
   overflow-y: scroll;
   max-height: 70vh; 
 }
+
+
+.action-box::-webkit-scrollbar {
+  width: 8px; /* Ajusta el ancho según tus necesidades */
+}
+
+.action-box::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Hacer el thumb (el "mango" de la barra de desplazamiento) transparente */
+  border: 2px solid transparent; /* Hacer el borde del thumb transparente */
+  border-radius: 4px; /* Añadir un borde redondeado al thumb */
+}
+
+.action-box::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5); /* Cambiar el color al pasar el mouse sobre la barra (puedes ajustar el valor alpha para hacerlo más o menos transparente) */
+}
 .rest-info {
   display: grid;
   justify-content: center;
