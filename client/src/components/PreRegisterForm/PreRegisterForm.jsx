@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Switch } from "@headlessui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { dataPersonal } from "../../redux/action";
 import "./PreRegister.css";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import {Link} from 'react-router-dom'
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
@@ -26,7 +26,6 @@ const beforeUpload = (file) => {
 };
 
 export default function PreRegisterForm() {
-  const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
   const dispatch = useDispatch();
@@ -66,7 +65,26 @@ export default function PreRegisterForm() {
   );
   return (
     <>
+      
       <div className="isolate  px-6 py-24 sm:py-32 lg:px-8 bg-image">
+        <Link to = '/'>
+      <div className="exit-preregister">
+        <CancelIcon id='exit-icon'/>
+        </div>
+        </Link>
+        <div className="box-preregister">
+
+     
+      <div className="logo-container-mobile">
+          <div className='logo-preregister-mobile'>
+
+          <img src={require("../../assets/logo/Nudo.png")} alt="Notfound" />
+          </div>
+          <div className="logo-text-mobile">
+          <img src={require("../../assets/logo/enc.png")} alt="Notfound" />
+
+          </div>
+        </div>
         <div className="logo-preregister-container">
           <div className='logo-preregister'>
 
@@ -77,6 +95,8 @@ export default function PreRegisterForm() {
 
           </div>
         </div>
+     
+      
         <div className="card-preregister">
           <div>
 
@@ -86,16 +106,7 @@ export default function PreRegisterForm() {
               Actualizar
             </h2>
 
-              <div className="logo-container-mobile">
-          <div className='logo-preregister-mobile'>
-
-          <img src={require("../../assets/logo/Nudo.png")} alt="Notfound" />
-          </div>
-          <div className="logo-text-mobile">
-          <img src={require("../../assets/logo/enc.png")} alt="Notfound" />
-
-          </div>
-        </div>
+           
             
             <p className="mt-2 text-lg leading-8 text-gray-600">
               Para realizar una publicación necesita Actualizar su foto de
@@ -108,7 +119,7 @@ export default function PreRegisterForm() {
             method="POST"
             className="mx-auto mt-16 max-w-xl sm:mt-20"
           >
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
               <div className="avatar-preregister">
                 <Upload
                   name="avatar"
@@ -139,7 +150,7 @@ export default function PreRegisterForm() {
                     name="company"
                     id="company"
                     autoComplete="organization"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
                     placeholder="Nombre"
                     value={datapersonal.name}
                   />
@@ -152,7 +163,7 @@ export default function PreRegisterForm() {
                     name="company"
                     id="company"
                     autoComplete="organization"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
                     placeholder="Apellido"
                     value={datapersonal.lastName}
                   />
@@ -165,7 +176,7 @@ export default function PreRegisterForm() {
                     name="company"
                     id="company"
                     autoComplete="organization"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
                     placeholder="Correo electronico"
                     value={datapersonal.email}
                   />
@@ -178,7 +189,7 @@ export default function PreRegisterForm() {
                     name="text"
                     id="email"
                     autoComplete="text"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
                     placeholder="Contraseña"
                     value="**********"
                   />
@@ -206,7 +217,7 @@ export default function PreRegisterForm() {
                     name="phone-number"
                     id="phone-number"
                     autoComplete="tel"
-                    className="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
                     placeholder="Télefono"
                     value={datapersonal.phone}
                   />
@@ -218,7 +229,7 @@ export default function PreRegisterForm() {
                     name="message"
                     id="message"
                     rows={4}
-                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
                     defaultValue={""}
                     placeholder="Sobre tí (opcional)"
                   />
@@ -238,6 +249,7 @@ export default function PreRegisterForm() {
                 </Link>
             </div>
           </form>
+        </div>
         </div>
         </div>
 
