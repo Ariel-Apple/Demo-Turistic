@@ -225,8 +225,8 @@
 
 
     .slide {
-        height: 80vh;
-        width: 90%; /* Cambia esto a 25% para mostrar 2 elementos a la vez */
+        height: 79vh;
+        width: 100%; /* Cambia esto a 25% para mostrar 2 elementos a la vez */
         display: flex;
         justify-content: center;
       }
@@ -284,7 +284,6 @@
 
   @media only screen and (max-width: 767px)  {
     .filter-container {
-        margin-bottom: -150px;
         .slide {
             width: 100%;
         }

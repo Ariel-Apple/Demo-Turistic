@@ -29,9 +29,9 @@ import "dayjs/locale/es";
 import dayjs from "dayjs";
 import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
-import { Upload, Space, DatePicker, Select,Tag  } from "antd";
+import { Upload, Space, DatePicker, Select, Tag } from "antd";
 import Fab from "@mui/material/Fab";
-import CancelIcon from '@mui/icons-material/Cancel';
+import CancelIcon from "@mui/icons-material/Cancel";
 
 const steps = ["Caracterisitcas", "Fotos", "Publicar"];
 const validate = (input) => {
@@ -52,8 +52,6 @@ const validate = (input) => {
     errors.status = "El estado es requerido";
   }
   if (input.status === "Privado") {
- 
-
     if (!input.people) {
       errors.people = "La capacidad es requerida";
     }
@@ -114,7 +112,7 @@ export default function FormStepper() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { RangePicker } = DatePicker;
-const dateFormat = "YYYY/MM/DD";
+  const dateFormat = "YYYY/MM/DD";
   const [show, setShow] = useState({
     title: "",
     price: "",
@@ -134,7 +132,6 @@ const dateFormat = "YYYY/MM/DD";
     listDetails: [],
     infoImportant: [],
   });
-
 
   const [detail, setDetail] = useState(""); // Estado para el detalle que se está escribiendo
   const [info, setInfo] = useState(""); // Estado para el detalle que se está escribiendo
@@ -695,7 +692,7 @@ const dateFormat = "YYYY/MM/DD";
     "Vanuatu",
   ];
   //retocar
-  const [size, setSize] = useState('middle');
+  const [size, setSize] = useState("middle");
 
   const [infoImportant, setInfoImportant] = useState([]);
   const [word, setWord] = useState("");
@@ -795,8 +792,8 @@ const dateFormat = "YYYY/MM/DD";
                   </Row>
 
                   <Row className="mb-3">
-                    {show.status === "Privado" ||  show.status === "Público" ? (
-                      <Form.Group as={Col} >
+                    {show.status === "Privado" || show.status === "Público" ? (
+                      <Form.Group as={Col}>
                         <Form.Label className="label-title">Precio</Form.Label>
                         <InputGroup className="mb-3">
                           <InputGroup.Text>$</InputGroup.Text>
@@ -808,7 +805,6 @@ const dateFormat = "YYYY/MM/DD";
                             required={show.status === "Privado"}
                           />
                           <InputGroup.Text>.00</InputGroup.Text>
-                        
                         </InputGroup>
                       </Form.Group>
                     ) : (
@@ -821,7 +817,9 @@ const dateFormat = "YYYY/MM/DD";
                       className="mb-3"
                       controlId="validationCustomSummary"
                     >
-                      <Form.Label className="label-title">Resumen del lugar</Form.Label>
+                      <Form.Label className="label-title">
+                        Resumen del lugar
+                      </Form.Label>
                       <Form.Control
                         as="textarea"
                         rows={3}
@@ -838,7 +836,9 @@ const dateFormat = "YYYY/MM/DD";
                       controlId="validationCustomDescription"
                       required
                     >
-                      <Form.Label className="label-title">Descripción</Form.Label>
+                      <Form.Label className="label-title">
+                        Descripción
+                      </Form.Label>
                       <Form.Control
                         as="textarea"
                         rows={3}
@@ -892,183 +892,198 @@ const dateFormat = "YYYY/MM/DD";
                         </Form.Control.Feedback>
                       </Row>
                     )}
-                    {show.status === 'Privado' && (
+                    {show.status === "Privado" && (
                       <div>
+                        {show.continent === "América" ? (
+                          <div>
+                            <Row className="mb-3">
+                              <Form.Label className="label-title">
+                                País
+                              </Form.Label>
+                              <Form.Select
+                                defaultValue={show.country}
+                                onChange={handleCountry}
+                                aria-label="Pais"
+                                required
+                                isInvalid={!show.country && validated}
+                                className="mb-3"
+                              >
+                                <option value="">Seleccione una opción</option>
+                                {america.map((option) => (
+                                  <option key={option} value={option}>
+                                    {option}
+                                  </option>
+                                ))}
+                              </Form.Select>
+                              <Form.Control.Feedback type="invalid">
+                                Por favor seleccione un país.
+                              </Form.Control.Feedback>
+                            </Row>
+                          </div>
+                        ) : (
+                          <div>
+                            {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                          </div>
+                        )}
 
+                        {show.continent === "Europa" ? (
+                          <div>
+                            <Row className="mb-3">
+                              <Form.Group
+                                as={Col}
+                                className="mb-3"
+                                controlId="validationCustomContinent"
+                              >
+                                <Form.Label className="label-title">
+                                  País
+                                </Form.Label>
+                                <Form.Select
+                                  defaultValue={show.country}
+                                  onChange={handleCountry}
+                                  aria-label="Pais"
+                                  required
+                                  isInvalid={!show.country && validated}
+                                  className="mb-3"
+                                >
+                                  <option value="">
+                                    Seleccione una opción
+                                  </option>
+                                  {europa.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}
+                                    </option>
+                                  ))}
+                                </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                  Por favor seleccione un país.
+                                </Form.Control.Feedback>
+                              </Form.Group>
+                            </Row>
+                          </div>
+                        ) : (
+                          <div>
+                            {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                          </div>
+                        )}
+                        {show.continent === "Asia" ? (
+                          <div>
+                            <Row className="mb-3">
+                              <Form.Group
+                                as={Col}
+                                className="mb-3"
+                                controlId="validationCustomContinent"
+                              >
+                                <Form.Label className="label-title">
+                                  País
+                                </Form.Label>
+                                <Form.Select
+                                  defaultValue={show.country}
+                                  onChange={handleCountry}
+                                  aria-label="Pais"
+                                  required
+                                  isInvalid={!show.country && validated}
+                                  className="mb-3"
+                                >
+                                  <option value="">
+                                    Seleccione una opción
+                                  </option>
+                                  {asia.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}
+                                    </option>
+                                  ))}
+                                </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                  Por favor seleccione un país.
+                                </Form.Control.Feedback>
+                              </Form.Group>
+                            </Row>
+                          </div>
+                        ) : (
+                          <div>
+                            {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                          </div>
+                        )}
 
-                    {show.continent === "América" ? (
-                      <div>
-                        <Row className="mb-3">
-                          <Form.Label className="label-title">País</Form.Label>
-                          <Form.Select
-                            defaultValue={show.country}
-                            onChange={handleCountry}
-                            aria-label="Pais"
-                            required
-                            isInvalid={!show.country && validated}
-                            className="mb-3"
-                          >
-                            <option value="">Seleccione una opción</option>
-                            {america.map((option) => (
-                              <option key={option} value={option}>
-                                {option}
-                              </option>
-                            ))}
-                          </Form.Select>
-                          <Form.Control.Feedback type="invalid">
-                            Por favor seleccione un país.
-                          </Form.Control.Feedback>
-                        </Row>
-                      </div>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
+                        {show.continent === "África" ? (
+                          <Row className="mb-3">
+                            <div>
+                              <Form.Group
+                                as={Col}
+                                className="mb-3"
+                                controlId="validationCustomContinent"
+                              >
+                                <Form.Label className="label-title">
+                                  País
+                                </Form.Label>
+                                <Form.Select
+                                  defaultValue={show.country}
+                                  onChange={handleCountry}
+                                  aria-label="Pais"
+                                  required
+                                  isInvalid={!show.country && validated}
+                                  className="mb-3"
+                                >
+                                  <option value="">
+                                    Seleccione una opción
+                                  </option>
+                                  {africa.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}
+                                    </option>
+                                  ))}
+                                </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                  Por favor seleccione un país.
+                                </Form.Control.Feedback>
+                              </Form.Group>
+                            </div>
+                          </Row>
+                        ) : (
+                          <div>
+                            {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                          </div>
+                        )}
 
-                    {show.continent === "Europa" ? (
-                      <div>
-                        <Row className="mb-3">
-                          <Form.Group
-                            as={Col}
-                            className="mb-3"
-                            controlId="validationCustomContinent"
-                          >
-                            <Form.Label className="label-title">País</Form.Label>
-                            <Form.Select
-                              defaultValue={show.country}
-                              onChange={handleCountry}
-                              aria-label="Pais"
-                              required
-                              isInvalid={!show.country && validated}
-                              className="mb-3"
-                            >
-                              <option value="">Seleccione una opción</option>
-                              {europa.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              Por favor seleccione un país.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </Row>
-                      </div>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
-                    {show.continent === "Asia" ? (
-                      <div>
-                        <Row className="mb-3">
-                          <Form.Group
-                            as={Col}
-                            className="mb-3"
-                            controlId="validationCustomContinent"
-                          >
-                            <Form.Label className="label-title">País</Form.Label>
-                            <Form.Select
-                              defaultValue={show.country}
-                              onChange={handleCountry}
-                              aria-label="Pais"
-                              required
-                              isInvalid={!show.country && validated}
-                              className="mb-3"
-                            >
-                              <option value="">Seleccione una opción</option>
-                              {asia.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              Por favor seleccione un país.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </Row>
-                      </div>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
-
-                    {show.continent === "África" ? (
-                      <Row className="mb-3">
-                        <div>
-                          <Form.Group
-                            as={Col}
-                            className="mb-3"
-                            controlId="validationCustomContinent"
-                          >
-                            <Form.Label className="label-title">País</Form.Label>
-                            <Form.Select
-                              defaultValue={show.country}
-                              onChange={handleCountry}
-                              aria-label="Pais"
-                              required
-                              isInvalid={!show.country && validated}
-                              className="mb-3"
-                            >
-                              <option value="">Seleccione una opción</option>
-                              {africa.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              Por favor seleccione un país.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-                      </Row>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
-
-                    {show.continent === "Oceanía" ? (
-                      <div>
-                        <Row className="mb-3">
-                          <Form.Group
-                            as={Col}
-                            className="mb-3"
-                            controlId="validationCustomContinent"
-                          >
-                            <Form.Label className="label-title">País</Form.Label>
-                            <Form.Select
-                              defaultValue={show.country}
-                              onChange={handleCountry}
-                              aria-label="Pais"
-                              required
-                              isInvalid={!show.country && validated}
-                              className="mb-3"
-                            >
-                              <option value="">Seleccione una opción</option>
-                              {oceania.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              Por favor seleccione un país.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </Row>
-                      </div>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
-
+                        {show.continent === "Oceanía" ? (
+                          <div>
+                            <Row className="mb-3">
+                              <Form.Group
+                                as={Col}
+                                className="mb-3"
+                                controlId="validationCustomContinent"
+                              >
+                                <Form.Label className="label-title">
+                                  País
+                                </Form.Label>
+                                <Form.Select
+                                  defaultValue={show.country}
+                                  onChange={handleCountry}
+                                  aria-label="Pais"
+                                  required
+                                  isInvalid={!show.country && validated}
+                                  className="mb-3"
+                                >
+                                  <option value="">
+                                    Seleccione una opción
+                                  </option>
+                                  {oceania.map((option) => (
+                                    <option key={option} value={option}>
+                                      {option}
+                                    </option>
+                                  ))}
+                                </Form.Select>
+                                <Form.Control.Feedback type="invalid">
+                                  Por favor seleccione un país.
+                                </Form.Control.Feedback>
+                              </Form.Group>
+                            </Row>
+                          </div>
+                        ) : (
+                          <div>
+                            {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                          </div>
+                        )}
                       </div>
                     )}
 
@@ -1079,7 +1094,9 @@ const dateFormat = "YYYY/MM/DD";
                           className="mb-3"
                           controlId="validationCustomContinent"
                         >
-                          <Form.Label className="label-title">Dias y horarios de atención</Form.Label>
+                          <Form.Label className="label-title">
+                            Dias y horarios de atención
+                          </Form.Label>
                           <Form.Select
                             defaultValue={show.daysAtentions}
                             onChange={handleAttention}
@@ -1146,9 +1163,6 @@ const dateFormat = "YYYY/MM/DD";
                       <div></div>
                     )}
 
-
-
-                    
                     {show.status === "Público" && (
                       <Row className="mb-3">
                         <Form.Group
@@ -1156,209 +1170,224 @@ const dateFormat = "YYYY/MM/DD";
                           className="mb-3 bottom-people"
                           controlId="validationCustomCapacidad"
                         >
-                        <Form.Label className="label-continent">
-                          Continente
-                        </Form.Label>
-                        <Form.Select
-                          defaultValue={show.continent}
-                          onChange={handleContinent}
-                          aria-label="Continente"
-                          className="mb-3"
-                          required
-                          isInvalid={!show.continent && validated}
-                        >
-                          <option value="">Seleccione una opción</option>
-                          {continent.map((option) => (
-                            <option key={option} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">
-                          Por favor seleccione un continente.
-                        </Form.Control.Feedback>
-                        {show.status === 'Público' && (
-                      <div>
-
-
-                    {show.continent === "América" ? (
-                      <div>
-                        <Row className="mb-3">
-                          <Form.Label className="label-title">País</Form.Label>
+                          <Form.Label className="label-continent">
+                            Continente
+                          </Form.Label>
                           <Form.Select
-                            defaultValue={show.country}
-                            onChange={handleCountry}
-                            aria-label="Pais"
-                            required
-                            isInvalid={!show.country && validated}
+                            defaultValue={show.continent}
+                            onChange={handleContinent}
+                            aria-label="Continente"
                             className="mb-3"
+                            required
+                            isInvalid={!show.continent && validated}
                           >
                             <option value="">Seleccione una opción</option>
-                            {america.map((option) => (
+                            {continent.map((option) => (
                               <option key={option} value={option}>
                                 {option}
                               </option>
                             ))}
                           </Form.Select>
                           <Form.Control.Feedback type="invalid">
-                            Por favor seleccione un país.
+                            Por favor seleccione un continente.
                           </Form.Control.Feedback>
-                        </Row>
-                      </div>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
+                          {show.status === "Público" && (
+                            <div>
+                              {show.continent === "América" ? (
+                                <div>
+                                  <Row className="mb-3">
+                                    <Form.Label className="label-title">
+                                      País
+                                    </Form.Label>
+                                    <Form.Select
+                                      defaultValue={show.country}
+                                      onChange={handleCountry}
+                                      aria-label="Pais"
+                                      required
+                                      isInvalid={!show.country && validated}
+                                      className="mb-3"
+                                    >
+                                      <option value="">
+                                        Seleccione una opción
+                                      </option>
+                                      {america.map((option) => (
+                                        <option key={option} value={option}>
+                                          {option}
+                                        </option>
+                                      ))}
+                                    </Form.Select>
+                                    <Form.Control.Feedback type="invalid">
+                                      Por favor seleccione un país.
+                                    </Form.Control.Feedback>
+                                  </Row>
+                                </div>
+                              ) : (
+                                <div>
+                                  {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                                </div>
+                              )}
 
-                    {show.continent === "Europa" ? (
-                      <div>
-                        <Row className="mb-3">
-                          <Form.Group
-                            as={Col}
-                            className="mb-3"
-                            controlId="validationCustomContinent"
-                          >
-                            <Form.Label className="label-title">País</Form.Label>
-                            <Form.Select
-                              defaultValue={show.country}
-                              onChange={handleCountry}
-                              aria-label="Pais"
-                              required
-                              isInvalid={!show.country && validated}
-                              className="mb-3"
-                            >
-                              <option value="">Seleccione una opción</option>
-                              {europa.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              Por favor seleccione un país.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </Row>
-                      </div>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
-                    {show.continent === "Asia" ? (
-                      <div>
-                        <Row className="mb-3">
-                          <Form.Group
-                            as={Col}
-                            className="mb-3"
-                            controlId="validationCustomContinent"
-                          >
-                            <Form.Label className="label-title">País</Form.Label>
-                            <Form.Select
-                              defaultValue={show.country}
-                              onChange={handleCountry}
-                              aria-label="Pais"
-                              required
-                              isInvalid={!show.country && validated}
-                              className="mb-3"
-                            >
-                              <option value="">Seleccione una opción</option>
-                              {asia.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              Por favor seleccione un país.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </Row>
-                      </div>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
+                              {show.continent === "Europa" ? (
+                                <div>
+                                  <Row className="mb-3">
+                                    <Form.Group
+                                      as={Col}
+                                      className="mb-3"
+                                      controlId="validationCustomContinent"
+                                    >
+                                      <Form.Label className="label-title">
+                                        País
+                                      </Form.Label>
+                                      <Form.Select
+                                        defaultValue={show.country}
+                                        onChange={handleCountry}
+                                        aria-label="Pais"
+                                        required
+                                        isInvalid={!show.country && validated}
+                                        className="mb-3"
+                                      >
+                                        <option value="">
+                                          Seleccione una opción
+                                        </option>
+                                        {europa.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}
+                                          </option>
+                                        ))}
+                                      </Form.Select>
+                                      <Form.Control.Feedback type="invalid">
+                                        Por favor seleccione un país.
+                                      </Form.Control.Feedback>
+                                    </Form.Group>
+                                  </Row>
+                                </div>
+                              ) : (
+                                <div>
+                                  {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                                </div>
+                              )}
+                              {show.continent === "Asia" ? (
+                                <div>
+                                  <Row className="mb-3">
+                                    <Form.Group
+                                      as={Col}
+                                      className="mb-3"
+                                      controlId="validationCustomContinent"
+                                    >
+                                      <Form.Label className="label-title">
+                                        País
+                                      </Form.Label>
+                                      <Form.Select
+                                        defaultValue={show.country}
+                                        onChange={handleCountry}
+                                        aria-label="Pais"
+                                        required
+                                        isInvalid={!show.country && validated}
+                                        className="mb-3"
+                                      >
+                                        <option value="">
+                                          Seleccione una opción
+                                        </option>
+                                        {asia.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}
+                                          </option>
+                                        ))}
+                                      </Form.Select>
+                                      <Form.Control.Feedback type="invalid">
+                                        Por favor seleccione un país.
+                                      </Form.Control.Feedback>
+                                    </Form.Group>
+                                  </Row>
+                                </div>
+                              ) : (
+                                <div>
+                                  {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                                </div>
+                              )}
 
-                    {show.continent === "África" ? (
-                      <Row className="mb-3">
-                        <div>
-                          <Form.Group
-                            as={Col}
-                            className="mb-3"
-                            controlId="validationCustomContinent"
-                          >
-                            <Form.Label className="label-title">País</Form.Label>
-                            <Form.Select
-                              defaultValue={show.country}
-                              onChange={handleCountry}
-                              aria-label="Pais"
-                              required
-                              isInvalid={!show.country && validated}
-                              className="mb-3"
-                            >
-                              <option value="">Seleccione una opción</option>
-                              {africa.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              Por favor seleccione un país.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </div>
-                      </Row>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
+                              {show.continent === "África" ? (
+                                <Row className="mb-3">
+                                  <div>
+                                    <Form.Group
+                                      as={Col}
+                                      className="mb-3"
+                                      controlId="validationCustomContinent"
+                                    >
+                                      <Form.Label className="label-title">
+                                        País
+                                      </Form.Label>
+                                      <Form.Select
+                                        defaultValue={show.country}
+                                        onChange={handleCountry}
+                                        aria-label="Pais"
+                                        required
+                                        isInvalid={!show.country && validated}
+                                        className="mb-3"
+                                      >
+                                        <option value="">
+                                          Seleccione una opción
+                                        </option>
+                                        {africa.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}
+                                          </option>
+                                        ))}
+                                      </Form.Select>
+                                      <Form.Control.Feedback type="invalid">
+                                        Por favor seleccione un país.
+                                      </Form.Control.Feedback>
+                                    </Form.Group>
+                                  </div>
+                                </Row>
+                              ) : (
+                                <div>
+                                  {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                                </div>
+                              )}
 
-                    {show.continent === "Oceanía" ? (
-                      <div>
-                        <Row className="mb-3">
-                          <Form.Group
-                            as={Col}
-                            className="mb-3"
-                            controlId="validationCustomContinent"
-                          >
-                            <Form.Label className="label-title">País</Form.Label>
-                            <Form.Select
-                              defaultValue={show.country}
-                              onChange={handleCountry}
-                              aria-label="Pais"
-                              required
-                              isInvalid={!show.country && validated}
-                              className="mb-3"
-                            >
-                              <option value="">Seleccione una opción</option>
-                              {oceania.map((option) => (
-                                <option key={option} value={option}>
-                                  {option}
-                                </option>
-                              ))}
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid">
-                              Por favor seleccione un país.
-                            </Form.Control.Feedback>
-                          </Form.Group>
-                        </Row>
-                      </div>
-                    ) : (
-                      <div>
-                        {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
-                      </div>
-                    )}
-
-                      </div>
-                    )}
-                          <Form.Label
-                        className="label-title"
-                          >
+                              {show.continent === "Oceanía" ? (
+                                <div>
+                                  <Row className="mb-3">
+                                    <Form.Group
+                                      as={Col}
+                                      className="mb-3"
+                                      controlId="validationCustomContinent"
+                                    >
+                                      <Form.Label className="label-title">
+                                        País
+                                      </Form.Label>
+                                      <Form.Select
+                                        defaultValue={show.country}
+                                        onChange={handleCountry}
+                                        aria-label="Pais"
+                                        required
+                                        isInvalid={!show.country && validated}
+                                        className="mb-3"
+                                      >
+                                        <option value="">
+                                          Seleccione una opción
+                                        </option>
+                                        {oceania.map((option) => (
+                                          <option key={option} value={option}>
+                                            {option}
+                                          </option>
+                                        ))}
+                                      </Form.Select>
+                                      <Form.Control.Feedback type="invalid">
+                                        Por favor seleccione un país.
+                                      </Form.Control.Feedback>
+                                    </Form.Group>
+                                  </Row>
+                                </div>
+                              ) : (
+                                <div>
+                                  {/* Aquí puedes agregar contenido adicional que se mostrará cuando no se seleccione "América" */}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          <Form.Label className="label-title">
                             Capacidad de persona
                           </Form.Label>
                           <Form.Select
@@ -1390,7 +1419,7 @@ const dateFormat = "YYYY/MM/DD";
                             El lugas cuenta con:
                           </span>
                           <Card>
-                          <Card.Body>
+                            <Card.Body>
                               {show.listDetails.map((details, index) => (
                                 <span
                                   key={index}
@@ -1401,7 +1430,7 @@ const dateFormat = "YYYY/MM/DD";
                                     background: "#DFDFDF",
                                     padding: "5px",
                                     borderRadius: "5px",
-                                    lineHeight: "30pt"
+                                    lineHeight: "30pt",
                                   }}
                                 >
                                   {details}
@@ -1414,8 +1443,8 @@ const dateFormat = "YYYY/MM/DD";
                                   </button>
                                 </span>
                               ))}
-                          </Card.Body>
-                        </Card>
+                            </Card.Body>
+                          </Card>
                           <Form.Group className="d-flex">
                             <Form.Control
                               type="text"
@@ -1444,30 +1473,30 @@ const dateFormat = "YYYY/MM/DD";
                           </Form.Label>
                           <Card>
                             <Card.Body>
-                                {show.infoImportant.map((important, index) => (
-                                  <span
-                                    key={index}
-                                    className="mr-2"
-                                    style={{
-                                      fontSize: "14px",
-                                      maxHeight: "80px",
-                                      background: "#DFDFDF",
-                                      padding: "5px",
-                                      borderRadius: "5px",
-                                      lineHeight: "30pt"
-                                    }}
+                              {show.infoImportant.map((important, index) => (
+                                <span
+                                  key={index}
+                                  className="mr-2"
+                                  style={{
+                                    fontSize: "14px",
+                                    maxHeight: "80px",
+                                    background: "#DFDFDF",
+                                    padding: "5px",
+                                    borderRadius: "5px",
+                                    lineHeight: "30pt",
+                                  }}
+                                >
+                                  {important}
+                                  <button
+                                    variant="danger"
+                                    onClick={() => handleDeleteInfo(index)}
+                                    size="sm"
+                                    className="ml-2"
                                   >
-                                    {important}
-                                    <button
-                                      variant="danger"
-                                      onClick={() => handleDeleteInfo(index)}
-                                      size="sm"
-                                      className="ml-2"
-                                    >
-                                      X
-                                    </button>
-                                  </span>
-                                ))}
+                                    X
+                                  </button>
+                                </span>
+                              ))}
                             </Card.Body>
                           </Card>
                           <Form.Group className="d-flex">
@@ -1485,15 +1514,16 @@ const dateFormat = "YYYY/MM/DD";
                           </Form.Group>
                         </div>
                       </Row>
-                      
                     )}
 
                     <Row className="mb-3">
                       {show.status === "Privado" ? (
                         <div>
-                          <span className="label-title">El lugas cuenta con:</span>
+                          <span className="label-title">
+                            El lugas cuenta con:
+                          </span>
                           <Card>
-                          <Card.Body>
+                            <Card.Body>
                               {show.listDetails.map((details, index) => (
                                 <span
                                   key={index}
@@ -1504,7 +1534,7 @@ const dateFormat = "YYYY/MM/DD";
                                     background: "#DFDFDF",
                                     padding: "5px",
                                     borderRadius: "5px",
-                                    lineHeight: "30pt"
+                                    lineHeight: "30pt",
                                   }}
                                 >
                                   {details}
@@ -1517,8 +1547,8 @@ const dateFormat = "YYYY/MM/DD";
                                   </button>
                                 </span>
                               ))}
-                          </Card.Body>
-                        </Card>
+                            </Card.Body>
+                          </Card>
                           <Form.Group className="d-flex">
                             <Form.Control
                               type="text"
@@ -1537,37 +1567,37 @@ const dateFormat = "YYYY/MM/DD";
                             </Form.Control.Feedback>
                           </Form.Group>
                           <Form.Group
-                          as={Col}
-                          className="mb-3 bottom-people"
-                          controlId="validationCustomCapacidad"
-                        >
-                          <Form.Label
-                            className={
-                              show.status === "Privado" ? "label-status" : ""
-                            }
+                            as={Col}
+                            className="mb-3 bottom-people"
+                            controlId="validationCustomCapacidad"
                           >
-                            Capacidad de persona
-                          </Form.Label>
-                          <Form.Select
-                            defaultValue={show.people}
-                            onChange={handlePeople}
-                            aria-label="Capacidad de persona"
-                            required
-                            isInvalid={!show.people && validated}
-                            className="mb-3"
-                          >
-                            <option value="">Seleccione una opción</option>
-                            {options.map((option) => (
-                              <option key={option} value={option}>
-                                {option}
-                              </option>
-                            ))}
-                          </Form.Select>
-                          <Form.Control.Feedback type="invalid">
-                            Por favor seleccione una opción de capacidad de
-                            personas.
-                          </Form.Control.Feedback>
-                        </Form.Group>
+                            <Form.Label
+                              className={
+                                show.status === "Privado" ? "label-status" : ""
+                              }
+                            >
+                              Capacidad de persona
+                            </Form.Label>
+                            <Form.Select
+                              defaultValue={show.people}
+                              onChange={handlePeople}
+                              aria-label="Capacidad de persona"
+                              required
+                              isInvalid={!show.people && validated}
+                              className="mb-3"
+                            >
+                              <option value="">Seleccione una opción</option>
+                              {options.map((option) => (
+                                <option key={option} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid">
+                              Por favor seleccione una opción de capacidad de
+                              personas.
+                            </Form.Control.Feedback>
+                          </Form.Group>
                         </div>
                       ) : (
                         <div></div>
@@ -1583,7 +1613,10 @@ const dateFormat = "YYYY/MM/DD";
                         direction="vertical"
                         size={12}
                       >
-                        <Button onClick={toggleCalendar} className="label-title">
+                        <Button
+                          onClick={toggleCalendar}
+                          className="label-title"
+                        >
                           Abrir/Cerrar Calendario
                         </Button>
 
@@ -1601,33 +1634,35 @@ const dateFormat = "YYYY/MM/DD";
                   <Row className="mb-3">
                     {show.status === "Privado" ? (
                       <div>
-                        <span className="label-title">Informacion importante:</span>
+                        <span className="label-title">
+                          Informacion importante:
+                        </span>
                         <Card>
                           <Card.Body>
-                              {show.infoImportant.map((important, index) => (
-                                <span
-                                  key={index}
-                                  className="mr-2"
-                                  style={{
-                                    fontSize: "14px",
-                                    maxHeight: "80px",
-                                    background: "#DFDFDF",
-                                    padding: "5px",
-                                    borderRadius: "5px",
-                                    lineHeight: "30pt"
-                                  }}
+                            {show.infoImportant.map((important, index) => (
+                              <span
+                                key={index}
+                                className="mr-2"
+                                style={{
+                                  fontSize: "14px",
+                                  maxHeight: "80px",
+                                  background: "#DFDFDF",
+                                  padding: "5px",
+                                  borderRadius: "5px",
+                                  lineHeight: "30pt",
+                                }}
+                              >
+                                {important}
+                                <button
+                                  variant="danger"
+                                  onClick={() => handleDeleteInfo(index)}
+                                  size="sm"
+                                  className="ml-2"
                                 >
-                                  {important}
-                                  <button
-                                    variant="danger"
-                                    onClick={() => handleDeleteInfo(index)}
-                                    size="sm"
-                                    className="ml-2"
-                                  >
-                                    X
-                                  </button>
-                                </span>
-                              ))}
+                                  X
+                                </button>
+                              </span>
+                            ))}
                           </Card.Body>
                         </Card>
                         <Form.Group className="d-flex">
@@ -1652,42 +1687,41 @@ const dateFormat = "YYYY/MM/DD";
               </div>
             </div>
             <div className="back-next">
-          <div className="back-next-footer">
-          <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                pt: 2,
-                justifyContent: "center",
-                gap: "60px",
-                marginBottom: "60px",
-              }}
-            >
-              <Button
-                color="primary"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                regresar
-              </Button>
-              <Box />
+              <div className="back-next-footer">
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    pt: 2,
+                    justifyContent: "center",
+                    gap: "60px",
+                    marginBottom: "60px",
+                  }}
+                >
+                  <Button
+                    color="primary"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1 }}
+                  >
+                    regresar
+                  </Button>
+                  <Box />
 
-              <Button
-                onClick={handleNext}
-                sx={{
-                  backgroundColor: "#8B008B",
-                  color: "white",
-                  ":hover": { backgroundColor: "#8B008B", color: "white" },
-                }}
-                type="button"
-              >
-                Siguiente
-              </Button>
-            </Box>
-          </div>
-        </div>
-            
+                  <Button
+                    onClick={handleNext}
+                    sx={{
+                      backgroundColor: "#8B008B",
+                      color: "white",
+                      ":hover": { backgroundColor: "#8B008B", color: "white" },
+                    }}
+                    type="button"
+                  >
+                    Siguiente
+                  </Button>
+                </Box>
+              </div>
+            </div>
           </div>
         );
       case 1:
@@ -1753,39 +1787,39 @@ const dateFormat = "YYYY/MM/DD";
               </div>
             </div>
             <div className="back-next">
-          <div className="back-next-footer">
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                pt: 2,
-                justifyContent: "center",
-                gap: "60px",
-              }}
-            >
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                regresar
-              </Button>
-              <Box />
+              <div className="back-next-footer">
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    pt: 2,
+                    justifyContent: "center",
+                    gap: "60px",
+                  }}
+                >
+                  <Button
+                    color="inherit"
+                    disabled={activeStep === 0}
+                    onClick={handleBack}
+                    sx={{ mr: 1 }}
+                  >
+                    regresar
+                  </Button>
+                  <Box />
 
-              <Button
-                onClick={handleNextImage}
-                sx={{
-                  backgroundColor: "#8B008B",
-                  color: "white",
-                  ":hover": { backgroundColor: "#8B008B", color: "white" },
-                }}
-                type="button"
-              >
-                Siguiente
-              </Button>
-            </Box>
-            </div>
+                  <Button
+                    onClick={handleNextImage}
+                    sx={{
+                      backgroundColor: "#8B008B",
+                      color: "white",
+                      ":hover": { backgroundColor: "#8B008B", color: "white" },
+                    }}
+                    type="button"
+                  >
+                    Siguiente
+                  </Button>
+                </Box>
+              </div>
             </div>
           </>
         );
@@ -1801,142 +1835,137 @@ const dateFormat = "YYYY/MM/DD";
               </div>
             ) : (
               <div className="bg-white">
-              <div className="pt-6">
-                {/* Image gallery */}
-                {isLoading ? (
-                  <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-                    <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-                      <Skeleton variant="rectangular" id="skeleton1" />
-                    </div>
-                    <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                      <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
-                        <Skeleton variant="rectangular" id="skeleton2" />
+                <div className="pt-6">
+                  {/* Image gallery */}
+                  {isLoading ? (
+                    <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+                      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+                        <Skeleton variant="rectangular" id="skeleton1" />
                       </div>
-                      <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                        <Skeleton variant="rectangular" id="skeleton2" />
+                      <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
+                          <Skeleton variant="rectangular" id="skeleton2" />
+                        </div>
+                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+                          <Skeleton variant="rectangular" id="skeleton2" />
+                        </div>
+                      </div>
+
+                      <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
+                        <Skeleton variant="rectangular" id="skeleton1" />
                       </div>
                     </div>
-      
-                    <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-                      <Skeleton variant="rectangular" id="skeleton1" />
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                      <div  className="me-2 mb-2 ">
+                  ) : (
+                    <div>
+                      <div className="me-2 mb-2 ">
                         <div className="title-continent">
                           <h1>{show.title}</h1>
                           {/*    <h1 className="title">Lagos</h1> */}
                         </div>
-      
-                          <div
-                            className= "mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains"
-                          >
-                            <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
+
+                        <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains">
+                          <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
+                            <img
+                              src={URL.createObjectURL(show.images[0])}
+                              alt="Not found"
+                              className="h-full w-full object-cover object-center hover-image-left"
+                            />
+                          </div>
+
+                          <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                            <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                               <img
-                               src={URL.createObjectURL(show.images[0])}
+                                src={URL.createObjectURL(show.images[1])}
                                 alt="Not found"
-                                className="h-full w-full object-cover object-center hover-image-left"
+                                className="h-full w-full object-cover object-center hover-image-center"
                               />
                             </div>
-      
-                            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                                <img
-                                  src={URL.createObjectURL(show.images[1])}
-                                  alt="Not found"
-                                  className="h-full w-full object-cover object-center hover-image-center"
-                                />
-                              </div>
-                              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
-                                <img
-                                  src={URL.createObjectURL(show.images[2])}
-                                  alt="Not found"
-                                  className="h-full w-full object-cover object-center hover-image-center"
-                                />
-                              </div>
-                            </div>
-                            <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ">
+                            <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
                               <img
-                                src={URL.createObjectURL(show.images[3])}
+                                src={URL.createObjectURL(show.images[2])}
                                 alt="Not found"
-                                className="h-full w-full object-cover object-center hover-image-left"
+                                className="h-full w-full object-cover object-center hover-image-center"
                               />
-      
-                              <div>
-                                <Fab size="small" id="icons-details" aria-label="add">
-                                  <AddIcon />
-                                  {show.imageFile.length}
-                                </Fab>
-                              </div>
                             </div>
                           </div>
-                      
-                          
+                          <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ">
+                            <img
+                              src={URL.createObjectURL(show.images[3])}
+                              alt="Not found"
+                              className="h-full w-full object-cover object-center hover-image-left"
+                            />
+
+                            <div>
+                              <Fab
+                                size="small"
+                                id="icons-details"
+                                aria-label="add"
+                              >
+                                <AddIcon />
+                                {show.imageFile.length}
+                              </Fab>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-      
-  
-      
-      
-      
-      
-  
-      
-      
-      
-            
-                  </div>
-                )}
-      
-                {/* Product info */}
-                <div className= " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 text-info-normal">
-                  <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-                    <div className="card-text">
-                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
-                      
-                      Anfitrión: {show.Users && show.Users[0].name}
-                      <div className="avatar-container">
-                        <Avatar
-                          sx={{
-                            width: 50,
-                            height: 50,
-                            backgroundColor:
-                            show.Users && show.Users[0].backgroundColor,
-                          }}
-                        >
-                          {show.Users &&
-                            show.Users[0].name[0].toUpperCase()}
-                        </Avatar>
+                    </div>
+                  )}
+
+                  {/* Product info */}
+                  <div className=" mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 text-info-normal">
+                    <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+                      <div className="card-text">
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
+                          Anfitrión: {show.Users && show.Users[0].name}
+                          <div className="avatar-container">
+                            <Avatar
+                              sx={{
+                                width: 50,
+                                height: 50,
+                                backgroundColor:
+                                  show.Users && show.Users[0].backgroundColor,
+                              }}
+                            >
+                              {show.Users &&
+                                show.Users[0].name[0].toUpperCase()}
+                            </Avatar>
+                          </div>
+                        </h1>
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                          Lugar para visitar.
+                        </h1>
+
+                        <div className="continent-country">
+                          {show.continent}, {show.country}
+                        </div>
                       </div>
-                    </h1>
-                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                      Lugar para visitar.
-                    </h1>
-      
-                    <div className="continent-country">
-                      {show.continent}, {" "}
-                      {show.country}
+
+                      <div className="horizontal-line-with-o">
+                        <div className="line"></div>{" "}
+                        {/* Línea a la izquierda */}
+                      </div>
                     </div>
-                      
-                    </div>
-      
-                    <div className="horizontal-line-with-o">
-                      <div className="line"></div> {/* Línea a la izquierda */}
-                    </div>
-                  </div>
-      
-                  {/* Options */}
-      
+
+                    {/* Options */}
+
                     <div
                       className={
                         show.status === "Privado" ? "card-reserve" : ""
                       }
                     >
-                     {show.status === "Privado" && (
-          <div className="absolute top-0 right-0 p-2">
-            <div style={{ fontSize: "20px", cursor: "pointer", color: '#000' }}>x</div>
-          </div>
-        )}
+                      {show.status === "Privado" && (
+                        <div className="absolute top-0 right-0 p-2">
+                          <div
+                            style={{
+                              fontSize: "20px",
+                              cursor: "pointer",
+                              color: "#000",
+                            }}
+                          >
+                            x
+                          </div>
+                        </div>
+                      )}
                       <div className="mt-4 lg:row-span-3 lg:mt-0 ">
                         <h2 className="sr-only">Product information</h2>
                         <p className="text-3xl tracking-tight text-gray-900">
@@ -1953,7 +1982,7 @@ const dateFormat = "YYYY/MM/DD";
                               </h3>
                             </div>
                             {show.status === "Privado" ? (
-                              <div >
+                              <div>
                                 <Space direction="vertical" size={12}>
                                   <RangePicker
                                     defaultValue={[
@@ -1967,158 +1996,163 @@ const dateFormat = "YYYY/MM/DD";
                             ) : null}
                           </div>
                         </p>
-      
-      
+
                         <form className="mt-10">
-                
-                              <button
-                                type="submit"
-                                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                              >
-                                Reservar
-                              </button>
-                
+                          <button
+                            type="submit"
+                            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                          >
+                            Reservar
+                          </button>
                         </form>
                       </div>
                     </div>
-      
-                  <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-                    {/* Description and details */}
-      
-                    <div className="space-y-1 card-text">
-                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+
+                    <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+                      {/* Description and details */}
+
+                      <div className="space-y-1 card-text">
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                           Breve resumen del lugar
                         </h1>
-                      <p className="text-base text-gray-900">{show.summary}</p>
-                    </div>
-                    {show.status === "Privado" ? (
-                      <div>
-                        <div className="horizontal-line-with-o">
-                          <div className="line"></div> {/* Línea a la izquierda */}
-                        </div>
-      
-                        <div className="mt-10 card-text-list">
-                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                            Dias de atención al cliente de {show.daysAtentions}.
-                          </h1>
-      
-                          <p className="text-sm text-gray-600">
-                            de {show.hoursAtetionsInitial}am a{" "}
-                            {show.hoursAtentionsFinally}pm
-                          </p>
-                        </div>
+                        <p className="text-base text-gray-900">
+                          {show.summary}
+                        </p>
                       </div>
-                    ) : null}
-      
-                    <div className="mt-10">
+                      {show.status === "Privado" ? (
                         <div>
                           <div className="horizontal-line-with-o">
-                            <div className="line"></div> {/* Línea a la izquierda */}
+                            <div className="line"></div>{" "}
+                            {/* Línea a la izquierda */}
                           </div>
-                          <div className="card-text-list"> 
-      
-                          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                            El lugar cuenta con:
-                          </h1>
-      
-                          <ul
-                            role="list"
-                            className="list-disc space-y-2 pl-4 text-sm"
-                            >
-                            {show.listDetails &&
-                              show.listDetails.map((list) => (
-                                <li className="text-gray-400">
-                                  <span className="text-gray-600">{list}</span>
-                                </li>
-                              ))}
-                          </ul>
-                        </div>
-                        </div>
-      
-                      <div className="mt-10">
-                        {show.status === "Privado" ? (
-                          <div>
-                            <div className="horizontal-line-with-o">
-                              <div className="line"></div>{" "}
-                              {/* Línea a la izquierda */}
-                            </div>
-                            <div className="card-text-list">
-      
+
+                          <div className="mt-10 card-text-list">
                             <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                              información importante
+                              Dias de atención al cliente de{" "}
+                              {show.daysAtentions}.
                             </h1>
-      
+
                             <p className="text-sm text-gray-600">
-                              <ul
-                                role="list"
-                                className="list-disc space-y-2 pl-4 text-sm"
-                                >
-                                {show.infoImportant &&
-                                  show.infoImportant.map((list) => (
-                                    <li className="text-gray-400">
-                                      <span className="text-gray-600">{list}</span>
-                                    </li>
-                                  ))}
-                              </ul>
+                              de {show.hoursAtetionsInitial}am a{" "}
+                              {show.hoursAtentionsFinally}pm
                             </p>
-                                    </div>
                           </div>
-                        ) : null}
-                      </div>
-                      <div className="horizontal-line-with-o">
-                        <div className="line"></div> {/* Línea a la izquierda */}
-                      </div>
-                      <div className="mt-10 card-text">
-                      <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                          Historia
-                        </h1>
-      
-                        <p className="text-sm text-gray-600 ">
-                          {show.description}
-                        </p>
-                        <div className="back-next">
-          <div className="back-next-footer">
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        pt: 2,
-                        justifyContent: "center",
-                        gap: "60px",
-                        marginBottom: "60px",
-                      }}
-                    >
-                      <Button
-                        color="inherit"
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        sx={{ mr: 1 }}
-                      >
-                        regresar
-                      </Button>
-                      <Box />
-                      <Button
-                        sx={{
-                          backgroundColor: "#8B008B",
-                          color: "white",
-                          ":hover": {
-                            backgroundColor: "#8B008B",
-                            color: "white",
-                          },
-                        }}
-                        type="submit"
-                      >
-                        Publicar
-                      </Button>
-                    </Box>
-                    </div>
-                </div>
+                        </div>
+                      ) : null}
+
+                      <div className="mt-10">
+                        <div>
+                          <div className="horizontal-line-with-o">
+                            <div className="line"></div>{" "}
+                            {/* Línea a la izquierda */}
+                          </div>
+                          <div className="card-text-list">
+                            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                              El lugar cuenta con:
+                            </h1>
+
+                            <ul
+                              role="list"
+                              className="list-disc space-y-2 pl-4 text-sm"
+                            >
+                              {show.listDetails &&
+                                show.listDetails.map((list) => (
+                                  <li className="text-gray-400">
+                                    <span className="text-gray-600">
+                                      {list}
+                                    </span>
+                                  </li>
+                                ))}
+                            </ul>
+                          </div>
+                        </div>
+
+                        <div className="mt-10">
+                          {show.status === "Privado" ? (
+                            <div>
+                              <div className="horizontal-line-with-o">
+                                <div className="line"></div>{" "}
+                                {/* Línea a la izquierda */}
+                              </div>
+                              <div className="card-text-list">
+                                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                                  información importante
+                                </h1>
+
+                                <p className="text-sm text-gray-600">
+                                  <ul
+                                    role="list"
+                                    className="list-disc space-y-2 pl-4 text-sm"
+                                  >
+                                    {show.infoImportant &&
+                                      show.infoImportant.map((list) => (
+                                        <li className="text-gray-400">
+                                          <span className="text-gray-600">
+                                            {list}
+                                          </span>
+                                        </li>
+                                      ))}
+                                  </ul>
+                                </p>
+                              </div>
+                            </div>
+                          ) : null}
+                        </div>
+                        <div className="horizontal-line-with-o">
+                          <div className="line"></div>{" "}
+                          {/* Línea a la izquierda */}
+                        </div>
+                        <div className="mt-10 card-text">
+                          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                            Historia
+                          </h1>
+
+                          <p className="text-sm text-gray-600 ">
+                            {show.description}
+                          </p>
+                          <div className="back-next">
+                            <div className="back-next-footer">
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  pt: 2,
+                                  justifyContent: "center",
+                                  gap: "60px",
+                                  marginBottom: "60px",
+                                }}
+                              >
+                                <Button
+                                  color="inherit"
+                                  disabled={activeStep === 0}
+                                  onClick={handleBack}
+                                  sx={{ mr: 1 }}
+                                >
+                                  regresar
+                                </Button>
+                                <Box />
+                                <Button
+                                  sx={{
+                                    backgroundColor: "#8B008B",
+                                    color: "white",
+                                    ":hover": {
+                                      backgroundColor: "#8B008B",
+                                      color: "white",
+                                    },
+                                  }}
+                                  type="submit"
+                                >
+                                  Publicar
+                                </Button>
+                              </Box>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             )}
           </div>
         );
@@ -2128,28 +2162,27 @@ const dateFormat = "YYYY/MM/DD";
   };
   return (
     <Box>
-      <Link to="/">
-
-   
-      <Button className="exit-public">
-        <CancelIcon id='exit-icon-public'/>
-        </Button>
-
-      </Link>
-      <Link to="/" className="public-cancel">
-        <Button
-          variant="contained"
-          sx={{
-            marginBottom: 5,
-            matginTop: 5,
-            backgroundColor: "#8B008B",
-            color: "white",
-            ":hover": { backgroundColor: "#8B008B", color: "white" },
-          }}
-        >
-          Cancelar
-        </Button>
-      </Link>
+      <div className="exit-public">
+        <Link to="/">
+          <Button>
+            <CancelIcon id="exit-icon-public" />
+          </Button>
+        </Link>
+      </div>
+      <div className="public-cancel">
+        <Link to="/">
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#8B008B",
+              color: "white",
+              ":hover": { backgroundColor: "#8B008B", color: "white" },
+            }}
+          >
+            Cancelar
+          </Button>
+        </Link>
+      </div>
       <Stepper activeStep={activeStep} className="box-all-public">
         {steps.map((label, index) => (
           <Step key={label}>

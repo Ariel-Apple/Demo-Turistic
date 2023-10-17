@@ -203,7 +203,7 @@ export default function BasicMenu() {
 
 
   const List = () => (
-    <div>
+    <div className="modal-anfitrion-container">
       <div className="text-join-initial">
         <div>
 
@@ -520,8 +520,10 @@ export default function BasicMenu() {
       >
         <BootstrapModal.Header closeButton>
           <BootstrapModal.Title >
+          <Link to = '/'>
 
             <img src={require('../../assets/logo/Nudo.png')} alt="Not found" className="logo-modal-join" />
+            </Link>
 
           </BootstrapModal.Title>
           <div className="container-button-modal">

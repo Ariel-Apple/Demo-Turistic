@@ -80,21 +80,34 @@ export default function PreRegisterForm() {
      
       <div className="logo-container-mobile">
           <div className='logo-preregister-mobile'>
+        <Link to = '/'>
+
+
 
           <img src={require("../../assets/logo/Nudo.png")} alt="Notfound" />
+        </Link>
           </div>
           <div className="logo-text-mobile">
+        <Link to = '/'>
+
           <img src={require("../../assets/logo/enc.png")} alt="Notfound" />
+          </Link>
 
           </div>
         </div>
         <div className="logo-preregister-container">
           <div className='logo-preregister'>
+          <Link to = '/'>
 
           <img src={require("../../assets/logo/Nudo.png")} alt="Notfound" />
+          </Link>
+         
           </div>
           <div className="logo-text">
+          <Link to = '/'>
+
           <img src={require("../../assets/logo/enc.png")} alt="Notfound" />
+          </Link>
 
           </div>
         </div>

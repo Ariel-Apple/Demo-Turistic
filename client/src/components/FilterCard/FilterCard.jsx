@@ -20,6 +20,7 @@ export default function FilterCard() {
           type: "slide", // Tipo de transición (slide)
           perPage: 1, // Número de elementos a mostrar en un slide
           perMove: 1, // Número de elementos a mover en cada transición
+          pagination: false,
         }}
         className="slide"
         >

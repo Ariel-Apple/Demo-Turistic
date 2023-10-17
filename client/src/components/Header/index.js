@@ -10,13 +10,13 @@ import Nudo from '../../assets/logo/Nudo.png';
 function Header() {
   return (
     <div className="navbar-container2">
-      <Link to = '/'>
+      <Link to='/'>
         <img src={Nudo} alt="logo" className="navbar-logo" />
 
       </Link>
       <div className="search-bar">
-        <Search/>
-     
+        <Search />
+
       </div>
       <div className="profile-container">
         <Link to="/public">

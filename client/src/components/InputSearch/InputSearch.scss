@@ -1,7 +1,7 @@
 .input-search5 {
     display: flex;
-    justify-content: center;
-    margin: 0 auto; /* Añade margen automático para centrar horizontalmente */
+    margin: 0 auto;
+    width: 428px;
     transform: translateY(20px);
     transition: opacity 0.5s ease, transform 0.5s ease;
   }
@@ -52,13 +52,20 @@
  }
 
  @media only screen and (max-width: 767px) {
+    .input-search5 {
+        display: flex;
+        margin: 0 auto;
+        width: 240px;
+
+      }
     .input-search5 input {
+        display: flex;
+        justify-content: center;
     
      width: 240px;
      height: 40px;
  }
  .inputsearch-icon5 {
-     position: absolute;
      color: #fff;
      display: flex;
      justify-content: flex-end;

@@ -199,9 +199,14 @@
 #icons-question {
   font-size: 40px;
 }
+
+.modal-anfitrion-container {
+  display: grid;
+  justify-content: center;
+}
 .container-button-modal {
-  margin-left: 80%;
-  
+  display: flex;
+  margin: 0 auto;
 }
 
 .container-button-modal button {
@@ -214,8 +219,26 @@
 }
  
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 767px) {
+.text-join-initial {
+  display: grid;
+}
+.text-initial {
+  margin-top: 0px;
+}
 
+.text-initial p h1 {
+  font-weight: 600;
+  font-size: 25px;
+
+
+}
+
+.container-button-modal {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
 
   #icons-lenguage {
     display: none;
@@ -244,14 +267,7 @@
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
   }
 
-  .navbar-logo {
-    height: 3rem;
-  }
 
-
-}
-
-@media only screen and (max-width: 767px) {
   .button-continent {
     flex-direction: column;
 
@@ -266,7 +282,10 @@
     height: 35px;
 
   }
+
+
 }
+
 
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {

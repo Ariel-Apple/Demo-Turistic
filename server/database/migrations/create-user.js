@@ -10,6 +10,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      avatar: {
+        type: Sequelize.STRING(500),
+      },
       name: {
         type: Sequelize.STRING,
       },
@@ -24,6 +27,9 @@ module.exports = {
       },
       phone: {
         type: Sequelize.STRING,
+      },
+      aboutMe: {
+        type: Sequelize.TEXT,
       },
       backgroundColor: {
         type: Sequelize.STRING,
