@@ -31,6 +31,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import { Upload, Space, DatePicker, Select,Tag  } from "antd";
 import Fab from "@mui/material/Fab";
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const steps = ["Caracterisitcas", "Fotos", "Publicar"];
 const validate = (input) => {
@@ -2127,6 +2128,14 @@ const dateFormat = "YYYY/MM/DD";
   };
   return (
     <Box>
+      <Link to="/">
+
+   
+      <Button className="exit-public">
+        <CancelIcon id='exit-icon-public'/>
+        </Button>
+
+      </Link>
       <Link to="/" className="public-cancel">
         <Button
           variant="contained"
@@ -2141,7 +2150,7 @@ const dateFormat = "YYYY/MM/DD";
           Cancelar
         </Button>
       </Link>
-      <Stepper activeStep={activeStep}>
+      <Stepper activeStep={activeStep} className="box-all-public">
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>

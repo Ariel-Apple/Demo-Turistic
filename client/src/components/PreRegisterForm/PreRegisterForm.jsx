@@ -31,9 +31,12 @@ export default function PreRegisterForm() {
   const dispatch = useDispatch();
   const datapersonal = useSelector((state) => state.datapersonal);
   const token = useSelector((state) => state.token);
-
+  const [animate, setAnimate] = useState(false);
+  
   console.log(datapersonal);
   useEffect(() => {
+   
+    setAnimate(true);
     dispatch(dataPersonal(token));
   }, [token]);
 
@@ -65,14 +68,14 @@ export default function PreRegisterForm() {
   );
   return (
     <>
-      
+
       <div className="isolate  px-6 py-24 sm:py-32 lg:px-8 bg-image">
         <Link to = '/'>
       <div className="exit-preregister">
         <CancelIcon id='exit-icon'/>
         </div>
         </Link>
-        <div className="box-preregister">
+        <div  className={`box-preregister ${animate ? 'animate-box' : ''}`}>
 
      
       <div className="logo-container-mobile">
@@ -237,14 +240,17 @@ export default function PreRegisterForm() {
               </div>
             </div>
             <div className="mt-10">
-            <Link to='/public'>
+            <Link to='/public' className="btn-preregister-container">
 
 
               <button
                 type="submit"
                 className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 btn-preregister"
                 >
+                  <span id="update-text">
+
                 Actualizar
+                  </span>
               </button>
                 </Link>
             </div>

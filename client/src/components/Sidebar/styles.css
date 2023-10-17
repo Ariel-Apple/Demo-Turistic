@@ -277,6 +277,13 @@ input[type="number"] {
   width: 150px;
 }
 
+.exit-public {
+  display: none;
+}
+
+#exit-icon-public {
+  display: none;
+}
 @media only screen and (max-width: 767px) {
   .post-container {
     margin-left: 15px;
@@ -344,6 +351,23 @@ input[type="number"] {
     margin-left: 10px;
     margin-right: 10px;
     width: 350px;
+  }
+  .public-cancel {
+display: none;
+  }
+  .exit-public {
+    color: #8B008B;
+ 
+  }
+
+  #exit-icon-public {
+    color: #8B008B;
+    font-size: 40px;
+
+  }
+
+  .box-all-public {
+    margin-top: 40px;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
