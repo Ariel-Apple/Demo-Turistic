@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const { User } = require('../../database/models');
+const { User, Post } = require('../../database/models');
 
 module.exports = {
   DetailUser: async (req, res) => {

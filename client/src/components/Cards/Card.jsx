@@ -19,7 +19,6 @@ function Card() {
   const allPost = useSelector((state) => state.allPost);
   const token = useSelector((state) => state.token);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  console.log(allPost);
 
   const [isFavorite, setIsFavorite] = useState(false);
 

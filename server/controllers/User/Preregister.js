@@ -25,33 +25,45 @@ cloudinary.config({
 module.exports = {
   Preregister: async (req, res) => {
     const { userId } = req.params;
-    const { name, lastName, email, password, phone, aboutMe } = req.body;
+    const { name, lastName, password, phone, aboutMe } = req.body;
+
+    if (!name || !lastName || !password || !phone || !aboutMe) {
+      return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
+    }
 
     try {
-        const file = req.file;
+      const user = await User.findByPk(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
 
-          const cloudinaryUploadResult = await cloudinary.uploader.upload(file.path, {
-            resource_type: 'image',
-            quality: 'auto:low',
-            fetch_format: 'auto',
-          });
-          console.log('Imagen subida a Cloudinary:', cloudinaryUploadResult.secure_url);
-          const saltRounds = 10;
-          const hashedPassword = await bcrypt.hash(password, saltRounds);
-          const user = await User.findByPk(userId);
+      const file = req.file;
+      let avatarValue = ''; // Valor predeterminado para avatar
 
-          const userUpdate = await user.update({
-            name,
-            lastName,
-            email,
-            password: hashedPassword,
-            phone,
-            aboutMe,
-            avatar: cloudinaryUploadResult.secure_url
-          })
-            res.status(200).send(userUpdate)
-      
-    
+      if (file) {
+        const cloudinaryUploadResult = await cloudinary.uploader.upload(file.path, {
+          resource_type: 'image',
+          quality: 'auto:low',
+          fetch_format: 'auto',
+        });
+        console.log('Imagen subida a Cloudinary:', cloudinaryUploadResult.secure_url);
+        avatarValue = cloudinaryUploadResult.secure_url;
+      }
+
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      const userUpdate = await user.update({
+        name,
+        lastName,
+        password: hashedPassword,
+        phone,
+        aboutMe,
+        avatar: avatarValue, // Usar el valor predeterminado si no se cargó un archivo
+      });
+
+      console.log('Datos personales actualizados');
+      res.status(200).json({ message: 'Datos personales actualizados' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Error en el servidor' });

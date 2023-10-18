@@ -342,6 +342,28 @@ export const dataPersonal = (token) => {
  }
 };
 
+export const updatePersonal = (userId, userData) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`http://localhost:4000/user/preregister/${userId}`, userData);
+      const data = await res.data;
+
+      return dispatch({
+        type: 'UPDATE_PERSONAL',
+        payload: data
+      });
+    } catch (error) {
+      // Maneja los errores apropiadamente
+      console.error(error);
+    }
+  };
+};
+
+
+
+
+
+
 export const DeletePost = (postId) => {
  return async (dispach) => {
    const res = await axios.delete(`http://localhost:4000/post/${postId}`);

@@ -29,67 +29,15 @@ import BootstrapModal from "react-bootstrap/Modal";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import MenuItem from "@mui/material/MenuItem";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { DetailsPostTuristic } from '../../redux/action'
 
-const product = {
-  name: 'Basic Tee 6-Pack',
-  price: '$192',
-  href: '#',
-  breadcrumbs: [
-    { id: 1, name: 'Men', href: '#' },
-    { id: 2, name: 'Clothing', href: '#' },
-  ],
-  images: [
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
-      alt: 'Two each of gray, white, and black shirts laying flat.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
-      alt: 'Model wearing plain black basic tee.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
-      alt: 'Model wearing plain gray basic tee.',
-    },
-    {
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
-      alt: 'Model wearing plain white basic tee.',
-    },
-  ],
-  colors: [
-    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
-    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
-  ],
-  sizes: [
-    { name: 'XXS', inStock: false },
-    { name: 'XS', inStock: true },
-    { name: 'S', inStock: true },
-    { name: 'M', inStock: true },
-    { name: 'L', inStock: true },
-    { name: 'XL', inStock: true },
-    { name: '2XL', inStock: true },
-    { name: '3XL', inStock: true },
-  ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-  highlights: [
-    'Hand cut and sewn locally',
-    'Dyed with our proprietary colors',
-    'Pre-washed & pre-shrunk',
-    'Ultra-soft 100% cotton',
-  ],
-  details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
-}
 
 export default function BasicMenu() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const datapersonal = useSelector(state => state.datapersonal);
-  const posts = useSelector(state => state.posts);
-  const [selectedColor, setSelectedColor] = React.useState(product.colors[0])
-  const [selectedSize, setSelectedSize] = React.useState(product.sizes[2])
+  const detailpost = useSelector(state => state.detailpost);
+
   const [openPublic, setOpenPublic] = React.useState(false);
   const [openLogout, setOpenLogout] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -99,12 +47,21 @@ export default function BasicMenu() {
   const values = [true];
   const [fullscreen, setFullscreen] = React.useState(true);
   const [modalPublic, setModalPublic] = React.useState(false);
+
+
+
+
+
+React.useEffect(() => {
+  dispatch(DetailsPostTuristic(datapersonal.id))
+}, [dispatch]);
+
+
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setAnchorEl(null);
     setModalPublic(true)
   }
-
 
 
 
@@ -320,7 +277,26 @@ export default function BasicMenu() {
 
                   {token ? (
 
-                    <Avatar sx={{ width: 32, height: 32, backgroundColor: datapersonal.backgroundColor }} >{datapersonal.name && datapersonal.name[0].toUpperCase()}</Avatar>
+
+                    datapersonal.avatar ? (
+                      <Avatar sx={{ width: 32, height: 32, objectFit: 'cover' }}  >
+                        <div >
+
+                          <img src={datapersonal.avatar} alt="Not found" id="avatar-img" />
+                        </div>
+                      </Avatar>
+
+                    ) : (
+                      <Avatar sx={{ width: 32, height: 32, backgroundColor: datapersonal.backgroundColor }} >
+
+                        <div>
+
+                          {datapersonal.name && datapersonal.name[0].toUpperCase()}
+                        </div>
+
+                      </Avatar>
+                    )
+
                   ) : (
                     <Avatar sx={{ width: 32, height: 32 }}></Avatar>
                   )}
@@ -426,9 +402,9 @@ export default function BasicMenu() {
                 Cuenta
               </MenuItem>
             </Link>
-            <MenuItem className="menu-items" onClick={handleClose}>
+            {/*         <MenuItem className="menu-items" onClick={handleClose}>
               Informacion Personal
-            </MenuItem>
+            </MenuItem> */}
             <Link to={'/anfitrion/' + datapersonal.id}>
 
 
@@ -520,9 +496,9 @@ export default function BasicMenu() {
       >
         <BootstrapModal.Header closeButton>
           <BootstrapModal.Title >
-          <Link to = '/'>
+            <Link to='/'>
 
-            <img src={require('../../assets/logo/Nudo.png')} alt="Not found" className="logo-modal-join" />
+              <img src={require('../../assets/logo/Nudo.png')} alt="Not found" className="logo-modal-join" />
             </Link>
 
           </BootstrapModal.Title>

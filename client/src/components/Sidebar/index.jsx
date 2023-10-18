@@ -32,6 +32,9 @@ import Card from "react-bootstrap/Card";
 import { Upload, Space, DatePicker, Select, Tag } from "antd";
 import Fab from "@mui/material/Fab";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { dataPersonal } from '../../redux/action'
+
+
 
 const steps = ["Caracterisitcas", "Fotos", "Publicar"];
 const validate = (input) => {
@@ -132,9 +135,14 @@ export default function FormStepper() {
     listDetails: [],
     infoImportant: [],
   });
-
+console.log(datapersonal);
   const [detail, setDetail] = useState(""); // Estado para el detalle que se está escribiendo
   const [info, setInfo] = useState(""); // Estado para el detalle que se está escribiendo
+
+
+  React.useEffect(() => {
+    dispatch(dataPersonal(token))
+  }, [dispatch, token]);
 
   const handleDetailChange = (event) => {
     setDetail(event.target.value);
@@ -1916,18 +1924,18 @@ export default function FormStepper() {
                     <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
                       <div className="card-text">
                         <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
-                          Anfitrión: {show.Users && show.Users[0].name}
+                          Anfitrión: {datapersonal.name && datapersonal.name}
                           <div className="avatar-container">
                             <Avatar
                               sx={{
                                 width: 50,
                                 height: 50,
                                 backgroundColor:
-                                  show.Users && show.Users[0].backgroundColor,
+                                datapersonal.backgroundColor && datapersonal.backgroundColor,
                               }}
                             >
-                              {show.Users &&
-                                show.Users[0].name[0].toUpperCase()}
+                              {datapersonal.name &&
+                                datapersonal.name[0].toUpperCase()}
                             </Avatar>
                           </div>
                         </h1>
