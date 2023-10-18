@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-/*  export const AllPostTuristic = () => {
+export const AllPostTuristic = () => {
   return async (dispach) => {
     const res = await axios.get('https://demo-turistic-production.up.railway.app/turistic');
     const data = res.data.User
@@ -75,45 +75,45 @@ import axios from 'axios';
  }
  
  
-export const UserLogin = (email, password) => {
-  return async (dispatch) => {
-    try {
-      const isServerOnline = await checkServerStatus(); // Verificar si el servidor está en línea
-
-      if (isServerOnline) {
-        const response = await axios.post("https://demo-turistic-production.up.railway.app/auth/login", {
-          email,
-          password,
-        });
-
-        if (response.status === 200 && response.data.token) {
-          localStorage.setItem("token", response.data.token);
-
-          dispatch({
-            type: "LOGIN_SUCCESS",
-            payload: response.data.token,
-          });
-        } else {
-          throw new Error("Error durante el inicio de sesión.");
-        }
-      } else {
-        localStorage.removeItem("token"); // Elimina el token si el servidor no está disponible
-        throw new Error("El servidor no está disponible.");
-      }
-    } catch (error) {
-      dispatch({ type: "LOGIN_ERROR" });
-    }
-  };
-};
-
-const checkServerStatus = async () => {
-  try {
-    const response = await axios.get("https://demo-turistic-production.up.railway.app/status");
-    return response.status === 200;
-  } catch (error) {
-    return false;
-  }
-};
+ export const UserLogin = (email, password) => {
+   return async (dispatch) => {
+     try {
+       const isServerOnline = await checkServerStatus(); // Verificar si el servidor está en línea
+ 
+       if (isServerOnline) {
+         const response = await axios.post("https://demo-turistic-production.up.railway.app/auth/login", {
+           email,
+           password,
+         });
+ 
+         if (response.status === 200 && response.data.token) {
+           localStorage.setItem("token", response.data.token);
+ 
+           dispatch({
+             type: "LOGIN_SUCCESS",
+             payload: response.data.token,
+           });
+         } else {
+           throw new Error("Error durante el inicio de sesión.");
+         }
+       } else {
+         localStorage.removeItem("token"); // Elimina el token si el servidor no está disponible
+         throw new Error("El servidor no está disponible.");
+       }
+     } catch (error) {
+       dispatch({ type: "LOGIN_ERROR" });
+     }
+   };
+ };
+ 
+ const checkServerStatus = async () => {
+   try {
+     const response = await axios.get("https://demo-turistic-production.up.railway.app/status");
+     return response.status === 200;
+   } catch (error) {
+     return false;
+   }
+ };
  
  
  export const UserLogout = (payload) => {
@@ -156,6 +156,28 @@ const checkServerStatus = async () => {
   }
  };
  
+ export const updatePersonal = (userId, userData) => {
+   return async (dispatch) => {
+     try {
+       const res = await axios.put(`https://demo-turistic-production.up.railway.app/user/preregister/${userId}`, userData);
+       const data = await res.data;
+ 
+       return dispatch({
+         type: 'UPDATE_PERSONAL',
+         payload: data
+       });
+     } catch (error) {
+       // Maneja los errores apropiadamente
+       console.error(error);
+     }
+   };
+ };
+ 
+ 
+ 
+ 
+ 
+ 
  export const DeletePost = (postId) => {
   return async (dispach) => {
     const res = await axios.delete(`https://demo-turistic-production.up.railway.app/post/${postId}`);
@@ -176,7 +198,7 @@ const checkServerStatus = async () => {
         payload: data
     })
   }
- };    */
+ };     
 
 
 
@@ -189,7 +211,17 @@ const checkServerStatus = async () => {
 
 
 
- export const AllPostTuristic = () => {
+
+
+
+ 
+
+
+
+
+
+
+/*  export const AllPostTuristic = () => {
  return async (dispach) => {
    const res = await axios.get('http://localhost:4000/turistic');
    const data = res.data.User
@@ -384,4 +416,4 @@ export const OnlyAllPost = () => {
        payload: data
    })
  }
-};     
+};      */
