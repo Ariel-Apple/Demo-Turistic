@@ -155,6 +155,8 @@ export const AllPostTuristic = () => {
    })
   }
  };
+
+ 
  
  export const updatePersonal = (userId, userData) => {
    return async (dispatch) => {
@@ -221,7 +223,7 @@ export const AllPostTuristic = () => {
 
 
 
-/*  export const AllPostTuristic = () => {
+ /*  export const AllPostTuristic = () => {
  return async (dispach) => {
    const res = await axios.get('http://localhost:4000/turistic');
    const data = res.data.User
@@ -416,4 +418,4 @@ export const OnlyAllPost = () => {
        payload: data
    })
  }
-};      */
+};       */
