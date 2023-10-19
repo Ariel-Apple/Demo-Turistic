@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       avatar: {
-        type: Sequelize.STRING(500),
+        type: Sequelize.STRING(),
       },
       name: {
         type: Sequelize.STRING,
