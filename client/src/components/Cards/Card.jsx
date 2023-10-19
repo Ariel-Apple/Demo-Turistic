@@ -21,7 +21,7 @@ function Card() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const [isFavorite, setIsFavorite] = useState(false);
-
+console.log(allPost);
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
   };
@@ -136,13 +136,23 @@ function Card() {
                                 sx={{
                                   width: 25,
                                   height: 25,
-                                  backgroundColor: data.backgroundColor,
+                                  background: data.avatar ? `url(${data.avatar})` : data.backgroundColor,
+                                  backgroundSize: 'cover',
+
                                   marginRight: "10px",
                                   marginTop: "5px",
                                 }}
                               >
-                                {data.name &&
-                                  data.name[0].toUpperCase()}
+                                { data.avatar ? (
+                                  <div>
+                                  </div>
+                                ):(
+
+                                  <div>
+                                  {data.name &&
+                                    data.name[0].toUpperCase()}
+                                  </div>
+                                    )}
                               </Avatar>
                             </div>
                           </div>
@@ -199,17 +209,27 @@ function Card() {
                                 <h3 className="card-title">{info.title}</h3>
                             </a>
                             <div>
-                              <Avatar
+                            <Avatar
                                 sx={{
                                   width: 25,
                                   height: 25,
-                                  backgroundColor: data.backgroundColor,
+                                  background: data.avatar ? `url(${data.avatar})` : data.backgroundColor,
+                                  backgroundSize: 'cover',
+
                                   marginRight: "10px",
                                   marginTop: "5px",
                                 }}
                               >
-                                {data.name &&
-                                  data.name[0].toUpperCase()}
+                                { data.avatar ? (
+                                  <div>
+                                  </div>
+                                ):(
+
+                                  <div>
+                                  {data.name &&
+                                    data.name[0].toUpperCase()}
+                                  </div>
+                                    )}
                               </Avatar>
                             </div>
                           </div>

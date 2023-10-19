@@ -25,9 +25,9 @@ cloudinary.config({
 module.exports = {
   Preregister: async (req, res) => {
     const { userId } = req.params;
-    const { name, lastName, password, phone, aboutMe } = req.body;
+    const { name, lastName, phone, aboutMe } = req.body;
 
-    if (!name || !lastName || !password || !phone || !aboutMe) {
+    if (!name || !lastName || !phone || !aboutMe) {
       return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
     }
 
@@ -50,13 +50,13 @@ module.exports = {
         avatarValue = cloudinaryUploadResult.secure_url;
       }
 
-      const saltRounds = 10;
+   /*    const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(password, saltRounds);
-
+ */
       const userUpdate = await user.update({
         name,
         lastName,
-        password: hashedPassword,
+       /*  password: hashedPassword, */
         phone,
         aboutMe,
         avatar: avatarValue, // Usar el valor predeterminado si no se cargó un archivo

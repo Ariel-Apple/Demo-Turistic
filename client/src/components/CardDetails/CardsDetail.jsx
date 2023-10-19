@@ -306,12 +306,24 @@ export default function CardDetails() {
                     sx={{
                       width: 50,
                       height: 50,
-                      backgroundColor:
-                        detailpost.Users && detailpost.Users[0].backgroundColor,
+                      background:  `url(${detailpost.Users && detailpost.Users[0].avatar})`,
+                      backgroundSize: 'cover'
+
+                        
                     }}
                   >
-                    {detailpost.Users &&
-                      detailpost.Users[0].name[0].toUpperCase()}
+
+                    {detailpost.Users  ? (
+                      <div>
+                      </div>
+                    ) : (
+                      <div>
+
+
+                      {detailpost.Users &&
+                        detailpost.Users[0].name[0].toUpperCase()}
+                        </div>
+                        ) }
                   </Avatar>
                 </div>
               </h1>

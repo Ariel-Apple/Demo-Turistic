@@ -34,7 +34,11 @@
     margin-left: 70%;
     margin-right: 50%;
     margin-top: -60px;
+    display: grid;
 
+}
+
+.input-select-image {
 }
 .error {
 }

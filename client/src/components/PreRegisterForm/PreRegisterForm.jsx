@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { dataPersonal } from "../../redux/action";
 import "./PreRegister.css";
@@ -10,33 +9,25 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import ImgCrop from "antd-img-crop";
 import { updatePersonal } from "../../redux/action";
 import { countries } from "../../assets/codeCountry/countries";
+import Avatar from "@mui/material/Avatar";
 
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
   reader.addEventListener("load", () => callback(reader.result));
   reader.readAsDataURL(img);
 };
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must be smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-};
+
 
 
 export default function PreRegisterForm() {
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
   const dispatch = useDispatch();
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const token = useSelector((state) => state.token);
   const [animate, setAnimate] = useState(false);
   const datapersonal = useSelector((state) => state.datapersonal);
+  const [imagePreview, setImagePreview] = useState(null);
+
   const [update, setUpdate] = useState({
     avatar: "",
     name: "",
@@ -55,38 +46,33 @@ const navigate = useNavigate()
 
   useEffect(() => {
     if (datapersonal) {
-      // Configure the 'update' state with 'datapersonal' data
       setUpdate({
         avatar: datapersonal.avatar,
         name: datapersonal.name,
         lastName: datapersonal.lastName,
         email: datapersonal.email,
-        password: datapersonal.email, // Decide whether you want to keep the password value
+        password: datapersonal.password ,
         phone: datapersonal.phone,
         aboutMe: datapersonal.aboutMe,
       });
     }
   }, [datapersonal]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(updatePersonal(datapersonal.id, update));
-    setTimeout(async () => {
-      navigate("/public");
-    }, 1000);
-  };
-
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Update the image URL after the upload is completed
-      setLoading(false);
-      setImageUrl(info.file.response.url);
-    }
-  };
+  const handleImageChange = useCallback(
+    (e) => {
+      if (e.target.files.length > 0) {
+        const file = e.target.files[0];
+        getBase64(file, (imageUrl) => {
+          setImagePreview(imageUrl);
+          setUpdate({
+            ...update,
+            avatar: file,
+          });
+        });
+      }
+    },
+    [update]
+  );
 
   const handleName = (e) => {
     e.preventDefault();
@@ -95,6 +81,7 @@ const navigate = useNavigate()
       name: e.target.value,
     });
   };
+
   const handleLastName = (e) => {
     e.preventDefault();
     setUpdate({
@@ -102,6 +89,7 @@ const navigate = useNavigate()
       lastName: e.target.value,
     });
   };
+
   const handleAboutMe = (e) => {
     e.preventDefault();
     setUpdate({
@@ -109,6 +97,7 @@ const navigate = useNavigate()
       aboutMe: e.target.value,
     });
   };
+
   const handlePassword = (e) => {
     e.preventDefault();
     setUpdate({
@@ -116,6 +105,7 @@ const navigate = useNavigate()
       password: e.target.value,
     });
   };
+
   const handlePhone = (e) => {
     e.preventDefault();
     setUpdate({
@@ -127,15 +117,10 @@ const navigate = useNavigate()
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
+      <div style={{ marginTop: 8 }}>Upload</div>
     </div>
   );
+
   const handleCountryChange = (event) => {
     const selectedCountryIndex = event.target.selectedIndex;
     const selectedCountryCode = countries[selectedCountryIndex].phone;
@@ -145,6 +130,29 @@ const navigate = useNavigate()
       ...prevRegister,
       phone: `+${selectedCountryCode}${" "}`,
     }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("Form submitted", update);
+    const formData = new FormData();
+    formData.append("avatar", update.avatar);
+    formData.append("name", update.name);
+    formData.append("lastName", update.lastName);
+    formData.append("email", update.email);
+    formData.append("password", update.password);
+    formData.append("phone", update.phone);
+    formData.append("aboutMe", update.aboutMe);
+
+    try {
+      dispatch(updatePersonal(datapersonal.id, formData));
+    } catch (error) {
+      console.error("Error:", error);
+      message.error("Error updating the profile.");
+    }
+    setTimeout(async () => {
+      navigate("/public");
+    }, 1000);
   };
 
   return (
@@ -201,61 +209,62 @@ const navigate = useNavigate()
                 </h2>
 
                 <p className="mt-2 text-lg leading-8 text-gray-600">
-                  Para realizar una publicación necesita Actualizar su foto de
-                  perfil
+                  Necesitamos que pongas tu foto de perfil porfavor.
                 </p>
               </div>
 
               <form
-                action="#"
-                method="POST"
                 className="mx-auto mt-16 max-w-xl sm:mt-20"
                 onSubmit={handleSubmit}
               >
                 <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
                   <div className="avatar-preregister">
-                    <ImgCrop rotationSlider>
-                      <Upload
-                        name="avatar"
-                        listType="picture-circle"
-                        className="avatar-uploader"
-                        showUploadList={false}
-                        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-                        beforeUpload={beforeUpload}
-                        onChange={handleChange}
+                    <div>
+                      <Avatar
+                        sx={{
+                          
+                          width: 80,
+                          height: 80,
+                          objectFit:'cover',
+                          background: update.avatar ? `url(${imagePreview || update.avatar})` : datapersonal.backgroundColor,
+                          backgroundSize: 'cover'
+                        }}
                       >
-                        {imageUrl ? (
-                          <img
-                            src={URL.createObjectURL(update.avatar)}
-                            alt="avatar"
-                            style={{
-                              width: "100%",
-                            }}
-                          />
-                        ) : (
-                          <div>
-                            {loading ? <LoadingOutlined /> : <PlusOutlined />}
-                            <div
-                              style={{
-                                marginTop: 8,
-                              }}
-                            >
-                              Cargar
-                            </div>
+                       { update.avatar ? (
+                        <span></span>
+                   
+                       ) : (
+                        <div>
+
+
+                         {datapersonal.name &&
+                          datapersonal.name[0].toUpperCase()}
                           </div>
                         )}
-                      </Upload>
-                    </ImgCrop>
+                      </Avatar>
+                    </div>
+
+                    <div>
+                      <input
+                        type="file"
+                        name="avatar"
+                        onChange={handleImageChange}
+                        accept="image/jpeg, image/png" 
+                        className="input-select-image"                        
+                      />
+            
+                    </div>
                   </div>
+
                   <div className="sm:col-span-2">
                     <div className="mt-2.5">
                       <input
                         type="text"
                         name="name"
-                        id="company"
+                        id="name"
                         autoComplete="organization"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
-                        placeholder="Nombre"
+                        placeholder="Name"
                         value={update.name}
                         onChange={handleName}
                         required
@@ -270,7 +279,7 @@ const navigate = useNavigate()
                         id="company"
                         autoComplete="organization"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
-                        placeholder="Apellido"
+                        placeholder="Last Name"
                         value={update.lastName}
                         onChange={handleLastName}
                         required
@@ -285,7 +294,7 @@ const navigate = useNavigate()
                         id="company"
                         autoComplete="organization"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
-                        placeholder="Correo electronico"
+                        placeholder="Email"
                         value={update.email}
                         required
                       />
@@ -299,10 +308,11 @@ const navigate = useNavigate()
                         id="password"
                         autoComplete="text"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
-                        placeholder="Contraseña"
-                        value={update.password}
-                        onChange={handlePassword}
-                        required
+                        placeholder="Password"
+                        value='********************'
+                      /*   onChange={handlePassword}
+                        required */
+                        disabled
                       />
                     </div>
                   </div>
@@ -317,7 +327,7 @@ const navigate = useNavigate()
                         >
                           {countries.map((country, index) => (
                             <option key={index} value={country.phone}>
-                              {country.code} (+{country.phone} )
+                              {country.code} (+{country.phone})
                             </option>
                           ))}
                         </select>
@@ -342,7 +352,7 @@ const navigate = useNavigate()
                         rows={4}
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
                         defaultValue={""}
-                        placeholder="Sobre tí (opcional)"
+                        placeholder="About Me (optional)"
                         value={update.aboutMe}
                         onChange={handleAboutMe}
                       />

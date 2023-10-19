@@ -279,10 +279,10 @@ React.useEffect(() => {
 
 
                     datapersonal.avatar ? (
-                      <Avatar sx={{ width: 32, height: 32, objectFit: 'cover' }}  >
+                      <Avatar sx={{ width: 32, height: 32,  background: datapersonal.avatar ? `url(${datapersonal.avatar})` : datapersonal.backgroundColor,
+                      backgroundSize: 'cover',}}  >
                         <div >
 
-                          <img src={datapersonal.avatar} alt="Not found" id="avatar-img" />
                         </div>
                       </Avatar>
 
