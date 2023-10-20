@@ -1,44 +1,17 @@
-import ImgCrop from 'antd-img-crop';
-import React, { useState } from 'react';
-import { Upload } from 'antd';
-const App = () => {
-  const [fileList, setFileList] = useState([
-    {
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    },
-  ]);
-  const onChange = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-  };
-  const onPreview = async (file) => {
-    let src = file.url;
-    if (!src) {
-      src = await new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file.originFileObj);
-        reader.onload = () => resolve(reader.result);
-      });
-    }
-    const image = new Image();
-    image.src = src;
-    const imgWindow = window.open(src);
-    imgWindow?.document.write(image.outerHTML);
-  };
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+
+function WithHeaderStyledExample() {
   return (
-    <ImgCrop rotationSlider>
-      <Upload
-        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
-        listType="picture-circle"
-        fileList={fileList}
-        onChange={onChange}
-        onPreview={onPreview}
-      >
-        {fileList.length < 5 && '+ Upload'}
-      </Upload>
-    </ImgCrop>
+    <Card>
+      <Card.Header as="h5">Sobre mi</Card.Header>
+      <Card.Body>
+        <Card.Text>
+          With supporting text below as a natural lead-in to additional content.
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
-};
-export default App;
+}
+
+export default WithHeaderStyledExample;

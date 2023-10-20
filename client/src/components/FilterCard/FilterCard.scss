@@ -13,7 +13,7 @@
         width: 650px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
     }
-    
+
     .bg-lagos {
         background-color: rgba(0, 0, 0, 0.421);
         color: white;
@@ -24,23 +24,23 @@
         transition: background-color 0.3s, opacity 0.3s;
 
 
-      }
-      
-      #lagos {
-       margin-top: 30vh;
-       position: relative;
-       text-align: center;
+    }
 
-      }
-      
-      .filter-lagos:hover .bg-lagos {
+    #lagos {
+        margin-top: 30vh;
+        position: relative;
+        text-align: center;
+
+    }
+
+    .filter-lagos:hover .bg-lagos {
         display: grid;
         opacity: 1;
-      }
-      
-      
-      
-      .filter-montañas {
+    }
+
+
+
+    .filter-montañas {
         position: relative;
         background-image: url('../../assets/icons-filter/montañas.png');
         background-size: cover;
@@ -50,7 +50,7 @@
         width: 650px;
         box-shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .05);
     }
-    
+
     .bg-montañas {
         background-color: rgba(0, 0, 0, 0.421);
         color: white;
@@ -60,19 +60,19 @@
         display: none;
         transition: background-color 0.3s, opacity 0.3s;
 
-      }
-      
-      #montañas {
-       margin-top: 30vh;
-       position: relative;
-       text-align: center;
+    }
 
-      }
-      
-      .filter-montañas:hover .bg-montañas {
+    #montañas {
+        margin-top: 30vh;
+        position: relative;
+        text-align: center;
+
+    }
+
+    .filter-montañas:hover .bg-montañas {
         display: grid;
         opacity: 1;
-      }
+    }
 
 
 
@@ -100,19 +100,19 @@
         display: none;
         transition: background-color 0.3s, opacity 0.3s;
 
-      }
-      
-      #verdes {
-       margin-top: 30vh;
-       position: relative;
-       text-align: center;
+    }
 
-      }
-      
-      .filter-verdes:hover .bg-verdes {
+    #verdes {
+        margin-top: 30vh;
+        position: relative;
+        text-align: center;
+
+    }
+
+    .filter-verdes:hover .bg-verdes {
         display: grid;
         opacity: 1;
-      }
+    }
 
 
     .filter-acuaticos {
@@ -134,19 +134,19 @@
         display: none;
         transition: background-color 0.3s, opacity 0.3s;
 
-      }
-      
-      #acuaticos {
-       margin-top: 30vh;
-       position: relative;
-       text-align: center;
+    }
 
-      }
-      
-      .filter-acuaticos:hover .bg-acuaticos {
+    #acuaticos {
+        margin-top: 30vh;
+        position: relative;
+        text-align: center;
+
+    }
+
+    .filter-acuaticos:hover .bg-acuaticos {
         display: grid;
         opacity: 1;
-      }
+    }
 
 
 
@@ -169,20 +169,20 @@
         display: none;
         transition: background-color 0.3s, opacity 0.3s;
 
-      }
-      
-      #playas {
-       margin-top: 30vh;
-       position: relative;
-       text-align: center;
+    }
 
-      }
-      
-      .filter-playas:hover .bg-playas {
+    #playas {
+        margin-top: 30vh;
+        position: relative;
+        text-align: center;
+
+    }
+
+    .filter-playas:hover .bg-playas {
         display: grid;
         opacity: 1;
-      }
-      
+    }
+
 
 
 
@@ -209,34 +209,36 @@
         display: none;
         transition: background-color 0.3s, opacity 0.3s;
 
-      }
-      
-      #arqueologicos {
-       margin-top: 30vh;
-       position: relative;
-       text-align: center;
+    }
 
-      }
-      
-      .filter-arqueologicos:hover .bg-arqueologicos {
+    #arqueologicos {
+        margin-top: 30vh;
+        position: relative;
+        text-align: center;
+
+    }
+
+    .filter-arqueologicos:hover .bg-arqueologicos {
         display: grid;
         opacity: 1;
-      }
+    }
 
 
     .slide {
         height: 79vh;
-        width: 100%; /* Cambia esto a 25% para mostrar 2 elementos a la vez */
+        width: 100%;
+        /* Cambia esto a 25% para mostrar 2 elementos a la vez */
         display: flex;
         justify-content: center;
-      }
-      
-      .splide-slide {
+    }
+
+    .splide-slide {
         display: flex;
-        margin-right: 0; /* Evita espacios innecesarios entre las tarjetas */
-        
-      }
-      
+        margin-right: 0;
+        /* Evita espacios innecesarios entre las tarjetas */
+
+    }
+
 
     .filter-type img {
         width: 120px;
@@ -249,65 +251,73 @@
     .filter-type p {
         color: black;
     }
-    .slide-card { 
+
+    .slide-card {
         display: flex;
         gap: 50px;
         width: 100%;
-        
+
         justify-content: center;
     }
 
-   
+
     .splide__arrow--prev,
     .splide__arrow--next {
-      background-color: #8B008B; /* Cambia a tu color deseado */
-       height: 80px;
-       width: 80px;
+        background-color: #8B008B;
+        /* Cambia a tu color deseado */
+        height: 80px;
+        width: 80px;
     }
-    
+
     /* Cambia el color del icono de flecha (usualmente una fuente de iconos) */
     .splide__arrow--next {
-      color: #ffffff; /* Cambia a tu color deseado */
+        color: #ffffff;
+        /* Cambia a tu color deseado */
     }
-    
+
 
 
 }
 
-.all-filter h2{
+.all-filter h2 {
     text-align: center;
-  }
+}
 
-  .all-filter {
+.all-filter {
     margin-top: 30px;
-  }
+}
 
-  @media only screen and (max-width: 767px)  {
+@media only screen and (max-width: 767px) {
     .filter-container {
         .slide {
             width: 100%;
         }
+
         .splide__arrow--prev,
         .splide__arrow--next {
-          background-color: #8b008b78; /* Cambia a tu color deseado */
-           height: 30px;
-           width: 30px;
-           margin-top: -160px;
+            background-color: #8b008b78;
+            /* Cambia a tu color deseado */
+            height: 30px;
+            width: 30px;
         }
+
         .filter-lagos {
-            
-           width: 100%;
-           height: 50vh;
+
+            width: 100%;
+            height: 50vh;
         }
-        .bg-lagos  {
+
+        .bg-lagos {
             display: grid;
         }
+
         #lagos {
-            margin-top: 100px;
+            margin-top: 150px;
+
             font-size: 20px;
         }
 
-        .filter-montañas{
+        .filter-montañas {
             width: 100%;
             height: 50vh;
         }
@@ -316,13 +326,15 @@
             display: grid;
 
         }
+
         #montañas {
-            margin-top: 100px;
+            margin-top: 150px;
+
             font-size: 20px;
         }
 
 
-        .filter-verdes{
+        .filter-verdes {
             width: 100%;
             height: 50vh;
         }
@@ -331,13 +343,15 @@
             display: grid;
 
         }
+
         #verdes {
-            margin-top: 100px;
+            margin-top: 150px;
+
             font-size: 20px;
         }
 
 
-        .filter-acuaticos{
+        .filter-acuaticos {
             width: 100%;
             height: 50vh;
         }
@@ -346,14 +360,16 @@
             display: grid;
 
         }
+
         #acuaticos {
-            margin-top: 100px;
+            margin-top: 150px;
+
             font-size: 20px;
         }
 
 
 
-        .filter-playas{
+        .filter-playas {
             width: 100%;
             height: 50vh;
         }
@@ -363,13 +379,15 @@
             display: grid;
 
         }
+
         #playas {
-            margin-top: 100px;
+            margin-top: 150px;
+
             font-size: 20px;
         }
 
 
-        .filter-arqueologicos{
+        .filter-arqueologicos {
             width: 100%;
             height: 50vh;
         }
@@ -378,78 +396,192 @@
             display: grid;
 
         }
+
         #arqueologicos {
-            margin-top: 100px;
+            margin-top: 150px;
+
             font-size: 20px;
         }
-    
-    
+
+
         .slide-card {
-gap: 10px;
+            gap: 10px;
         }
     }
 
-};
+}
+
+;
 
 
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .filter-container {
         .slide {
+            width: 100%;
+        }
+
+        .splide__arrow--prev,
+        .splide__arrow--next {
+            background-color: #8b008b78;
+            /* Cambia a tu color deseado */
+            height: 30px;
+            width: 30px;
+        }
+
+        .filter-lagos {
+
+            width: 100%;
             height: 50vh;
-            width: 68%;
-            display: flex;
-            justify-content: center;
+        }
+
+        .bg-lagos {
+            display: grid;
+        }
+
+        #lagos {
+            margin-top: 250px;
+
+            font-size: 20px;
+        }
+
+        .filter-montañas {
+            width: 100%;
+            height: 50vh;
+        }
+
+        .bg-montañas {
+            display: grid;
+
+        }
+
+        #montañas {
+            margin-top: 250px;
+
+            font-size: 20px;
+        }
+
+
+        .filter-verdes {
+            width: 100%;
+            height: 50vh;
+        }
+
+        .bg-verdes {
+            display: grid;
+
+        }
+
+        #verdes {
+            margin-top: 250px;
+
+            font-size: 20px;
+        }
+
+
+        .filter-acuaticos {
+            width: 100%;
+            height: 50vh;
+        }
+
+        .bg-acuaticos {
+            display: grid;
+
+        }
+
+        #acuaticos {
+            margin-top: 250px;
+
+            font-size: 20px;
+        }
+
+
+
+        .filter-playas {
+            width: 100%;
+            height: 50vh;
+        }
+
+
+        .bg-playas {
+            display: grid;
+
+        }
+
+        #playas {
+            margin-top: 250px;
+
+            font-size: 20px;
+        }
+
+
+        .filter-arqueologicos {
+            width: 100%;
+            height: 50vh;
+        }
+
+        .bg-arqueologicos {
+            display: grid;
+
+        }
+
+        #arqueologicos {
+            margin-top: 250px;
+
+            font-size: 20px;
+        }
+
+
+        .slide-card {
+            gap: 10px;
         }
     }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1728px) {
     .filter-container {
-     .slide {
-        width: 100%;
-     }
+        .slide {
+            width: 100%;
+        }
+
         .filter-lagos {
-        
+
             height: 500px;
             width: 500px;
         }
+
         .filter-montañas {
-        
+
             height: 500px;
             width: 500px;
         }
 
         .filter-verdes {
-        
+
             height: 500px;
             width: 500px;
         }
-        
+
         .filter-acuaticos {
-        
+
             height: 500px;
             width: 500px;
         }
+
         .filter-playas {
-        
+
             height: 500px;
             width: 500px;
         }
 
         .filter-arqueologicos {
-        
+
             height: 500px;
             width: 500px;
         }
 
-  
-   
-        
-          
-  
         .slide-card {
-gap: 10px;
+            gap: 10px;
         }
     }
-  }
+}

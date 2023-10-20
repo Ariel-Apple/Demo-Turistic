@@ -12,7 +12,7 @@ import Test from './pages/test';
 import Profile from './pages/Profile';
 import Hostess from './pages/Hostess';
 import PreRegister from './pages/PreRegister';
-
+import ProfilePublic from './pages/ProfilePublic'
 
 
 function App() {
@@ -31,6 +31,8 @@ function App() {
         <Route exact path='/user/show' element={<Profile />} />
         <Route exact path='/anfitrion/:idHostess' element={<Hostess />} />
         <Route exact path='/preregister' element={<PreRegister/>} />
+        <Route exact path='/public/profile' element={<ProfilePublic/>} />
+
 
         <Route exact path='/test' element={<Test />} />
       </Routes>

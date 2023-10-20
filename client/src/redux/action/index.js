@@ -200,7 +200,19 @@ export const AllPostTuristic = () => {
         payload: data
     })
   }
- };     
+ };    
+ 
+ 
+ export const UserPostDetails = (idUser) => {
+  return async (dispach) => {
+    const res = await axios.get(`https://demo-turistic-production.up.railway.app/user/${idUser}`);
+    const data = res.data.UserDetails
+    return dispach({
+        type: "USER_POST",
+        payload: data
+    })
+  }
+ }; 
 
 
 
@@ -418,4 +430,18 @@ export const OnlyAllPost = () => {
        payload: data
    })
  }
-};       */
+};     
+
+export const UserPostDetails = (idUser) => {
+  return async (dispach) => {
+    const res = await axios.get(`http://localhost:4000/user/${idUser}`);
+    const data = res.data.UserDetails
+    return dispach({
+        type: "USER_POST",
+        payload: data
+    })
+  }
+ }; 
+
+
+ */

@@ -29,15 +29,16 @@ import BootstrapModal from "react-bootstrap/Modal";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import MenuItem from "@mui/material/MenuItem";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { DetailsPostTuristic } from '../../redux/action'
+import { DetailsPostTuristic } from '../../redux/action';
+import { UserPostDetails } from '../../redux/action';
+
 
 
 export default function BasicMenu() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const datapersonal = useSelector(state => state.datapersonal);
-  const detailpost = useSelector(state => state.detailpost);
-
+  const userandpost = useSelector(state => state.userandpost);
   const [openPublic, setOpenPublic] = React.useState(false);
   const [openLogout, setOpenLogout] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -48,12 +49,13 @@ export default function BasicMenu() {
   const [fullscreen, setFullscreen] = React.useState(true);
   const [modalPublic, setModalPublic] = React.useState(false);
 
-
-
+console.log(userandpost.Posts);
 
 
 React.useEffect(() => {
   dispatch(DetailsPostTuristic(datapersonal.id))
+  dispatch(UserPostDetails(datapersonal.id))
+
 }, [dispatch]);
 
 
@@ -405,13 +407,14 @@ React.useEffect(() => {
             {/*         <MenuItem className="menu-items" onClick={handleClose}>
               Informacion Personal
             </MenuItem> */}
-            <Link to={'/anfitrion/' + datapersonal.id}>
+            {userandpost.Posts ? (
 
-
+              <Link to={'/anfitrion/' + datapersonal.id}>
               <MenuItem className="menu-items" onClick={handleClose}>
                 Modo anfitrión
               </MenuItem>
             </Link>
+              ): null}
 
             <div>
               {values.map((v, idx) => (

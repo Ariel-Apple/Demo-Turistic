@@ -21,7 +21,6 @@ function Card() {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const [isFavorite, setIsFavorite] = useState(false);
-console.log(allPost);
   const toggleFavorite = () => {
     setIsFavorite(!isFavorite);
   };
@@ -91,8 +90,6 @@ console.log(allPost);
             {allPost.map((data, i) =>
               data.Posts.map((info, index) => (
                 <div className="card-box" key={index}>
-         
-
                   <div className="carousel-container">
                     <Carousel interval={null} className="swiper-container">
                       {info.imageFile.map((imageSrc, imageIndex) => (
@@ -100,7 +97,7 @@ console.log(allPost);
                           <a href={"/rooms/" + info.id} className="text-link">
                             <div className="image-container">
                               <img
-                                src={imageSrc}
+                                srcset={imageSrc}
                                 alt={imageSrc}
                                 className="card-img"
                               />
@@ -116,11 +113,8 @@ console.log(allPost);
                       {info.status === "Público" ? (
                         <div className="shadow-card">
                           <div className="card-info-flex">
-                            <a
-                              href={"/rooms/" + info.id}
-                              className="text-link"
-                            >
-                             {/*  {info.title.split(" ").length > 2 ? (
+                            <a href={"/rooms/" + info.id} className="text-link">
+                              {/*  {info.title.split(" ").length > 2 ? (
                                 <h3 className="card-title">
                                   {info.title
                                     .split(" ")
@@ -129,35 +123,51 @@ console.log(allPost);
                                   ...
                                 </h3>
                               ) : ( */}
-                                <h3 className="card-title">{info.title}</h3>
+                              <h3 className="card-title">{info.title}</h3>
                             </a>
                             <div>
                               <Avatar
                                 sx={{
                                   width: 25,
                                   height: 25,
-                                  background: data.avatar ? `url(${data.avatar})` : data.backgroundColor,
-                                  backgroundSize: 'cover',
+                                  background: data.avatar
+                                    ? `url(${data.avatar})`
+                                    : data.backgroundColor,
+                                  backgroundSize: "cover",
 
                                   marginRight: "10px",
                                   marginTop: "5px",
                                 }}
                               >
-                                { data.avatar ? (
+                                {data.avatar ? (
+                                  <div></div>
+                                ) : (
                                   <div>
+                                    {data.name && data.name[0].toUpperCase()}
                                   </div>
-                                ):(
-
-                                  <div>
-                                  {data.name &&
-                                    data.name[0].toUpperCase()}
-                                  </div>
-                                    )}
+                                )}
                               </Avatar>
                             </div>
                           </div>
 
                           <p>
+                            <p
+                              style={{
+                                margin: "0.2rem",
+                                fontSize: "1rem",
+                                color: "var(--black)",
+                              }}
+                              className="price-none"
+                            >
+                              <span
+                                style={{
+                                  fontWeight: "600",
+                                  marginLeft: "10px",
+                                }}
+                              >
+                                {data.updatedAt.slice(0, 10)}
+                              </span>{" "}
+                            </p>
                             <p
                               style={{
                                 margin: "0.2rem",
@@ -179,25 +189,18 @@ console.log(allPost);
 
                           {info.summary.split(" ").length > 15 ? (
                             <p className="summary-card">
-                              {info.summary
-                                .split(" ")
-                                .slice(0, 15)
-                                .join(" ")}...
+                              {info.summary.split(" ").slice(0, 15).join(" ")}
+                              ...
                             </p>
                           ) : (
-                            <p className="summary-card">
-                              {info.summary}
-                            </p>
+                            <p className="summary-card">{info.summary}</p>
                           )}
                         </div>
                       ) : (
                         <div className="shadow-card">
                           <div className="card-info-flex">
-                            <a
-                              href={"/rooms/" + info.id}
-                              className="text-link"
-                            >
-                            {/*   {info.title.split(" ").length > 2 ? (
+                            <a href={"/rooms/" + info.id} className="text-link">
+                              {/*   {info.title.split(" ").length > 2 ? (
                                 <h3 className="card-title">
                                   {info.title
                                     .split(" ")
@@ -206,30 +209,29 @@ console.log(allPost);
                                   ...
                                 </h3>
                               ) : ( */}
-                                <h3 className="card-title">{info.title}</h3>
+                              <h3 className="card-title">{info.title}</h3>
                             </a>
                             <div>
-                            <Avatar
+                              <Avatar
                                 sx={{
                                   width: 25,
                                   height: 25,
-                                  background: data.avatar ? `url(${data.avatar})` : data.backgroundColor,
-                                  backgroundSize: 'cover',
+                                  background: data.avatar
+                                    ? `url(${data.avatar})`
+                                    : data.backgroundColor,
+                                  backgroundSize: "cover",
 
                                   marginRight: "10px",
                                   marginTop: "5px",
                                 }}
                               >
-                                { data.avatar ? (
+                                {data.avatar ? (
+                                  <div></div>
+                                ) : (
                                   <div>
+                                    {data.name && data.name[0].toUpperCase()}
                                   </div>
-                                ):(
-
-                                  <div>
-                                  {data.name &&
-                                    data.name[0].toUpperCase()}
-                                  </div>
-                                    )}
+                                )}
                               </Avatar>
                             </div>
                           </div>
@@ -256,15 +258,11 @@ console.log(allPost);
                           </p>
                           {info.summary.split(" ").length > 15 ? (
                             <p className="summary-card">
-                              {info.summary
-                                .split(" ")
-                                .slice(0, 15)
-                                .join(" ")}...
+                              {info.summary.split(" ").slice(0, 15).join(" ")}
+                              ...
                             </p>
                           ) : (
-                            <p className="summary-card">
-                              {info.summary}
-                            </p>
+                            <p className="summary-card">{info.summary}</p>
                           )}
                         </div>
                       )}

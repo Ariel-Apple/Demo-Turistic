@@ -13,7 +13,10 @@ module.exports = {
       const payload = jwt.verify(authorization, process.env.FIRMA_TOKEN);
 
       // Obtener todos los datos del usuario desde la base de datos
-      const user = await User.findOne({ where: { id: payload.id } });
+      const user = await User.findOne({ 
+        where: { id: payload.id },
+        include: [{ model: Post }]
+       });
 
       if (!user) {
         console.log('Usuario no encontrado');

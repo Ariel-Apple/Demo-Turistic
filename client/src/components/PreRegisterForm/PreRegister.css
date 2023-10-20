@@ -31,7 +31,7 @@
 }
 
 .avatar-preregister {
-    margin-left: 70%;
+    margin-left: 90%;
     margin-right: 50%;
     margin-top: -60px;
     display: grid;
@@ -39,6 +39,10 @@
 }
 
 .input-select-image {
+  margin-left: -10%;
+  margin-top: 5%;
+
+
 }
 .error {
 }
@@ -119,6 +123,13 @@ font-size: 22px;
   
   }
   
+  .avatar-preregister {
+    margin-left: 38%;
+    margin-top: -10%;
+  
+
+}
+
 
   .logo-preregister-container {
     display: none;
@@ -157,12 +168,46 @@ font-size: 22px;
 
 
   }
-
+  .card-preregister::-webkit-scrollbar {
+    width: 0px; /* Ajusta el ancho según tus necesidades */
+  }
+  
+  .card-preregister::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Hacer el thumb (el "mango" de la barra de desplazamiento) transparente */
+    border: 2px solid transparent; /* Hacer el borde del thumb transparente */
+    border-radius: 4px; /* Añadir un borde redondeado al thumb */
+  }
+  
+  .card-preregister::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Cambiar el color al pasar el mouse sobre la barra (puedes ajustar el valor alpha para hacerlo más o menos transparente) */
+  }
   .btn-preregister {
     background-color: #8B008B;
   }
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .logo-preregister-container {
+    margin-left: 2em;
+  }
+  .logo-preregister  img {
+    max-width: 150px;
+  }
+
+  .logo-text img {
+    max-width: 200px;
+
+  }
+
+  .card-preregister {
+
+     width: 65%;
+    
+
+}
+
+}
+  
 
 @media only screen and (min-width: 1024px) and (max-width: 1728px) {
   .card-preregister {

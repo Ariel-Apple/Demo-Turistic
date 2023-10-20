@@ -176,7 +176,7 @@ export default function PreRegisterForm() {
             <div className="logo-text-mobile">
               <Link to="/">
                 <img
-                  src={require("../../assets/logo/enc.png")}
+                  srcSet={require("../../assets/logo/enc.png")}
                   alt="Notfound"
                 />
               </Link>
@@ -186,7 +186,7 @@ export default function PreRegisterForm() {
             <div className="logo-preregister">
               <Link to="/">
                 <img
-                  src={require("../../assets/logo/Nudo.png")}
+                  srcSet={require("../../assets/logo/Nudo.png")}
                   alt="Notfound"
                 />
               </Link>
@@ -194,7 +194,7 @@ export default function PreRegisterForm() {
             <div className="logo-text">
               <Link to="/">
                 <img
-                  src={require("../../assets/logo/enc.png")}
+                  srcSet={require("../../assets/logo/enc.png")}
                   alt="Notfound"
                 />
               </Link>
@@ -214,10 +214,10 @@ export default function PreRegisterForm() {
               </div>
 
               <form
-                className="mx-auto mt-16 max-w-xl sm:mt-20"
+                className="mx-auto mt-16 max-w-xl sm:mt-20 gap-input"
                 onSubmit={handleSubmit}
               >
-                <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2 ">
                   <div className="avatar-preregister">
                     <div>
                       <Avatar
@@ -244,13 +244,13 @@ export default function PreRegisterForm() {
                       </Avatar>
                     </div>
 
-                    <div>
+                    <div className="input-select-image">
                       <input
                         type="file"
                         name="avatar"
                         onChange={handleImageChange}
                         accept="image/jpeg, image/png" 
-                        className="input-select-image"                        
+                                                
                       />
             
                     </div>
@@ -337,7 +337,7 @@ export default function PreRegisterForm() {
                         name="phone"
                         id="phone"
                         autoComplete="phone"
-                        className="block w-full rounded-md border-0 px-3.5 py-2 pl-36 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-global"
+                        className="block w-full rounded-md border-0 px-3.5 py-2 pl-36 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 input-global border-input"
                         value={update.phone}
                         onChange={handlePhone}
                         required

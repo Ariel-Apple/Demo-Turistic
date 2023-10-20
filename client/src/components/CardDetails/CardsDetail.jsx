@@ -95,7 +95,6 @@ export default function CardDetails() {
 
   const OpenReserCard = () => {
     setCardReserve(true);
-
   };
 
   React.useEffect(() => {
@@ -126,13 +125,13 @@ export default function CardDetails() {
           <div className="container-image">
             {detailpost.imageFile.map((img, index) => (
               <Image.PreviewGroup key={index} items={[{ src: img }]}>
-                <div >
+                <div>
                   <Image
-                    src={img}
+                    srcset={img}
                     alt={`Imagen ${index + 1}`}
                     width="100%"
                     height="50vh"
-                    style={{ objectFit: "cover",  }}
+                    style={{ objectFit: "cover" }}
                   />
                 </div>
               </Image.PreviewGroup>
@@ -177,109 +176,115 @@ export default function CardDetails() {
                     {/*    <h1 className="title">Lagos</h1> */}
                   </div>
 
-                    <div
-                      onClick={() => handleShow(v)}
-                      className= "mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains"
-                    >
-                      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
+                  <div
+                    onClick={() => handleShow(v)}
+                    className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains"
+                  >
+                    <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
+                      <img
+                        srcset={detailpost.imageFile[0]}
+                        /*   src={product.images[0].src} */
+                        alt="Not found"
+                        className="h-full w-full object-cover object-center hover-image-left"
+                      />
+                    </div>
+
+                    <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+                      <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
                         <img
-                          src={detailpost.imageFile[0]}
-                          /*   src={product.images[0].src} */
+                          srcset={detailpost.imageFile[1]}
                           alt="Not found"
-                          className="h-full w-full object-cover object-center hover-image-left"
+                          className="h-full w-full object-cover object-center hover-image-center"
                         />
                       </div>
-
-                      <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-                          <img
-                            src={detailpost.imageFile[1]}
-                            alt="Not found"
-                            className="h-full w-full object-cover object-center hover-image-center"
-                          />
-                        </div>
-                        <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
-                          <img
-                            src={detailpost.imageFile[2]}
-                            alt="Not found"
-                            className="h-full w-full object-cover object-center hover-image-center"
-                          />
-                        </div>
-                      </div>
-                      <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ">
+                      <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg ">
                         <img
-                          src={detailpost.imageFile[3]}
+                          srcset={detailpost.imageFile[2]}
                           alt="Not found"
-                          className="h-full w-full object-cover object-center hover-image-left"
+                          className="h-full w-full object-cover object-center hover-image-center"
                         />
-
-                        <div>
-                          <Fab size="small" id="icons-details" aria-label="add">
-                            <AddIcon />
-                            {detailpost.imageFile.length}
-                          </Fab>
-                        </div>
                       </div>
                     </div>
-                
-                    
+                    <div className="aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ">
+                      <img
+                        srcset={detailpost.imageFile[3]}
+                        alt="Not found"
+                        className="h-full w-full object-cover object-center hover-image-left"
+                      />
+
+                      <div>
+                        <Fab size="small" id="icons-details" aria-label="add">
+                          <AddIcon />
+                          {detailpost.imageFile.length}
+                        </Fab>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ))}
 
-<div className="ocult">
-  {values.map((v, idx) => (
-    <div className={scrollPosition > 80 ? 'carrusel-mobile aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg ' : 'aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg carrusel-relative'} onClick={() => handleShow(v)}>
-  <Carousel controls={false} indicators={false}>
-    {detailpost.imageFile.map((img, index) => (
-      <Carousel.Item key={index}>
-        <div className="movile-carrusel">
-          <img className={scrollPosition > 80  ?"carousel-image-relative" :"carousel-image"} src={img} alt="not found" />
-        </div>
-      </Carousel.Item>
-    ))}
-  </Carousel>
-</div>
-
-  ))}
-</div>
-
-
-
-
-<div className="none-laptop">
-
-{scrollPosition >= 350 && (
-  <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 carrusel-container">
-    <div className="carrusel-scroll slide-up">
-      <div className="splide-container">
-        <Splide
-          options={{
-            type: "slide",
-            perPage: 3,
-            perMove: 1,
-            pagination: true,
-            cover: true,
-          }}
-        >
-          {detailpost.imageFile.map((img, index) => (
-            <SplideSlide key={index}>
-              <div className="details-carrusel-fixed">
-                <img
-                  src={img}
-                  alt={`Imagen ${index + 1}`}
-                  className="h-full w-full object-cover object-center"
-                />
+              <div className="ocult">
+                {values.map((v, idx) => (
+                  <div
+                    className={
+                      scrollPosition > 80
+                        ? "carrusel-mobile aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg "
+                        : "aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg carrusel-relative"
+                    }
+                    onClick={() => handleShow(v)}
+                  >
+                    <Carousel controls={false} indicators={false}>
+                      {detailpost.imageFile.map((img, index) => (
+                        <Carousel.Item key={index}>
+                          <div className="movile-carrusel">
+                            <img
+                              className={
+                                scrollPosition > 80
+                                  ? "carousel-image-relative"
+                                  : "carousel-image"
+                              }
+                              src={img}
+                              alt="not found"
+                            />
+                          </div>
+                        </Carousel.Item>
+                      ))}
+                    </Carousel>
+                  </div>
+                ))}
               </div>
-            </SplideSlide>
-          ))}
-        </Splide>
-      </div>
-    </div>
-  </div>
-)}
-</div>
 
-
+              <div className="none-laptop">
+                {scrollPosition >= 350 && (
+                  <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 carrusel-container">
+                    <div className="carrusel-scroll slide-up">
+                      <div className="splide-container">
+                        <Splide
+                          options={{
+                            type: "slide",
+                            perPage: 3,
+                            perMove: 1,
+                            pagination: true,
+                            cover: true,
+                          }}
+                        >
+                          {detailpost.imageFile.map((img, index) => (
+                            <SplideSlide key={index}>
+                              <div className="details-carrusel-fixed">
+                                <img
+                                  src={img}
+                                  alt={`Imagen ${index + 1}`}
+                                  className="h-full w-full object-cover object-center"
+                                />
+                              </div>
+                            </SplideSlide>
+                          ))}
+                        </Splide>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
 
               <Modal
                 show={detailsModal}
@@ -295,49 +300,51 @@ export default function CardDetails() {
           )}
 
           {/* Product info */}
-          <div className={scrollPosition > 80 ? "text-info mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16  " : " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 text-info-normal"}>
+          <div
+            className={
+              scrollPosition > 80
+                ? "text-info mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16  "
+                : " mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16 text-info-normal"
+            }
+          >
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <div className="card-text">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
-                
-                Anfitrión: {detailpost.Users && detailpost.Users[0].name}
-                <div className="avatar-container">
-                  <Avatar
-                    sx={{
-                      width: 50,
-                      height: 50,
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
+                  Anfitrión: {detailpost.Users && detailpost.Users[0].name}
+                  <div className="avatar-container">
+                    <Avatar
+                      sx={{
+                        width: 50,
+                        height: 50,
 
-                      background: detailpost.Users && detailpost.Users[0] ? (
-                        detailpost.Users[0].avatar ? `url(${detailpost.Users[0].avatar})` : detailpost.Users[0].backgroundColor
-                      ) : '',
+                        background:
+                          detailpost.Users && detailpost.Users[0]
+                            ? detailpost.Users[0].avatar
+                              ? `url(${detailpost.Users[0].avatar})`
+                              : detailpost.Users[0].backgroundColor
+                            : "",
 
-                      backgroundSize: 'cover'
-
-                        
-                    }}
-                  >
-
-                    {detailpost.Users && detailpost.Users[0].avatar ? (
-                      <div>
-                      </div>
-                    ) : (
-                      <div>
-                      {detailpost.Users &&
-                        detailpost.Users[0].name[0].toUpperCase()}
+                        backgroundSize: "cover",
+                      }}
+                    >
+                      {detailpost.Users && detailpost.Users[0].avatar ? (
+                        <div></div>
+                      ) : (
+                        <div>
+                          {detailpost.Users &&
+                            detailpost.Users[0].name[0].toUpperCase()}
                         </div>
-                        ) }
-                  </Avatar>
-                </div>
-              </h1>
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                Lugar para visitar.
-              </h1>
+                      )}
+                    </Avatar>
+                  </div>
+                </h1>
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                  Lugar para visitar.
+                </h1>
 
-              <div className="continent-country">
-                {detailpost.continent}, {" "}
-                {detailpost.country}
-              </div>
-                
+                <div className="continent-country">
+                  {detailpost.continent}, {detailpost.country}
+                </div>
               </div>
 
               <div className="horizontal-line-with-o">
@@ -353,11 +360,20 @@ export default function CardDetails() {
                   detailpost.status === "Privado" ? "card-reserve" : ""
                 }
               >
-               {detailpost.status === "Privado" && (
-    <div className="absolute top-0 right-0 p-2">
-      <div style={{ fontSize: "20px", cursor: "pointer", color: '#000' }} onClick={() => setCardReserve(false)}>x</div>
-    </div>
-  )}
+                {detailpost.status === "Privado" && (
+                  <div className="absolute top-0 right-0 p-2">
+                    <div
+                      style={{
+                        fontSize: "20px",
+                        cursor: "pointer",
+                        color: "#000",
+                      }}
+                      onClick={() => setCardReserve(false)}
+                    >
+                      x
+                    </div>
+                  </div>
+                )}
                 <div className="mt-4 lg:row-span-3 lg:mt-0 ">
                   <h2 className="sr-only">Product information</h2>
                   <p className="text-3xl tracking-tight text-gray-900">
@@ -389,16 +405,13 @@ export default function CardDetails() {
                     </div>
                   </p>
 
-
                   <form className="mt-10">
-          
-                        <button
-                          type="submit"
-                          className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                        >
-                          Reservar
-                        </button>
-          
+                    <button
+                      type="submit"
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                    >
+                      Reservar
+                    </button>
                   </form>
                 </div>
               </div>
@@ -408,9 +421,9 @@ export default function CardDetails() {
               {/* Description and details */}
 
               <div className="space-y-1 card-text">
-              <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                    Breve resumen del lugar
-                  </h1>
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                  Breve resumen del lugar
+                </h1>
                 <p className="text-base text-gray-900">{detailpost.summary}</p>
               </div>
               {detailpost.status === "Privado" ? (
@@ -420,7 +433,7 @@ export default function CardDetails() {
                   </div>
 
                   <div className="mt-10 card-text-list">
-                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                       Dias de atención al cliente de {detailpost.daysAtentions}.
                     </h1>
 
@@ -433,12 +446,11 @@ export default function CardDetails() {
               ) : null}
 
               <div className="mt-10">
-                  <div>
-                    <div className="horizontal-line-with-o">
-                      <div className="line"></div> {/* Línea a la izquierda */}
-                    </div>
-                    <div className="card-text-list"> 
-
+                <div>
+                  <div className="horizontal-line-with-o">
+                    <div className="line"></div> {/* Línea a la izquierda */}
+                  </div>
+                  <div className="card-text-list">
                     <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                       El lugar cuenta con:
                     </h1>
@@ -446,7 +458,7 @@ export default function CardDetails() {
                     <ul
                       role="list"
                       className="list-disc space-y-2 pl-4 text-sm"
-                      >
+                    >
                       {detailpost.listDetails &&
                         detailpost.listDetails.map((list) => (
                           <li className="text-gray-400">
@@ -455,35 +467,35 @@ export default function CardDetails() {
                         ))}
                     </ul>
                   </div>
-                  </div>
+                </div>
 
                 <div className="mt-10">
-                  {detailpost.status === "Privado" || detailpost.status === "Público" ? (
+                  {detailpost.status === "Privado" ||
+                  detailpost.status === "Público" ? (
                     <div>
                       <div className="horizontal-line-with-o">
                         <div className="line"></div>{" "}
                         {/* Línea a la izquierda */}
                       </div>
                       <div className="card-text-list">
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                          información importante
+                        </h1>
 
-                      <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
-                        información importante
-                      </h1>
-
-                      <p className="text-sm text-gray-600">
-                        <ul
-                          role="list"
-                          className="list-disc space-y-2 pl-4 text-sm"
+                        <p className="text-sm text-gray-600">
+                          <ul
+                            role="list"
+                            className="list-disc space-y-2 pl-4 text-sm"
                           >
-                          {detailpost.infoImportant &&
-                            detailpost.infoImportant.map((list) => (
-                              <li className="text-gray-400">
-                                <span className="text-gray-600">{list}</span>
-                              </li>
-                            ))}
-                        </ul>
-                      </p>
-                              </div>
+                            {detailpost.infoImportant &&
+                              detailpost.infoImportant.map((list) => (
+                                <li className="text-gray-400">
+                                  <span className="text-gray-600">{list}</span>
+                                </li>
+                              ))}
+                          </ul>
+                        </p>
+                      </div>
                     </div>
                   ) : null}
                 </div>
@@ -491,7 +503,7 @@ export default function CardDetails() {
                   <div className="line"></div> {/* Línea a la izquierda */}
                 </div>
                 <div className="mt-10 card-text">
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                     Historia
                   </h1>
 
@@ -514,26 +526,21 @@ export default function CardDetails() {
             >
               Reservar
             </button>
-            
           </div>
           <div className="btn-footer-laptop">
-          {values.map((v, idx) => (
-          (scrollPosition >= 350 &&(
-
-            
-            <button
-            onClick={() => handleShow(v)}
-            type="submit"
-            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn-photo"
-            >
-              Ver fotos
-            </button>
-              ))
-              ))}
-            
+            {values.map(
+              (v, idx) =>
+                scrollPosition >= 350 && (
+                  <button
+                    onClick={() => handleShow(v)}
+                    type="submit"
+                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn-photo"
+                  >
+                    Ver fotos
+                  </button>
+                )
+            )}
           </div>
-         
-     
         </div>
       )}
 
@@ -549,7 +556,7 @@ export default function CardDetails() {
                 Reservar
               </button>
             </div>
-           
+
             <Modal
               show={detailsCardReserve}
               fullscreen={fullscreenMobile}
@@ -564,9 +571,7 @@ export default function CardDetails() {
                     detailpost.status === "Privado" ? "card-reserve-mobile" : ""
                   }
                 >
-      
                   <div className="mt-4 lg:row-span-3 lg:mt-0 ">
-
                     <h2 className="sr-only">Product information</h2>
                     <p className="text-3xl tracking-tight text-gray-900">
                       {detailpost.price ? (
@@ -599,17 +604,15 @@ export default function CardDetails() {
                         ) : null}
                       </div>
                     </p>
-                    <form className="mt-10"> 
-                      {
-                        detailpost.status === "Privado" ? (
-                          <button
-                            type="submit"
-                            className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
-                          >
-                            Reservar
-                          </button>
-                        ) : null
-                      }
+                    <form className="mt-10">
+                      {detailpost.status === "Privado" ? (
+                        <button
+                          type="submit"
+                          className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 btn-reserve"
+                        >
+                          Reservar
+                        </button>
+                      ) : null}
                     </form>
                   </div>
                 </div>

@@ -297,7 +297,26 @@ height: 32;
 
 
   }
-
+  .text-join-initial {
+    display: grid;
+  }
+  .text-initial {
+    margin-top: 0px;
+  }
+  
+  .text-initial p h1 {
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+  
+  
+  }
+  
+  .container-button-modal {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
   .bottom-nav {
     display: block;
     position: fixed;

@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 module.exports = {
- development: {
+/*  development: {
     dialect: 'postgres',
     host: 'containers-us-west-101.railway.app',
     port: 5796,
@@ -18,9 +18,9 @@ module.exports = {
     password: '7DiTbQOQM41ekkw4fZmM',
     database: 'railway',
 
-  },  
+  },  */ 
 
-/*  development: {
+  development: {
     dialect: 'postgres',
     host:  'localhost',
     port: 5432,
@@ -37,5 +37,5 @@ module.exports = {
     password: 'password',
     database: 'turistic',
    
-  },  */ 
+  },  
 };
