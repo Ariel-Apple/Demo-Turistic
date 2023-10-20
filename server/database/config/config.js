@@ -20,7 +20,7 @@ module.exports = {
 
   },  
 
- /*  development: {
+/*   development: {
     dialect: 'postgres',
     host:  'localhost',
     port: 5432,
