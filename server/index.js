@@ -7,12 +7,12 @@ const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 3000
 
-/* const cloudinary = require('cloudinary').v2; // Importa la SDK de Cloudinary
+ const cloudinary = require('cloudinary').v2; // Importa la SDK de Cloudinary
 cloudinary.config({
     cloud_name: 'dz0lruj7k',
     api_key: '128323134832632',
     api_secret: '04JixT8UcmHYY-QfbwSTBzT-L7I'
-  });  */
+  });  
 
   app.use(cors())
   
