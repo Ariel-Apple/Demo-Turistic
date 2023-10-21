@@ -17,8 +17,6 @@ const getBase64 = (img, callback) => {
   reader.readAsDataURL(img);
 };
 
-
-
 export default function PreRegisterForm() {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -51,7 +49,7 @@ export default function PreRegisterForm() {
         name: datapersonal.name,
         lastName: datapersonal.lastName,
         email: datapersonal.email,
-        password: datapersonal.password ,
+        password: datapersonal.password,
         phone: datapersonal.phone,
         aboutMe: datapersonal.aboutMe,
       });
@@ -222,23 +220,21 @@ export default function PreRegisterForm() {
                     <div>
                       <Avatar
                         sx={{
-                          
                           width: 80,
                           height: 80,
-                          objectFit:'cover',
-                          background: update.avatar ? `url(${imagePreview || update.avatar})` : datapersonal.backgroundColor,
-                          backgroundSize: 'cover'
+                          objectFit: "cover",
+                          background: update.avatar
+                            ? `url(${imagePreview || update.avatar})`
+                            : datapersonal.backgroundColor,
+                          backgroundSize: "cover",
                         }}
                       >
-                       { update.avatar ? (
-                        <span></span>
-                   
-                       ) : (
-                        <div>
-
-
-                         {datapersonal.name &&
-                          datapersonal.name[0].toUpperCase()}
+                        {update.avatar ? (
+                          <span></span>
+                        ) : (
+                          <div>
+                            {datapersonal.name &&
+                              datapersonal.name[0].toUpperCase()}
                           </div>
                         )}
                       </Avatar>
@@ -249,10 +245,8 @@ export default function PreRegisterForm() {
                         type="file"
                         name="avatar"
                         onChange={handleImageChange}
-                        accept="image/jpeg, image/png" 
-                                                
+                        accept="image/jpeg, image/png"
                       />
-            
                     </div>
                   </div>
 
@@ -309,8 +303,8 @@ export default function PreRegisterForm() {
                         autoComplete="text"
                         className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 border-input"
                         placeholder="Password"
-                        value='********************'
-                      /*   onChange={handlePassword}
+                        value="********************"
+                        /*   onChange={handlePassword}
                         required */
                         disabled
                       />

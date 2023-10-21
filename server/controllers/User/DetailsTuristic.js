@@ -7,7 +7,6 @@ module.exports = {
       const postDetails = await Post.findByPk(idTuristic, {
         include: [{ model: User }] // Incluye el modelo User
       });
-
       if (postDetails) {
         res.status(200).send({ details: postDetails });
       } else {

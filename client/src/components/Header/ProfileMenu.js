@@ -38,7 +38,6 @@ export default function BasicMenu() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const datapersonal = useSelector(state => state.datapersonal);
-  const userandpost = useSelector(state => state.userandpost);
   const [openPublic, setOpenPublic] = React.useState(false);
   const [openLogout, setOpenLogout] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
@@ -49,12 +48,10 @@ export default function BasicMenu() {
   const [fullscreen, setFullscreen] = React.useState(true);
   const [modalPublic, setModalPublic] = React.useState(false);
 
-console.log(userandpost.Posts);
-
+console.log(datapersonal.Posts);
 
 React.useEffect(() => {
   dispatch(DetailsPostTuristic(datapersonal.id))
-  dispatch(UserPostDetails(datapersonal.id))
 
 }, [dispatch]);
 
@@ -407,15 +404,26 @@ React.useEffect(() => {
             {/*         <MenuItem className="menu-items" onClick={handleClose}>
               Informacion Personal
             </MenuItem> */}
-            {userandpost.Posts ? (
+            {datapersonal.Posts && datapersonal.Posts.length > 0 ? (
+              <div>
+
 
               <Link to={'/anfitrion/' + datapersonal.id}>
               <MenuItem className="menu-items" onClick={handleClose}>
                 Modo anfitrión
               </MenuItem>
             </Link>
+            <Link to="/public">
+
+
+            <MenuItem className="menu-items" onClick={handleClose}>
+                            Publicar
+                          </MenuItem>
+            </Link>
+              </div>
               ): null}
 
+            {datapersonal.Posts && datapersonal.Posts.length < 1 ? (
             <div>
               {values.map((v, idx) => (
 
@@ -424,9 +432,10 @@ React.useEffect(() => {
                 </MenuItem>
               ))}
 
+
+
             </div>
-
-
+              ): null}
 
             <>
 

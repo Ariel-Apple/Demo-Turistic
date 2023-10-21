@@ -8,7 +8,7 @@ const initialState = {
   detailpost: [],
   hostessuser: [],
   onlypost: [],
-  userandpost: {}
+  userandpost: []
 }
 
 
