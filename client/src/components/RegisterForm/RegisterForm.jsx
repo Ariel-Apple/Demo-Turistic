@@ -77,8 +77,8 @@ export default function RegisterForm() {
   };
 
   return (
-    <>
-    <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div >
+    <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8 responsive-register">
       <div
         className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
         aria-hidden="true"
@@ -263,14 +263,6 @@ export default function RegisterForm() {
       </form>
     </div>
 
-      <Modal
-        visible={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={null} // Esto quita los botones "Ok" y "Cancel"
-      >
-        <LoginForms />
-      </Modal>
-            </>
+            </div>
   );
 }

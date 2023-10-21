@@ -1,6 +1,6 @@
 .bg-image {
   background: linear-gradient(90deg,#8b008b29 0%,#8b008b8a 100%),
-  url("../../assets/images/bg-pre.jpg");  
+  url("../../assets/images/mosaico 1.png");  
   background-position: center center;
   background-size: cover;
     background-repeat: no-repeat;
@@ -55,6 +55,7 @@
   
   }
   .logo-preregister-container  {
+    display: none;
    margin: 0 auto;
 }
 
@@ -140,7 +141,7 @@ font-size: 22px;
   } */
 
   .logo-container-mobile {
-    display: grid;
+    display: none;
     max-width: 40px;
     position: absolute;
     top: -55px;

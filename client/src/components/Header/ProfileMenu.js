@@ -48,12 +48,12 @@ export default function BasicMenu() {
   const [fullscreen, setFullscreen] = React.useState(true);
   const [modalPublic, setModalPublic] = React.useState(false);
 
-console.log(datapersonal.Posts);
+  console.log(datapersonal.Posts);
 
-React.useEffect(() => {
-  dispatch(DetailsPostTuristic(datapersonal.id))
+  React.useEffect(() => {
+    dispatch(DetailsPostTuristic(datapersonal.id))
 
-}, [dispatch]);
+  }, [dispatch]);
 
 
   function handleShow(breakpoint) {
@@ -163,7 +163,7 @@ React.useEffect(() => {
       <div className="text-join-initial">
         <div>
 
-          <img src={require('../../assets/images/image-modal.png')} alt="not found" />
+          <img srcSet={require('../../assets/images/Atardecer.png')} alt="not found" />
         </div>
         <div className="text-initial">
           <p>
@@ -193,37 +193,33 @@ React.useEffect(() => {
 
       </div>
 
-      <>
-        <div className="image-modal1">
+      <div className="text-modal-2">
 
-          <img src={require('../../assets/images/image-modal1.png')} alt="not found" />
-        </div>
         <div className="text-join-family">
 
           <h1>
-            Al unirte a {" "}
-            <span className="color-title">Place enc</span>
-            , obtendrás acceso a una audiencia diversa de viajeros y entusiastas del turismo que están buscando nuevas experiencias y destinos.
-          </h1>
-          <h2>
+
+
+            Al unirte a <span className="color-title">Place enc</span>, obtendrás acceso a una audiencia diversa de viajeros y entusiastas del turismo que están buscando nuevas experiencias y destinos.
             Regístrate como propietario o administrador de un sitio turístico.
-          </h2>
-          <h2>
             Una vez que hayas creado tu perfil, podrás cargar fotos,
-          </h2>
-          <h2>
             descripciones, horarios de operación y cualquier otra información
-          </h2>
-          <h2>
             relevante sobre tu sitio.
-          </h2>
-          <h1> <HelpOutlineIcon id="icons-question" /> {" "}
-            ¡Únete a {" "}
-            <span className="color-title">Place enc</span> {" "}
-            y haz que tu sitio turístico forme parte del portafolio mundial de lugares turísticos!
           </h1>
+
         </div>
-      </>
+        <div className="image-modal1">
+
+          <img src={require('../../assets/images/MOSAICO 2.png')} alt="not found" />
+        </div>
+      </div>
+      <div className="text-plecee-end">
+        <h1> <HelpOutlineIcon id="icons-question" /> {" "}
+          ¡Únete a {" "}
+          <span className="color-title">Place enc</span> {" "}
+          y haz que tu sitio turístico forme parte del portafolio mundial de lugares turísticos!
+        </h1>
+      </div>
 
     </div>
   )
@@ -278,8 +274,10 @@ React.useEffect(() => {
 
 
                     datapersonal.avatar ? (
-                      <Avatar sx={{ width: 32, height: 32,  background: datapersonal.avatar ? `url(${datapersonal.avatar})` : datapersonal.backgroundColor,
-                      backgroundSize: 'cover',}}  >
+                      <Avatar sx={{
+                        width: 32, height: 32, background: datapersonal.avatar ? `url(${datapersonal.avatar})` : datapersonal.backgroundColor,
+                        backgroundSize: 'cover',
+                      }}  >
                         <div >
 
                         </div>
@@ -361,6 +359,7 @@ React.useEffect(() => {
             onOk={handleOkRegister}
             onCancel={handleCancelRegister}
             footer={null} // Esto quita los botones "Ok" y "Cancel"
+            className="modal-card"
           >
             <RegisterForm />
           </Modal>
@@ -408,34 +407,34 @@ React.useEffect(() => {
               <div>
 
 
-              <Link to={'/anfitrion/' + datapersonal.id}>
-              <MenuItem className="menu-items" onClick={handleClose}>
-                Modo anfitrión
-              </MenuItem>
-            </Link>
-            <Link to="/public">
+                <Link to={'/anfitrion/' + datapersonal.id}>
+                  <MenuItem className="menu-items" onClick={handleClose}>
+                    Modo anfitrión
+                  </MenuItem>
+                </Link>
+                <Link to="/public">
 
 
-            <MenuItem className="menu-items" onClick={handleClose}>
-                            Publicar
-                          </MenuItem>
-            </Link>
+                  <MenuItem className="menu-items" onClick={handleClose}>
+                    Publicar
+                  </MenuItem>
+                </Link>
               </div>
-              ): null}
+            ) : null}
 
             {datapersonal.Posts && datapersonal.Posts.length < 1 ? (
-            <div>
-              {values.map((v, idx) => (
+              <div>
+                {values.map((v, idx) => (
 
-                <MenuItem onClick={() => handleShow(v)} className="menu-items" >
-                  Unase placee enc como anfitrion
-                </MenuItem>
-              ))}
+                  <MenuItem onClick={() => handleShow(v)} className="menu-items" >
+                    Unase placee enc como anfitrion
+                  </MenuItem>
+                ))}
 
 
 
-            </div>
-              ): null}
+              </div>
+            ) : null}
 
             <>
 
@@ -517,7 +516,10 @@ React.useEffect(() => {
           <div className="container-button-modal">
             <Link to='/preregister'>
               <Button >
+                <span id="text-btn-join">
+
                 <span>+</span> Unirse como anfitrion
+                </span>
               </Button>
             </Link>
           </div>

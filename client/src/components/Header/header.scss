@@ -27,7 +27,9 @@ height: 32;
 .logo-modal {
   width: 150px;
 }
-
+.modal-card {
+  margin-top: -50px;
+}
 .cancel-btn {
   background-color: #8B008B;
   color: #8B008B;
@@ -41,7 +43,12 @@ height: 32;
   max-width: 50px;
 }
 .text-join-initial {
+  background:#ededed;
   display: flex;
+  gap: 6rem;
+  padding: 14px;
+  width: 100%;
+  background-size: contain;
 }
 .text-initial {
   margin-top: 180px;
@@ -50,17 +57,39 @@ height: 32;
 .text-initial p h1 {
   font-weight: 700;
   font-size: 45px;
+  font-family: Poppins,Open sans,Arial,sans-serif;
+
 
 
 }
+.text-plecee-end {
+  background:#ededed;
+text-align: center;
+margin-top: 15rem;
+padding: 15rem;
+background-size: cover;
+}
+.text-plecee-end h1{
+  font-family: Poppins,Open sans,Arial,sans-serif;
+   font-size: 50px;
+}
+
 
 #lugar-modal {
   color: #8B008B;
+}
+.text-modal-2  {
+  display: flex;
+  margin-top: 10em;
 }
 
 .image-modal1 {
   display: flex;
   justify-content: center;
+}
+
+.image-modal1 img{
+  width: 65em;
 }
 .avatar-uploader {
   margin-left: 30px;
@@ -118,8 +147,7 @@ height: 32;
 }
 
 .airbnb-your-home button {
-  background: #8B008B
-  ;
+  background: #8B008B;
 }
 
 .airbnb-your-home button:hover {
@@ -191,9 +219,13 @@ height: 32;
 
 }
 
-.text-join-family  {
-  text-align: center;
+.text-join-family h1  {
+  font-family: Poppins,Open sans,Arial,sans-serif;
+  width: 20em;
+  font-size: 40px;
+  line-height: 5rem;
 }
+
 
 .color-title {
   color: #8B008B;
@@ -209,38 +241,92 @@ height: 32;
 }
 .container-button-modal {
   display: flex;
-  margin: 0 auto;
+  margin-left: 80%;
+  margin-top: -2%;
 }
 
 .container-button-modal button {
   background-color: #8B008B;
   border-color: #8B008B;
+  height: 200%;
+  width: 120%;
 }
 .container-button-modal button:hover {
   background-color: #8B008B;
   border-color: #8B008B;
 }
- 
+
+.text-join-initial img{
+  width: 50em;
+}
+ #text-btn-join {
+  font-size: 17px;
+ }
 
 @media only screen and (max-width: 767px) {
 .text-join-initial {
   display: grid;
+  justify-content: center;
+  place-items: center;
+  align-items: center;
+
 }
 .text-initial {
   margin-top: 0px;
+  text-align: center;
+}
+
+
+.text-join-initial img{
+  width: 50%;
+  margin: 0 auto;
 }
 
 .text-initial p h1 {
   font-weight: 600;
   font-size: 25px;
 
-
 }
 
+.text-modal-2 {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  place-items: center;
+  text-align: center;
+  align-items: center;
+}
+.text-join-family h1 {
+  font-size: 25px;
+  line-height: 3rem;
+  margin-left: 125px;
+  width: 61%;
+
+
+
+}
+.image-modal1 img {
+  width: 50%;
+
+}
+.text-plecee-end {
+  background:#ededed;
+text-align: start;
+
+}
+.text-plecee-end h1{
+   font-size: 20px;
+}
 .container-button-modal {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+}
+.container-button-modal button {
+  background-color: #8B008B;
+  border-color: #8B008B;
+  height: 100%;
+  width: 100%;
 }
 
   #icons-lenguage {
@@ -285,6 +371,8 @@ height: 32;
     height: 35px;
 
   }
+
+
 
 
 }

@@ -220,8 +220,8 @@ export default function PreRegisterForm() {
                     <div>
                       <Avatar
                         sx={{
-                          width: 80,
-                          height: 80,
+                          width: 100,
+                          height: 100,
                           objectFit: "cover",
                           background: update.avatar
                             ? `url(${imagePreview || update.avatar})`

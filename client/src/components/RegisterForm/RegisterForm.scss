@@ -19,9 +19,47 @@
         color: #8B008B ;
         cursor: pointer;
     }
-
- /*    .swal-btn  {
-        text-decoration: none;
-        color: white;
+    .responsive-register {
+        overflow-y: scroll;
+        max-height: 50em;
         
-    } */
+    }
+
+    .responsive-register::-webkit-scrollbar {
+        width: 0px; /* Ajusta el ancho según tus necesidades */
+      }
+      
+      .responsive-register::-webkit-scrollbar-thumb {
+        background-color: transparent; /* Hacer el thumb (el "mango" de la barra de desplazamiento) transparente */
+        border: 2px solid transparent; /* Hacer el borde del thumb transparente */
+        border-radius: 4px; /* Añadir un borde redondeado al thumb */
+      }
+      
+      .responsive-register::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(0, 0, 0, 0.5); /* Cambiar el color al pasar el mouse sobre la barra (puedes ajustar el valor alpha para hacerlo más o menos transparente) */
+      }
+
+
+    @media only screen and (max-width: 767px) {
+    
+        
+        .responsive-register {
+            overflow-y: scroll;
+            max-height: 49em;
+            
+        }
+        
+        
+        }
+        
+    @media only screen and (min-width: 768px) and ( max-width: 1728px) {
+    
+        
+        .responsive-register {
+            overflow-y: scroll;
+            max-height: 45em;
+            
+        }
+        
+        
+        }
