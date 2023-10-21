@@ -210,20 +210,8 @@ export const AllPostTuristic = () => {
      })
    }
   }; 
-  
  
  
-
-
-
-
-
-
-
-
-
-
-
  
 
 
@@ -231,7 +219,19 @@ export const AllPostTuristic = () => {
 
 
 
-/*  export const AllPostTuristic = () => {
+
+
+
+
+
+ 
+
+
+
+
+
+
+ /*  export const AllPostTuristic = () => {
  return async (dispach) => {
    const res = await axios.get('http://localhost:4000/turistic');
    const data = res.data.User
@@ -430,12 +430,14 @@ export const OnlyAllPost = () => {
 
 export const UserPostDetails = (idUser) => {
   return async (dispach) => {
-    const res = await axios.get(`http://localhost:4000/users/${idUser}`);
-    const data = res.data
+    const res = await axios.get(`http://localhost:4000/user/${idUser}`);
+    const data = res.data.UserDetails
     return dispach({
         type: "USER_POST",
         payload: data
     })
   }
- };  */
+ }; 
 
+
+ */
