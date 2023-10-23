@@ -4,6 +4,7 @@ import HostessPosts from '../components/Hostess/HostessPosts';
 import { useState, useEffect } from 'react';
 import BeatLoader from "react-loading";
 import './../Loading.scss';
+import NavbarHostess from '../components/Hostess/Navbar/Navbar';
 function Hostess() {
 
 
@@ -18,8 +19,7 @@ function Hostess() {
   return (
     <>
     <div>
-
-    <Header/>
+<NavbarHostess/>
     </div>
     {isLoading ? (
         <div className="loading-container">

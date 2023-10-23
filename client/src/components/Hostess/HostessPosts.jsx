@@ -1,192 +1,121 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { HostesstUser } from "../../redux/action";
+import React, { useState } from "react";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from "@ant-design/icons";
 import "./HostessPosts.scss";
-import Carousel from "react-bootstrap/Carousel";
-import Avatar from "@mui/material/Avatar";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import { DeletePost, OnlyAllPost } from "../../redux/action";
-import { Layout, Menu, theme } from "antd";
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from "@ant-design/icons";
+import { Layout, Menu, Button, theme } from "antd";
+import Start from "./Start/Start";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Sider, Content } = Layout;
 
-function HostessAdmin() {
-  const { idHostess } = useParams();
-  const navigate = useNavigate()
-  const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
-  const hostessuser = useSelector((state) => state.hostessuser);
-  const onlypost = useSelector((state) => state.onlypost);
-  const [showModal, setShowModal] = useState(false);
-  const [postIdToDelete, setPostIdToDelete] = useState(null);
+const App = () => {
+  const [collapsed, setCollapsed] = useState(false);
 
-console.log(hostessuser);
-
-  const handleEliminarClick = (postId) => {
-    setShowModal(true);
-    setPostIdToDelete(postId);
-  };
-
-  const handleCancelarClick = () => {
-    setShowModal(false);
-  };
-
-  const handleConfirmarEliminar = () => {
-    if (postIdToDelete) {
-      console.log("Eliminando publicación con postId:", postIdToDelete);
-      dispatch(DeletePost(postIdToDelete));
-      setShowModal(false); // Cierra el modal después de eliminar
-      window.location.reload(); // Recarga la página
-    }
-  };
-
-  useEffect(() => {
-    dispatch(HostesstUser(idHostess));
-    dispatch(OnlyAllPost());
-
-
-  }, [dispatch, idHostess]);
-
-
-
-  
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      
+    <Layout>
       <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
-        onBreakpoint={(broken) => {
-          console.log(broken);
-        }}
-        onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+        style={{
+          overflow: "auto",
+          height: "100vh",
+          left: 0,
+          bottom: 0,
+          background: "#f0f0f0", // Cambia este color al gris que desees
         }}
       >
         <div className="demo-logo-vertical" />
         <Menu
-          theme="dark"
-          mode="inline"
-          defaultSelectedKeys={["4"]}
-          items={[UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-            (icon, index) => ({
-              key: String(index + 1),
-              icon: React.createElement(icon),
-              label: `Publicaciones`,
-            })
-          )}
+          defaultSelectedKeys={["1"]}
+          className="menu-anfitrion"
+          items={[
+            {
+              key: "1",
+              className: "items-anfitrion",
+              label: "Inicio",
+              
+            },
+            {
+              key: "2",
+              className: "items-anfitrion",
+              label: "Mi sitio"
+            },
+            {
+              key: "3",
+              className: "items-anfitrion",
+              label: "Reservaciones",
+            },
+            {
+              key: "4",
+              className: "items-anfitrion",
+              label: "Datos de factorización",
+            },
+            {
+              key: "5",
+              className: "items-anfitrion",
+              label: "Historial de reservas",
+              href: "#5"
+            },
+            {
+              key: "6",
+              className: "items-anfitrion",
+              label: "Reclamos",
+            },
+            {
+              key: "7",
+              className: "items-anfitrion",
+              label: "Comentarios",
+            },
+            {
+              key: "8",
+              className: "items-anfitrion",
+              label: "Historial de reservas",
+            },
+          ]}
         />
       </Sider>
-      <Layout>
-        <Content
+      <Layout
+        style={{
+          background: "#fff",
+        }}
+      >
+        <Header
           style={{
-            margin: "24px 16px 0",
+            padding: 0,
+            background: "#fff",
           }}
         >
-          <div
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
             style={{
-              padding: 24,
-              minHeight: "100%", // Establecer la altura del contenido al 100%
+              fontSize: "16px",
+              width: 64,
+              height: 64,
             }}
-          >
-              <div className="cards-flex">
-                {hostessuser.Posts &&
-                  hostessuser.Posts.map((data, dataIndex) => (
-                    <div key={dataIndex} className="cards-anfitrion">
-                      <Carousel interval={null} className="swiper-container">
-                        {data.imageFile.map((imageSrc, imageIndex) => (
-                          <Carousel.Item key={imageIndex} className="text-link ">
-                            <img src={imageSrc} alt={imageSrc} className="card-img" />
-                          </Carousel.Item>
-                        ))}
-                      </Carousel>
-
-                      <div className="card-info-flex">
-                      {data.title.split(' ').length > 2 ? (
-                                <h3 className="card-title">
-                                  {data.title.split(' ').slice(0, 2).join(' ')}...
-                                </h3>
-                              ) : (
-                                <h3 className="card-title">{data.title}</h3>
-                              )}
-                        <div>
-                          <Avatar
-                            sx={{
-                              width: 32,
-                              height: 32,
-                            }}
-                          >
-                            {hostessuser.name && hostessuser.name[0].toUpperCase()}
-                          </Avatar>
-                        </div>
-                      </div>
-                
-                      {data.price ? (
-                        <p
-                          className="stay-price"
-                          style={{
-                            margin: "0.2rem",
-                            fontSize: "1rem",
-                            color: "var(--black)",
-                          }}
-                        >
-                          <span style={{ fontWeight: "600" }}>${data.price}</span> {data.stay}
-                        </p>
-                      ) : (
-                        <p
-                          className="stay-price"
-                          style={{
-                            margin: "0.2rem",
-                            fontSize: "1rem",
-                            color: "var(--black)",
-                          }}
-                        >
-                          <span style={{ fontWeight: "600", marginLeft:'10px' }}>Gratis</span> {data.people}
-                        </p>
-                        
-                      )}
-                         
-
-                      <div className="button-container">
-                        <Button variant="primary">Actualizar</Button>
-                        <Button variant="danger" onClick={() => handleEliminarClick(data.id)}>
-                          Eliminar
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-              </div>
-         
-            {/* Modal de Confirmación */}
-            <Modal show={showModal} onHide={handleCancelarClick}>
-              <Modal.Header closeButton>
-                <Modal.Title>Confirmar Eliminación</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>¿Estás seguro de que deseas eliminar esta publicación?</Modal.Body>
-              <Modal.Footer>
-                <Button variant="primary" onClick={handleCancelarClick}>
-                  Cancelar
-                </Button>
-                <Button variant="danger" onClick={handleConfirmarEliminar}>
-                  Eliminar
-                </Button>
-              </Modal.Footer>
-            </Modal>
-          </div>
-        </Content>
-        <Footer
+          />
+        </Header>
+        <Content
+        id="5"
           style={{
-            textAlign: "center",
+            margin: "24px 16px",
+            padding: 24,
+            minHeight: 280,
+            background: "#fff",
           }}
         >
-          Aca tengo que realizar el footer
-        </Footer>
+         
+ <Start/>
+
+        </Content>
       </Layout>
     </Layout>
   );
-}
-
-export default HostessAdmin;
+};
+export default App;

@@ -1,0 +1,13 @@
+.start-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 25em);
+width: 60%;
+margin: 0 auto;
+gap: 5em;
+  }
+  
+  .start-img h2{
+    text-align: center;
+    color: #8B008B;
+  }
+  
