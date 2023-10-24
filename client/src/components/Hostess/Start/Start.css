@@ -1,13 +1,23 @@
 .start-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 25em);
-width: 60%;
-margin: 0 auto;
-gap: 5em;
-  }
-  
-  .start-img h2{
-    text-align: center;
-    color: #8B008B;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 20em);
+  width: 100%;
+  gap: 5em;
+}
+
+.start-img h2 {
+  text-align: center;
+  color: #8b008b;
+}
+
+.menu-anfitrion:active {
+  background: none;
+}
+
+.avatar-anfitrion {
+  display: flex;
+  margin-bottom: 10%;
+  margin-left: 2%;
+  gap: 10%;
+  margin-top: 10%;
+}

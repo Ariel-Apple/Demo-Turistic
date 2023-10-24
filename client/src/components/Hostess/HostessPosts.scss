@@ -70,7 +70,18 @@
 
 }
 
+#menu-left {
+    background: #f0f0f0;
+    height: 100vh;
+    left: 0;
+    bottom: 0;
+    overflow: auto;
+}
 
+#close-sesion:hover {
+ color: #8B008B;
+ border-color: #8B008B;
+}
 
 @media screen and (max-width: 20px) {
     .hostess-swiper{
