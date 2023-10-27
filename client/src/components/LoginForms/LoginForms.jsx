@@ -19,6 +19,8 @@ export default function LoginForms({setIsModalOpen}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
+  console.log(token);
+
   const loginError = useSelector((state) => state.loginError);
   const [fullscreen, setFullscreen] =React.useState(true);
 
@@ -55,7 +57,9 @@ export default function LoginForms({setIsModalOpen}) {
   useEffect(() => {
   
     if (token) {
-      navigate("/");
+        
+        navigate("/perro");
+        
     } else if (loginError) {
       alert(
         "El correo y la contraseña no coinciden, por favor inténtelo de nuevo."

@@ -13,7 +13,7 @@ function Hostess() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false); // Cambiar el estado a "false" después de cierto tiempo
-    }, 1000);
+    }, 2000);
   }, []);
 
   return (

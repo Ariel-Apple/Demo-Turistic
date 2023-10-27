@@ -6,6 +6,7 @@ import { Layout, Menu, Button } from "antd";
 import Start from "./Start/Start";
 import { useSelector, useDispatch } from "react-redux";
 import { dataPersonal } from "../../redux/action";
+import Mywebsite from "./Mywebsite/Mywebsite";
 
 const { Header, Sider, Content } = Layout;
 
@@ -15,10 +16,25 @@ const App = () => {
 
   const datapersonal = useSelector((state) => state.datapersonal);
   const token = useSelector((state) => state.token);
-  console.log(datapersonal);
+  const [start, setStart] = useState(true);
+  const [myWebSite, setMyWebSite] = useState(false);
+
+
+
+
   useEffect(() => {
     dispatch(dataPersonal(token));
   }, [token]);
+
+  const handleStart = (e) => {
+    setMyWebSite(false)
+    setStart(true)
+  }
+
+  const handleMyWebSite = (e) => {
+    setStart(false)
+    setMyWebSite(true)
+  }
 
   return (
     <Layout>
@@ -71,11 +87,15 @@ const App = () => {
               key: "1",
               className: "items-anfitrion",
               label: "Inicio",
+              value: start,
+              onClick: handleStart
             },
             {
               key: "2",
               className: "items-anfitrion",
               label: "Mi sitio",
+              value: myWebSite,
+              onClick: handleMyWebSite
             },
             {
               key: "3",
@@ -133,18 +153,35 @@ const App = () => {
             }}
           />
         </Header>
-        <Content
-          id="5"
+        {start && (
+
+          <Content
+          key="1"
           style={{
             margin: "24px 16px",
             padding: 24,
             minHeight: 280,
             background: "#fff",
-            marginTop: "-10em",
+            marginTop: "-8em",
           }}
         >
           <Start />
         </Content>
+            )}
+
+            {myWebSite && (
+                      <Content
+                      key="2"
+                      style={{
+                        margin: "24px 16px",
+                        padding: 24,
+                        minHeight: 280,
+                        background: "#fff",
+                      }}
+                    >
+                      <Mywebsite/>
+                    </Content>
+            )}
       </Layout>
     </Layout>
   );

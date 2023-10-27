@@ -7,7 +7,7 @@ function BrandExample() {
 
       <Navbar className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
             srcSet={require('../../../assets/logo/Nudo.png')}
               alt="Not found"

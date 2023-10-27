@@ -1,6 +1,6 @@
 .start-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 20em);
+  grid-template-columns: repeat(auto-fit, 25em);
   width: 100%;
   gap: 5em;
 }
@@ -20,4 +20,12 @@
   margin-left: 2%;
   gap: 10%;
   margin-top: 10%;
+}
+
+
+@media  screen and (min-width: 1024px) and (max-width: 1440px) {
+  .start-container {
+    grid-template-columns: repeat(auto-fit, 15em);
+   
+  }
 }

@@ -407,7 +407,7 @@ export default function BasicMenu() {
               <div>
 
 
-                <Link to={'/anfitrion/' + datapersonal.id}>
+                <Link to='/anfitrion' >
                   <MenuItem className="menu-items" onClick={handleClose}>
                     Modo anfitrión
                   </MenuItem>

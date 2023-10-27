@@ -1,8 +1,16 @@
+import { useEffect, useState } from "react";
 import "./Start.css";
 
 export default function Start() {
+
+
+
+
     return(
-        <div className="start-container">
+
+        <>
+
+            <div className="start-container">
             <div className="start-img">
                 <img srcSet={require('../../../assets/images/mi-sitio.png')} alt="Not found" />
                 <h2>Mi sitio</h2>
@@ -29,5 +37,7 @@ export default function Start() {
             </div>
 
         </div>
+        </>
+
     )
 }

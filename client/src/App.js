@@ -29,7 +29,7 @@ function App() {
         <Route exact path='/account-settings/payment-methods' element={<PaymentUser />} />
         <Route exact path='/public' element={<TuristicPost />} />
         <Route exact path='/user/show' element={<Profile />} />
-        <Route exact path='/anfitrion/:idHostess' element={<Hostess />} />
+        <Route exact path='/anfitrion' element={<Hostess />} />
         <Route exact path='/preregister' element={<PreRegister/>} />
         <Route exact path='/public/profile' element={<ProfilePublic/>} />
 

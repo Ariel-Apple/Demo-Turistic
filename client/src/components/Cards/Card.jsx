@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Cards.scss";
-import StarRateRoundedIcon from "@mui/icons-material/StarRateRounded";
-import { Link, useParams } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import Avatar from "@mui/material/Avatar";
 import Box from "@mui/material/Box";
@@ -9,9 +7,6 @@ import Skeleton from "@mui/material/Skeleton";
 import Grid from "@mui/material/Grid";
 import { useSelector, useDispatch } from "react-redux";
 import { AllPostTuristic, dataPersonal } from "../../redux/action";
-import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 function Card() {
   const [isLoading, setIsLoading] = useState(true);
