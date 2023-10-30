@@ -1,0 +1,112 @@
+.container-updatePublic {
+    display: flex;
+    gap: 0.3em;
+    justify-content: center;
+}
+.card-container {
+    background: white;
+
+}
+.card-update {
+    display: grid;
+    
+}
+.card-image {
+    display: grid;
+    justify-content: center;
+    width: 70em;
+    background: white;
+    text-align: center;
+}
+.title-subtitle {
+    display: grid;
+    gap: 2em;
+
+}
+
+.title {
+    font-weight: 700;
+    font-size: 3em;
+
+}
+.sub-title {
+    font-weight: 700;
+    font-size: 2em;
+    color: gray;
+
+}
+
+.img-update{
+    width: 30em;
+    height: 30em;
+    border-radius: 4em;
+    margin-top: 4em;
+    object-fit: cover;
+}
+
+.btn-icons {
+    display: flex;
+    gap: 1em;
+    margin-top: 2em;
+    justify-content: center;
+}
+
+#icons-reload {
+   font-size: 3em;
+}
+
+.direction {
+    font-weight: 700;
+    font-size: 2.2em;
+}
+
+.container-direction {
+    margin-top: 0.3em;
+    display: grid;
+    justify-content: center;
+    background: white;
+    padding: 2rem;
+}
+.card-direction{
+    padding: 14px;
+}
+.publication-btn {
+    display: flex;
+    justify-content: flex-end;
+
+}
+#go-btn{
+    font-size: 1.5em;
+}
+
+.publication-btn button{
+    background-color: #8B008B;
+    border-color: #8B008B;
+    width: 20em;
+
+}
+.publication-btn button:hover{
+    background-color: #8B008B;
+
+}
+.accordion-container{
+    display: grid;
+    gap: 3em;
+    padding: 2em;
+}
+.accordion{
+    width: 30em;
+}
+
+  .accordion-bg {
+    background: white;
+    width: 100%;
+
+  }
+ .slide-container {
+ }
+  .card-calendar {
+    height: 10em;
+    width: 5em;
+  }
+

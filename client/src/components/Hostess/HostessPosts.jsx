@@ -20,21 +20,21 @@ const App = () => {
   const [myWebSite, setMyWebSite] = useState(false);
 
 
-
-
   useEffect(() => {
     dispatch(dataPersonal(token));
   }, [token]);
 
   const handleStart = (e) => {
-    setMyWebSite(false)
-    setStart(true)
-  }
+    setMyWebSite(false);
+    setStart(true);
+  };
 
   const handleMyWebSite = (e) => {
-    setStart(false)
-    setMyWebSite(true)
-  }
+    setStart(false);
+    setMyWebSite(true);
+  };
+
+ 
 
   return (
     <Layout>
@@ -44,7 +44,6 @@ const App = () => {
         collapsed={collapsed}
         id="menu-left"
         width={400}
-        
       >
         <div className="avatar-anfitrion">
           <div>
@@ -74,9 +73,7 @@ const App = () => {
               {datapersonal.name} {datapersonal.lastName}
             </p>
             <p>{datapersonal.email}</p>
-            <Button id="close-sesion" >
-      Cerrar sesión
-    </Button>
+            <Button id="close-sesion">Cerrar sesión</Button>
           </div>
         </div>
         <Menu
@@ -88,14 +85,14 @@ const App = () => {
               className: "items-anfitrion",
               label: "Inicio",
               value: start,
-              onClick: handleStart
+              onClick: handleStart,
             },
             {
               key: "2",
               className: "items-anfitrion",
               label: "Mi sitio",
               value: myWebSite,
-              onClick: handleMyWebSite
+              onClick: handleMyWebSite,
             },
             {
               key: "3",
@@ -154,34 +151,30 @@ const App = () => {
           />
         </Header>
         {start && (
-
           <Content
-          key="1"
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: "#fff",
-            marginTop: "-8em",
-          }}
-        >
-          <Start />
-        </Content>
-            )}
+            key="1"
+            style={{
+              margin: "24px 16px",
+              padding: 24,
+              minHeight: 280,
+              background: "#fff",
+              marginTop: "-8em",
+            }}
+          >
+            <Start />
+          </Content>
+        )}
 
-            {myWebSite && (
-                      <Content
-                      key="2"
-                      style={{
-                        margin: "24px 16px",
-                        padding: 24,
-                        minHeight: 280,
-                        background: "#fff",
-                      }}
-                    >
-                      <Mywebsite/>
-                    </Content>
-            )}
+        {myWebSite && (
+          <Content
+            key="2"
+            style={{
+              background: "#d5d5d5",
+            }}
+          >
+            <Mywebsite />
+          </Content>
+        )}
       </Layout>
     </Layout>
   );
