@@ -13,7 +13,6 @@ import Accordion from "react-bootstrap/Accordion";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
-
 function Mywebsite() {
   const dispatch = useDispatch();
   const datapersonal = useSelector((state) => state.datapersonal);
@@ -181,11 +180,8 @@ function Mywebsite() {
 
               <div className="publication-btn">
                 <Button>
-                  <span id="go-btn">
-
-                  Ir a publicación
-                  </span>
-                  </Button>
+                  <span id="go-btn">Ir a publicación</span>
+                </Button>
               </div>
             </div>
           </div>
@@ -204,7 +200,7 @@ function Mywebsite() {
                   mollit anim id est laborum.
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item eventKey="1">
+              <Accordion.Item className="accordion" eventKey="1">
                 <Accordion.Header>Descripción</Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -217,7 +213,7 @@ function Mywebsite() {
                   mollit anim id est laborum.
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item eventKey="2">
+              <Accordion.Item className="accordion" eventKey="2">
                 <Accordion.Header>Capacidad de personas</Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -230,7 +226,7 @@ function Mywebsite() {
                   mollit anim id est laborum.
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item eventKey="3">
+              <Accordion.Item className="accordion" eventKey="3">
                 <Accordion.Header>Cuenta con:</Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -243,7 +239,7 @@ function Mywebsite() {
                   mollit anim id est laborum.
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item eventKey="4">
+              <Accordion.Item className="accordion" eventKey="4">
                 <Accordion.Header>Políticas del lugar</Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -256,45 +252,49 @@ function Mywebsite() {
                   mollit anim id est laborum.
                 </Accordion.Body>
               </Accordion.Item>
-            <Card style={{ width: 300, fontSize: 15, fontWeight: 700 }}>
-                  <p>
-                  Fecha y horario del sitio:
-
-                  </p>
-                </Card>
-            <div className="slide-container">
-            <Splide
-        options={{
-          type: "slide", // Tipo de transición (slide)
-          perPage: 1, // Número de elementos a mostrar en un slide
-          perMove: 1, // Número de elementos a mover en cada transición
-          pagination: false,
-        }}
-        >
-        <SplideSlide style={{ display: 'flex', justifyContent:'center', gap: '1em' }}>
-        <Card className="card-calendar">
-                  <p>
-                asdasd
-
-                  </p>
-                </Card>
+              <Card style={{ width: 300, fontSize: 15, fontWeight: 700 }}>
+                <p>Fecha y horario del sitio:</p>
+              </Card>
+              <div className="slide-container">
+                <Splide
+                  options={{
+                    type: "slide", // Tipo de transición (slide)
+                    perPage: 1, // Número de elementos a mostrar en un slide
+                    perMove: 1, // Número de elementos a mover en cada transición
+                    pagination: false,
+                  }}
+                >
+                  <SplideSlide
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "1em",
+                    }}
+                  >
+                    <Card className="card-calendar">
+                      <p>lun</p>
+                      <p>10</p>
+                      <p>oct</p>
+                    </Card>
+                    <Card className="card-calendar">
+                      <p>mar</p>
+                      <p>10</p>
+                      <p>oct</p>
+                    </Card>
+                    <Card className="card-calendar">
+                      <p>mié</p>
+                      <p>10</p>
+                      <p>oct</p>
+                    </Card>
+                  </SplideSlide>
+                </Splide>
                 <Card className="card-calendar">
-                  <p>
-                asdasd
-
-                  </p>
+                  <p>Ver todas las fechas</p>
                 </Card>
-                <Card className="card-calendar">
-                  <p>
-                asdasd
-
-                  </p>
-                </Card>
-        </SplideSlide>
-
-      </Splide>
-
-            </div>
+              </div>
+              <div>
+                <input type="num" />
+              </div>
             </Accordion>
           </div>
         </div>

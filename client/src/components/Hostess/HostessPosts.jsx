@@ -77,54 +77,39 @@ const App = () => {
           </div>
         </div>
         <Menu
-          defaultSelectedKeys={["1"]}
           className="menu-anfitrion"
           items={[
             {
-              key: "1",
               className: "items-anfitrion",
               label: "Inicio",
               value: start,
               onClick: handleStart,
             },
             {
-              key: "2",
               className: "items-anfitrion",
               label: "Mi sitio",
               value: myWebSite,
               onClick: handleMyWebSite,
             },
             {
-              key: "3",
               className: "items-anfitrion",
               label: "Reservaciones",
             },
+        
             {
-              key: "4",
-              className: "items-anfitrion",
-              label: "Datos de facturación",
-            },
-            {
-              key: "5",
               className: "items-anfitrion",
               label: "Historial de reservas",
               href: "#5",
             },
             {
-              key: "6",
               className: "items-anfitrion",
               label: "Reclamos",
             },
             {
-              key: "7",
               className: "items-anfitrion",
               label: "Comentarios",
             },
-            {
-              key: "8",
-              className: "items-anfitrion",
-              label: "Historial de reservas",
-            },
+        
           ]}
         />
       </Sider>
@@ -154,11 +139,10 @@ const App = () => {
           <Content
             key="1"
             style={{
-              margin: "24px 16px",
               padding: 24,
               minHeight: 280,
               background: "#fff",
-              marginTop: "-8em",
+              marginTop: "-5em",
             }}
           >
             <Start />

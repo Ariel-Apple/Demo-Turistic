@@ -3,13 +3,36 @@
   grid-template-columns: repeat(auto-fit, 25em);
   width: 100%;
   gap: 5em;
+  justify-content: center;
 }
 
+.start-img {
+  padding: 3em;
+}
+.start-comment {
+  padding: 3em;
+}
+.start-img:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 4px rgb(213, 213, 213);
+  border-radius: 1em;
+}
+.start-comment:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 4px rgb(213, 213, 213);
+  border-radius: 1em;
+}
 .start-img h2 {
   text-align: center;
   color: #8b008b;
+  margin-top: -2em;
 }
 
+.start-comment h2 {
+  text-align: center;
+  color: #8b008b;
+  margin-top: -3em;
+}
 .menu-anfitrion:active {
   background: none;
 }
@@ -28,4 +51,12 @@
     grid-template-columns: repeat(auto-fit, 15em);
    
   }
+  .start-img h2 {
+
+    margin-top: 0em;
+  } 
+  .start-comment h2 {
+
+    margin-top: 0em;
+  } 
 }

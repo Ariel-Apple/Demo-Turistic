@@ -1,11 +1,12 @@
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import './Navbar.css';
 
 function BrandExample() {
   return (
     <>
 
-      <Navbar className="bg-body-tertiary">
+      <Navbar className="bg-navbar">
         <Container>
           <Navbar.Brand href="/">
             <img

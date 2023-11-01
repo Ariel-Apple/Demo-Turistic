@@ -45,35 +45,68 @@
 }
 
 .menu-anfitrion {
-    background: #f0f0f0 ;
+    background: #F8F9FA ;
     color: black;
     display: grid;
     gap: 1rem;
+
 }
+
+.items-anfitrion{
+    font-size: 1.8em;
+    background-color: #F8F9FA ;
+
+    user-select: none; 
+
+}
+:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light .ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light > .ant-menu .ant-menu-item-selected {
+    background-color: #F8F9FA ;
+}
+
+/* Cambiar el color del texto al seleccionar un elemento */
+:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light .ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light > .ant-menu .ant-menu-item-selected {
+    color: #8B008B;
+    background-color: #F8F9FA;
+
+}
+
+
 
 .items-anfitrion:hover {
     color: #8B008B;
-    background: #f0f0f0 ;
-
-}
-.items-anfitrion:focus {
-    color: #8B008B;
-    background: #f0f0f0 ;
+    background: #F8F9FA;
 
 }
 .items-anfitrion:active {
     color: #8B008B;
-    background: #f0f0f0 ;
+    background: none; 
 
 }
 .items-anfitrion::after {
     color: #8B008B;
-    background: #f0f0f0 ;
+    background: #F8F9FA ;
+
+}
+.items-anfitrion:focus {
+    color: #8B008B;
+    background: #F8F9FA ;
+
+}
+.items-anfitrion:active {
+    color: #8B008B;
+    background: #F8F9FA ;
+
+}
+.items-anfitrion::after {
+    color: #8B008B;
+    background: #F8F9FA ;
 
 }
 
 #menu-left {
-    background: #f0f0f0;
+    background: #F8F9FA;
     height: 100vh;
     left: 0;
     bottom: 0;
