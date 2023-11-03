@@ -7,7 +7,7 @@ import Start from "./Start/Start";
 import { useSelector, useDispatch } from "react-redux";
 import { dataPersonal } from "../../redux/action";
 import Mywebsite from "./Mywebsite/Mywebsite";
-
+import { Link, Outlet } from "react-router-dom";
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
@@ -18,7 +18,6 @@ const App = () => {
   const token = useSelector((state) => state.token);
   const [start, setStart] = useState(true);
   const [myWebSite, setMyWebSite] = useState(false);
-
 
   useEffect(() => {
     dispatch(dataPersonal(token));
@@ -33,8 +32,6 @@ const App = () => {
     setStart(false);
     setMyWebSite(true);
   };
-
- 
 
   return (
     <Layout>
@@ -76,42 +73,22 @@ const App = () => {
             <Button id="close-sesion">Cerrar sesión</Button>
           </div>
         </div>
-        <Menu
-          className="menu-anfitrion"
-          items={[
-            {
-              className: "items-anfitrion",
-              label: "Inicio",
-              value: start,
-              onClick: handleStart,
-            },
-            {
-              className: "items-anfitrion",
-              label: "Mi sitio",
-              value: myWebSite,
-              onClick: handleMyWebSite,
-            },
-            {
-              className: "items-anfitrion",
-              label: "Reservaciones",
-            },
-        
-            {
-              className: "items-anfitrion",
-              label: "Historial de reservas",
-              href: "#5",
-            },
-            {
-              className: "items-anfitrion",
-              label: "Reclamos",
-            },
-            {
-              className: "items-anfitrion",
-              label: "Comentarios",
-            },
-        
-          ]}
-        />
+        <div>
+          <ul className="menu-anfitrion">
+            <Link to="/anfitrion/inicio">
+              <li className="items-anfitrion" key="Inicio">Inicio</li>
+            </Link>
+            <Link to="/anfitrion/mywebsite">
+              <li className="items-anfitrion">Mi sitio</li>
+            </Link>
+
+            <li className="items-anfitrion">Reservaciones</li>
+
+            <li className="items-anfitrion">Historial de reservas</li>
+            <li className="items-anfitrion">Reclamos</li>
+            <li className="items-anfitrion">Comentarios</li>
+          </ul>
+        </div>
       </Sider>
       <Layout
         style={{
@@ -135,8 +112,7 @@ const App = () => {
             }}
           />
         </Header>
-        {start && (
-          <Content
+        <Content
             key="1"
             style={{
               padding: 24,
@@ -145,20 +121,8 @@ const App = () => {
               marginTop: "-5em",
             }}
           >
-            <Start />
-          </Content>
-        )}
-
-        {myWebSite && (
-          <Content
-            key="2"
-            style={{
-              background: "#d5d5d5",
-            }}
-          >
-            <Mywebsite />
-          </Content>
-        )}
+          <Outlet /> {/* Agrega el componente Outlet para mostrar rutas secundarias */}
+        </Content>
       </Layout>
     </Layout>
   );

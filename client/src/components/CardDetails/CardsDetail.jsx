@@ -127,7 +127,7 @@ export default function CardDetails() {
               <Image.PreviewGroup key={index} items={[{ src: img }]}>
                 <div>
                   <Image
-                    srcset={img}
+                    src={img}
                     alt={`Imagen ${index + 1}`}
                     width="100%"
                     height="50vh"

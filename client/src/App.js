@@ -13,6 +13,9 @@ import Profile from './pages/Profile';
 import Hostess from './pages/Hostess';
 import PreRegister from './pages/PreRegister';
 import ProfilePublic from './pages/ProfilePublic'
+import DetailPost from './components/Hostess/DetailPost/DetailPost';
+import Start from './components/Hostess/Start/Start';
+import Mywebsite from './components/Hostess/Mywebsite/Mywebsite';
 
 
 function App() {
@@ -29,14 +32,20 @@ function App() {
         <Route exact path='/account-settings/payment-methods' element={<PaymentUser />} />
         <Route exact path='/public' element={<TuristicPost />} />
         <Route exact path='/user/show' element={<Profile />} />
-        <Route exact path='/anfitrion' element={<Hostess />} />
-        <Route exact path='/preregister' element={<PreRegister/>} />
-        <Route exact path='/public/profile' element={<ProfilePublic/>} />
+     
+        <Route exact path='/preregister' element={<PreRegister />} />
+        <Route exact path='/public/profile' element={<ProfilePublic />} />
 
 
         <Route exact path='/test' element={<Test />} />
-      </Routes>
+      <Route path="/anfitrion" element={<Hostess />}>
+          <Route index element={<Start />} />
+          <Route path="inicio" element={<Start />} />
+          <Route path="mywebsite" element={<Mywebsite />} />
+          <Route path="mywebsite/:idTuristic" element={<DetailPost />} />
 
+        </Route>
+      </Routes>
     </Router>
   );
 }

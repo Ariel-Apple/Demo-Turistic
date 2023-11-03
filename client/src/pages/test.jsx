@@ -1,17 +1,42 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Editable, EditablePreview, EditableInput, useEditableControls } from "@chakra-ui/react";
+import { IconButton, Flex, ButtonGroup } from "@chakra-ui/react";
+import { CheckIcon, CloseIcon, EditIcon } from "@chakra-ui/icons";
+import { Input } from "@chakra-ui/react"; 
 
-function WithHeaderStyledExample() {
+
+export default function Test() {
+  /* Here's a custom control */
+  function EditableControls() {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getCancelButtonProps,
+      getEditButtonProps,
+    } = useEditableControls()
+
+    return isEditing ? (
+      <ButtonGroup justifyContent='center' size='sm'>
+        <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
+        <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
+      </ButtonGroup>
+    ) : (
+      <Flex justifyContent='center'>
+        <IconButton size='sm' icon={<EditIcon />} {...getEditButtonProps()} />
+      </Flex>
+    )
+  }
+
   return (
-    <Card>
-      <Card.Header as="h5">Sobre mi</Card.Header>
-      <Card.Body>
-        <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
-        </Card.Text>
-      </Card.Body>
-    </Card>
-  );
+    <Editable
+      textAlign='center'
+      defaultValue='Rasengan ⚡️'
+      fontSize='2xl'
+      isPreviewFocusable={false}
+    >
+      <EditablePreview />
+      {/* Here is the custom input */}
+      <Input as={EditableInput} />
+      <EditableControls />
+    </Editable>
+  )
 }
-
-export default WithHeaderStyledExample;
