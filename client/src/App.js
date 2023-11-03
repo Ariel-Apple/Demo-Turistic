@@ -16,6 +16,7 @@ import ProfilePublic from './pages/ProfilePublic'
 import DetailPost from './components/Hostess/DetailPost/DetailPost';
 import Start from './components/Hostess/Start/Start';
 import Mywebsite from './components/Hostess/Mywebsite/Mywebsite';
+import Reservations from './components/Hostess/Reservations/Reservations';
 
 
 function App() {
@@ -41,8 +42,9 @@ function App() {
       <Route path="/anfitrion" element={<Hostess />}>
           <Route index element={<Start />} />
           <Route path="inicio" element={<Start />} />
-          <Route path="mywebsite" element={<Mywebsite />} />
-          <Route path="mywebsite/:idTuristic" element={<DetailPost />} />
+          <Route path="mi sitio" element={<Mywebsite />} />
+          <Route path="mi sitio/:idTuristic" element={<DetailPost />} />
+          <Route path="reservaciones" element={<Reservations />} />
 
         </Route>
       </Routes>

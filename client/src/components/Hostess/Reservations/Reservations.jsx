@@ -68,7 +68,7 @@ const getMonthData = (value) => {
     return 1394;
   }
 };
-const App = () => {
+const Reservations = () => {
   const monthCellRender = (value) => {
     const num = getMonthData(value);
     return num ? (
@@ -97,4 +97,4 @@ const App = () => {
   };
   return <Calendar cellRender={cellRender} />;
 };
-export default App;
+export default Reservations;

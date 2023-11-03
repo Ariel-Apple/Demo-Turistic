@@ -78,11 +78,13 @@ const App = () => {
             <Link to="/anfitrion/inicio">
               <li className="items-anfitrion" key="Inicio">Inicio</li>
             </Link>
-            <Link to="/anfitrion/mywebsite">
+            <Link to="/anfitrion/mi sitio">
               <li className="items-anfitrion">Mi sitio</li>
             </Link>
-
+            <Link to="/anfitrion/reservaciones">
+     
             <li className="items-anfitrion">Reservaciones</li>
+            </Link>
 
             <li className="items-anfitrion">Historial de reservas</li>
             <li className="items-anfitrion">Reclamos</li>
@@ -118,7 +120,6 @@ const App = () => {
               padding: 24,
               minHeight: 280,
               background: "#fff",
-              marginTop: "-5em",
             }}
           >
           <Outlet /> {/* Agrega el componente Outlet para mostrar rutas secundarias */}
