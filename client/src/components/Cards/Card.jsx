@@ -66,7 +66,7 @@ function Card() {
     : 0;
 
   return (
-    <div className="card-container">
+    <div className="card-container-post">
       {isLoading ? (
         <Grid className="loading-skeleton">
           {Array.from(new Array(totalLength)).map((item, index) => (
