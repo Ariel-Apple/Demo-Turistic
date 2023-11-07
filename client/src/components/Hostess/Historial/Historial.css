@@ -1,0 +1,39 @@
+
+.card-container {
+    padding: 15px;
+    margin-top: -5%;
+
+}
+.months-years {
+    display: flex;
+    gap: 5em;
+}
+.carrusel-months {
+  border-width: 0.2rem;
+  border-color: #cecece;
+  padding: 15px;
+  margin-top: 2%;
+  width: 8%;
+}
+
+.days-month {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.input-months {
+    padding: 15px;
+    margin-top: 2%;
+}
+
+.card2 {
+    padding: 15px;
+
+    margin-top: 1em;
+}
+.box-card2{
+    display: flex;
+    gap: 15em;
+
+}

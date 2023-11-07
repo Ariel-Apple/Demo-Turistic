@@ -36,9 +36,9 @@ const App = () => {
   return (
     <Layout>
       <Sider
-        trigger={null}
+   /*      trigger={null}
         collapsible
-        collapsed={collapsed}
+        collapsed={collapsed} */
         id="menu-left"
         width={400}
       >
@@ -85,8 +85,12 @@ const App = () => {
      
             <li className="items-anfitrion">Reservaciones</li>
             </Link>
+            
+            <Link to="/anfitrion/historial de reservas">
 
             <li className="items-anfitrion">Historial de reservas</li>
+            </Link>
+
             <li className="items-anfitrion">Reclamos</li>
             <li className="items-anfitrion">Comentarios</li>
           </ul>
@@ -103,7 +107,7 @@ const App = () => {
             background: "#fff",
           }}
         >
-          <Button
+      {/*     <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
@@ -112,7 +116,7 @@ const App = () => {
               width: 64,
               height: 64,
             }}
-          />
+          /> */}
         </Header>
         <Content
             key="1"

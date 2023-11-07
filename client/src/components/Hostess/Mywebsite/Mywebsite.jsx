@@ -37,7 +37,7 @@ function Mywebsite() {
                 <Carousel interval={null} className="swiper-container">
                   {data.imageFile.map((imageSrc, imageIndex) => (
                     <Carousel.Item key={imageIndex}>
-                          <Link to={`/anfitrion/mywebsite/${data.id}`}>
+                          <Link to={`/anfitrion/mi sitio/${data.id}`}>
 
 
                       <div className="image-container">

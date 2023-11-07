@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.1",
     "@emotion/react": "^11.11.1",
@@ -62,6 +63,7 @@
     "react-spinners": "^0.13.8",
     "react-spring": "^9.7.2",
     "react-swipeable-views": "^0.14.0",
+    "react-virtuoso": "^4.6.2",
     "reactstrap": "^9.2.0",
     "recharts": "^2.8.0",
     "redux": "^4.2.1",

@@ -4,7 +4,7 @@ import "./Start.css";
 export default function Start() {
   return (
     <div className="start-container" id='Inicio'>
-      <Link to="/anfitrion/mywebsite">
+      <Link to="/anfitrion/mi sitio">
       <div className="start-img">
         <img
           srcSet={require("../../../assets/images/mi-sitio.png")}
