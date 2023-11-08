@@ -39,9 +39,9 @@ export default function DetailPost() {
   }
   const showDeleteConfirm = () => {
     confirm({
-      title: 'Are you sure delete this task?',
+      title: 'Seguro que quieres eliminar tu publicación?',
       icon: <ExclamationCircleFilled />,
-      content: 'Some descriptions',
+      content: '',
       okText: 'Yes',
       okType: 'danger',
       cancelText: 'No',
