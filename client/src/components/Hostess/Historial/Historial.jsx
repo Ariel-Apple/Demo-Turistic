@@ -15,7 +15,9 @@ import Paper from "@mui/material/Paper";
 import { TableVirtuoso } from "react-virtuoso";
 import { ArrowsAltOutlined } from "@ant-design/icons";
 import { DatePicker, Space } from "antd";
-
+import { UserOutlined } from '@ant-design/icons';
+import { AutoComplete, Input } from 'antd';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 const sample = [
     ["Frozen yoghurt", 159, 6.0, 24, 4.0],
@@ -164,7 +166,56 @@ const sample = [
       </>
     );
   }
+
+  const renderTitle = (title) => (
+    <span>
+      {title}
+      <a
+        style={{
+          float: 'right',
+        }}
+        href="https://www.google.com/search?q=antd"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        more
+      </a>
+    </span>
+  );
+  const renderItem = (title, count) => ({
+    value: title,
+    label: (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        {title}
+        <span>
+          <UserOutlined /> {count}
+        </span>
+      </div>
+    ),
+  });
+  const options = [
+    {
+      label: renderTitle('Libraries'),
+      options: [renderItem('AntDesign', 10000), renderItem('AntDesign UI', 10600)],
+    },
+    {
+      label: renderTitle('Solutions'),
+      options: [renderItem('AntDesign UI FAQ', 60100), renderItem('AntDesign FAQ', 30010)],
+    },
+    {
+      label: renderTitle('Articles'),
+      options: [renderItem('AntDesign design language', 100000)],
+    },
+  ];
 function Historial() {
+  const mockVal = (str, repeat = 1) => ({
+    value: str.repeat(repeat),
+  });
   return (
 <>
     <Card className='card-container'>
@@ -177,9 +228,17 @@ function Historial() {
           <div className="carrusel-months" >
             <div className="days-month">25</div>
           </div>
-          <div className="input-months" >
-            <input type="date" />
-          </div>
+          <AutoComplete
+    popupClassName="certain-category-search-dropdown"
+    popupMatchSelectWidth={500}
+    style={{
+      width: 250,
+    }}
+    options={options}
+    size="large"
+  >
+    <Input.Search size="large" placeholder="input here" type="date" />
+  </AutoComplete>
       </div>
     </Card>
     <Card className='card2'>
@@ -191,12 +250,30 @@ function Historial() {
    </div>
    <div>
     <h2>Todas las reservaciones</h2>
+    <h2 className="length-reservation-remmbols">80</h2>
+   </div>
+   <div>
+<CurrencyExchangeIcon id="icons-transfer "/>
    </div>
    <div>
     <h2>Reembolso</h2>
+    <h2 className="length-reservation-remmbols">5</h2>
+
    </div>
    <div>
     <h2>Buscar nombre</h2>
+    <AutoComplete
+    popupClassName="certain-category-search-dropdown"
+    popupMatchSelectWidth={500}
+    style={{
+      width: 250,
+    }}
+    options={options}
+    size="large"
+  >
+    <Input.Search size="large" placeholder="input here" />
+  </AutoComplete>
+  
    </div>
         </div>
     </Card>
@@ -205,7 +282,7 @@ function Historial() {
 
       
    <Paper style={{ height: 560, width: "100%", marginTop: "2rem",  }}>
-   <h3 >
+   <h3 id="fecha-historial">
 
    Marzo 17 de 2024
 </h3>

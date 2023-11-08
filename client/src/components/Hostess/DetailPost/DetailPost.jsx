@@ -11,42 +11,50 @@ import { Card } from "antd";
 import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
 import Avatar from "@mui/material/Avatar";
-import {useParams, Link} from 'react-router-dom'
+import {useParams, Link, useNavigate} from 'react-router-dom'
 import Accordion from "react-bootstrap/Accordion";
 import '../Mywebsite/Mywebsite.css';
 import { useSelector, useDispatch } from "react-redux";
 import { dataPersonal, DetailsPostTuristic } from "../../../redux/action";
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import {  Modal, Space } from 'antd';
+import {  DeletePost } from "../../../redux/action";
+
+const { confirm } = Modal;
+
 
 
 
 export default function DetailPost() {
   const dispatch = useDispatch();
   const { idTuristic } = useParams();
+  const navigate = useNavigate()
   const detailpost = useSelector((state) => state.detailpost);
-  console.log(detailpost);
-
-  const datapersonal = useSelector((state) => state.datapersonal);
-
   const token = useSelector((state) => state.token);
-    function EditableControls() {
-        const {
-          isEditing,
-          getSubmitButtonProps,
-          getCancelButtonProps,
-          getEditButtonProps,
-        } = useEditableControls()
-    
-        return isEditing ? (
-          <ButtonGroup justifyContent='center' size='sm'>
-            <IconButton icon={<CheckIcon />} {...getSubmitButtonProps()} />
-            <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
-          </ButtonGroup>
-        ) : (
-          <Flex justifyContent='center'>
-            <IconButton size='sm' icon={<EditIcon />} {...getEditButtonProps()} />
-          </Flex>
-        )
-      }
+  
+  
+  const handleDelete = ()=>{
+    dispatch(DeletePost(idTuristic))
+    navigate("/anfitrion/mi sitio")
+  }
+  const showDeleteConfirm = () => {
+    confirm({
+      title: 'Are you sure delete this task?',
+      icon: <ExclamationCircleFilled />,
+      content: 'Some descriptions',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        handleDelete()
+        
+      },
+      onCancel() {
+        console.log('Cancel');
+      },
+    });
+  };
+
 
       useEffect(() => {
         dispatch(dataPersonal(token));
@@ -99,7 +107,13 @@ export default function DetailPost() {
                   <CachedIcon id="icons-reload" />
                 </div>
                 <div>
-                  <CloseIcon id="icons-reload" />
+                <Space wrap>
+    <Button onClick={showDeleteConfirm} type="dashed" className='btn-delete'>
+    <CloseIcon id="icons-reload" />
+
+    </Button>
+   
+  </Space>
                 </div>
               </div>
             </div>

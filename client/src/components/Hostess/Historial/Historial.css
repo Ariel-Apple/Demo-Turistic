@@ -34,6 +34,16 @@
 }
 .box-card2{
     display: flex;
-    gap: 15em;
+    gap: 10em;
 
+}
+.length-reservation-remmbols {
+text-align: center;
+}
+#fecha-historial {
+    background: green;
+}
+
+#icons-transfer {
+    font-size: 3em;
 }

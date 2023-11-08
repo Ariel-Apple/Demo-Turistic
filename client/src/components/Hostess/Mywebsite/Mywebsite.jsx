@@ -3,8 +3,10 @@ import Carousel from "react-bootstrap/Carousel";
 import Avatar from "@mui/material/Avatar";
 import {useParams, Link} from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux";
-import { dataPersonal, DetailsPostTuristic } from "../../../redux/action";
+import { dataPersonal, DetailsPostTuristic, DeletePost } from "../../../redux/action";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import BeatLoader from "react-loading";
 
 
 
@@ -14,7 +16,8 @@ function Mywebsite() {
   const datapersonal = useSelector((state) => state.datapersonal);
 
   const token = useSelector((state) => state.token);
-  const [updatePublic, setUpdatePublic] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
 
  
 
@@ -24,14 +27,28 @@ function Mywebsite() {
 
   }, [dispatch, token]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false); // Cambiar el estado a "false" después de cierto tiempo
+    }, 2000);
+  }, []);
+
+
+
   return (
     <>
+        {isLoading ? (
+        <div className="loading-container">
+          <BeatLoader color="#8B008B" size="80" />
+        </div>
+      ) : (
+
       <div
-        className="card-container"
+        className="card-container-post"
         style={{ display:  "block" }}
       >
         <div className="cards-flex">
-          {datapersonal.Posts.map((data, i) => (
+          {datapersonal && datapersonal.Posts && datapersonal.Posts.map((data, i) => (
             <div className="card-box" key={i}>
               <div className="carousel-container">
                 <Carousel interval={null} className="swiper-container">
@@ -134,6 +151,7 @@ function Mywebsite() {
         </div>
       </div>
 
+)}
       
     </>
   );
