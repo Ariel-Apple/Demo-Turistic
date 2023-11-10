@@ -89,7 +89,7 @@ function Card() {
                     <Carousel interval={null} className="swiper-container">
                       {info.imageFile.map((imageSrc, imageIndex) => (
                         <Carousel.Item key={imageIndex}>
-                          <a href={"/rooms/" + info.id} className="text-link">
+                          <a href={"/rooms/" + info.id} target="_blank" className="text-link">
                             <div className="image-container">
                               <img
                                 srcset={imageSrc}
@@ -104,7 +104,7 @@ function Card() {
                   </div>
 
                   <div className="desc-hover">
-                    <a href={"/rooms/" + info.id} className="text-link">
+                    <a href={"/rooms/" + info.id} target="_blank"  className="text-link">
                       {info.status === "Público" ? (
                         <div className="shadow-card">
                           <div className="card-info-flex">
@@ -194,7 +194,7 @@ function Card() {
                       ) : (
                         <div className="shadow-card">
                           <div className="card-info-flex">
-                            <a href={"/rooms/" + info.id} className="text-link">
+                            <a href={"/rooms/" + info.id} target="_blank"  className="text-link">
                               {/*   {info.title.split(" ").length > 2 ? (
                                 <h3 className="card-title">
                                   {info.title

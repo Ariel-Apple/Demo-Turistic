@@ -72,7 +72,9 @@ function Mywebsite() {
 
               <div className="desc-hover">
                 <div className="shadow-card">
+              <Link to={`/anfitrion/mi sitio/${data.id}`}>
                   <div className="card-info-flex">
+
                     <h3 className="card-title">{data.title}</h3>
                     <div>
                       <Avatar
@@ -98,6 +100,8 @@ function Mywebsite() {
                       </Avatar>
                     </div>
                   </div>
+                  </ Link>
+                  <Link to={`/anfitrion/mi sitio/${data.id}`}>
 
                   <p>
                     <p
@@ -135,6 +139,8 @@ function Mywebsite() {
                       </span>{" "}
                     </p>
                   </p>
+                  </ Link>
+                  <Link to={`/anfitrion/mi sitio/${data.id}`}>
 
                   {data.summary.split(" ").length > 15 ? (
                     <p className="summary-card">
@@ -144,8 +150,11 @@ function Mywebsite() {
                   ) : (
                     <p className="summary-card">{data.summary}</p>
                   )}
+                  </ Link>
+
                 </div>
               </div>
+
             </div>
           ))}
         </div>

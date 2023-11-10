@@ -1,7 +1,6 @@
 .container-updatePublic {
     display: flex;
-    gap: 0.3em;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .card-container {
     background: white;
@@ -97,7 +96,6 @@
 .accordion-container{
     display: grid;
     gap: 3em;
-    padding: 2em;
 }
 .accordion{
     width: 30em;
@@ -132,7 +130,21 @@
     color: black;
     border: none;
 }
+ .update-title {
+    display: flex;
+    justify-content: center;
+    place-content: center;
+    place-items: center;
+    align-items: center;
+    gap: 2em;
 
+ }
+ .modal-titleupdate {
+  margin: 0 auto;
+ }
+ .input-titleupdate {
+    width: 100%;
+ }
 
 
   @media only screen and (min-width: 1024px) and (max-width: 1440px) {

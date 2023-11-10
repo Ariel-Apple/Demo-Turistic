@@ -18,6 +18,7 @@ import Start from './components/Hostess/Start/Start';
 import Mywebsite from './components/Hostess/Mywebsite/Mywebsite';
 import Reservations from './components/Hostess/Reservations/Reservations';
 import Historial from './components/Hostess/Historial/Historial';
+import UpdatePhoto from './components/Hostess/UpdatePhoto/UpdatePhoto';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="mi sitio/:idTuristic" element={<DetailPost />} />
           <Route path="reservaciones" element={<Reservations />} />
           <Route path="historial de reservas" element={<Historial />} />
+          <Route path="historial de reservas/fotos" element={<UpdatePhoto />} />
 
 
         </Route>
