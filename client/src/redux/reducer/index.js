@@ -93,6 +93,12 @@ export const rootReducer = (state = initialState, action) => {
           ...state,
           userandpost: action.payload,
         };
+        case "UPDATE_POST": 
+        return {
+          ...state,
+          detailpost: { ...state.detailpost, ...action.payload },
+        
+        }
 
     default: return { ...state }
   }

@@ -1,21 +1,18 @@
 .container-updatePublic {
     display: flex;
-    justify-content: flex-start;
+    margin-top: -6em;
 }
-.card-container {
-    background: white;
-     
-}
+
 .card-update {
     display: grid;
-    
 }
 .card-image {
     display: grid;
     justify-content: center;
     width: 70em;
-    background: white;
     text-align: center;
+    margin-left: -10em;
+
 }
 .title-subtitle {
     display: grid;
@@ -35,7 +32,25 @@
     color: gray;
 
 }
+.editar-hostess {
+    position: absolute;
+    margin-top: -20em;
+    margin-left: 22em;
+    background-color: rgba(139, 0, 139, 0.562);
+    border-color: #8B008B;
+    border-radius: 50%;
+}
+.editar-hostess:hover,
+.editar-hostess.clicked {
+  background-color: #8B008B;
+  border-color: #8B008B;
+}
 
+.btn-black {
+    background-color: black;
+    border-color: black;
+
+}
 .img-update{
     width: 30em;
     height: 30em;
@@ -104,6 +119,9 @@
   .accordion-bg {
     background: white;
     width: 100%;
+    display: grid;
+    justify-content: center;
+    padding: 15px;
 
   }
  .slide-container {
@@ -111,6 +129,10 @@
     gap: 4rem;
  }
   .card-calendar {
+    height: 10em;
+    width: 5em;
+  }
+  .card-calendar1 {
     height: 10em;
     width: 5em;
   }
@@ -145,7 +167,86 @@
  .input-titleupdate {
     width: 100%;
  }
+ .icons-edit {
+    text-align: end;
+ }
 
+ .header-modal {
+    background-color: gray;
+ }
+
+ .butonCancelar {
+    background-color: black;
+ }
+
+ .butonADD {
+    background-color: #8B008B;
+    border-color: #8B008B;
+ }
+ .butonADD:hover {
+    background-color: #8B008B;
+    border-color: #8B008B;
+ }
+
+ .card-detailpost {
+    width: 500px;
+    font-size: 20px;
+    font-weight: 600;
+ }
+
+@media (max-width: 767px) {
+    .container-updatePublic {
+        display: grid;
+        margin-left: -10em;
+
+    }
+    .img-update{
+        width: 25em;
+        height: 25em;
+        border-radius: 4em;
+        margin-top: 2em;
+        object-fit: cover;
+
+    }
+
+    .swiper-anfitrion {
+        width: 25em;
+        height: 30em;
+        overflow: hidden;
+        margin: auto;
+        margin-left: 1em;
+      }
+      .card-direction{
+       margin-left: -4em;
+    }
+      .direction {
+        margin-left: 0;
+      }
+      .card-detailpost {
+      width: 350px;
+     }
+
+     .accordion-bg {
+        margin-left: -5em;
+     }
+     .accordion{
+        width: 85%;
+    }
+    .card-calendar {
+        height: 10em;
+        width: 5em;
+      }
+
+      .slide-container {
+        display: grid;
+     }
+
+     .card-calendar1 {
+        width: 100%;
+      }
+
+    
+}
 
   @media only screen and (min-width: 1024px) and (max-width: 1440px) {
     .img-update{
@@ -177,5 +278,5 @@
         overflow: hidden;
       }
 
-    
+  
   }

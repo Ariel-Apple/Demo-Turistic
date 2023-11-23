@@ -135,7 +135,6 @@ export default function FormStepper() {
     listDetails: [],
     infoImportant: [],
   });
-console.log(datapersonal);
   const [detail, setDetail] = useState(""); // Estado para el detalle que se está escribiendo
   const [info, setInfo] = useState(""); // Estado para el detalle que se está escribiendo
 

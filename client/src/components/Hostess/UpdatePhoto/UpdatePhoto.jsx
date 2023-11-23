@@ -71,10 +71,7 @@ const UpdatePhoto = () => {
       <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
         <img alt="example" style={{ width: '100%' }} src={previewImage} />
       </Modal>
-      <div className="btn-uploadPhoto">
-      <Button href={`/anfitrion/mi sitio`}>Volver</Button> 
-      <Button type="submit">Button</Button>{' '}
-      </div>
+     
     </>
   );
 };

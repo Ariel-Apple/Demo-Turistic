@@ -7,7 +7,9 @@ import Start from "./Start/Start";
 import { useSelector, useDispatch } from "react-redux";
 import { dataPersonal } from "../../redux/action";
 import Mywebsite from "./Mywebsite/Mywebsite";
+import {CameraOutlined } from '@ant-design/icons';
 import { Link, Outlet } from "react-router-dom";
+import FooterMobile from "./FooterMobile/FooterMobile";
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
@@ -18,7 +20,6 @@ const App = () => {
   const token = useSelector((state) => state.token);
   const [start, setStart] = useState(true);
   const [myWebSite, setMyWebSite] = useState(false);
-
   useEffect(() => {
     dispatch(dataPersonal(token));
   }, [token]);
@@ -34,21 +35,28 @@ const App = () => {
   };
 
   return (
-    <Layout>
+
+    <Layout    
+      style={{
+             marginTop: '7em',
+            }}>
+      <FooterMobile/>
+
       <Sider
    /*      trigger={null}
         collapsible
         collapsed={collapsed} */
         id="menu-left"
-        width={400}
-      >
+        width={360}
+      > 
+
         <div className="avatar-anfitrion">
           <div>
             <Avatar
               sx={{
                 width: 100,
                 height: 100,
-
+                marginLeft: "2em",
                 background: datapersonal.avatar
                   ? `url(${datapersonal.avatar})`
                   : datapersonal.backgroundColor,
@@ -64,6 +72,7 @@ const App = () => {
                 </div>
               )}
             </Avatar>
+            <CameraOutlined className="camera-hostess" />
           </div>
           <div>
             <p>
@@ -76,7 +85,7 @@ const App = () => {
         <div>
           <ul className="menu-anfitrion">
             <Link to="/anfitrion/inicio">
-              <li className="items-anfitrion" key="Inicio">Inicio</li>
+              <li className="items-anfitrion" >Inicio</li>
             </Link>
             <Link to="/anfitrion/mi sitio">
               <li className="items-anfitrion">Mi sitio</li>
@@ -90,9 +99,16 @@ const App = () => {
 
             <li className="items-anfitrion">Historial de reservas</li>
             </Link>
+            <Link to="/anfitrion/reclamos">
 
             <li className="items-anfitrion">Reclamos</li>
+            </Link>
+
+            <Link to="/anfitrion/reclamos">
+
             <li className="items-anfitrion">Comentarios</li>
+            </Link>
+
           </ul>
         </div>
       </Sider>
@@ -107,16 +123,7 @@ const App = () => {
             background: "#fff",
           }}
         >
-      {/*     <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          /> */}
+
         </Header>
         <Content
             key="1"
@@ -130,6 +137,7 @@ const App = () => {
         </Content>
       </Layout>
     </Layout>
+
   );
 };
 export default App;

@@ -27,21 +27,13 @@ function Mywebsite() {
 
   }, [dispatch, token]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false); // Cambiar el estado a "false" después de cierto tiempo
-    }, 2000);
-  }, []);
+
 
 
 
   return (
     <>
-        {isLoading ? (
-        <div className="loading-container">
-          <BeatLoader color="#8B008B" size="80" />
-        </div>
-      ) : (
+      
 
       <div
         className="card-container-post"
@@ -160,7 +152,6 @@ function Mywebsite() {
         </div>
       </div>
 
-)}
       
     </>
   );

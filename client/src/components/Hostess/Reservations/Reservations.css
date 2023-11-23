@@ -1,193 +1,301 @@
-
-.tittle  {
-    box-shadow: 0px 0px 2px;
-    border-radius: 0.7rem;
-    border-style: solid;
-    border-color: #000;
-    margin-top: -5%;
+.tittle {
+  box-shadow: 0px 0px 2px;
+  border-radius: 0.7rem;
+  border-style: solid;
+  border-color: #000;
+  margin-top: -5%;
 }
 
 .tittle h1 {
-    font-size: 50px;
-    font-weight: 700;
-    text-align: center;
-    padding: 0.3em;
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.3em;
 }
 
 .box-reservation {
-    border-radius: 0.7rem;
-     border-width: 0.2rem;
-     border-color: #8B008B;
-    padding: 15px;
-    margin-top: 1rem;
+  border-radius: 0.7rem;
+  border-width: 0.2rem;
+  border-color: #8b008b;
+  padding: 15px;
+  margin-top: 1rem;
 }
 .months-carrusel {
-    border-width: 0.2rem;
-    border-color: rgb(206, 206, 206);
-   padding: 15px;
-   margin-top: 2%;
-   width: 12%;
-
+  border-width: 0.2rem;
+  border-color: rgb(206, 206, 206);
+  padding: 15px;
+  margin-top: 2%;
+  width: 12%;
 }
-.months{
-color: #8B008B;
-text-align: center;
-font-size: 22px;
-font-weight: 700;
+.months {
+  color: #8b008b;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
 }
-.years{
-    text-align: center;
-    font-size: 22px;
-    font-weight: 700;
-    }
+.years {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
 .year-months {
-    display: flex;
-    gap: 2rem;
-    margin-top: -6em;
+  display: flex;
+  gap: 2rem;
+  margin-top: -6em;
 }
 .days-container {
-    display: flex;
-    gap: 5em;
+  display: flex;
+  gap: 5em;
 }
 
 .days-carrusel {
-    border-radius: 2rem;
-    border-width: 0.2rem;
-    border-color: #8B008B;
-   padding: 15px;
-   margin-top: 2%;
-   width: 10%;
+  border-radius: 2rem;
+  border-width: 0.2rem;
+  border-color: #8b008b;
+  padding: 15px;
+  margin-top: 2%;
+  width: 10%;
+  cursor: pointer;
+}
+.num-carrusel {
+  border-width: 0.2rem;
+  border-color: #cecece;
+  padding: 15px;
+  margin-top: 2%;
+  width: 8%;
+}
 
-}
-.num-carrusel{
-    border-width: 0.2rem;
-    border-color: #cecece;
-   padding: 15px;
-   margin-top: 2%;
-   width: 8%;
-}
 .days-carrusel:hover .num-carrusel {
-    /* Estilos que deseas aplicar a .num-carrusel cuando .days-carrusel está en estado :hover */
-    /* Por ejemplo, cambiar el color de fondo o la visibilidad */
-    display: grid;
-  }
+  /* Estilos que deseas aplicar a .num-carrusel cuando .days-carrusel está en estado :hover */
+  /* Por ejemplo, cambiar el color de fondo o la visibilidad */
+  display: grid;
+}
 
 .days {
-    font-size: 22px;
-    font-weight: 700;
+  font-size: 22px;
+  font-weight: 700;
 }
-
 
 .num-days {
-    color: #8B008B;
-text-align: center;
-font-size: 22px;
-font-weight: 700;
+  color: #8b008b;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
 }
 .input-reservations {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1em;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1em;
 }
 .days-input {
-width: 40%;
-outline: none;
-border-color: #8B008B;
-border-width: 0.2rem;
-height: 4em;
-border-radius: 2rem;
-
+  width: 40%;
+  outline: none;
+  border-color: #8b008b;
+  border-width: 0.2rem;
+  height: 4em;
+  border-radius: 2rem;
 }
 
 .btn-reservation-search {
-    position: absolute;
-    margin-left: 27%;
-    background: #8B008B;
-border-radius: 5rem;
-margin-top: 2px;
-
+  position: absolute;
+  margin-left: 27%;
+  background: #8b008b;
+  border-radius: 5rem;
+  margin-top: 2px;
 }
 #icons-search-reservtion {
-color: white;
-font-size: 50px;
+  color: white;
+  font-size: 50px;
 }
 .calendar-container {
-    display: flex;
-    gap: 80px;
+  display: flex;
+  gap: 80px;
 }
 
 .calendar-days {
-    font-size: 30px;
-    box-shadow: 0px 0px 1px black;
+  font-size: 30px;
+  box-shadow: 0px 0px 1px black;
 }
 
 .data-calendar {
-    display: grid;
-    justify-content: center;
-    gap: 16px;
+  display: grid;
+  justify-content: center;
+  gap: 16px;
 }
 .day {
-    font-weight: 800;
-    font-size: 22px;
+  font-weight: 800;
+  font-size: 15px;
 }
 .date {
-    font-weight: 800;
-    font-size: 22px;
-    text-align: center;
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
 }
 .months-calendar {
-    font-weight: 800;
-    font-size: 22px;
-    text-align: center;
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
 }
 #icons-clendar-expand {
-    font-size: 50px;
-    margin-top: -5px;
+  font-size: 40px;
+  margin-top: -5px;
 }
 .arrow-container {
-   margin-top: 2em; 
+  margin-top: 2em;
 }
 .icons-arrow {
-   display: flex;
-   gap: 3em;
-
+  display: flex;
+  gap: 3em;
 }
 #arrow-icons {
-    font-size: 50px;
-    margin-top: 15px;
-
-
+  font-size: 40px;
+  margin-top: 15px;
 }
 
 /* Aplicar estilo vertical solo a la clase "vertical-text" */
 
-  /* En tu archivo de estilos CSS */
+/* En tu archivo de estilos CSS */
 .customTableCell {
-    height: 2em; /* Ajusta la altura a tu preferencia */
-    border-width: 0.3px;
-    text-align: center;
-    border-color: #A4A4A4;
-    
+  height: 2em; /* Ajusta la altura a tu preferencia */
+  border-width: 0.3px;
+  text-align: center;
+  border-color: #a4a4a4;
+}
+.length-reservation {
+  display: flex;
+  gap: 8rem;
+  margin-left: 14em;
+  justify-content: center;
+}
+
+.length-container {
+  border-width: 0.2rem;
+  border-color: rgb(206, 206, 206);
+  padding: 15px;
+  margin-top: 2%;
+  width: 8%;
+}
+.length {
+  color: #8b008b;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.contact-reservation {
+  display: flex;
+  gap: 5em;
+}
+
+.detail-reservation {
+  display: flex;
+  gap: 10em;
+  margin-top: 2em;
+}
+
+.title-dtail-reserva {
+  margin-top: 2em;
+}
+
+.modal-reservation {
+  display: flex;
+  gap: 5em;
+}
+
+.pago-total {
+  text-align: center;
+}
+.calendar-table {
+  border-width: 0.2rem;
+  width: 12rem;
+}
+#clients {
+  border-width: 0.3px;
+  text-align: center;
+  border-color: #a4a4a4;
+  font-size: 12px;
+}
+@media screen and (max-width: 767px) {
+  .container-reservation {
+    margin-bottom: 5em;
   }
-  .length-reservation {
+  .icons-arrow {
+    display: grid;
+    gap: 0;
+  }
+
+  #arrow-icons {
+    font-size: 30px;
+  }
+  .calendar-table {
+    width: 5em;
+  }
+  #clients {
+    font-size: 10px;
+    text-align: 0;
+  }
+
+  #icons-search-reservtion {
+    font-size: 25px;
+  }
+  .days-input {
+    width: 40%;
+    outline: none;
+    border-color: #8b008b;
+    border-width: 0.2rem;
+    height: 2em;
+    border-radius: 2rem;
+  }
+
+  .year-months {
     display: flex;
-    gap: 8rem;
-    margin-left: 14em;
-    justify-content: center;
+    gap: 2rem;
+    margin-top: -3em;
   }
-  
-  .length-container {
+  .years {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .months {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .num-days {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .months-carrusel {
     border-width: 0.2rem;
     border-color: rgb(206, 206, 206);
-   padding: 15px;
-   margin-top: 2%;
-   width: 8%;
+    padding: 10px;
+    margin-top: 2%;
+    width: 20%;
+  }
 
-
-}
-.length{
-color: #8B008B;
-text-align: center;
-font-size: 22px;
-font-weight: 700;
+  .num-carrusel {
+    border-width: 0.2rem;
+    border-color: rgb(206, 206, 206);
+    padding: 10px;
+    margin-top: 2%;
+    width: 20%;
+  }
+  .days {
+    font-size: 18px;
+    width: 100%;
+  }
+  .days-carrusel {
+    border-radius: 2rem;
+    border-width: 0.2rem;
+    border-color: #8b008b;
+    padding: 15px;
+    margin-top: 2%;
+    width: 40%;
+    cursor: pointer;
+  }
+  .length-reservation {
+    display: none;
+  }
 }

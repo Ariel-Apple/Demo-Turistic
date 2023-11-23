@@ -19,7 +19,6 @@ export default function LoginForms({setIsModalOpen}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
-  console.log(token);
 
   const loginError = useSelector((state) => state.loginError);
   const [fullscreen, setFullscreen] =React.useState(true);

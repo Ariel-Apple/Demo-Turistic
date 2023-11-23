@@ -209,29 +209,38 @@ export const AllPostTuristic = () => {
          payload: data
      })
    }
-  }; 
+  };  
  
- 
- 
-
-
-
-
-
-
-
-
-
-
-
+  export const updatepost = (postId, payload) => {
+    return async (dispatch) => {
+      const res = await axios.put(`https://demo-turistic-production.up.railway.app/post/${postId}`, payload);
+      const data = res.data
+      return dispatch({
+          type: "UPDATE_POST",
+          payload: data
+      })
+    }
+   }; 
  
 
 
+  
 
 
 
 
- /*  export const AllPostTuristic = () => {
+
+
+
+
+ 
+
+
+
+
+
+
+/*   export const AllPostTuristic = () => {
  return async (dispach) => {
    const res = await axios.get('http://localhost:4000/turistic');
    const data = res.data.User
@@ -407,10 +416,10 @@ export const updatePersonal = (userId, userData) => {
 
 
 export const DeletePost = (postId) => {
- return async (dispach) => {
+ return async (dispatch) => {
    const res = await axios.delete(`http://localhost:4000/post/${postId}`);
    const data = res.data
-   return dispach({
+   return dispatch({
        type: "DELETE_POST",
        payload: data
    })
@@ -418,10 +427,10 @@ export const DeletePost = (postId) => {
 };
 
 export const OnlyAllPost = () => {
- return async (dispach) => {
+ return async (dispatch) => {
    const res = await axios.get(`http://localhost:4000/posthostess`);
    const data = res.data.OnlyPosts
-   return dispach({
+   return dispatch({
        type: "ONLY_POST",
        payload: data
    })
@@ -429,15 +438,29 @@ export const OnlyAllPost = () => {
 };     
 
 export const UserPostDetails = (idUser) => {
-  return async (dispach) => {
+  return async (dispatch) => {
     const res = await axios.get(`http://localhost:4000/user/${idUser}`);
     const data = res.data.UserDetails
-    return dispach({
+    return dispatch({
         type: "USER_POST",
         payload: data
     })
   }
  }; 
 
+ export const updatepost = (postId, payload) => {
+  return async (dispatch) => {
+    const res = await axios.put(`http://localhost:4000/post/${postId}`, payload);
+    const data = res.data
+    return dispatch({
+        type: "UPDATE_POST",
+        payload: data
+    })
+  }
+ }; 
 
- */
+
+ 
+
+
+  */
