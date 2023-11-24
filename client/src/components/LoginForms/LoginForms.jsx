@@ -15,7 +15,6 @@ import RegisterForm from "../RegisterForm/RegisterForm";
 export default function LoginForms({setIsModalOpen}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
@@ -38,9 +37,22 @@ export default function LoginForms({setIsModalOpen}) {
   };
   
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    dispatch(UserLogin(email, password));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (email && password) {
+      // Aquí deberías tener la lógica de autenticación, por ejemplo, una llamada a la API para verificar las credenciales
+
+      const authenticationSuccess = await dispatch(UserLogin(email, password));
+  
+      if (authenticationSuccess) {
+        navigate("/");
+        // Si la autenticación es exitosa, redirige al usuario a la página de inicio
+      } else {
+        // Si la autenticación falla, muestra una alerta
+        alert( "Authentication failed");
+
+      }
+    }
   };
 
   const handleFacebookLogin = () => {
@@ -53,18 +65,7 @@ export default function LoginForms({setIsModalOpen}) {
     console.log("Inicio de sesión con Google");
   };
  
-  useEffect(() => {
-  
-    if (token) {
-        
-        navigate("/perro");
-        
-    } else if (loginError) {
-      alert(
-        "El correo y la contraseña no coinciden, por favor inténtelo de nuevo."
-      );
-    }
-  }, [token, loginError, navigate]);
+
 
   return (
     <>
@@ -81,8 +82,7 @@ export default function LoginForms({setIsModalOpen}) {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             className="space-y-6"
-            action="#"
-            method="POST"
+          
             onSubmit={handleSubmit}
             >
                 <div>
@@ -118,14 +118,13 @@ export default function LoginForms({setIsModalOpen}) {
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
                   name="email"
                   type="email"
                   autoComplete="email"
-                  required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 input-email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
                   />
               </div>
             </div>
@@ -149,9 +148,8 @@ export default function LoginForms({setIsModalOpen}) {
               </div>
               <div className="mt-2 relative">
                 <input
-                  id="password"
                   name="password"
-                  type={showPassword ? "text" : "password"}
+                  type="password"
                   autoComplete="current-password"
                   required
                   className="block w-full rounded-md border-0 py-1.5 pr-10 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 sm:leading-6 input-password"

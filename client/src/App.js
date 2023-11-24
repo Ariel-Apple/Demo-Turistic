@@ -27,8 +27,6 @@ function App() {
     <Router>
       <Routes>
         <Route exact path='/' element={<Home />} />
-        <Route exact path='/auth/login' element={<Login />} />
-        <Route exact path='/auth/register' element={<Register />} />
         <Route exact path='/rooms/:idTuristic' element={<CardDetails />} />
         <Route exact path='/account-settings' element={<AccountSettings />} />
         <Route exact path='/account-settings/personal-info' element={<InfoPersonal />} />

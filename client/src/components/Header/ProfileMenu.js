@@ -48,7 +48,6 @@ export default function BasicMenu() {
   const [fullscreen, setFullscreen] = React.useState(true);
   const [modalPublic, setModalPublic] = React.useState(false);
 
-  console.log(datapersonal.Posts);
 
   React.useEffect(() => {
     dispatch(DetailsPostTuristic(datapersonal.id))
