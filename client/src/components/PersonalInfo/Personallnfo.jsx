@@ -1,4 +1,3 @@
-import { PaperClipIcon } from "@heroicons/react/20/solid";
 import "./PersonalInfo.scss";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
