@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.STRING(500),
       },
       price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.STRING,
       },
       people: {
         type: Sequelize.STRING,
