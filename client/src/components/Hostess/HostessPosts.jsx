@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import "./HostessPosts.scss";
 import Avatar from "@mui/material/Avatar";
 import { Layout, Menu, Button } from "antd";
