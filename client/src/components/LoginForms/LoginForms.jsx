@@ -9,15 +9,22 @@ import { Button } from "react-bootstrap";
 import { FaFacebookSquare, FaGoogle } from "react-icons/fa"; // Importa los iconos de Facebook y Google
 import {  Modal } from 'antd';
 import BeatLoader from "react-loading";
-
+import MuiAlert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
 import RegisterForm from "../RegisterForm/RegisterForm";
 
-export default function LoginForms({setIsModalOpen}) {
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+export default function LoginForms() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state) => state.token);
+  const [open, setOpen] = React.useState(false);
+
 
   const loginError = useSelector((state) => state.loginError);
   const [fullscreen, setFullscreen] =React.useState(true);
@@ -36,7 +43,13 @@ export default function LoginForms({setIsModalOpen}) {
     setIsModalOpenRegister(false);
   };
   
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
 
+    setOpen(false);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email && password) {
@@ -49,7 +62,8 @@ export default function LoginForms({setIsModalOpen}) {
         // Si la autenticación es exitosa, redirige al usuario a la página de inicio
       } else {
         // Si la autenticación falla, muestra una alerta
-        alert( "Authentication failed");
+        setOpen(true);
+
 
       }
     }
@@ -184,6 +198,22 @@ export default function LoginForms({setIsModalOpen}) {
           </p>
         </div>
       </div>
+      <Stack spacing={2} sx={{ width: "100%" }}>
+           
+           <Snackbar
+             open={open}
+             autoHideDuration={6000}
+             onClose={handleClose}
+           >
+             <Alert
+               onClose={handleClose}
+               severity="error"
+               sx={{ width: "100%" }}
+             >
+               El email o contraseñas  es incorrecta
+             </Alert>
+           </Snackbar>
+       </Stack>
     </div>
     <Modal
         visible={isModalOpenRegister}

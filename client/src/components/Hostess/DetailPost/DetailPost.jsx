@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
-import "../Mywebsite/Mywebsite.css";
+import styles from "../Mywebsite/Mywebsite.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
   dataPersonal,
@@ -54,21 +54,15 @@ export default function DetailPost() {
   const [showList, setShowList] = useState(false);
   const [showPolitic, setShowPolitic] = useState(false);
   const [detail, setDetail] = useState({
-     title: "",
-     continent: "",
-     country: "",
-     status: "",
-     price: "",
-     summary: "",
-     description: "",
-     people: "",
-
-
-
-
-
-
-     });
+    title: "",
+    continent: "",
+    country: "",
+    status: "",
+    price: "",
+    summary: "",
+    description: "",
+    people: "",
+  });
   const handleCloseTitle = () => {
     setShowTittle(false);
     setShowContinent(false);
@@ -128,38 +122,24 @@ export default function DetailPost() {
     });
   };
   return (
-    <div>
-      <div className="container-updatePublic">
-        <div className="card-update">
-          <div
-            style={{
-              width: 800,
-              borderWidth: "0 3px 3px 0", // Ajusta el grosor según tus preferencias
-              borderColor: "gray", // Cambia el color si es necesario
-              borderStyle: "solid", // Establece el estilo del borde
-              marginLeft: "-5em",
-              padding: "15px",
-            }}
-          >
-            <div className="card-image">
-              <div className="title-subtitle">
-                <div className="update-title">
-                  <h1 className="title">{detailpost.title}</h1>
-                  <div onClick={handleShowTitle}>
-                    <EditIcon />
-                  </div>
+    <div className={styles["container-updatePublic"]}>
+      <div className={styles["card-update"]}>
+        <div className={styles.tabletOneTop}>
+          <div className={styles["card-image"]}>
+            <div className={styles["title-subtitle"]}>
+              <div className={styles.titleContent}>
+                <h1>{detailpost.title}</h1>
+                <div onClick={handleShowTitle}>
+                  <EditIcon className={styles.btnEditTitle} />
+                </div>
 
-                  <ModalBootstrap show={showTittle} onHide={handleCloseTitle}>
-                   <form action=""  onSubmit={handleSubmit}>
-
+                <ModalBootstrap show={showTittle} onHide={handleCloseTitle}>
+                  <form action="" onSubmit={handleSubmit}>
                     <ModalBootstrap.Header closeButton>
                       <ModalBootstrap.Title></ModalBootstrap.Title>
                     </ModalBootstrap.Header>
                     <ModalBootstrap.Body>
-                    <Form
-                        className="modal-titleupdate"
-                        
-                      >
+                      <Form className="modal-titleupdate">
                         <Form.Group
                           className="mb-3"
                           controlId="exampleForm.ControlInput1"
@@ -172,7 +152,7 @@ export default function DetailPost() {
                             onChange={handleTitle}
                           />
                         </Form.Group>
-                    </Form>
+                      </Form>
                     </ModalBootstrap.Body>
 
                     <ModalBootstrap.Footer>
@@ -186,19 +166,20 @@ export default function DetailPost() {
                         Guardar cambio
                       </ButtonBootstrap>
                     </ModalBootstrap.Footer>
-                    </form>
-
-                  </ModalBootstrap>
-                </div>
-                <div className="update-title">
+                  </form>
+                </ModalBootstrap>
+              </div>
+              <div className={styles["update-btn-container"]}>
+                <div className={styles["update-title-country"]}>
                   <span className="sub-title">
                     {detailpost.continent}, {detailpost.country}.
                   </span>
 
                   <Button
                     variant="primary"
-                    className="btn-black"
+                    /* className="btn-black" */
                     onClick={handleShowContinent}
+                    className={styles["country-btn"]}
                   >
                     Editar
                   </Button>
@@ -207,106 +188,120 @@ export default function DetailPost() {
                     show={showContinent}
                     onHide={handleCloseTitle}
                   >
-                   <form action=""  onSubmit={handleSubmit}>
+                    <form action="" onSubmit={handleSubmit}>
+                      <ModalBootstrap.Header closeButton>
+                        <ModalBootstrap.Title></ModalBootstrap.Title>
+                      </ModalBootstrap.Header>
+                      <ModalBootstrap.Body>
+                        <Form className="modal-titleupdate">
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label>Continente</Form.Label>
+                            <Form.Control
+                              type="text"
+                              autoFocus
+                              value={detail.continent}
+                              onChange={(e) =>
+                                setDetail({
+                                  ...detail,
+                                  continent: e.target.value,
+                                })
+                              }
+                            />
+                          </Form.Group>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label>Pais</Form.Label>
 
-                    <ModalBootstrap.Header closeButton>
-                      <ModalBootstrap.Title></ModalBootstrap.Title>
-                    </ModalBootstrap.Header>
-                    <ModalBootstrap.Body>
-                      <Form className="modal-titleupdate">
-                        <Form.Group
-                          className="mb-3"
-                          controlId="exampleForm.ControlInput1"
+                            <Form.Control
+                              type="text"
+                              autoFocus
+                              value={detail.country}
+                              onChange={(e) =>
+                                setDetail({
+                                  ...detail,
+                                  country: e.target.value,
+                                })
+                              }
+                            />
+                          </Form.Group>
+                        </Form>
+                      </ModalBootstrap.Body>
+                      <ModalBootstrap.Footer>
+                        <ButtonBootstrap
+                          variant="secondary"
+                          onClick={handleCloseTitle}
                         >
-                          <Form.Label>Continente</Form.Label>
-                          <Form.Control
-                            type="text"
-                            autoFocus
-                            value={detail.continent}
-                            onChange={ (e) => setDetail({...detail, continent: e.target.value})}
-                          />
-                        </Form.Group>
-                        <Form.Group
-                          className="mb-3"
-                          controlId="exampleForm.ControlInput1"
-                        >
-                          <Form.Label>Pais</Form.Label>
-
-                          <Form.Control
-                            type="text"
-                            autoFocus
-                            value={detail.country}
-                            onChange={ (e) => setDetail({...detail, country: e.target.value})}
-                          />
-                        </Form.Group>
-                      </Form>
-                    </ModalBootstrap.Body>
-                    <ModalBootstrap.Footer>
-                      <ButtonBootstrap
-                        variant="secondary"
-                        onClick={handleCloseTitle}
-                      >
-                        Cancelar
-                      </ButtonBootstrap>
-                      <ButtonBootstrap type="submit" variant="primary">
-                        Guardar cambio
-                      </ButtonBootstrap>
-                    </ModalBootstrap.Footer>
-                   </form>
-
+                          Cancelar
+                        </ButtonBootstrap>
+                        <ButtonBootstrap type="submit" variant="primary">
+                          Guardar cambio
+                        </ButtonBootstrap>
+                      </ModalBootstrap.Footer>
+                    </form>
                   </ModalBootstrap>
                 </div>
-                <div className="update-title">
+                <div className={styles["update-title-status"]}>
                   <span className="sub-title">Estado: {detailpost.status}</span>
 
                   <Button
                     variant="primary"
-                    className="btn-black"
+                    /* className="btn-black" */
                     onClick={handleShowStatus}
+                    className={styles["status-btn"]}
                   >
                     Editar
                   </Button>
 
                   <ModalBootstrap show={showStatus} onHide={handleCloseTitle}>
-                    <form  onSubmit={handleSubmit}>
-
-                    <ModalBootstrap.Header closeButton>
-                      <ModalBootstrap.Title></ModalBootstrap.Title>
-                    </ModalBootstrap.Header>
-                    <ModalBootstrap.Body>
-                      <Form className="modal-titleupdate">
-                        <Form.Group
-                          className="mb-3"
-                          controlId="exampleForm.ControlInput1"
+                    <form onSubmit={handleSubmit}>
+                      <ModalBootstrap.Header closeButton>
+                        <ModalBootstrap.Title></ModalBootstrap.Title>
+                      </ModalBootstrap.Header>
+                      <ModalBootstrap.Body>
+                        <Form className="modal-titleupdate">
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlInput1"
+                          >
+                            <Form.Label>Estado</Form.Label>
+                            <Form.Control
+                              type="text"
+                              autoFocus
+                              value={detail.status}
+                              onChange={(e) =>
+                                setDetail({ ...detail, status: e.target.value })
+                              }
+                            />
+                          </Form.Group>
+                        </Form>
+                      </ModalBootstrap.Body>
+                      <ModalBootstrap.Footer>
+                        <ButtonBootstrap
+                          variant="secondary"
+                          onClick={handleCloseTitle}
                         >
-                          <Form.Label>Estado</Form.Label>
-                          <Form.Control
-                            type="text"
-                            autoFocus
-                            value={detail.status}
-                            onChange={ (e) => setDetail({...detail, status: e.target.value})}
-                          />
-                        </Form.Group>
-                      </Form>
-                    </ModalBootstrap.Body>
-                    <ModalBootstrap.Footer>
-                      <ButtonBootstrap
-                        variant="secondary"
-                        onClick={handleCloseTitle}
-                      >
-                        Cancelar
-                      </ButtonBootstrap>
-                      <ButtonBootstrap type="submit" variant="primary">
-                        Guardar cambio
-                      </ButtonBootstrap>
-                    </ModalBootstrap.Footer>
+                          Cancelar
+                        </ButtonBootstrap>
+                        <ButtonBootstrap type="submit" variant="primary">
+                          Guardar cambio
+                        </ButtonBootstrap>
+                      </ModalBootstrap.Footer>
                     </form>
-
                   </ModalBootstrap>
                 </div>
               </div>
-              <div className="update-title">
-                <Carousel interval={null} className="swiper-anfitrion">
+            </div>
+            <div className={styles.contentImage}>
+              <div className={styles.imageContainer}>
+                <Carousel
+                  interval={null}
+                  className={styles["swiper-anfitrion"]}
+                >
                   {detailpost.imageFile &&
                     detailpost.imageFile.map((imageSrc, imageIndex) => (
                       <Carousel.Item key={imageIndex}>
@@ -314,7 +309,7 @@ export default function DetailPost() {
                           <img
                             src={imageSrc}
                             alt={imageSrc}
-                            className="img-update"
+                            className={styles["img-update"]}
                           />
                         </div>
                       </Carousel.Item>
@@ -325,10 +320,10 @@ export default function DetailPost() {
                   <Button
                     variant="primary"
                     key={idx}
-                    className="me-2 mb-2 editar-hostess"
+                    className={styles["editar-hostess"]}
                     onClick={() => handleShow(v)}
                   >
-                    <EditIcon />
+                    <EditIcon className={styles["icon-editar"]} />
                     {typeof v === "string" && `below ${v.split("-")[0]}`}
                   </Button>
                 ))}
@@ -346,62 +341,49 @@ export default function DetailPost() {
                 </ModalBootstrap>
               </div>
 
-              <div className="btn-icons">
+              <div className={styles["btn-delete-content"]}>
                 <div>
                   <Space wrap>
                     <Button
                       onClick={showDeleteConfirm}
                       type="dashed"
-                      className="btn-delete"
+                      className={styles["btn-delete"]}
                     >
-                      <CloseIcon id="icons-reload" />
+                      <CloseIcon id={styles["icons-reload"]} />
                     </Button>
                   </Space>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div
-            style={{
-              width: 800,
-              borderWidth: "0 3px 3px 0", // Ajusta el grosor según tus preferencias
-              borderColor: "gray", // Cambia el color si es necesario
-              borderStyle: "solid", // Establece el estilo del borde
-              marginLeft: "-5em",
-            }}
-          >
-            <div className="container-direction">
-              <div className="card-direction">
-                <span className="direction">Dirección</span>
-                <Card className="card-detailpost">
-                  <p>
-                    San Juan Chamelco a Santa Cruz, San Juan Chamelco, Alta
-                    Verapaz, Guatemala.
-                  </p>
+        <div className={styles.tabletOneBottom}>
+          <div className={styles["container-direction"]}>
+            <div className={styles["card-direction"]}>
+              <span className="direction">Dirección</span>
+              <Card className="card-detailpost">
+                <p>
+                  San Juan Chamelco a Santa Cruz, San Juan Chamelco, Alta
+                  Verapaz, Guatemala.
+                </p>
+              </Card>
+            </div>
+            <div className={styles["update-title-price"]}>
+              <div className={styles["card-price"]}>
+                <span className="direction">Precio fijado:</span>
+                <Card className={styles.price}>
+                  <p> ${detailpost.price}</p>
                 </Card>
               </div>
-              <div className="update-title">
-                <div className="card-direction">
-                  <span className="direction">Precio fijado:</span>
-                  <Card style={{ width: 200, fontSize: 20, fontWeight: 600 }}>
-                    <p> ${detailpost.price}</p>
-                  </Card>
-                </div>
-                <ButtonMaterial
-                  onClick={handleShowPrice}
-                  sx={{
-                    color: "#8B008B",
-                    borderRadius: "50%",
-                    padding: "15px",
-                  }}
-                >
-                  <EditIcon sx={{ color: "#8B008B" }} />
-                </ButtonMaterial>
-                <ModalBootstrap show={showPrice} onHide={handleCloseTitle}>
-                <form  onSubmit={handleSubmit}>
-
-
+              <ButtonMaterial
+                onClick={handleShowPrice}
+                className={styles.btnEditPrice}
+              >
+                <EditIcon sx={{ color: "#8B008B" }} />
+              </ButtonMaterial>
+              <ModalBootstrap show={showPrice} onHide={handleCloseTitle}>
+                <form onSubmit={handleSubmit}>
                   <ModalBootstrap.Header closeButton>
                     <ModalBootstrap.Title></ModalBootstrap.Title>
                   </ModalBootstrap.Header>
@@ -416,7 +398,9 @@ export default function DetailPost() {
                           type="text"
                           autoFocus
                           value={detail.price}
-                          onChange={(e) => setDetail({...detail, price: e.target.value})}
+                          onChange={(e) =>
+                            setDetail({ ...detail, price: e.target.value })
+                          }
                         />
                       </Form.Group>
                     </Form>
@@ -433,56 +417,49 @@ export default function DetailPost() {
                     </ButtonBootstrap>
                   </ModalBootstrap.Footer>
                 </form>
+              </ModalBootstrap>
+            </div>
 
-                </ModalBootstrap>
-              </div>
-
-              <div className="publication-btn">
-                <a href={"/rooms/" + postId} target="_blank">
-                  <Button>
-                    <span id="go-btn">Ir a publicación</span>
-                  </Button>
-                </a>
-              </div>
+            <div className={styles["publication-btn"]}>
+              <a href={"/rooms/" + postId} target="_blank">
+                <Button>
+                  <span id="go-btn">Ir a publicación</span>
+                </Button>
+              </a>
             </div>
           </div>
         </div>
-        <div
-          style={{
-            width: 800,
-            borderWidth: "0 3px 3px 0", // Ajusta el grosor según tus preferencias
+      </div>
+      <div className={styles.tabletTwo}>
+        <div className={styles["accordion-bg"]}>
+          <Accordion
+            className={styles["accordion-container"]}
+            defaultActiveKey="0"
+          >
+            <div className={styles["update-title-accordion"]}>
+              <Accordion.Item className={styles["accordion"]} eventKey="0">
+                <div>
+                  <Accordion.Header>Resumen del Lugar</Accordion.Header>
+                  <Accordion.Body>
+                    {detailpost.summary}
+                    <div className="icons-edit">
+                      <ButtonMaterial
+                        onClick={handleShowSummary}
+                        /* sx={{
+                          color: "#8B008B",
+                          borderRadius: "50%",
+                          padding: "15px",
+                        }} */
+                      >
+                        <EditIcon />
+                      </ButtonMaterial>
+                    </div>
+                  </Accordion.Body>
+                </div>
+              </Accordion.Item>
 
-            borderColor: "gray", // Cambia el color si es necesario
-            borderStyle: "solid", // Establece el estilo del borde
-          }}
-        >
-          <div className="accordion-bg">
-            <Accordion className="accordion-container" defaultActiveKey="0">
-              <div className="update-title">
-                <Accordion.Item className="accordion " eventKey="0">
-                  <div>
-                    <Accordion.Header>Resumen del Lugar</Accordion.Header>
-                    <Accordion.Body>
-                      {detailpost.summary}
-                      <div className="icons-edit">
-                        <ButtonMaterial
-                          onClick={handleShowSummary}
-                          sx={{
-                            color: "#8B008B",
-                            borderRadius: "50%",
-                            padding: "15px",
-                          }}
-                        >
-                          <EditIcon />
-                        </ButtonMaterial>
-                      </div>
-                    </Accordion.Body>
-                  </div>
-                </Accordion.Item>
-
-                <ModalBootstrap show={showSummary} onHide={handleCloseTitle}>
+              <ModalBootstrap show={showSummary} onHide={handleCloseTitle}>
                 <form onSubmit={handleSubmit}>
-
                   <ModalBootstrap.Header closeButton>
                     <ModalBootstrap.Title></ModalBootstrap.Title>
                   </ModalBootstrap.Header>
@@ -497,8 +474,9 @@ export default function DetailPost() {
                           type="text"
                           autoFocus
                           value={detail.summary}
-                          onChange={(e) => setDetail({...detail, summary: e.target.value})}
-
+                          onChange={(e) =>
+                            setDetail({ ...detail, summary: e.target.value })
+                          }
                         />
                       </Form.Group>
                     </Form>
@@ -515,38 +493,33 @@ export default function DetailPost() {
                     </ButtonBootstrap>
                   </ModalBootstrap.Footer>
                 </form>
+              </ModalBootstrap>
+            </div>
 
-                </ModalBootstrap>
-              </div>
+            <div className="update-title">
+              <Accordion.Item className="accordion" eventKey="1">
+                <div>
+                  <Accordion.Header>Descripción</Accordion.Header>
+                  <Accordion.Body>
+                    {detailpost.description}
+                    <div className="icons-edit">
+                      <ButtonMaterial
+                        onClick={handleShowDescription}
+                        sx={{
+                          color: "#8B008B",
+                          borderRadius: "50%",
+                          padding: "15px",
+                        }}
+                      >
+                        <EditIcon />
+                      </ButtonMaterial>
+                    </div>
+                  </Accordion.Body>
+                </div>
+              </Accordion.Item>
 
-              <div className="update-title">
-                <Accordion.Item className="accordion" eventKey="1">
-                  <div>
-                    <Accordion.Header>Descripción</Accordion.Header>
-                    <Accordion.Body>
-                      {detailpost.description}
-                      <div className="icons-edit">
-                        <ButtonMaterial
-                          onClick={handleShowDescription}
-                          sx={{
-                            color: "#8B008B",
-                            borderRadius: "50%",
-                            padding: "15px",
-                          }}
-                        >
-                          <EditIcon />
-                        </ButtonMaterial>
-                      </div>
-                    </Accordion.Body>
-                  </div>
-                </Accordion.Item>
-
-                <ModalBootstrap
-                  show={showDescription}
-                  onHide={handleCloseTitle}
-                >
-                  <form action="" onSubmit={handleSubmit}>
-
+              <ModalBootstrap show={showDescription} onHide={handleCloseTitle}>
+                <form action="" onSubmit={handleSubmit}>
                   <ModalBootstrap.Header closeButton>
                     <ModalBootstrap.Title></ModalBootstrap.Title>
                   </ModalBootstrap.Header>
@@ -561,8 +534,12 @@ export default function DetailPost() {
                           type="text"
                           autoFocus
                           value={detail.description}
-                          onChange={(e) => setDetail({...detail, description: e.target.value})}
-
+                          onChange={(e) =>
+                            setDetail({
+                              ...detail,
+                              description: e.target.value,
+                            })
+                          }
                         />
                       </Form.Group>
                     </Form>
@@ -574,39 +551,37 @@ export default function DetailPost() {
                     >
                       Cancelar
                     </ButtonBootstrap>
-                    <ButtonBootstrap type= 'submit' variant="primary">
+                    <ButtonBootstrap type="submit" variant="primary">
                       Guardar cambio
                     </ButtonBootstrap>
                   </ModalBootstrap.Footer>
-                  </form>
+                </form>
+              </ModalBootstrap>
+            </div>
+            <div className="update-title">
+              <Accordion.Item className="accordion" eventKey="2">
+                <div>
+                  <Accordion.Header>Capacidad de personas</Accordion.Header>
+                  <Accordion.Body>
+                    {detailpost.people}
+                    <div className="icons-edit">
+                      <ButtonMaterial
+                        onClick={handleShowPeople}
+                        sx={{
+                          color: "#8B008B",
+                          borderRadius: "50%",
+                          padding: "15px",
+                        }}
+                      >
+                        <EditIcon />
+                      </ButtonMaterial>
+                    </div>
+                  </Accordion.Body>
+                </div>
+              </Accordion.Item>
 
-                </ModalBootstrap>
-              </div>
-              <div className="update-title">
-                <Accordion.Item className="accordion" eventKey="2">
-                  <div>
-                    <Accordion.Header>Capacidad de personas</Accordion.Header>
-                    <Accordion.Body>
-                      {detailpost.people}
-                      <div className="icons-edit">
-                        <ButtonMaterial
-                          onClick={handleShowPeople}
-                          sx={{
-                            color: "#8B008B",
-                            borderRadius: "50%",
-                            padding: "15px",
-                          }}
-                        >
-                          <EditIcon />
-                        </ButtonMaterial>
-                      </div>
-                    </Accordion.Body>
-                  </div>
-                </Accordion.Item>
-
-                <ModalBootstrap show={showPeople} onHide={handleCloseTitle}>
-                  <form action="" onSubmit={handleSubmit}>
-
+              <ModalBootstrap show={showPeople} onHide={handleCloseTitle}>
+                <form action="" onSubmit={handleSubmit}>
                   <ModalBootstrap.Header closeButton>
                     <ModalBootstrap.Title></ModalBootstrap.Title>
                   </ModalBootstrap.Header>
@@ -621,8 +596,9 @@ export default function DetailPost() {
                           type="text"
                           autoFocus
                           value={detail.people}
-                          onChange={(e) => setDetail({...detail, people: e.target.value})}
-
+                          onChange={(e) =>
+                            setDetail({ ...detail, people: e.target.value })
+                          }
                         />
                       </Form.Group>
                     </Form>
@@ -634,19 +610,56 @@ export default function DetailPost() {
                     >
                       Cancelar
                     </ButtonBootstrap>
-                    <ButtonBootstrap type= 'submit' variant="primary">
+                    <ButtonBootstrap type="submit" variant="primary">
                       Guardar cambio
                     </ButtonBootstrap>
                   </ModalBootstrap.Footer>
-                  </form>
+                </form>
+              </ModalBootstrap>
+            </div>
+            <div className="update-title">
+              <Accordion.Item className="accordion" eventKey="3">
+                <div>
+                  <Accordion.Header>Cuenta con:</Accordion.Header>
+                  <Accordion.Body>
+                    <ul
+                      role="list"
+                      className="list-disc space-y-2 pl-4 text-sm"
+                    >
+                      {detailpost.listDetails &&
+                        detailpost.listDetails.map((list) => (
+                          <li className="text-gray-400">
+                            <span className="text-gray-600">{list}</span>
+                          </li>
+                        ))}
+                    </ul>
+                    <div className="icons-edit">
+                      <ButtonMaterial
+                        onClick={handleShowList}
+                        sx={{
+                          color: "#8B008B",
+                          borderRadius: "50%",
+                          padding: "15px",
+                        }}
+                      >
+                        <EditIcon />
+                      </ButtonMaterial>
+                    </div>
+                  </Accordion.Body>
+                </div>
+              </Accordion.Item>
 
-                </ModalBootstrap>
-              </div>
-              <div className="update-title">
-                <Accordion.Item className="accordion" eventKey="3">
-                  <div>
-                    <Accordion.Header>Cuenta con:</Accordion.Header>
-                    <Accordion.Body>
+              <ModalBootstrap show={showList} onHide={handleCloseTitle}>
+                <ModalBootstrap.Header closeButton>
+                  <ModalBootstrap.Title></ModalBootstrap.Title>
+                </ModalBootstrap.Header>
+                <ModalBootstrap.Body>
+                  <Form className="modal-titleupdate">
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Cuenta con:</Form.Label>
                       <ul
                         role="list"
                         className="list-disc space-y-2 pl-4 text-sm"
@@ -658,67 +671,67 @@ export default function DetailPost() {
                             </li>
                           ))}
                       </ul>
-                      <div className="icons-edit">
-                        <ButtonMaterial
-                          onClick={handleShowList}
-                          sx={{
-                            color: "#8B008B",
-                            borderRadius: "50%",
-                            padding: "15px",
-                          }}
-                        >
-                          <EditIcon />
-                        </ButtonMaterial>
-                      </div>
-                    </Accordion.Body>
-                  </div>
-                </Accordion.Item>
-
-                <ModalBootstrap show={showList} onHide={handleCloseTitle}>
-                  <ModalBootstrap.Header closeButton>
-                    <ModalBootstrap.Title></ModalBootstrap.Title>
-                  </ModalBootstrap.Header>
-                  <ModalBootstrap.Body>
-                    <Form className="modal-titleupdate">
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <Form.Label>Cuenta con:</Form.Label>
-                        <ul
-                          role="list"
-                          className="list-disc space-y-2 pl-4 text-sm"
-                        >
-                          {detailpost.listDetails &&
-                            detailpost.listDetails.map((list) => (
-                              <li className="text-gray-400">
-                                <span className="text-gray-600">{list}</span>
-                              </li>
-                            ))}
-                        </ul>
-                        <Form.Control type="text" autoFocus value="" />
-                      </Form.Group>
-                    </Form>
-                  </ModalBootstrap.Body>
-                  <ModalBootstrap.Footer>
-                    <ButtonBootstrap
-                      variant="secondary"
-                      onClick={handleCloseTitle}
-                      className="butonCancelar"
+                      <Form.Control type="text" autoFocus value="" />
+                    </Form.Group>
+                  </Form>
+                </ModalBootstrap.Body>
+                <ModalBootstrap.Footer>
+                  <ButtonBootstrap
+                    variant="secondary"
+                    onClick={handleCloseTitle}
+                    className="butonCancelar"
+                  >
+                    Cancelar
+                  </ButtonBootstrap>
+                  <ButtonBootstrap className="butonADD">
+                    Guardar cambio
+                  </ButtonBootstrap>
+                </ModalBootstrap.Footer>
+              </ModalBootstrap>
+            </div>
+            <div className="update-title">
+              <Accordion.Item className="accordion" eventKey="4">
+                <div>
+                  <Accordion.Header>Políticas del lugar</Accordion.Header>
+                  <Accordion.Body>
+                    <ul
+                      role="list"
+                      className="list-disc space-y-2 pl-4 text-sm"
                     >
-                      Cancelar
-                    </ButtonBootstrap>
-                    <ButtonBootstrap className="butonADD">
-                      Guardar cambio
-                    </ButtonBootstrap>
-                  </ModalBootstrap.Footer>
-                </ModalBootstrap>
-              </div>
-              <div className="update-title">
-                <Accordion.Item className="accordion" eventKey="4">
-                  <div>
-                    <Accordion.Header>Políticas del lugar</Accordion.Header>
-                    <Accordion.Body>
+                      {detailpost.infoImportant &&
+                        detailpost.infoImportant.map((list) => (
+                          <li className="text-gray-400">
+                            <span className="text-gray-600">{list}</span>
+                          </li>
+                        ))}
+                    </ul>
+                    <div className="icons-edit">
+                      <ButtonMaterial
+                        onClick={handleShowPolitic}
+                        sx={{
+                          color: "#8B008B",
+                          borderRadius: "50%",
+                          padding: "15px",
+                        }}
+                      >
+                        <EditIcon />
+                      </ButtonMaterial>
+                    </div>
+                  </Accordion.Body>
+                </div>
+              </Accordion.Item>
+
+              <ModalBootstrap show={showPolitic} onHide={handleCloseTitle}>
+                <ModalBootstrap.Header className="header-modal" closeButton>
+                  <ModalBootstrap.Title></ModalBootstrap.Title>
+                </ModalBootstrap.Header>
+                <ModalBootstrap.Body>
+                  <Form className="modal-titleupdate">
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
+                    >
+                      <Form.Label>Políticas del lugar</Form.Label>
                       <ul
                         role="list"
                         className="list-disc space-y-2 pl-4 text-sm"
@@ -730,108 +743,69 @@ export default function DetailPost() {
                             </li>
                           ))}
                       </ul>
-                      <div className="icons-edit">
-                        <ButtonMaterial
-                          onClick={handleShowPolitic}
-                          sx={{
-                            color: "#8B008B",
-                            borderRadius: "50%",
-                            padding: "15px",
-                          }}
-                        >
-                          <EditIcon />
-                        </ButtonMaterial>
-                      </div>
-                    </Accordion.Body>
-                  </div>
-                </Accordion.Item>
+                      <Form.Control type="text" autoFocus value="" />
+                    </Form.Group>
+                  </Form>
+                </ModalBootstrap.Body>
+                <ModalBootstrap.Footer>
+                  <ButtonBootstrap
+                    variant="secondary"
+                    onClick={handleCloseTitle}
+                    className="butonCancelar"
+                  >
+                    Cancelar
+                  </ButtonBootstrap>
+                  <ButtonBootstrap className="butonADD">
+                    Guardar cambio
+                  </ButtonBootstrap>
+                </ModalBootstrap.Footer>
+              </ModalBootstrap>
+            </div>
 
-                <ModalBootstrap show={showPolitic} onHide={handleCloseTitle}>
-                  <ModalBootstrap.Header className="header-modal" closeButton>
-                    <ModalBootstrap.Title></ModalBootstrap.Title>
-                  </ModalBootstrap.Header>
-                  <ModalBootstrap.Body>
-                    <Form className="modal-titleupdate">
-                      <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlInput1"
-                      >
-                        <Form.Label>Políticas del lugar</Form.Label>
-                        <ul
-                          role="list"
-                          className="list-disc space-y-2 pl-4 text-sm"
-                        >
-                          {detailpost.infoImportant &&
-                            detailpost.infoImportant.map((list) => (
-                              <li className="text-gray-400">
-                                <span className="text-gray-600">{list}</span>
-                              </li>
-                            ))}
-                        </ul>
-                        <Form.Control type="text" autoFocus value="" />
-                      </Form.Group>
-                    </Form>
-                  </ModalBootstrap.Body>
-                  <ModalBootstrap.Footer>
-                    <ButtonBootstrap
-                      variant="secondary"
-                      onClick={handleCloseTitle}
-                      className="butonCancelar"
-                    >
-                      Cancelar
-                    </ButtonBootstrap>
-                    <ButtonBootstrap className="butonADD">
-                      Guardar cambio
-                    </ButtonBootstrap>
-                  </ModalBootstrap.Footer>
-                </ModalBootstrap>
-              </div>
-
-              <Card style={{ width: 300, fontSize: 15, fontWeight: 700 }}>
-                <p>Fecha y horario del sitio:</p>
-              </Card>
-              <div className="slide-container">
-                <Splide
-                  options={{
-                    type: "slide", // Tipo de transición (slide)
-                    perPage: 1, // Número de elementos a mostrar en un slide
-                    perMove: 1, // Número de elementos a mover en cada transición
-                    pagination: false,
+            <Card style={{ fontSize: 15, fontWeight: 700 }}>
+              <p>Fecha y horario del sitio:</p>
+            </Card>
+            <div className="slide-container">
+              <Splide
+                options={{
+                  type: "slide", // Tipo de transición (slide)
+                  perPage: 1, // Número de elementos a mostrar en un slide
+                  perMove: 1, // Número de elementos a mover en cada transición
+                  pagination: false,
+                }}
+              >
+                <SplideSlide
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "1em",
                   }}
                 >
-                  <SplideSlide
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      gap: "1em",
-                    }}
-                  >
-                    <Card className="card-calendar">
-                      <p>lun</p>
-                      <p>10</p>
-                      <p>oct</p>
-                    </Card>
-                    <Card className="card-calendar">
-                      <p>mar</p>
-                      <p>10</p>
-                      <p>oct</p>
-                    </Card>
-                    <Card className="card-calendar">
-                      <p>mié</p>
-                      <p>10</p>
-                      <p>oct</p>
-                    </Card>
-                  </SplideSlide>
-                </Splide>
-                <Card className="card-calendar1">
-                  <p>Ver todas las fechas</p>
-                </Card>
-              </div>
-              <div>
-                <input type="num" />
-              </div>
-            </Accordion>
-          </div>
+                  <Card className="card-calendar">
+                    <p>lun</p>
+                    <p>10</p>
+                    <p>oct</p>
+                  </Card>
+                  <Card className="card-calendar">
+                    <p>mar</p>
+                    <p>10</p>
+                    <p>oct</p>
+                  </Card>
+                  <Card className="card-calendar">
+                    <p>mié</p>
+                    <p>10</p>
+                    <p>oct</p>
+                  </Card>
+                </SplideSlide>
+              </Splide>
+              <Card className="card-calendar1">
+                <p>Ver todas las fechas</p>
+              </Card>
+            </div>
+            <div>
+              <input type="num" />
+            </div>
+          </Accordion>
         </div>
       </div>
     </div>

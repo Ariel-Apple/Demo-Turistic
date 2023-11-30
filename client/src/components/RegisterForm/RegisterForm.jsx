@@ -5,7 +5,7 @@ import { UserRegister } from "../../redux/action";
 import { useDispatch } from "react-redux";
 import { countries } from "../../assets/codeCountry/countries";
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import '@sweetalert2/theme-bulma/bulma.scss';
+//import '@sweetalert2/theme-bulma/bulma.scss';
 import {  Modal } from 'antd';
 import LoginForms from "../LoginForms/LoginForms";
 

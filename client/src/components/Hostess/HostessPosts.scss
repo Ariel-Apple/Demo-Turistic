@@ -1,157 +1,214 @@
-.button-container{
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
 .container-hostess {
-    position: relative;
+  height: 100vh;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  align-items: flex-end;
+
+  .hostess-content{
+    width: 100%;
+  }
 }
-
-.hostees-container {
-    background: white;
-}
-.button-primary {
-    background-color: rgb(0, 119, 255);
-}
-
-.button-delete {
-    background-color: #cc0404;
-    color: white;
-    border-color:#cc0404; ;
-}
-
-.button-delete:hover {
-    background-color: rgb(204, 4, 4);
-    color: white;
-}
-.cards-anfitrion {
-    box-shadow: 0px 0px 20px;
-    border-radius: 15px;
-}
-
-.summary-hostess {
-    position: relative;
-    margin-left: 10px;
-    width: 270px;
-    margin-top: 545px;
-    font-size: 11px;
-    color: gray;
-}
-
-.hostess-swiper{
-    height: 270px;
-    width: 270px;
-}
-.demo-logo-vertical {
-    background: gray;
-}
-
-.menu-anfitrion {
-    background: #F8F9FA ;
-    color: black;
-    display: grid;
-    gap: 6rem;
-    margin-top: 6em;
-}
-
-.menu-anfitrion a { 
-    color: black;
-}
-.menu-anfitrion li {
-    position: absolute;
-    padding: 15px;
-    width: 90%;
-    cursor: pointer;
-    font-weight: 700;
-}
-
-.menu-anfitrion li:hover {
-    background-color: rgb(158, 155, 155);
-    height: 3em;
-    border-radius: 20px;
-} 
-
-.menu-anfitrion li:focus {
-    background-color: rgb(158, 155, 155);
-} 
-
-.items-anfitrion{
-    font-size: 1.8em;
-    background-color: #F8F9FA ;
-
-    user-select: none; 
-
-}
-:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light .ant-menu-item-selected,
-:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light > .ant-menu .ant-menu-item-selected {
-    background-color: #F8F9FA ;
-}
-
-/* Cambiar el color del texto al seleccionar un elemento */
-:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light .ant-menu-item-selected,
-:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light > .ant-menu .ant-menu-item-selected {
-    color: #8B008B;
-    background-color: #F8F9FA;
-
-}
-
-
-
-.items-anfitrion:hover {
-    color: #8B008B;
-    background: #F8F9FA;
-
-}
-.items-anfitrion:active {
-    color: #8B008B;
-    background: none; 
-
-}
-.items-anfitrion::after {
-    color: #8B008B;
-    background: #F8F9FA ;
-
-}
-.items-anfitrion:focus {
-    color: #8B008B;
-    background: #F8F9FA ;
-
-}
-.items-anfitrion:active {
-    color: #8B008B;
-    background: #F8F9FA ;
-
-}
-.items-anfitrion::after {
-    color: #8B008B;
-    background: #F8F9FA ;
-
+.container-sider {
+  height: 90vh;
+  margin: auto 0 0 0 !important;
+  //border: 1px solid red;
+  background: #f8f9fa;
+  width: 25%;
 }
 
 #menu-left {
-    background: #F8F9FA;
-    height: 100vh;
-    left: 0;
-    bottom: 0;
-    overflow: auto;
+  background: #f8f9fa;
+  //border: 1px solid blue;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  max-width: inherit !important;
+  min-width: inherit !important;
+  
+}
+.avatar-anfitrion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+  gap: 10%;
+}
+.avatar-anfitrion div{
+  position: relative;
+}
+
+.camera-hostess {
+  position: absolute;
+  font-size: 2em;
+  bottom: 0px;
+  right: 0px;
+}
+
+.menu-anfitrion {
+  background: #f8f9fa;
+  color: black;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 70%;
+  padding: 0px;
+}
+
+.menu-anfitrion a {
+  color: black;
+  width: 90%;
+}
+.menu-anfitrion li {
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.menu-anfitrion li:hover {
+  background-color: rgb(158, 155, 155);
+  border-radius: 8px;
+}
+
+.menu-anfitrion li:focus {
+  background-color: rgb(158, 155, 155);
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.hostees-container {
+  background: white;
+}
+.button-primary {
+  background-color: rgb(0, 119, 255);
+}
+
+.button-delete {
+  background-color: #cc0404;
+  color: white;
+  border-color: #cc0404;
+}
+
+.button-delete:hover {
+  background-color: rgb(204, 4, 4);
+  color: white;
+}
+.cards-anfitrion {
+  box-shadow: 0px 0px 20px;
+  border-radius: 15px;
+}
+
+.summary-hostess {
+  position: relative;
+  margin-left: 10px;
+  width: 270px;
+  margin-top: 545px;
+  font-size: 11px;
+  color: gray;
+}
+
+.hostess-swiper {
+  height: 270px;
+  width: 270px;
+}
+.demo-logo-vertical {
+  background: gray;
+}
+
+.items-anfitrion {
+  font-size: 1.8em;
+  background-color: #f8f9fa;
+
+  user-select: none;
+}
+:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light
+  .ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light
+  > .ant-menu
+  .ant-menu-item-selected {
+  background-color: #f8f9fa;
+}
+
+/* Cambiar el color del texto al seleccionar un elemento */
+:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light
+  .ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-1vr7spz).ant-menu-light
+  > .ant-menu
+  .ant-menu-item-selected {
+  color: #8b008b;
+  background-color: #f8f9fa;
+}
+
+.items-anfitrion:hover {
+  color: #8b008b;
+  background: #f8f9fa;
+}
+.items-anfitrion:active {
+  color: #8b008b;
+  background: none;
+}
+.items-anfitrion::after {
+  color: #8b008b;
+  background: #f8f9fa;
+}
+.items-anfitrion:focus {
+  color: #8b008b;
+  background: #f8f9fa;
+}
+.items-anfitrion:active {
+  color: #8b008b;
+  background: #f8f9fa;
+}
+.items-anfitrion::after {
+  color: #8b008b;
+  background: #f8f9fa;
 }
 
 #close-sesion:hover {
- color: #8B008B;
- border-color: #8B008B;
+  color: #8b008b;
+  border-color: #8b008b;
 }
-.camera-hostess {
-    margin-left: 3.5em;
-    position: absolute;
-    margin-top: -1em;
-    font-size: 2em;
+
+@media screen and (max-width: 1440px){
+  /* #menu-left{
+    width: 300px;
+  } */
+  .items-anfitrion {
+    font-size: 1.4em;
+  }
 }
+
+@media screen and (max-width: 1023px) {
+  .container-sider {
+    display: none;
+  }
+  /* .avatar-anfitrion {
+    display: flex;
+    margin-bottom: 10%;
+    margin-left: 2%;
+    gap: 10%;
+    margin-top: 10%;
+  } */
+}
+
 @media screen and (max-width: 767px) {
-    #menu-left {
+  /* #menu-left {
        display: none;
-    }
-    .hostess-swiper{
-        height: 70px;
-        width: 70px;
-    }
+    } */
+  .hostess-swiper {
+    height: 70px;
+    width: 70px;
+  }
+  .container-hostess{
+    width: 100%;
+  }
 }

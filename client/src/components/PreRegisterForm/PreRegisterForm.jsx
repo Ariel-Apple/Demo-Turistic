@@ -6,7 +6,6 @@ import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import CancelIcon from "@mui/icons-material/Cancel";
-import ImgCrop from "antd-img-crop";
 import { updatePersonal } from "../../redux/action";
 import { countries } from "../../assets/codeCountry/countries";
 import Avatar from "@mui/material/Avatar";

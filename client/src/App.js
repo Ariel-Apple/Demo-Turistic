@@ -20,6 +20,7 @@ import Reservations from './components/Hostess/Reservations/Reservations';
 import Historial from './components/Hostess/Historial/Historial';
 import UpdatePhoto from './components/Hostess/UpdatePhoto/UpdatePhoto';
 import Claims from './components/Hostess/Claims/Claims';
+import Admin from './components/Admin/Admin';
 
 
 function App() {
@@ -53,6 +54,22 @@ function App() {
 
 
         </Route>
+  
+
+
+         <Route path="/admin" element={<Admin/>}>
+       {/*    <Route index element={<Start />} />
+          <Route path="inicio" element={<Start />} />
+          <Route path="mi sitio" element={<Mywebsite />} />
+          <Route path="mi sitio/:postId" element={<DetailPost />} />
+          <Route path="reservaciones" element={<Reservations />} />
+          <Route path="historial de reservas" element={<Historial />} />
+          <Route path="historial de reservas/fotos" element={<UpdatePhoto />} />
+          <Route path="reclamos" element={<Claims />} /> */}
+
+
+
+        </Route> 
         
       </Routes>
     </Router>

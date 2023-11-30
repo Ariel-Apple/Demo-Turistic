@@ -11,21 +11,21 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 
-import {CameraOutlined } from '@ant-design/icons';
+import { CameraOutlined } from "@ant-design/icons";
 
 import { dataPersonal } from "../../../redux/action";
 import Avatar from "@mui/material/Avatar";
 
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
 import { Layout, Menu } from "antd";
 
 const { Header, Sider, Content } = Layout;
@@ -33,8 +33,8 @@ const { Header, Sider, Content } = Layout;
 export default function FooterMobile() {
   const dispatch = useDispatch();
 
-    const datapersonal = useSelector((state) => state.datapersonal);
-    const token = useSelector((state) => state.token);
+  const datapersonal = useSelector((state) => state.datapersonal);
+  const token = useSelector((state) => state.token);
   const [state, setState] = React.useState({
     bottom: false,
   });
@@ -53,15 +53,15 @@ export default function FooterMobile() {
     dispatch(dataPersonal(token));
   }, [token]);
   const list = (anchor) => (
-
-    <Box
-    sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-    role="presentation"
-    onClick={toggleDrawer(anchor, false)}
-    onKeyDown={toggleDrawer(anchor, false)}
-  >
-      <div className="avatar-anfitrion">
-          <div>
+    <div className="container-footer-mobile">
+      <Box
+        sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+        role="presentation"
+        onClick={toggleDrawer(anchor, false)}
+        onKeyDown={toggleDrawer(anchor, false)}
+      >
+        <div className="avatar-anfitrion-mobile">
+          <div className="avatar-perfil-container">
             <Avatar
               sx={{
                 width: 100,
@@ -73,6 +73,7 @@ export default function FooterMobile() {
 
                 backgroundSize: "cover",
               }}
+              className="avatar-perfil"
             >
               {datapersonal.avatar ? (
                 <div></div>
@@ -84,7 +85,7 @@ export default function FooterMobile() {
             </Avatar>
             <CameraOutlined className="camera-hostess" />
           </div>
-          <div>
+          <div className="avatar-perfil-data">
             <p>
               {datapersonal.name} {datapersonal.lastName}
             </p>
@@ -92,74 +93,61 @@ export default function FooterMobile() {
             <Button id="close-sesion">Cerrar sesión</Button>
           </div>
         </div>
-        
-    <List>
-    <Link to="/anfitrion/inicio">
 
-      
-         <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-            </ListItemIcon>
-            <ListItemText primary={'Inicio'} />
-          </ListItemButton>
-        </ListItem>
-    </Link>
+        <div className="list-item-mobile">
+          <List>
+            <Link to="/anfitrion/inicio">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary={"Inicio"} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
 
-    <Link to="/anfitrion/mi sitio">
+            <Link to="/anfitrion/mi sitio">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary={"Mi sitio"} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+            <Link to="/anfitrion/reservaciones">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary={"Reservaciones"} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+            <Link to="/anfitrion/historial de reservas">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary={"Historial de reservas"} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
+            <Link to="/anfitrion/reclamos">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText primary={"Reclamos"} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
 
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-            </ListItemIcon>
-            <ListItemText primary={'Mi sitio'} />
-          </ListItemButton>
-        </ListItem>
-        </Link>
-        <Link to="/anfitrion/reservaciones">
-
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-            </ListItemIcon>
-            <ListItemText primary={'Reservaciones'} />
-          </ListItemButton>
-        </ListItem>
-        </Link>
-        <Link to="/anfitrion/historial de reservas">
-
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-            </ListItemIcon>
-            <ListItemText primary={'Historial de reservas'} />
-          </ListItemButton>
-        </ListItem>
-        </Link>
-        <Link to="/anfitrion/reclamos">
-
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-            </ListItemIcon>
-            <ListItemText primary={'Reclamos'} />
-          </ListItemButton>
-        </ListItem>
-        </Link>
-
-        <ListItem  disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-            </ListItemIcon>
-            <ListItemText primary={'Comentarios'} />
-          </ListItemButton>
-        </ListItem>
-
-
-    </List>
-
-  </Box>
-   
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon></ListItemIcon>
+                <ListItemText primary={"Comentarios"} />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </div>
+      </Box>
+    </div>
   );
   return (
     <div className="footer-Hosstes">

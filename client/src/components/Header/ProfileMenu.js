@@ -517,7 +517,7 @@ export default function BasicMenu() {
               <Button >
                 <span id="text-btn-join">
 
-                <span>+</span> Unirse como anfitrion
+                  <span>+</span> Unirse como anfitrion
                 </span>
               </Button>
             </Link>

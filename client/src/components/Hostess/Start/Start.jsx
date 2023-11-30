@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
-import "./Start.css";
+import "./Start.scss";
 
 export default function Start() {
   return (
-    <div className="start-container" id='Inicio'>
+    <div className="start-container" id="Inicio">
       <Link to="/anfitrion/mi sitio">
-      <div className="start-img">
-        <img
-          srcSet={require("../../../assets/images/mi-sitio.png")}
-          alt="Not found"
+        <div className="start-img">
+          <img
+            srcSet={require("../../../assets/images/mi-sitio.png")}
+            alt="Not found"
           />
-        <h2>Mi sitio</h2>
-      </div>
-          </Link>
+          <h2>Mi sitio</h2>
+        </div>
+      </Link>
       <div className="start-img">
         <img
           srcSet={require("../../../assets/images/reservations.png")}

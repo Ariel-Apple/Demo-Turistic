@@ -1,6 +1,6 @@
 import * as React from "react";
 import Card from "react-bootstrap/Card";
-import "./Historial.css";
+import styles from "./Historial.module.scss";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import Table from "@mui/material/Table";
@@ -88,38 +88,42 @@ function fixedHeaderContent() {
     console.log(date, dateString);
   };
   return (
-    <TableRow>
+    <TableRow >
       <TableCell
         variant="head"
         sx={{
           backgroundColor: "background.paper",
         }}
+        className={styles["table-item-title"]}
       >
-        <h3 className="no-reservation">No. Resevación</h3>
+        <h3 className={styles["no-reservation"]}>No. Resevación</h3>
       </TableCell>
       <TableCell
         variant="head"
         sx={{
           backgroundColor: "background.paper",
         }}
+        className={styles["table-item-title"]}
       >
-        <h3 className="no">Fecha</h3>
+        <h3 className={styles["no"]}>Fecha</h3>
       </TableCell>
       <TableCell
         variant="head"
         sx={{
           backgroundColor: "background.paper",
         }}
+        className={styles["table-item-title"]}
       >
-        <h3 className="no">Nombre</h3>
+        <h3 className={styles["no"]}>Nombre</h3>
       </TableCell>
       <TableCell
         variant="head"
         sx={{
           backgroundColor: "background.paper",
         }}
+        className={styles["table-item-title"]}
       >
-        <h3 className="no">Total</h3>
+        <h3 className={styles["no"]}>Total</h3>
       </TableCell>
     </TableRow>
   );
@@ -133,12 +137,13 @@ function rowContent(_index, row) {
           sx={{
             backgroundColor: "background.paper",
           }}
+          className={styles["table-item-title"]}
         >
           55
         </TableCell>
-        <TableCell >15 mar. 2024 20:30</TableCell>
-        <TableCell>Ariel alegre</TableCell>
-        <TableCell>$200.00</TableCell>
+        <TableCell className={styles["table-item-title"]}>15 mar. 2024 20:30</TableCell>
+        <TableCell className={styles["table-item-title"]}>Ariel alegre</TableCell>
+        <TableCell className={styles["table-item-title"]}>$200.00</TableCell>
       </React.Fragment>
     </>
   );
@@ -200,63 +205,75 @@ function Historial() {
     value: str.repeat(repeat),
   });
   return (
-    <>
-      <Card className="card-container">
+    <div className={styles["container-hitorial"]}>
+      <Card className={styles["card-container"]}>
         <h1>Historial de reservas, reembolso. </h1>
-        <div className="months-years">
-          <div className="carrusel-months">
-            <div className="days-month">Abril</div>
+        <div className={styles["months-years"]}>
+          <div className={styles["carrusel-months"]}>
+            <div className={styles["days-month"]}>Abril</div>
           </div>
-          <div className="carrusel-months">
-            <div className="days-month">25</div>
+          <div className={styles["carrusel-months"]}>
+            <div className={styles["days-month"]}>25</div>
           </div>
         </div>
       </Card>
-      <Card className="card2">
-        <div className="box-card2">
-          <div>
-            <CalendarMonthIcon id="icons-clendar-expand" />
+      <Card className={styles["card2"]}>
+        <div className={styles["box-card2"]}>
+          <div className={styles["icon-none"]}>
+            <CalendarMonthIcon id={styles["icons-clendar-expand"]} />
           </div>
           <div>
-            <h2 className="all-reservations">Todas las reservaciones</h2>
-            <h2 className="length-reservation-remmbols">80</h2>
+            <h2 className={styles["all-reservations"]}>
+              Todas las reservaciones
+            </h2>
+            <h2 className={styles["length-reservation-remmbols"]}>80</h2>
+          </div>
+          <div className={styles["icon-none"]}>
+            <CurrencyExchangeIcon id={styles["icons-transfer"]} />
           </div>
           <div>
-            <CurrencyExchangeIcon id="icons-transfer " />
+            <h2 className={styles["all-reservations"]}>Reembolso</h2>
+            <h2 className={styles["length-reservation-remmbols"]}>5</h2>
           </div>
           <div>
-            <h2 className="all-reservations">Reembolso</h2>
-            <h2 className="length-reservation-remmbols">5</h2>
-          </div>
-          <div>
-            <h2 className="all-reservations">Buscar nombre</h2>
+            <h2 className={styles["all-reservations"]} id={styles["h2-none"]}>Buscar nombre</h2>
             <AutoComplete
               popupClassName="certain-category-search-dropdown"
               popupMatchSelectWidth={500}
-              style={{
+              /* style={{
                 width: 250,
-              }}
+              }} */
               options={options}
               size="large"
+              className={styles["container-input"]}
             >
-              <Input.Search size="large" placeholder="input here" />
+              <Input.Search
+                size="large"
+                placeholder="Buscar nombre"
+                className={styles["input"]}
+              />
             </AutoComplete>
           </div>
         </div>
       </Card>
 
-      <Card className="bottom-mobile">
-        <Paper style={{ height: 560, width: "100%", marginTop: "2rem", }}>
-          <h3 id="fecha-historial">Marzo 17 de 2024</h3>
+      <Card className={styles["bottom-mobile"]}>
+        <Paper
+          /* style={{ height: 560, width: "100%", marginTop: "2rem" }} */ className={
+            styles["container-paper"]
+          }
+        >
+          <h3 id={styles["fecha-historial"]}>Marzo 17 de 2024</h3>
           <TableVirtuoso
             data={rows}
             components={VirtuosoTableComponents}
             fixedHeaderContent={fixedHeaderContent}
             itemContent={rowContent}
+            className={styles["tablet-virtuoso"]}
           />
         </Paper>
       </Card>
-    </>
+    </div>
   );
 }
 

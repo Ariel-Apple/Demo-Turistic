@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./Reservations.css";
+import "./Reservations.scss";
 import Carousel from "react-bootstrap/Carousel";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -90,6 +90,7 @@ function fixedHeaderContent() {
           backgroundColor: "background.paper",
           borderWidth: "0.2rem",
         }}
+        className="item-title-day"
       >
         <div className="data-calendar">
           <span className="day">LUN</span>
@@ -103,6 +104,7 @@ function fixedHeaderContent() {
           backgroundColor: "background.paper",
           borderWidth: "0.2rem",
         }}
+        className="item-title-day"
       >
         <div className="data-calendar">
           <span className="day">MART</span>
@@ -116,6 +118,7 @@ function fixedHeaderContent() {
           backgroundColor: "background.paper",
           borderWidth: "0.2rem",
         }}
+        className="item-title-day"
       >
         <div className="data-calendar">
           <span className="day">MIE</span>
@@ -129,6 +132,7 @@ function fixedHeaderContent() {
           backgroundColor: "background.paper",
           borderWidth: "0.2rem",
         }}
+        className="item-title-day"
       >
         <div className="data-calendar">
           <span className="day">VIE</span>
@@ -142,6 +146,7 @@ function fixedHeaderContent() {
           backgroundColor: "background.paper",
           borderWidth: "0.2rem",
         }}
+        className="item-title-day"
       >
         <div className="data-calendar">
           <span className="day">SAB</span>
@@ -155,6 +160,7 @@ function fixedHeaderContent() {
           backgroundColor: "background.paper",
           borderWidth: "0.2rem",
         }}
+        className="item-title-day"
       >
         <div className="data-calendar">
           <span className="day">DOM</span>
@@ -267,18 +273,20 @@ const Reservations = () => {
       </div>
 
       <div className="box-reservation">
-        <div className="input-reservations">
-          <input type="text" className="days-input" />
-          <button className="btn-reservation-search">
-            <SearchRoundedIcon id="icons-search-reservtion" />
-          </button>
-        </div>
-        <div className="year-months">
-          <div className="months-carrusel">
-            <div className="years">2022</div>
+        <div className="content-search-months">
+          <div className="year-months">
+            <div className="months-carrusel">
+              <div className="years">2022</div>
+            </div>
+            <div className="months-carrusel">
+              <div className="months">Enero</div>
+            </div>
           </div>
-          <div className="months-carrusel">
-            <div className="months">Enero</div>
+          <div className="input-reservations">
+            <input type="text" className="days-input" />
+            <button className="btn-reservation-search">
+              <SearchRoundedIcon id="icons-search-reservtion" />
+            </button>
           </div>
         </div>
 
@@ -292,14 +300,15 @@ const Reservations = () => {
             </div>
           )}
         </div>
-        <div>
+        <div className="container-paper">
           <Paper
-            style={{
+            /* style={{
               height: 560,
               width: "100%",
               marginTop: "2rem",
               overflow: "hidden",
-            }}
+            }} */
+            className="paper"
           >
             <TableVirtuoso
               data={rows}
@@ -336,8 +345,9 @@ const Reservations = () => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        
       >
-        <Box sx={style}>
+        <Box /* sx={style} */ className="modal-container">
           <div className="modal-reservation">
             <div>
               <p>
@@ -387,7 +397,7 @@ const Reservations = () => {
               </div>
             </div>
 
-            <Card style={{ height: 200, marginTop: "8em" }}>
+            <Card /* style={{ height: 200, marginTop: "8em" }} */>
               <div className="pago-total">
                 <p>
                   <strong>Pago total</strong>

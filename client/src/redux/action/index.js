@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-export const AllPostTuristic = () => {
+ export const AllPostTuristic = () => {
   return async (dispach) => {
     const res = await axios.get('https://demo-turistic-production.up.railway.app/turistic');
     const data = res.data.User
@@ -216,7 +216,7 @@ export const AllPostTuristic = () => {
           payload: data
       })
     }
-   }; 
+   };  
  
 
 
@@ -453,5 +453,4 @@ export const UserPostDetails = (idUser) => {
 
  
 
-
-   */
+ */

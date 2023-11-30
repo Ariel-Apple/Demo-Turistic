@@ -1785,6 +1785,7 @@ export default function FormStepper() {
                             <img
                               alt={`Preview ${index}`}
                               src={URL.createObjectURL(file)}
+                              accept=".jpg, .jpeg, .png"
                             />
                           </Upload>
                         )}
