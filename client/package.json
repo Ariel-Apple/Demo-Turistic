@@ -68,6 +68,7 @@
     ]
   },
   "devDependencies": {
-    "semantic-ui-ember": "github:Semantic-Org/Semantic-UI-Ember"
+    "semantic-ui-ember": "github:Semantic-Org/Semantic-UI-Ember",
+    "tailwindcss": "^3.3.5"
   }
 }
