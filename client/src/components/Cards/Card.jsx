@@ -123,16 +123,17 @@ function Card() {
                             <div>
                               <Avatar
                                 sx={{
-                                  width: 25,
-                                  height: 25,
+                                  width: 30,
+                                  height: 30,
                                   background: data.avatar
                                     ? `url(${data.avatar})`
                                     : data.backgroundColor,
                                   backgroundSize: "cover",
 
-                                  marginRight: "10px",
-                                  marginTop: "5px",
+                                  /* marginRight: "10px",
+                                  marginTop: "5px", */
                                 }}
+                                className="perfil-avatar-content"
                               >
                                 {data.avatar ? (
                                   <div></div>
@@ -209,15 +210,15 @@ function Card() {
                             <div>
                               <Avatar
                                 sx={{
-                                  width: 25,
-                                  height: 25,
+                                  width: 30,
+                                  height: 30,
                                   background: data.avatar
                                     ? `url(${data.avatar})`
                                     : data.backgroundColor,
                                   backgroundSize: "cover",
 
-                                  marginRight: "10px",
-                                  marginTop: "5px",
+                                  /* marginRight: "10px",
+                                  marginTop: "5px", */
                                 }}
                               >
                                 {data.avatar ? (

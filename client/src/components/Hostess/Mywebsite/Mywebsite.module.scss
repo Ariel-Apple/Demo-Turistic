@@ -2,25 +2,31 @@
   margin: 0px;
   height: 100%;
   width: 100%;
+
 }
 
 .containerCards {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 5%;
   margin: 0px;
+  height: 100%;
   width: 100%;
   padding: 50px;
 }
 
 .contentCard {
-  //margin-bottom: 150px;
 
+  position: relative;
+  //margin-bottom: 150px;
+  justify-content: center;
+  display: grid;
   transition: transform 0.3s ease;
+  transform-origin: center center;
   border-radius: 15px;
 
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #808080;
+  width: fit-content;
+  width: 280px;
 }
 .contentCard:hover {
   transform: scale(1.1);
