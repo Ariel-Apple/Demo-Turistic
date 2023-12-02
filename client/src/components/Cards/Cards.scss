@@ -1,5 +1,5 @@
 .card-container-post {
-  margin-top: 5em;
+  //margin-top: 5em;
 }
 
 .cards-flex {
@@ -9,15 +9,67 @@
   flex-wrap: wrap;
   padding: 1rem;
   gap: 100px;
-  margin-top: -50px;
-  margin-bottom: 150px;
-  align-self: flex-start;
+  //margin-top: -50px;
+  //margin-bottom: 150px;
+  //align-self: flex-start;
+
+  .card-box {
+    position: relative;
+    //margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    //display: grid;
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+    border-radius: 8px;
+    border: 1px solid rgb(221, 221, 221);
+
+    .carousel-container {
+      position: relative;
+
+      .swiper-container {
+        height: 280px;
+        width: 280px;
+        overflow: hidden;
+
+        .text-link {
+          text-decoration: none;
+          color: black;
+          .image-container {
+            .card-img {
+              width: 100%;
+              border-radius: 8px 8px 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .card-box:hover {
+    transform: scale(1.1);
+    position: relative;
+    box-shadow: 3px 5px 5px rgb(173, 173, 173);
+  }
+  
 }
 
-.carousel-container {
-  position: relative;
+.shadow-card{
+  width: 95%;
+  padding: 10px 0;
+
+  .card-info-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
+.perfil-avatar-content{
+  margin: 0px !important;
+}
 .btn-favorite {
   position: absolute;
   top: 10px;
@@ -34,19 +86,15 @@
   margin-top: 50px; /* Ajusta el espacio entre el botón y el carrusel según sea necesario */
 }
 
-
-
-
 #skeleton {
   width: 280px;
   height: 280px;
   object-fit: cover;
   border-radius: 15px;
-
 }
 
 .register-button {
-  background-color: #8B008B;
+  background-color: #8b008b;
 }
 
 .loading-skeleton {
@@ -61,25 +109,6 @@
   align-self: flex-start;
 }
 
-.card-box {
-  position: relative;
-  margin-bottom: 150px;
-  justify-content: center;
-  display: grid;
-  transition: transform 0.3s ease;
-  transform-origin: center center;
-  border-radius: 15px;
-}
-
-
-.card-box:hover {
-  transform: scale(1.1);
-  position: relative;
-  box-shadow: 3px 5px 5px rgb(173, 173, 173);
-
-}
-
-
 
 .summary-card {
   position: relative;
@@ -88,7 +117,7 @@
   bottom: 5px;
   font-size: 11px;
   color: gray;
- width: 250px;
+  width: 250px;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -97,14 +126,11 @@
 .card-box:hover .summary-card {
   transform: scale(1);
   opacity: 1;
-  
 }
-
 
 .stay-price {
   position: absolute;
 }
-
 
 .price-none {
   position: relative;
@@ -115,66 +141,30 @@
   color: gray;
   transition: top 0.5s ease, width 0.5s ease, transform 0.5s ease;
   /* Agrega "transform" a la transición */
-
 }
-
 
 .card-box:hover .stay-price {
   display: none;
 }
 
-
-
-
-
-
-
-
-
 .avatar {
   width: 30px;
   height: 30;
   left: 200;
-
-}
-
-.text-link {
-  text-decoration: none;
-  color: black;
-
-}
-
-.text-link img {
-  border-radius: 15px;
-
 }
 
 .card-title {
   text-decoration: none;
   color: black;
   margin-left: 10px;
-
-}
-
-.swiper-container {
-  height: 280px;
-  width: 280px;
-  overflow: hidden;
 }
 
 .card-img {
   height: 280px;
   width: 280px;
   object-fit: cover;
-
-
 }
 
-.card-info-flex {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
 
 
 .card-rating {
@@ -188,7 +178,6 @@
 }
 
 @media only screen and (max-width: 1000px) {
-
   .swiper-container,
   .card-img {
     height: 400px;
@@ -199,8 +188,7 @@
     transform: scale(1);
     /* Escala el elemento en un 30% (1.3 veces) al pasar el cursor por encima */
     position: relative;
-  box-shadow: none;
-
+    box-shadow: none;
   }
 
   .summary-card {
@@ -218,17 +206,12 @@
 
   .card-box:hover .shadow-card {
     box-shadow: none;
-  
-  
+
     /* Corrige "trasition" a "transform" y ajusta el valor a 1 para mantener el tamaño original */
   }
-
-
-
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-
   .swiper-container,
   .card-img {
     max-height: 400px;
@@ -243,8 +226,7 @@
     transform: scale(1);
     /* Escala el elemento en un 30% (1.3 veces) al pasar el cursor por encima */
     position: relative;
-  box-shadow: none;
-
+    box-shadow: none;
   }
 
   .stay-price {
@@ -262,19 +244,16 @@
     font-size: 14px; /* Ejemplo: cambiar el tamaño de fuente */
     color: black; /* Ejemplo: cambiar el color de texto */
     transform: none; /* Ejemplo: eliminar la transformación */
-    opacity: 1; 
+    opacity: 1;
   }
   .card-box:hover .shadow-card {
     box-shadow: none;
-  
-  
+
     /* Corrige "trasition" a "transform" y ajusta el valor a 1 para mantener el tamaño original */
   }
 }
 
-
-@media only screen and (max-width: 767px)  {
-
+@media only screen and (max-width: 767px) {
   .swiper-container,
   .card-img {
     max-height: 300px;
@@ -290,8 +269,7 @@
     transform: scale(1);
     /* Escala el elemento en un 30% (1.3 veces) al pasar el cursor por encima */
     position: relative;
-  box-shadow: none;
-
+    box-shadow: none;
   }
 
   .summary-card {
@@ -300,9 +278,8 @@
     font-size: 14px; /* Ejemplo: cambiar el tamaño de fuente */
     color: black; /* Ejemplo: cambiar el color de texto */
     transform: none; /* Ejemplo: eliminar la transformación */
-    opacity: 1; 
+    opacity: 1;
     width: 300px;
-
   }
   .card-box {
     margin-top: 50px;
@@ -310,36 +287,28 @@
   }
   .card-box:hover .shadow-card {
     box-shadow: none;
-  
-  
+
     /* Corrige "trasition" a "transform" y ajusta el valor a 1 para mantener el tamaño original */
   }
   .stay-price {
     display: none;
   }
-
-
-
 }
 
 @media only screen and (min-width: 900px) and (max-width: 1440px) {
-
   .swiper-container,
   .card-img {
     max-height: 300px;
     width: 20vw;
   }
 
-
   .cards-flex {
     gap: 50px;
-
   }
 
   .card-box {
     width: 20vw;
     margin-bottom: 10px;
-
   }
   .summary-card {
     width: 230px;
@@ -352,9 +321,6 @@
     width: 20vw;
   }
   .loading-skeleton {
-  
     gap: 50px;
-
-   
   }
 }
