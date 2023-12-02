@@ -1,3 +1,5 @@
+@import "../../styles.scss";
+
 .navbar-container2 {
   display: flex;
   justify-content: space-between;
@@ -46,35 +48,41 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6rem;
-  padding: 14px;
+  gap: 70px !important;
+  padding: 24px;
   width: 100%;
   background-size: contain;
+
+  div{
+    max-width: 500px;
+  }
 }
 .text-initial {
-  //margin-top: 180px;
-  max-width: 744px;
+  max-width: 744px !important;
   width: 100%;
+  h1 {
+    font-family: Poppins, Open sans, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+  }
 }
 
-.text-initial h1 {
-  font-weight: 700;
-  font-size: 45px;
-  font-family: Poppins, Open sans, Arial, sans-serif;
-}
 .text-plecee-end {
   background: #ededed;
   text-align: center;
   margin-top: 140px;
-  padding: 15rem 0;
+  padding: 100px 0;
   background-size: cover;
   display: flex;
   justify-content: center;
-}
-.text-plecee-end h1 {
-  font-family: Poppins, Open sans, Arial, sans-serif;
-  font-size: 50px;
-  width: 80%;
+  h1 {
+    font-family: Poppins, Open sans, Arial, sans-serif;
+    @include desktopH3;
+    text-align: center;
+    width: 80%;
+  }
 }
 
 #lugar-modal {
@@ -84,17 +92,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10em;
-  padding: 0 15px;
+  margin-top: 40px;
+  padding: 24px;
+  gap: 20px;
 }
 
 .image-modal1 {
   display: flex;
   justify-content: center;
+  max-width: 700px;
+  width: 100%;
 }
 
 .image-modal1 img {
-  width: 65em;
+  width: 100%;
+  height: auto;
 }
 .avatar-uploader {
   margin-left: 30px;
@@ -214,9 +226,10 @@
   width: 100%;
   h1 {
     font-family: Poppins, Open sans, Arial, sans-serif;
-    //width: 20em;
+    font-style: normal;
+    font-weight: 600;
     font-size: 40px;
-    line-height: 5rem;
+    line-height: 48px;
   }
 }
 
@@ -228,12 +241,18 @@
   font-size: 40px;
 }
 
-.btn-close{
+.btn-close {
   width: fit-content !important;
   margin: 0px !important;
+  font-size: 20px !important;
+  height: 49px !important;
+  width: 40px !important;
+  padding: 0px !important;
+  margin-right: 1% !important;
 }
 .modal-anfitrion-container {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 .container-button-modal {
@@ -242,7 +261,7 @@
   height: 100%;
   margin: 0 3% 0 auto;
   border-radius: 8px;
-  
+
   a {
     background-color: #8b008b;
     height: 100%;
@@ -264,7 +283,8 @@
 }
 
 .container-button-modal a button:hover {
-  background-color: #8b008b;
+  background-color: #fff;
+  color: #8b008b;
   border-color: #8b008b;
 }
 
@@ -272,31 +292,32 @@
   width: 50em;
 }
 
-
 //----------------desktop-------------------
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1439px) {
   .modal-anfitrion-container {
     .text-modal-2 {
-      margin-top: 100px;
+      margin-top: 40px;
+      gap: 40px;
       .text-join-family {
-        max-width: 600px;
+        max-width: 550px;
         h1 {
-          font-size: 30px;
+          @include desktopH3;
         }
       }
     }
     .text-plecee-end {
       margin-top: 100px;
-      padding: 150px 0;
+      padding: 90px 0;
       h1 {
-        font-size: 40px;
+        @include desktopH4;
+        text-align: center;
       }
     }
   }
   .container-button-modal {
     width: 230px !important;
     height: 100%;
-    
+
     a {
       background-color: #8b008b;
       height: 100%;
@@ -313,30 +334,43 @@
       }
     }
   }
-  
+
+  .text-join-initial {
+    gap: 50px;
+  }
+  .text-initial {
+    max-width: 550px !important;
+    h1 {
+      @include desktopH3;
+    }
+  }
 }
+
 
 //----------------Laptop L-------------------
 @media screen and (max-width: 1240px) {
   .modal-anfitrion-container {
     .text-join-initial {
       .text-initial {
-        max-width: 575px;
+        max-width: 500px;
         h1 {
-          font-size: 35px;
+          //font-size: 35px;
+          @include desktopH4;
         }
       }
     }
     .text-modal-2 {
       .text-join-family {
         h1 {
-          font-size: 30px;
+          @include desktopH4;
         }
       }
     }
     .text-plecee-end {
+      padding: 80px 0;
       h1 {
-        font-size: 30px;
+        @include desktopH4;
+        text-align: center;
       }
     }
   }

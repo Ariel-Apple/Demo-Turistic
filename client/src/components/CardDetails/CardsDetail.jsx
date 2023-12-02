@@ -168,9 +168,12 @@ export default function CardDetails() {
               </div>
             </div>
           ) : (
-            <div>
+            <div className="container-section1">
               {values.map((v, idx) => (
-                <div key={idx} className="me-2 mb-2 ">
+                <div
+                  key={idx}
+                  /* className="me-2 mb-2 " */ className="section1-content"
+                >
                   <div className="title-continent">
                     <h1>{detailpost.title}</h1>
                     {/*    <h1 className="title">Lagos</h1> */}
@@ -179,6 +182,7 @@ export default function CardDetails() {
                   <div
                     onClick={() => handleShow(v)}
                     className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 fixed-image img-contains"
+                    id="container-galeria"
                   >
                     <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block ">
                       <img
@@ -256,7 +260,9 @@ export default function CardDetails() {
 
               <div className="none-laptop">
                 {scrollPosition >= 350 && (
-                  <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 carrusel-container">
+                  <div
+                    /* className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8 carrusel-container" */ className="carrusel-container"
+                  >
                     <div className="carrusel-scroll slide-up">
                       <div className="splide-container">
                         <Splide
@@ -309,7 +315,7 @@ export default function CardDetails() {
           >
             <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
               <div className="card-text">
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name">
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl flex-name title-h1" >
                   Anfitrión: {detailpost.Users && detailpost.Users[0].name}
                   <div className="avatar-container">
                     <Avatar
@@ -338,7 +344,7 @@ export default function CardDetails() {
                     </Avatar>
                   </div>
                 </h1>
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl title-h1">
                   Lugar para visitar.
                 </h1>
 
@@ -417,14 +423,14 @@ export default function CardDetails() {
               </div>
             )}
 
-            <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+            <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6 content-description-mobile">
               {/* Description and details */}
 
               <div className="space-y-1 card-text">
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl title-h1">
                   Breve resumen del lugar
                 </h1>
-                <p className="text-base text-gray-900">{detailpost.summary}</p>
+                <p className="text-base text-gray-900 text-paragrafe">{detailpost.summary}</p>
               </div>
               {detailpost.status === "Privado" ? (
                 <div>
@@ -433,11 +439,11 @@ export default function CardDetails() {
                   </div>
 
                   <div className="mt-10 card-text-list">
-                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl title-h1">
                       Dias de atención al cliente de {detailpost.daysAtentions}.
                     </h1>
 
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 text-paragrafe">
                       de {detailpost.hoursAtetionsInitial}am a{" "}
                       {detailpost.hoursAtentionsFinally}pm
                     </p>
@@ -451,7 +457,7 @@ export default function CardDetails() {
                     <div className="line"></div> {/* Línea a la izquierda */}
                   </div>
                   <div className="card-text-list">
-                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                    <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl title-h1">
                       El lugar cuenta con:
                     </h1>
 
@@ -462,7 +468,7 @@ export default function CardDetails() {
                       {detailpost.listDetails &&
                         detailpost.listDetails.map((list) => (
                           <li className="text-gray-400">
-                            <span className="text-gray-600">{list}</span>
+                            <span className="text-gray-600 text-paragrafe">{list}</span>
                           </li>
                         ))}
                     </ul>
@@ -478,7 +484,7 @@ export default function CardDetails() {
                         {/* Línea a la izquierda */}
                       </div>
                       <div className="card-text-list">
-                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                        <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl title-h1">
                           información importante
                         </h1>
 
@@ -490,7 +496,7 @@ export default function CardDetails() {
                             {detailpost.infoImportant &&
                               detailpost.infoImportant.map((list) => (
                                 <li className="text-gray-400">
-                                  <span className="text-gray-600">{list}</span>
+                                  <span className="text-gray-600 text-paragrafe" >{list}</span>
                                 </li>
                               ))}
                           </ul>
@@ -503,11 +509,11 @@ export default function CardDetails() {
                   <div className="line"></div> {/* Línea a la izquierda */}
                 </div>
                 <div className="mt-10 card-text">
-                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl title-h1">
                     Historia
                   </h1>
 
-                  <p className="text-sm text-gray-600 ">
+                  <p className="text-sm text-gray-600 text-paragrafe">
                     {detailpost.description}
                   </p>
                 </div>
@@ -518,28 +524,30 @@ export default function CardDetails() {
       </div>
       {detailpost.status === "Privado" && (
         <div className="footer-details">
-          <div className="btn-footer-container">
-            <button
-              onClick={OpenReserCard}
-              type="submit"
-              className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
-            >
-              Reservar
-            </button>
-          </div>
-          <div className="btn-footer-laptop">
-            {values.map(
-              (v, idx) =>
-                scrollPosition >= 350 && (
-                  <button
-                    onClick={() => handleShow(v)}
-                    type="submit"
-                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn-photo"
-                  >
-                    Ver fotos
-                  </button>
-                )
-            )}
+          <div>
+            <div className="btn-footer-laptop">
+              {values.map(
+                (v, idx) =>
+                  scrollPosition >= 350 && (
+                    <button
+                      onClick={() => handleShow(v)}
+                      type="submit"
+                      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn-photo"
+                    >
+                      Ver fotos
+                    </button>
+                  )
+              )}
+            </div>
+            <div className="btn-footer-container">
+              <button
+                onClick={OpenReserCard}
+                type="submit"
+                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 footer-btn"
+              >
+                Reservar
+              </button>
+            </div>
           </div>
         </div>
       )}

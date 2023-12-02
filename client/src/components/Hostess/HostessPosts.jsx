@@ -94,7 +94,11 @@ const App = () => {
   };
 
 const handleCancel = (e) => {
-  setImagePreview(null)
+  setImagePreview( null)
+  setUpdate({
+    ...update,
+    avatar: null,
+  });
 }
 
   const UploadButton = styled(Box)(({ theme }) => ({

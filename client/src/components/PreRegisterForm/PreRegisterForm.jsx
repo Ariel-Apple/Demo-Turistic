@@ -6,6 +6,7 @@ import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import CancelIcon from "@mui/icons-material/Cancel";
+import ImgCrop from "antd-img-crop";
 import { updatePersonal } from "../../redux/action";
 import { countries } from "../../assets/codeCountry/countries";
 import Avatar from "@mui/material/Avatar";
@@ -154,7 +155,14 @@ export default function PreRegisterForm() {
 
   return (
     <>
-      <div className="isolate  px-6 py-24 sm:py-32 lg:px-8 bg-image">
+      <div /* className="isolate  px-6 py-24 sm:py-32 lg:px-8 bg-image" */
+        className="bg-image"
+      >
+        <img
+          src={require("../../assets/images/mosaico 1.png")}
+          alt="Notfound"
+          className="image-fondo"
+        />
         <Link to="/">
           <div className="exit-preregister">
             <CancelIcon id="exit-icon" />
@@ -199,7 +207,7 @@ export default function PreRegisterForm() {
           </div>
 
           <div className="card-preregister">
-            <div>
+            <div className="card-preregister-content" >
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl title-update">
                   Actualizar
@@ -211,10 +219,13 @@ export default function PreRegisterForm() {
               </div>
 
               <form
-                className="mx-auto mt-16 max-w-xl sm:mt-20 gap-input"
+                /* className="mx-auto mt-16 max-w-xl sm:mt-20 gap-input" */
+                className="form"
                 onSubmit={handleSubmit}
               >
-                <div className="grid grid-cols-1 gap-x-8 sm:grid-cols-2 ">
+                <div /* className="grid grid-cols-1 gap-x-8 sm:grid-cols-2 " */
+                  className=""
+                >
                   <div className="avatar-preregister">
                     <div>
                       <Avatar
