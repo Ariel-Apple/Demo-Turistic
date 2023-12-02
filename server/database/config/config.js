@@ -18,9 +18,9 @@ development: {
     password: 'aA41d-g2E1-fd-AG5EF61EDD3*AABD*f',
     database: 'railway',
 
-  },     
+  },    
 
- /*  development: {
+/*   development: {
     dialect: 'postgres',
     host:  'localhost',
     port: 5432,
@@ -37,5 +37,5 @@ development: {
     password: 'password',
     database: 'turistic',
    
-  },    */
+  },    */ 
 };

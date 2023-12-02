@@ -27,9 +27,9 @@ module.exports = {
     const { userId } = req.params;
     const { name, lastName, phone, aboutMe } = req.body;
 
-    if (!name || !lastName || !phone || !aboutMe) {
+   /*  if (!name || !lastName || !phone || !aboutMe) {
       return res.status(400).json({ message: 'Todos los campos son obligatorios.' });
-    }
+    } */
 
     try {
       const user = await User.findByPk(userId);

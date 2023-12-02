@@ -14,11 +14,12 @@ import { PhotoCamera } from "@mui/icons-material";
 import {
   alpha,
   Box,
-  Card,
-  Grid,
+
   IconButton,
   styled,
 } from "@mui/material";
+import ButtonMaterial from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 const { Header, Sider, Content } = Layout;
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
@@ -35,7 +36,6 @@ const App = () => {
   const token = useSelector((state) => state.token);
   const [start, setStart] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
-
   const [update, setUpdate] = useState({
     avatar: "",
 
@@ -45,44 +45,38 @@ const App = () => {
     dispatch(dataPersonal(token));
   }, [token]);
 
-  useEffect(() => {
-    if (datapersonal) {
-      setUpdate({
-        avatar: datapersonal.avatar,
+const handleSubmit = async (e) => {
+  console.log("Formulario enviado", update);
+  const formData = new FormData();
+  formData.append("avatar", update.avatar);
 
-      });
-    }
-  }, [datapersonal]);
+  try {
+    await dispatch(updatePersonal(datapersonal.id, formData));
+    console.log("Datos actualizados exitosamente");
+    // Opcionalmente, actualiza la interfaz de usuario para reflejar la actualización exitosa
+  } catch (error) {
+    console.error("Error:", error);
+    // Maneja el error, por ejemplo, muestra un mensaje de error al usuario
+  }
+};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form submitted", update);
-    const formData = new FormData();
-    formData.append("avatar", update.avatar);
   
-
-    try {
-      dispatch(updatePersonal(datapersonal.id, formData));
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  
-  };
   const handleImageChange = useCallback(
     (e) => {
       if (e.target.files.length > 0) {
         const file = e.target.files[0];
         getBase64(file, (imageUrl) => {
           setImagePreview(imageUrl);
-          setUpdate({
-            ...update,
+          setUpdate((prevUpdate) => ({
+            ...prevUpdate,
             avatar: file,
-          });
+          }));
         });
       }
     },
-    [update]
+    [setUpdate, setImagePreview]
   );
+  
   const handleStart = (e) => {
     setMyWebSite(false);
     setStart(true);
@@ -140,13 +134,13 @@ const handleCancel = (e) => {
           width: 100,
           height: 100,
           objectFit: "cover",
-          background: update.avatar
-            ? `url(${imagePreview || update.avatar})`
+          background: datapersonal.avatar
+            ? `url(${imagePreview || datapersonal.avatar})`
             : datapersonal.backgroundColor,
           backgroundSize: "cover",
         }}
       >
-        {update.avatar ? (
+        {datapersonal.avatar ? (
           <span></span>
         ) : (
           <div>
@@ -154,6 +148,7 @@ const handleCancel = (e) => {
           </div>
         )}
       </Avatar>
+
 
       <UploadButton>
         <label htmlFor="upload-btn">
@@ -169,6 +164,15 @@ const handleCancel = (e) => {
           </IconButton>
         </label>
       </UploadButton>
+                  {/* Conditionally render Save and Cancel Buttons */}
+                  {imagePreview && (
+        <div>
+
+      <ButtonMaterial variant="contained" color="secondary" type="submit" sx={{width:70}}>Guardar</ButtonMaterial>
+      <ButtonMaterial type="button" variant="outlined" color="error"  onClick={handleCancel}  sx={{width:70}}>Cancelar</ButtonMaterial>
+       
+        </div>
+      )}
     </div>
     <div>
       <p>
@@ -177,15 +181,7 @@ const handleCancel = (e) => {
       <p>{datapersonal.email}</p>
       <Button id="close-sesion">Cerrar sesión</Button>
 
-      {/* Conditionally render Save and Cancel Buttons */}
-      {imagePreview && (
-        <div>
-          <button type="submit">Guardar</button>
-          <button type="button"  onClick={handleCancel}>
-            Cancelar
-          </button>
-        </div>
-      )}
+
     </div>
   </div>
 </form>
