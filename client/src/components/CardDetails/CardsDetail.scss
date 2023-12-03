@@ -157,14 +157,15 @@
 
 .footer-details {
   position: fixed;
-  bottom: 10px;
+  bottom: 0px;
   left: 0;
   width: 100%;
   z-index: 2;
-  background: transparent;
+  //background: transparent;
   display: flex;
   justify-content: center;
   border: none;
+  background: #fafafa;
 
   div {
     display: flex;
@@ -186,7 +187,7 @@
         border: 1px solid #8b008b !important;
         border-radius: 8px;
         transition: all 0.4s ease-in-out;
-        padding: 15px 20px !important;
+        padding: 0px 25px !important;
         margin: 0px !important;
         width: fit-content;
         @include paragBody1Regular;
@@ -208,11 +209,12 @@
         align-items: center;
         border-radius: 8px;
         transition: all 0.4s ease-in-out;
-        padding: 15px 20px;
+        padding: 0px 25px;
         background: black;
         border: 1px solid black !important;
         margin: 0px;
         @include paragBody1Regular;
+        
         color: #fff;
       }
 
@@ -759,7 +761,7 @@ position: absolute;
     box-shadow: 0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%);
     background-color: white;
     height: 50px;
-    z-index: 2;
+    z-index: 20;
   }
   .footer-btn {
     height: 30px;
@@ -769,4 +771,7 @@ position: absolute;
   .carrusel-container {
     display: none;
   }
+  /* .footer-details{
+    display: flex;
+  } */
 }

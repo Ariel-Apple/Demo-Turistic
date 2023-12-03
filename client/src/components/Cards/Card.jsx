@@ -123,8 +123,8 @@ function Card() {
                             <div>
                               <Avatar
                                 sx={{
-                                  width: 30,
-                                  height: 30,
+                                  width: 40,
+                                  height: 40,
                                   background: data.avatar
                                     ? `url(${data.avatar})`
                                     : data.backgroundColor,
@@ -210,8 +210,8 @@ function Card() {
                             <div>
                               <Avatar
                                 sx={{
-                                  width: 30,
-                                  height: 30,
+                                  width: 40,
+                                  height: 40,
                                   background: data.avatar
                                     ? `url(${data.avatar})`
                                     : data.backgroundColor,
