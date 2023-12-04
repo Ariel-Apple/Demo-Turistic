@@ -462,7 +462,21 @@
   display: none;
 }
 
+.none-laptop{
+  display: flex;
+}
+
 //*--------------------LAPTOP---------------------------------------
+
+@media screen and (max-width: 1439px){
+  .none-laptop{
+    display: none;
+  }
+  /* .carrusel-scroll {
+    display: none !important;
+  } */
+  
+}
 
 @media only screen and (min-width: 1024px) and (max-width: 1728px) {
   /* .card-reserve {

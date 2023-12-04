@@ -149,43 +149,43 @@ function Card() {
                           <p>
                             <p
                               style={{
-                                margin: "0.2rem",
-                                fontSize: "1rem",
+                                /* margin: "0.2rem",
+                                fontSize: "1rem", */
                                 color: "var(--black)",
                               }}
                               className="price-none"
                             >
                               <span
-                                style={{
+                                /* style={{
                                   fontWeight: "600",
                                   marginLeft: "10px",
-                                }}
+                                }} */
                               >
                                 {data.updatedAt.slice(0, 10)}
                               </span>{" "}
                             </p>
                             <p
                               style={{
-                                margin: "0.2rem",
-                                fontSize: "1rem",
+                                /* margin: "0.2rem",
+                                fontSize: "1rem", */
                                 color: "var(--black)",
                               }}
                               className="price-none"
                             >
                               <span
-                                style={{
+                                /* style={{
                                   fontWeight: "600",
                                   marginLeft: "10px",
-                                }}
+                                }} */
                               >
                                 Gratis
                               </span>{" "}
                             </p>
                           </p>
 
-                          {info.summary.split(" ").length > 15 ? (
+                          {info.summary.split(" ").length > 14 ? (
                             <p className="summary-card">
-                              {info.summary.split(" ").slice(0, 15).join(" ")}
+                              {info.summary.split(" ").slice(0, 14).join(" ")}
                               ...
                             </p>
                           ) : (
@@ -235,26 +235,26 @@ function Card() {
                           <p>
                             <p
                               style={{
-                                margin: "0.2rem",
-                                fontSize: "1rem",
+                                /* margin: "0.2rem",
+                                fontSize: "1rem", */
                                 color: "var(--black)",
                               }}
                               className="price-none"
                             >
                               <span
-                                style={{
+                                /* style={{
                                   fontWeight: "600",
                                   marginLeft: "10px",
-                                }}
+                                }} */
                               >
                                 ${info.price}
                               </span>{" "}
                               por persona
                             </p>
                           </p>
-                          {info.summary.split(" ").length > 15 ? (
+                          {info.summary.split(" ").length > 14 ? (
                             <p className="summary-card">
-                              {info.summary.split(" ").slice(0, 15).join(" ")}
+                              {info.summary.split(" ").slice(0, 14).join(" ")}
                               ...
                             </p>
                           ) : (
