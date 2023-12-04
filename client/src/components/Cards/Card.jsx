@@ -65,6 +65,24 @@ function Card() {
     ? allPost.reduce((sum, post) => sum + post.Posts.length, 0)
     : 0;
 
+  //--------------- detectar mobile------------------------------
+  const [isMobile, setIsMobile] = useState(
+    window.matchMedia("(max-width: 768px)").matches
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    const handleResize = () => setIsMobile(mediaQuery.matches);
+
+    // Agrega un listener para manejar cambios en el tamaño de la pantalla
+    mediaQuery.addListener(handleResize);
+
+    // Limpia el listener cuando el componente se desmonta
+    return () => mediaQuery.removeListener(handleResize);
+  }, []);
+
+  const maxLength = isMobile ? 9 : 14;
+
   return (
     <div className="card-container-post">
       {isLoading ? (
@@ -89,7 +107,11 @@ function Card() {
                     <Carousel interval={null} className="swiper-container">
                       {info.imageFile.map((imageSrc, imageIndex) => (
                         <Carousel.Item key={imageIndex}>
-                          <a href={"/rooms/" + info.id} target="_blank" className="text-link">
+                          <a
+                            href={"/rooms/" + info.id}
+                            target="_blank"
+                            className="text-link"
+                          >
                             <div className="image-container">
                               <img
                                 srcset={imageSrc}
@@ -104,7 +126,11 @@ function Card() {
                   </div>
 
                   <div className="desc-hover">
-                    <a href={"/rooms/" + info.id} target="_blank"  className="text-link">
+                    <a
+                      href={"/rooms/" + info.id}
+                      target="_blank"
+                      className="text-link"
+                    >
                       {info.status === "Público" ? (
                         <div className="shadow-card">
                           <div className="card-info-flex">
@@ -156,7 +182,7 @@ function Card() {
                               className="price-none"
                             >
                               <span
-                                /* style={{
+                              /* style={{
                                   fontWeight: "600",
                                   marginLeft: "10px",
                                 }} */
@@ -173,7 +199,7 @@ function Card() {
                               className="price-none"
                             >
                               <span
-                                /* style={{
+                              /* style={{
                                   fontWeight: "600",
                                   marginLeft: "10px",
                                 }} */
@@ -183,9 +209,9 @@ function Card() {
                             </p>
                           </p>
 
-                          {info.summary.split(" ").length > 14 ? (
+                          {info.summary.split(" ").length > maxLength ? (
                             <p className="summary-card">
-                              {info.summary.split(" ").slice(0, 14).join(" ")}
+                              {info.summary.split(" ").slice(0, maxLength).join(" ")}
                               ...
                             </p>
                           ) : (
@@ -195,7 +221,11 @@ function Card() {
                       ) : (
                         <div className="shadow-card">
                           <div className="card-info-flex">
-                            <a href={"/rooms/" + info.id} target="_blank"  className="text-link">
+                            <a
+                              href={"/rooms/" + info.id}
+                              target="_blank"
+                              className="text-link"
+                            >
                               {/*   {info.title.split(" ").length > 2 ? (
                                 <h3 className="card-title">
                                   {info.title
@@ -242,7 +272,7 @@ function Card() {
                               className="price-none"
                             >
                               <span
-                                /* style={{
+                              /* style={{
                                   fontWeight: "600",
                                   marginLeft: "10px",
                                 }} */
@@ -252,9 +282,9 @@ function Card() {
                               por persona
                             </p>
                           </p>
-                          {info.summary.split(" ").length > 14 ? (
+                          {info.summary.split(" ").length > maxLength ? (
                             <p className="summary-card">
-                              {info.summary.split(" ").slice(0, 14).join(" ")}
+                              {info.summary.split(" ").slice(0, maxLength).join(" ")}
                               ...
                             </p>
                           ) : (
