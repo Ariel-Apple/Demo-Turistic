@@ -584,7 +584,7 @@ export default function CardDetails() {
                   detailpost.status === "Privado" ? "card-reserve-mobile" : ""
                 }
               >
-                <div className="mt-4 lg:row-span-3 lg:mt-0 ">
+                <div className="mt-4 lg:row-span-3 lg:mt-0 text-content">
                   <h2 className="sr-only">Product information</h2>
                   <p className="text-3xl tracking-tight text-gray-900">
                     {detailpost.price ? <span>${detailpost.price}</span> : null}
@@ -601,7 +601,7 @@ export default function CardDetails() {
                       </div>
 
                       {detailpost.status === "Privado" ? (
-                        <div style={wrapperStyle}>
+                        <div /* style={wrapperStyle} */>
                           <Space direction="vertical" size={12}>
                             <RangePicker
                               defaultValue={[
@@ -615,7 +615,7 @@ export default function CardDetails() {
                       ) : null}
                     </div>
                   </p>
-                  <form className="mt-10">
+                  <form className="mt-10 form-card-reserve-mobile">
                     {detailpost.status === "Privado" ? (
                       <button
                         type="submit"

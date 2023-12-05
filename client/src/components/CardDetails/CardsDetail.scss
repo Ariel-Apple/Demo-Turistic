@@ -447,8 +447,8 @@
 //*--------------------LAPTOP---------------------------------------
 
 @media screen and (max-width: 1439px) {
-  .btn-footer-container{
-    .footer-btn{
+  .btn-footer-container {
+    .footer-btn {
       padding: 5px 25px !important;
     }
   }
@@ -746,14 +746,6 @@ position: absolute;
     display: none;
   }
 
-  .card-reserve-mobile {
-    box-shadow: 0px 0px 50px rgb(204, 204, 204);
-    justify-content: center;
-    display: flex !important;
-    transform: translateY(20px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-
   .drawer-image img {
     width: 550px;
     height: 350px;
@@ -803,4 +795,49 @@ position: absolute;
   /* .footer-details{
     display: flex;
   } */
+
+  .modal {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-dialog {
+    width: 95%;
+    margin: auto !important;
+  }
+  .modal-content {
+    //background-color: #8b008b;
+    height: 90vh;
+  }
+  .modal-body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .card-reserve-mobile {
+    box-shadow: 0px 0px 50px rgb(204, 204, 204);
+    justify-content: center;
+    display: flex !important;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    height: 93%;
+    width: 100%;
+
+    .text-content {
+      margin: 0px !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 10px;
+
+      .form-card-reserve-mobile {
+        width: 100%;
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
