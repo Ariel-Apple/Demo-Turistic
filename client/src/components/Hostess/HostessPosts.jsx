@@ -14,6 +14,8 @@ import { PhotoCamera } from "@mui/icons-material";
 import { alpha, Box, IconButton, styled } from "@mui/material";
 import ButtonMaterial from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import "remixicon/fonts/remixicon.css";
+
 const { Header, Sider, Content } = Layout;
 const getBase64 = (img, callback) => {
   const reader = new FileReader();
@@ -102,12 +104,31 @@ const App = () => {
         ? theme.palette.secondary[400]
         : alpha(theme.palette.background.paper, 0.9),
   }));
+
+  const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuVisible(!isMenuVisible);
+    console.log(isMenuVisible);
+  };
+
   return (
-    <div className="container-hostess">
-      <Layout className="hostess-content">
+    <>
+      <Layout className="container-hostess">
         <FooterMobile />
 
-        <div className="container-sider">
+        <div
+          className={`container-sider  ${
+            isMenuVisible ? "vertical-menu" : "visible"
+          }`}
+        >
+          <button className="toggle-menu-btn" onClick={toggleMenu}>
+            {isMenuVisible ? (
+              <i class="ri-arrow-right-double-line"></i>
+            ) : (
+              <i class="ri-arrow-left-double-line"></i>
+            )}
+          </button>
           <Sider
             /*      trigger={null}
            collapsible
@@ -119,18 +140,23 @@ const App = () => {
               className="mx-auto mt-16 max-w-xl sm:mt-20 gap-input"
               onSubmit={handleSubmit}
             >
-              <div className="avatar-anfitrion">
+              <div
+                className={`avatar-anfitrion  ${
+                  isMenuVisible ? "avatar-anfitrion-vertical" : ""
+                }`}
+              >
                 <div>
                   <Avatar
                     sx={{
-                      width: 100,
-                      height: 100,
-                      objectFit: "cover",
+                      /* width: 100,
+                      height: 100, */
+                      /* objectFit: "cover", */
                       background: datapersonal.avatar
                         ? `url(${imagePreview || datapersonal.avatar})`
                         : datapersonal.backgroundColor,
                       backgroundSize: "cover",
                     }}
+                    className="avatar-anfitrion-perfil"
                   >
                     {datapersonal.avatar ? (
                       <span></span>
@@ -142,7 +168,7 @@ const App = () => {
                     )}
                   </Avatar>
 
-                  <UploadButton>
+                  <UploadButton className="avatar-anfitrion-camara" >
                     <label htmlFor="upload-btn">
                       <input
                         accept="image/*"
@@ -152,7 +178,9 @@ const App = () => {
                         onChange={handleImageChange}
                       />
                       <IconButton component="span">
-                        <PhotoCamera sx={{ fontSize: 26, color: "#000" }} />
+                        <PhotoCamera
+                        className="photo-camera"
+                        />
                       </IconButton>
                     </label>
                   </UploadButton>
@@ -179,7 +207,7 @@ const App = () => {
                     </div>
                   )}
                 </div>
-                <div>
+                <div className="avatar-anfitrion-perfil-option">
                   <p>
                     {datapersonal.name} {datapersonal.lastName}
                   </p>
@@ -191,29 +219,128 @@ const App = () => {
 
             <ul className="menu-anfitrion">
               <Link to="/anfitrion/inicio">
-                <li className="items-anfitrion">Inicio</li>
+                <li className="items-anfitrion">
+                  {isMenuVisible ? <i class="ri-home-2-line"></i> : "Inicio"}
+                </li>
               </Link>
               <Link to="/anfitrion/mi sitio">
-                <li className="items-anfitrion">Mi sitio</li>
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/mi-sitio-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Mi sitio"
+                  )}
+                </li>
               </Link>
               <Link to="/anfitrion/reservaciones">
-                <li className="items-anfitrion">Reservaciones</li>
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/reservations-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Reservaciones"
+                  )}
+                </li>
               </Link>
 
               <Link to="/anfitrion/historial de reservas">
-                <li className="items-anfitrion">Historial de reservas</li>
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/historial-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Historial de reservas"
+                  )}
+                </li>
               </Link>
               <Link to="/anfitrion/reclamos">
-                <li className="items-anfitrion">Reclamos</li>
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/reclamos-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Reclamos"
+                  )}
+                </li>
               </Link>
 
               <Link to="/anfitrion/reclamos">
-                <li className="items-anfitrion">Comentarios</li>
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/comentarios-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Comentarios"
+                  )}
+                </li>
+              </Link>
+              <Link to="/anfitrion/reclamos">
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/comentarios-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Comentarios"
+                  )}
+                </li>
+              </Link>
+              <Link to="/anfitrion/reclamos">
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/comentarios-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Comentarios"
+                  )}
+                </li>
+              </Link>
+              <Link to="/anfitrion/reclamos">
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/comentarios-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Comentarios"
+                  )}
+                </li>
+              </Link>
+              <Link to="/anfitrion/reclamos">
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <img
+                      srcSet={require("../../assets/images/comentarios-m.png")}
+                      alt="Not found"
+                    />
+                  ) : (
+                    "Comentarios"
+                  )}
+                </li>
               </Link>
             </ul>
           </Sider>
         </div>
-        <div className="container-description-menu">
+        <div
+          className={`container-description-menu ${
+            isMenuVisible ? "container-description-menu-compled" : ""
+          }`}
+        >
           <Layout
             style={{
               background: "#fff",
@@ -239,7 +366,8 @@ const App = () => {
           </Layout>
         </div>
       </Layout>
-    </div>
+    </>
   );
 };
+
 export default App;

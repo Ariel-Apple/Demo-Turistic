@@ -3,8 +3,38 @@
 }
 
 .container-description-menu {
+  //width: 75%;
+  //height: 90vh;
+  margin: auto 0 0 0;
   width: 75%;
-  height: 90vh;
+  height: calc(100vh - 10vh); /* Altura de la ventana - altura del navbar */
+  overflow-y: auto;
+  padding: 10px;
+  background: #fff;
+  //border: 1px solid red;
+}
+
+.container-description-menu::-webkit-scrollbar {
+  width: 0px; /* Ajusta el ancho según tus necesidades */
+}
+
+.container-description-menu::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Hacer el thumb (el "mango" de la barra de desplazamiento) transparente */
+  border: 2px solid transparent; /* Hacer el borde del thumb transparente */
+  border-radius: 4px; /* Añadir un borde redondeado al thumb */
+}
+
+.container-description-menu::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Cambiar el color al pasar el mouse sobre la barra (puedes ajustar el valor alpha para hacerlo más o menos transparente) */
+}
+
+.container-description-menu-compled{
+  width: 95%;
 }
 .container-description-menu-2 {
   width: 100%;
