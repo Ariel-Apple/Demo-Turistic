@@ -1,51 +1,72 @@
 import styles from "./Comentarios.module.scss";
 import image from "../../../assets/images/image-perfil-comentarios.png";
+import React, { useState } from "react";
 
 const data = [
   {
     image: image,
-    title: "Andrea Cifuentes",
+    name: "Andrea Cifuentes",
     emoji: "corazon",
     paragraph:
       "El lugar es de lo mejor; es uno de los mejores sitios en los que he estado. Me encantó la comida, sin duda, un servicio 10 de 10. A demás",
   },
   {
     image: image,
-    title: "Andrea Cifuentes",
+    name: "Andrea Cifuentes",
     emoji: "incognito",
     paragraph:
       "Cuenta con muy buenos espacios, lamentablemente la atención al cliente es muy mala.",
   },
   {
     image: image,
-    title: "Andrea Cifuentes",
+    name: "Andrea Cifuentes",
     emoji: "corazon",
     paragraph:
       "El lugar es de lo mejor; es uno de los mejores sitios en los que he estado. Me encantó la comida, sin duda, un servici o 10 de 10.",
   },
   {
     image: image,
-    title: "Andrea Cifuentes",
+    name: "Andrea Cifuentes",
     emoji: "corazon",
     paragraph:
       "El lugar es de lo mejor; es uno de los mejores sitios en los que he es tado. Me encantó la comida, sin duda, un servicio 10 de 10.",
   },
   {
     image: image,
-    title: "Andrea Cifuentes",
+    name: "Andrea Cifuentes",
     emoji: "corazon",
     paragraph:
       "El lugar es de lo mejor; es uno de los mejores sitios en los que he estado. Me encantó la comida, sin duda, un servicio 10 de 10.",
   },
   {
     image: image,
-    title: "Andrea Cifuentes",
+    name: "Andrea Cifuentes",
     emoji: "cara",
     paragraph:
       "Tiene buenas atracci ones y también muchas cosas que mejorar c omo las áreas de comida.",
   },
 ];
-export default function Comentarios() {
+export default function Comentarios({ onDelete }) {
+  const [showOptions, setShowOptions] = useState(
+    Array(data.length).fill(false)
+  );
+
+  const handleButtonClick = (index) => {
+    // Toggle the state for the clicked card
+    const updatedShowOptions = [...showOptions];
+    updatedShowOptions[index] = !updatedShowOptions[index];
+    setShowOptions(updatedShowOptions);
+  };
+
+  const handleDeleteClick = (index) => {
+    // Handle delete logic here
+    // onDelete();
+    // After deleting, hide the options for the clicked card
+    const updatedShowOptions = [...showOptions];
+    updatedShowOptions[index] = false;
+    setShowOptions(updatedShowOptions);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.cardsContainer}>
@@ -62,20 +83,39 @@ export default function Comentarios() {
             }
           >
             <div className={styles.cardInfo}>
-              <img src={item.image} alt={item.title} />
-              <h2>{item.title}</h2>
+              <button
+                className={styles["options-button"]}
+                onClick={() => handleButtonClick(index)}
+              >
+                <i className="ri-more-2-fill"></i>
+              </button>
+              {showOptions[index] && (
+                <div className={styles["options-dropdown"]}>
+                  <div className={styles["option"]}>
+                    Silenciar usuario <i className="ri-volume-mute-line"></i>
+                  </div>
+                  <div
+                    className={styles["option"]}
+                    onClick={() => handleDeleteClick(index)}
+                  >
+                    Eliminar comentario <i className="ri-delete-bin-6-line"></i>
+                  </div>
+                </div>
+              )}
+              <img src={item.image} alt={`Profile picture of ${item.name}`} />
+              <h2>{item.name}</h2>
               <p>{item.paragraph}</p>
               <span>
                 {item.emoji === "corazon" ? (
-                  <i class="ri-heart-fill" style={{ color: "#652c90" }}></i>
+                  <i className="ri-heart-fill" style={{ color: "#652c90" }}></i>
                 ) : item.emoji === "incognito" ? (
                   <i
-                    class="ri-error-warning-fill"
+                    className="ri-error-warning-fill"
                     style={{ color: "#7e00e5" }}
                   ></i>
                 ) : (
                   <i
-                    class="ri-emotion-normal-fill"
+                    className="ri-emotion-normal-fill"
                     style={{ color: "#9463ec" }}
                   ></i>
                 )}

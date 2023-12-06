@@ -13,15 +13,53 @@
 
     .contentCard {
       width: 280px;
-      height: 330px;
-      padding: 10px 20px;
+      height: 335px;
+      padding: 20px 20px 10px 20px;
       border-radius: 16px;
-      border: 1px solid red;
+      border: 1px solid;
       .cardInfo {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         height: 100%;
+        position: relative;
+
+        .options-button{
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          cursor: pointer;
+
+          i{
+            font-size: 30px;
+            color: #722a88;
+          }
+        }
+
+        .options-dropdown{
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          position: absolute;
+          top: -7px;
+          right: 15px;
+
+          .option{
+            display: flex;
+            justify-content: space-between;
+            border: 1px solid #afabab;
+            border-radius: 4px;
+            padding: 0 5px 0 10px;
+            @include paragXsRegular;
+            cursor: pointer;
+
+            i{
+              font-size: 21px;
+              color: #afabab;
+              margin-left: 5px;
+            }
+          }
+        }
 
         img {
           width: 70px;
