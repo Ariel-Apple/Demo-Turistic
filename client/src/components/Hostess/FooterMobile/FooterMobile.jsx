@@ -137,13 +137,14 @@ export default function FooterMobile() {
                 </ListItemButton>
               </ListItem>
             </Link>
-
+            <Link to="/anfitrion/comentarios">
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon></ListItemIcon>
                 <ListItemText primary={"Comentarios"} />
               </ListItemButton>
             </ListItem>
+            </Link>
           </List>
         </div>
       </Box>
