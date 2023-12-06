@@ -3,7 +3,7 @@ import { data } from "../Hostess/Comentarios/Data";
 
 export default function CommentsDetails() {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="comentarios" >
       <div className={styles.commentsContainer}>
         {data.map((item, index) => (
           <div className={styles.contentComment} key={index}>

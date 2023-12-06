@@ -444,6 +444,26 @@
   display: flex;
 }
 
+.footer-btn-comentarios {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  transition: all 0.4s ease-in-out;
+  padding: 5px 25px !important;
+  background: black;
+  border: 1px solid black !important;
+  margin: 0px;
+  width: fit-content;
+  @include paragBody1Regular;
+
+  color: #fff;
+}
+.footer-btn-comentarios:hover {
+  color: black !important;
+  background: #fff;
+}
+
 //*--------------------LAPTOP---------------------------------------
 
 @media screen and (max-width: 1439px) {
@@ -467,7 +487,7 @@
       background: black;
       border: 1px solid black !important;
       margin: 0px;
-      width: fit-content;
+      width: 125px;
       @include paragBody1Regular;
 
       color: #fff;
@@ -481,9 +501,10 @@
   .none-laptop {
     display: none;
   }
-  /* .carrusel-scroll {
-    display: none !important;
-  } */
+  .footer-details div{
+    gap: 0px !important;
+    justify-content: space-evenly !important;
+  }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1728px) {
@@ -593,6 +614,8 @@
   .content-description-mobile {
     padding: 0px !important;
   }
+
+
   //************************
   #skeleton1 {
     width: 750px;
@@ -675,6 +698,15 @@
   .content-description-mobile {
     padding: 0px !important;
   }
+
+
+
+  .footer-btn-comentarios{
+    padding: 0px 10px !important;
+  }
+
+
+
   //******************
   #skeleton1 {
     height: 250px;
@@ -772,6 +804,7 @@ position: absolute;
     background-color: white;
     //height: 50px;
     z-index: 20;
+    gap: 20px;
   }
   .btn-footer-container {
     display: flex;

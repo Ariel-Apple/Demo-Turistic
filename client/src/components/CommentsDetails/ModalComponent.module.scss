@@ -1,0 +1,132 @@
+@import "../../styles.scss";
+
+/* Modal.module.css */
+.modalOverlay {
+  position: fixed;
+  //top: 0;
+  bottom: 0px;
+  right: 0px;
+  left: 0;
+  margin: auto;
+  width: 100% !important;
+  max-width: none !important;
+  //height: 100%;
+  height: calc(100vh - 13vh);
+  background: rgba(0, 0, 0, 0.5);
+  //display: flex;
+  //justify-content: center;
+  //align-items: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 50px;
+  border-radius: 8px;
+  border: 1px solid #7e00e5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  max-width: 600px !important;
+  width: 60% !important;
+  height: 80%;
+  margin: auto;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  gap: 0px !important;
+}
+.boxTwo,
+.boxOne {
+  width: 100% !important;
+  //height: 100%;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
+  //align-items: center;
+  gap: 0px !important;
+}
+
+.boxOne {
+  width: 400px !important;
+  height: 30%;
+}
+
+.boxTwo{
+    height: 70%;
+    textarea{
+        width: 100%;
+        height: 250px;
+        border: 1px solid #7f7f7f;
+        border-radius: 8px;
+        padding: 10px;
+        resize: none;
+    }
+}
+.title {
+    @include paragraphBody1Bold;
+  color: #7e00e5;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  border: none;
+  background: #7e00e5;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 4px;
+  border: 1px solid #7e00e5;
+  padding: 5px 10px !important;
+}
+.closeButton:hover{
+    background: #fff;
+    color: #7e00e5;
+}
+
+.iconContainer {
+  width: 100%;
+  display: flex !important;
+  justify-content: space-around !important;
+  margin: 20px 0;
+  gap: 0px !important;
+}
+
+.icon {
+  font-size: 45px;
+  cursor: pointer;
+  width: fit-content !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  height: fit-content;
+
+  h4 {
+    margin: 0px !important;
+    @include desktopH4;
+  }
+}
+
+.selected {
+  color: #7e00e5;
+}
+
+textarea {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #7e00e5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

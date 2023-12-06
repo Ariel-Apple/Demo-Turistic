@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
 import "./CardsDetail.scss";
 import Box from "@mui/material/Box";
 
@@ -26,6 +27,8 @@ import Avatar from "@mui/material/Avatar";
 import { Image } from "antd";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+import CommentsDetails from "../CommentsDetails/CommentsDetails";
+import ModalComponent from "../CommentsDetails/ModalComponent";
 
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
@@ -141,6 +144,61 @@ export default function CardDetails() {
       </Box>
     </div>
   );
+
+  //---------------- BOTON COMENTARIOS-------------------
+  const [isVisible, setIsVisible] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Obtenemos la posición actual del scroll
+      const scrollY = window.scrollY;
+
+      // Obtenemos la posición y dimensiones de la sección "comentarios"
+      const comentariosSection = document.getElementById("comentarios");
+      if (!comentariosSection) return; // Sección no encontrada
+
+      const comentariosSectionTop = comentariosSection.offsetTop;
+      const comentariosSectionBottom =
+        comentariosSectionTop + comentariosSection.offsetHeight;
+
+      // Verificamos si la posición actual del scroll está cerca de la sección "comentarios"
+      const isNearSection =
+        scrollY + window.innerHeight >= comentariosSectionTop;
+
+      // Actualizamos el estado para mostrar u ocultar el botón según la condición
+      setIsVisible(isNearSection);
+    };
+
+    // Agregamos el evento de scroll
+    window.addEventListener("scroll", handleScroll);
+
+    // Limpia el evento cuando el componente se desmonta
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    // Implementa la lógica para hacer scroll hacia la parte superior
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleComentarClick = (event) => {
+    event.preventDefault(); // Evita el comportamiento predeterminado del botón (scroll hacia arriba)
+    openModal();
+  };
 
   return (
     <div className="detail-container">
@@ -524,6 +582,7 @@ export default function CardDetails() {
                   </p>
                 </div>
               </div>
+              <CommentsDetails />
             </div>
           </div>
         </div>
@@ -531,6 +590,18 @@ export default function CardDetails() {
       {detailpost.status === "Privado" && (
         <div className="footer-details">
           <div>
+            {isVisible && (
+              <button
+                onClick={handleComentarClick}
+                className="footer-btn-comentarios"
+                /*  onClick={scrollToTop} */
+                /* style={{ position: "fixed", bottom: 20, right: 20 }} */
+              >
+                Comentar
+              </button>
+            )}
+            {isModalOpen && <ModalComponent onClose={closeModal} />}
+
             <div className="btn-footer-laptop">
               {values.map(
                 (v, idx) =>
@@ -560,6 +631,18 @@ export default function CardDetails() {
 
       {detailpost.status === "Privado" && (
         <div className="footer-details-mobile">
+          {isVisible && (
+            <button
+              onClick={handleComentarClick}
+              className="footer-btn-comentarios"
+              /*  onClick={scrollToTop} */
+              /* style={{ position: "fixed", bottom: 20, right: 20 }} */
+            >
+              Comentar
+            </button>
+          )}
+          {isModalOpen && <ModalComponent onClose={closeModal} />}
+
           <div className="btn-footer-container">
             <button
               type="submit"
