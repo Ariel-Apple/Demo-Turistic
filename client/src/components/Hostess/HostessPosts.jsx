@@ -273,7 +273,7 @@ const App = () => {
                 </li>
               </Link>
 
-              <Link to="/anfitrion/reclamos">
+              <Link to="/anfitrion/comentarios">
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img

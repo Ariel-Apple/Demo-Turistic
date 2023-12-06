@@ -21,6 +21,7 @@ import Historial from './components/Hostess/Historial/Historial';
 import UpdatePhoto from './components/Hostess/UpdatePhoto/UpdatePhoto';
 import Claims from './components/Hostess/Claims/Claims';
 import Admin from './components/Admin/Admin';
+import Comentarios from './components/Hostess/Comentarios/Comentarios';
 
 
 function App() {
@@ -50,6 +51,8 @@ function App() {
           <Route path="historial de reservas" element={<Historial />} />
           <Route path="historial de reservas/fotos" element={<UpdatePhoto />} />
           <Route path="reclamos" element={<Claims />} />
+          <Route path="comentarios" element={<Comentarios />} />
+          
 
 
 
