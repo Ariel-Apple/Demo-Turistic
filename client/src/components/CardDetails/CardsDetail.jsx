@@ -635,8 +635,7 @@ export default function CardDetails() {
             <button
               onClick={handleComentarClick}
               className="footer-btn-comentarios"
-              /*  onClick={scrollToTop} */
-              /* style={{ position: "fixed", bottom: 20, right: 20 }} */
+
             >
               Comentar
             </button>
