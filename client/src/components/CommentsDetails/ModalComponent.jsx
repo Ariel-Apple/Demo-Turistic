@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import styles from "./ModalComponent.module.scss";
 
-const ModalComponent = ({ onClose }) => {
+const ModalComponent = ({ onClose, isModalOpen }) => {
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [comment, setComment] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  console.log(isModalOpen)
 
   const handleIconClick = (icon) => {
     setSelectedIcon(icon);
@@ -25,10 +27,13 @@ const ModalComponent = ({ onClose }) => {
   };
 
   return (
-    <div className={styles.modalOverlay}>
+    <div className={`${styles.modalOverlay} ${isModalOpen ? styles.visible : styles.oculto}`}>
       <div className={styles.modalContent}>
         <button className={styles.closeButton} onClick={onClose}>
           Cancelar
+        </button>
+        <button className={styles.closeButtonMobile} onClick={onClose}>
+          <i class="ri-close-fill"></i>
         </button>
         <div className={styles.boxOne}>
           <h3 className={styles.title}>¿Te ha gustado el sitio?</h3>

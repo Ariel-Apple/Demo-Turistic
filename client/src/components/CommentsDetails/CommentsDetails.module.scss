@@ -60,13 +60,16 @@
 }
 
 @media screen and (max-width: 767px) {
+    .container{
+        display: none;
+    }
 
-    .commentsContainer{
+    /* .commentsContainer{
         flex-direction: column;
         .contentComment{
             width: 100% !important;
         }
-    }
+    } */
 }
 
 

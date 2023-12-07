@@ -29,6 +29,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import CommentsDetails from "../CommentsDetails/CommentsDetails";
 import ModalComponent from "../CommentsDetails/ModalComponent";
+import Carrusel from "../CommentsDetails/Carrusel";
 
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
@@ -583,6 +584,7 @@ export default function CardDetails() {
                 </div>
               </div>
               <CommentsDetails />
+              <Carrusel/>
             </div>
           </div>
         </div>
@@ -594,13 +596,11 @@ export default function CardDetails() {
               <button
                 onClick={handleComentarClick}
                 className="footer-btn-comentarios"
-                /*  onClick={scrollToTop} */
-                /* style={{ position: "fixed", bottom: 20, right: 20 }} */
               >
                 Comentar
               </button>
             )}
-            {isModalOpen && <ModalComponent onClose={closeModal} />}
+            {isModalOpen && <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />}
 
             <div className="btn-footer-laptop">
               {values.map(
@@ -640,7 +640,7 @@ export default function CardDetails() {
               Comentar
             </button>
           )}
-          {isModalOpen && <ModalComponent onClose={closeModal} />}
+          {isModalOpen && <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />}
 
           <div className="btn-footer-container">
             <button

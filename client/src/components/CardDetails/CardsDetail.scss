@@ -77,6 +77,9 @@
   .carrusel-scroll.slide-up {
     opacity: 1;
     transform: translateY(0);
+    background: linear-gradient(to top, transparent , #fff 50%);
+    padding-bottom: 80px;
+    //border: 1px solid rebeccapurple;
   }
 }
 
@@ -501,7 +504,7 @@
   .none-laptop {
     display: none;
   }
-  .footer-details div{
+  .footer-details div {
     gap: 0px !important;
     justify-content: space-evenly !important;
   }
@@ -615,7 +618,6 @@
     padding: 0px !important;
   }
 
-
   //************************
   #skeleton1 {
     width: 750px;
@@ -699,14 +701,10 @@
     padding: 0px !important;
   }
 
-
-
-  .footer-btn-comentarios{
+  .footer-btn-comentarios {
     padding: 5px 10px !important;
     border-radius: 4px !important;
   }
-
-
 
   //******************
   #skeleton1 {
@@ -811,7 +809,7 @@ position: absolute;
   .btn-footer-container {
     display: flex;
     justify-content: flex-end;
-    
+
     .footer-btn {
       @include paragBody2Regular;
       color: #fff;
