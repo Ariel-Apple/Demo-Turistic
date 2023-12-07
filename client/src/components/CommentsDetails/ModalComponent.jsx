@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import styles from "./ModalComponent.module.scss";
 
@@ -34,32 +33,36 @@ const ModalComponent = ({ onClose }) => {
         <div className={styles.boxOne}>
           <h3 className={styles.title}>¿Te ha gustado el sitio?</h3>
           <div className={styles.iconContainer}>
-            <div
-              className={`${styles.icon} ${
-                selectedIcon === "thumbsUp" && styles.selected
-              }`}
-              onClick={() => handleIconClick("thumbsUp")}
-            >
+            <div className={styles.icon}>
               <h4>Si</h4>
-              <i class="ri-emotion-normal-line"></i>
+              <span
+                className={`${selectedIcon === "thumbsUp" && styles.selected}`}
+                onClick={() => handleIconClick("thumbsUp")}
+              >
+                <i className="ri-thumb-up-line"></i>
+              </span>
             </div>
-            <div
-              className={`${styles.icon} ${
-                selectedIcon === "thumbsDown" && styles.selected
-              }`}
-              onClick={() => handleIconClick("thumbsDown")}
-            >
+            <div className={styles.icon}>
               <h4>No</h4>
-              <i class="ri-emotion-normal-line"></i>
+              <span
+                className={`${
+                  selectedIcon === "thumbsDown" && styles.selected
+                }`}
+                onClick={() => handleIconClick("thumbsDown")}
+              >
+                <i className="ri-thumb-down-line"></i>
+              </span>
             </div>
-            <div
-              className={`${styles.icon} ${
-                selectedIcon === "seriousFace" && styles.selected
-              }`}
-              onClick={() => handleIconClick("seriousFace")}
-            >
+            <div className={styles.icon}>
               <h4>Tal vez</h4>
-              <i class="ri-emotion-normal-line"></i>
+              <span
+                className={` ${
+                  selectedIcon === "seriousFace" && styles.selected
+                }`}
+                onClick={() => handleIconClick("seriousFace")}
+              >
+                <i className="ri-emotion-normal-line"></i>
+              </span>
             </div>
           </div>
         </div>

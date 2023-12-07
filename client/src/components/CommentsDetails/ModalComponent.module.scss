@@ -86,17 +86,26 @@
 }
 
 .icon {
-  font-size: 45px;
+  
   cursor: pointer;
   width: fit-content !important;
   display: flex !important;
   align-items: center !important;
-  gap: 5px !important;
+  gap: 0px !important;
   height: fit-content;
 
   h4 {
     margin: 0px !important;
     @include desktopH4;
+  }
+
+  span{
+    i{
+        font-size: 35px;
+        padding: 5px 5px;
+        border: 1px solid #7f7f7f;
+        margin-left: 5px;
+    }
   }
 }
 
