@@ -8,8 +8,15 @@ import {
   IconButton,
   styled,
 } from "@mui/material";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { dataPersonal, updatePersonal } from "../../redux/action";
+import TextField from '@mui/material/TextField';
+import Avatar from "@mui/material/Avatar";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
+import { Link } from "react-router-dom";
 
 // styled components
 const ButtonWrapper = styled(Box)(({ theme }) => ({
@@ -40,48 +47,102 @@ const UploadButton = styled(Box)(({ theme }) => ({
       : alpha(theme.palette.background.paper, 0.9),
 }));
 
-const SwitchWrapper = styled(Box)(() => ({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  width: "100%",
-  marginTop: 10,
-}));
+
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const AddNewUser = () => {
-  // change navbar title
+  const dispatch = useDispatch();
+  const [imagePreview, setImagePreview] = useState(null);
+  const datapersonal = useSelector((state) => state.datapersonal);
+  const [openSucces, setOpenSuccess] = React.useState(false);
 
-  const initialValues = {
-    fullName: "",
+  const [update, setUpdate] = useState({
+    avatar: "",
+    name: "",
+    lastName: "",
     email: "",
+    password: "",
     phone: "",
-    country: "",
-    state: "",
-    city: "",
-    address: "",
-    zip: "",
-    about: "",
+    aboutMe: "",
+  });
+  useEffect(() => {
+    if (datapersonal) {
+      setUpdate({
+        ...update,
+        avatar: datapersonal.avatar,
+        name: datapersonal.name,
+        lastName: datapersonal.lastName,
+        email: datapersonal.email,
+        password: datapersonal.password,
+        phone: datapersonal.phone,
+        aboutMe: datapersonal.aboutMe,
+      });
+    }
+  }, [datapersonal]);
+  const getBase64 = (img, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
+  const handleImageChange = useCallback(
+    (e) => {
+      if (e.target.files.length > 0) {
+        const file = e.target.files[0];
+        getBase64(file, (imageUrl) => {
+          setImagePreview(imageUrl);
+          setUpdate({
+            ...update,
+            avatar: file,
+          });
+        });
+      }
+    },
+    [update]
+  );
+
+  const handleCloseSuccess = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSuccess(false);
   };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("avatar", update.avatar);
+    formData.append("name", update.name);
+    formData.append("lastName", update.lastName);
+    formData.append("email", update.email);
+    formData.append("password", update.password);
+    formData.append("phone", update.phone);
+    formData.append("aboutMe", update.aboutMe);
 
-  const validationSchema = Yup.object().shape({
-    fullName: Yup.string().required("Name is Required!"),
-    email: Yup.string().email().required("Email is Required!"),
-    phone: Yup.number().min(8).required("Phone is Required!"),
-    country: Yup.string().required("Country is Required!"),
-    state: Yup.string().required("State is Required!"),
-    city: Yup.string().required("City is Required!"),
-    address: Yup.string().required("Address is Required!"),
-    zip: Yup.string().required("Zip is Required!"),
-    about: Yup.string().required("About is Required!"),
-  });
-
-  const { values, errors, handleChange, handleSubmit, touched } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: () => {},
-  });
-
+    try {
+      dispatch(updatePersonal(datapersonal.id, formData));
+      setOpenSuccess(true);
+   /*    setTimeout(async () => {
+        window.location.reload();
+      }, 1000); */
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUpdate((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
   return (
+    <>
+    <form onSubmit={handleSubmit}>
+
     <Box pt={2} pb={4}>
       <Card sx={{ padding: 4 }}>
         <Grid container spacing={3}>
@@ -90,12 +151,33 @@ const AddNewUser = () => {
               sx={{
                 padding: 3,
                 boxShadow: 2,
-                minHeight: 400,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
               }}
             >
+                 <div>
+                      <Avatar
+                        sx={{
+                          width: 100,
+                          height: 100,
+                          objectFit: "cover",
+                          background: datapersonal.avatar
+                            ? `url(${imagePreview || datapersonal.avatar})`
+                            : datapersonal.backgroundColor,
+                          backgroundSize: "cover",
+                        }}
+                      >
+                        {update.avatar ? (
+                          <span></span>
+                        ) : (
+                          <div>
+                            {datapersonal.name &&
+                              datapersonal.name[0].toUpperCase()}
+                          </div>
+                        )}
+                      </Avatar>
+                    </div>
               <ButtonWrapper>
                 <UploadButton>
                   <label htmlFor="upload-btn">
@@ -103,6 +185,7 @@ const AddNewUser = () => {
                       accept="image/*"
                       id="upload-btn"
                       type="file"
+                      onChange={handleImageChange}
                       style={{ display: "none" }}
                     />
                     <IconButton component="span">
@@ -119,133 +202,102 @@ const AddNewUser = () => {
           </Grid>
           <Grid item md={8} xs={12}>
             <Card sx={{ padding: 3, boxShadow: 2 }}>
-              <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
                   <Grid item sm={6} xs={12}>
-                    <input
+                    <TextField
                       fullWidth
-                      name="fullName"
-                      placeholder="Full Name"
-                      value={values.fullName}
+                      name="name"
+                      
+                      placeholder="Nombre"
+                      value={update.name}
                       onChange={handleChange}
-                      error={Boolean(touched.fullName && errors.fullName)}
-                      helperText={touched.fullName && errors.fullName}
+                   
                     />
                   </Grid>
 
                   <Grid item sm={6} xs={12}>
-                    <input
+                    <TextField
+                      fullWidth
+                      name="lastName"
+                      placeholder="Apellido"
+                      value={update.lastName}
+                      onChange={handleChange}
+                  
+                    />
+                  </Grid>
+                  <Grid item sm={6} xs={12}>
+                    <TextField
                       fullWidth
                       name="email"
-                      placeholder="Email Address"
-                      value={values.email}
+                      placeholder="Country"
+                      value={update.email}
                       onChange={handleChange}
-                      error={Boolean(touched.email && errors.email)}
-                      helperText={touched.email && errors.email}
+                  
                     />
                   </Grid>
-
                   <Grid item sm={6} xs={12}>
-                    <input
+                    <TextField
                       fullWidth
                       name="phone"
-                      placeholder="Phone Number"
-                      value={values.phone}
+                      placeholder="Telefono"
+                      value={update.phone}
                       onChange={handleChange}
-                      error={Boolean(touched.phone && errors.phone)}
-                      helperText={touched.phone && errors.phone}
+                 
                     />
                   </Grid>
 
-                  <Grid item sm={6} xs={12}>
-                    <input
+             
+
+                  <Grid item sm={6} xs={12} >
+                    <TextField
                       fullWidth
-                      name="country"
-                      placeholder="Country"
-                      value={values.country}
+                      name="aboutMe"
+                      placeholder="Sobre mi"
+                      value={update.aboutMe}
                       onChange={handleChange}
-                      error={Boolean(touched.country && errors.country)}
-                      helperText={touched.country && errors.country}
+             
                     />
                   </Grid>
 
-                  <Grid item sm={6} xs={12}>
-                    <input
-                      fullWidth
-                      name="state"
-                      placeholder="State/Region"
-                      value={values.state}
-                      onChange={handleChange}
-                      error={Boolean(touched.state && errors.state)}
-                      helperText={touched.state && errors.state}
-                    />
-                  </Grid>
+             
 
-                  <Grid item sm={6} xs={12}>
-                    <input
-                      fullWidth
-                      name="city"
-                      placeholder="City"
-                      value={values.city}
-                      onChange={handleChange}
-                      error={Boolean(touched.city && errors.city)}
-                      helperText={touched.city && errors.city}
-                    />
-                  </Grid>
-
-                  <Grid item sm={6} xs={12}>
-                    <input
-                      fullWidth
-                      name="address"
-                      placeholder="Address"
-                      value={values.address}
-                      onChange={handleChange}
-                      error={Boolean(touched.address && errors.address)}
-                      helperText={touched.address && errors.address}
-                    />
-                  </Grid>
-
-                  <Grid item sm={6} xs={12}>
-                    <input
-                      fullWidth
-                      name="zip"
-                      placeholder="Zip/Code"
-                      value={values.zip}
-                      onChange={handleChange}
-                      error={Boolean(touched.zip && errors.zip)}
-                      helperText={touched.zip && errors.zip}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <input
-                      multiline
-                      fullWidth
-                      rows={10}
-                      name="about"
-                      placeholder="About"
-                      value={values.about}
-                      onChange={handleChange}
-                      error={Boolean(touched.about && errors.about)}
-                      helperText={touched.about && errors.about}
-                      sx={{
-                        "& .MuiOutlinedInput-root textarea": { padding: 0 },
-                      }}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <Button type="submit" variant="contained">
-                      Create User
+                  <Grid item xs={12} sx={{display: 'flex', gap: 2}}>
+                    <Link to='/anfitrion'>
+                  <Button variant="contained" sx={{background: 'red'}}>
+                     Modo anfitrion
+                    </Button>
+                    </Link>
+                    <Button type="submit" variant="contained" sx={{background: '#8b008b'}}>
+                      Actualizar
                     </Button>
                   </Grid>
                 </Grid>
-              </form>
             </Card>
           </Grid>
         </Grid>
       </Card>
     </Box>
+    <div>
+              <Stack spacing={2} sx={{ width: "100%" }}>
+                <Snackbar
+                  open={openSucces}
+                  autoHideDuration={4000}
+                  onClose={handleCloseSuccess}
+                >
+                  <Alert
+                    onClose={handleCloseSuccess}
+                    severity="success"
+                    sx={{ width: "100%" }}
+                  >
+                    Guardado correctamente
+                  </Alert>
+                </Snackbar>
+              </Stack>
+            </div>
+    </form>
+
+    </>
+
   );
 };
 
