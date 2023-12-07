@@ -166,7 +166,7 @@
   display: flex;
   justify-content: center;
   border: none;
-  background: #fafafa;
+  background: #fff;
 
   div {
     display: flex;
@@ -451,17 +451,16 @@
   border-radius: 8px;
   transition: all 0.4s ease-in-out;
   padding: 5px 25px !important;
-  background: black;
+  background: #fff;
+  color: #000 !important;
   border: 1px solid black !important;
   margin: 0px;
   width: fit-content;
   @include paragBody1Regular;
-
-  color: #fff;
 }
 .footer-btn-comentarios:hover {
-  color: black !important;
-  background: #fff;
+  color: #fff !important;
+  background: #000;
 }
 
 //*--------------------LAPTOP---------------------------------------
@@ -484,7 +483,8 @@
       border-radius: 8px;
       transition: all 0.4s ease-in-out;
       padding: 5px 25px !important;
-      background: black;
+      background: #fff;
+      color: #000 !important;
       border: 1px solid black !important;
       margin: 0px;
       width: 125px;
@@ -494,8 +494,8 @@
     }
 
     .footer-btn-photo:hover {
-      color: black !important;
-      background: #fff;
+      color: #fff !important;
+      background: #000;
     }
   }
   .none-laptop {
@@ -702,7 +702,8 @@
 
 
   .footer-btn-comentarios{
-    padding: 0px 10px !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
   }
 
 
@@ -805,17 +806,21 @@ position: absolute;
     //height: 50px;
     z-index: 20;
     gap: 20px;
+    padding: 5px 0;
   }
   .btn-footer-container {
     display: flex;
     justify-content: flex-end;
+    
     .footer-btn {
       @include paragBody2Regular;
       color: #fff;
+      padding: 5px 10px !important;
+      border-radius: 4px !important;
     }
   }
   .footer-btn {
-    height: 30px;
+    //height: 30px;
     color: white;
     margin-top: 40px;
   }
