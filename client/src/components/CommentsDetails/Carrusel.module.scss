@@ -6,6 +6,10 @@
   display: none;
 }
 
+.buttonContainer {
+  display: none;
+}
+
 @media screen and (max-width: 767px) {
   .swiperContainer {
     display: flex;
@@ -44,13 +48,13 @@
     border-radius: 12px;
 
     span {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        i {
-          font-size: 25px;
-        }
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      i {
+        font-size: 25px;
       }
+    }
 
     div {
       display: flex;
@@ -69,7 +73,6 @@
         color: #7e00e5;
         margin: 0px;
       }
-      
     }
     p {
       @include paragBody2Regular;
@@ -77,14 +80,18 @@
     }
   }
 
-  .buttonContainer{
-      width: 100%;
-      display: flex;
-      justify-content: center;
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 40px;
+    a{
+        width: 60%;
+        margin: 0 auto;
+        .button {
+            width: 100%;  
+          }
+    }
   }
-  .button{
-      width: 70%;
-      margin: 0 auto;
-      margin-bottom: 40px;
-  }
+  
 }
