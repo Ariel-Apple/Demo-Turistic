@@ -167,6 +167,8 @@ const App = () => {
                       </div>
                     )}
                   </Avatar>
+                  <Link to="/user/show">
+
 
                   <UploadButton className="avatar-anfitrion-camara" >
                     <label htmlFor="upload-btn">
@@ -184,28 +186,10 @@ const App = () => {
                       </IconButton>
                     </label>
                   </UploadButton>
+                  </Link>
+
                   {/* Conditionally render Save and Cancel Buttons */}
-                  {imagePreview && (
-                    <div>
-                      <ButtonMaterial
-                        variant="contained"
-                        color="secondary"
-                        type="submit"
-                        sx={{ width: 70 }}
-                      >
-                        Guardar
-                      </ButtonMaterial>
-                      <ButtonMaterial
-                        type="button"
-                        variant="outlined"
-                        color="error"
-                        onClick={handleCancel}
-                        sx={{ width: 70 }}
-                      >
-                        Cancelar
-                      </ButtonMaterial>
-                    </div>
-                  )}
+       
                 </div>
                 <div className="avatar-anfitrion-perfil-option">
                   <p>
