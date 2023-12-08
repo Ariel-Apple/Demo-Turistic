@@ -169,18 +169,20 @@ const App = () => {
                   </Avatar>
 
                   <UploadButton className="avatar-anfitrion-camara">
-                    <label htmlFor="upload-btn">
+                    {/* <label htmlFor="upload-btn">
                       <input
                         accept="image/*"
                         id="upload-btn"
                         type="file"
                         style={{ display: "none" }}
                         onChange={handleImageChange}
-                      />
+                      /> */}
                       <IconButton component="span">
+                        <Link to="/user/show">
                         <PhotoCamera className="photo-camera" />
+                        </Link>
                       </IconButton>
-                    </label>
+                    {/* </label> */}
                   </UploadButton>
                   {/* Conditionally render Save and Cancel Buttons */}
                   {imagePreview && (

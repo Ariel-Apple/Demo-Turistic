@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
-import styles from "../Mywebsite/Mywebsite.module.scss";
+import styles from "./DetailPost.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
   dataPersonal,
