@@ -16,6 +16,43 @@
   //border: 1px solid #8b008b;
 }
 
+/* Estilos del menú vertical */
+.vertical-menu {
+  margin-left: -20% !important;
+  transition: left 1s ease-in-out;
+
+  .menu-anfitrion {
+    align-items: flex-end;
+
+    .items-anfitrion {
+      text-align: end;
+
+      i {
+        font-size: 40px;
+        color: #7f7f7f;
+      }
+      img {
+        width: auto;
+        height: 40px;
+        margin: 0 0 0 auto;
+      }
+    }
+    .items-anfitrion:hover {
+      border-radius: 0px;
+      background: #fff;
+    }
+  }
+}
+.vertical-menu.hidden {
+  right: -20%; /* Puedes ajustar esto según tus necesidades */
+}
+
+.vertical-menu.visible {
+  right: 0; /* Muestra el menú */
+  transition: right 1s ease-in-out;
+}
+
+
 #menu-left {
   background: #f8f9fa;
   //border: 1px solid blue;
@@ -25,6 +62,29 @@
   width: 100% !important;
   max-width: inherit !important;
   min-width: inherit !important;
+}
+
+/* Estilos del botón */
+.toggle-menu-btn {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+  right: -21px;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 1;
+  width: fit-content;
+  height: fit-content;
+  padding: 0px 4px;
+  border-radius: 50px;
+  background: transparent;
+  transition: box-shadow 0.4s ease;
+  color: #cfcfcf !important;
+}
+.toggle-menu-btn:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 //-------MENU VERTICAL - PERFIL -------
@@ -47,12 +107,12 @@
   right: 0px;
   color: #fff;
 }
-.photo-camera{
+.photo-camera {
   font-size: 30px !important;
   color: #fff;
 }
 
-.gap-input{
+.gap-input {
   margin: 30px 0 0 0 !important;
 }
 
@@ -202,64 +262,6 @@
 #close-sesion:hover {
   color: #8b008b;
   border-color: #8b008b;
-}
-
-/* Estilos del botón */
-.toggle-menu-btn {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  margin: auto;
-  right: -21px;
-  font-size: 40px;
-  cursor: pointer;
-  z-index: 1;
-  width: fit-content;
-  height: fit-content;
-  padding: 0px 4px;
-  border-radius: 50px;
-  background: transparent;
-  transition: box-shadow 0.4s ease;
-  
-}
-.toggle-menu-btn:hover{
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border: 2px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Estilos del menú vertical */
-.vertical-menu {
-  margin-left: -20% !important;
-  transition: right 1s ease-in-out;
-
-  .menu-anfitrion {
-    align-items: flex-end;
-
-    .items-anfitrion {
-      text-align: end;
-
-      i {
-        font-size: 40px;
-        color: #7f7f7f;
-      }
-      img {
-        width: auto;
-        height: 40px;
-        margin: 0 0 0 auto;
-      }
-    }
-    .items-anfitrion:hover {
-      border-radius: 0px;
-      background: #fff;
-    }
-  }
-}
-.vertical-menu.hidden {
-  right: -20%; /* Puedes ajustar esto según tus necesidades */
-}
-
-.vertical-menu.visible {
-  right: 0; /* Muestra el menú */
 }
 
 .avatar-anfitrion-vertical {

@@ -1,21 +1,20 @@
-// src/components/Modal.js
+
 import React from "react";
-import ReactDOM from "react-dom";
 import styles from "./ModalDetalleComentario.module.scss";
 
-const ModalDetalleComentario = ({ content, onClose, position, transition}) => {
-  return ReactDOM.createPortal(
+const ModalDetalleComentario = ({ onClose, isModalOpen, content,position, transition }) => {
+  return (
     <div
-      className={styles.modalOverlay}
-      onClick={onClose}
+      className={`${styles.modalOverlay} ${
+        isModalOpen ? styles.menuslidein : ""
+      }`}
       style={{ transition, transform: `translateY(${position})` }}
     >
-      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <p>{content}</p>
-        <button onClick={onClose}>Cerrar</button>
+        <button className={styles.btnClose} onClick={onClose}><i class="ri-close-fill"></i></button>
+      <div className={styles.modalContent}>
+        <p>{content.paragraph}</p>
       </div>
-    </div>,
-    document.body
+    </div>
   );
 };
 

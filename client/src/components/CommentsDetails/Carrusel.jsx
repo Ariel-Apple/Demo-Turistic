@@ -1,34 +1,27 @@
 import { data } from "../Hostess/Comentarios/Data";
-// src/components/Carousel.js
 import React, { useState } from "react";
-//import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import styles from "./Carrusel.module.scss";
 import { Link } from "react-router-dom";
 import Modal from "./ModalDetalleComentario";
 
-//SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
-
-//const cardData = [...]; // Coloca tus datos de tarjetas aquí
-
 const Carousel = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState("");
-
-  const [modalPosition, setModalPosition] = useState("100%");
+  const [content, setContent] = useState("");
+  const [modalPosition, setModalPosition] = useState("");
   const [transition, setTransition] = useState("");
 
   const openModal = (content) => {
-    setModalContent(content);
-    setIsModalOpen(true);
     setModalPosition("0");
-    setTransition("transform 0.5s ease");
+    setIsModalOpen(true);
+    setContent(content);
   };
 
   const closeModal = () => {
-    setModalPosition("100%");
-    setTransition("transform 0.5s ease");
+    //setIsModalOpen(false);
+    setModalPosition("150%");
+    setTransition("transform 0.5s ease-out");
     setTimeout(() => {
       setIsModalOpen(false);
     }, 500);
@@ -50,7 +43,7 @@ const Carousel = () => {
               className={styles.contentComment}
               key={index}
               id="comentarios"
-              onClick={() => openModal(item.paragraph)}
+              onClick={() => openModal(item)}
             >
               <span>
                 {item.emoji === "corazon" ? (
@@ -76,14 +69,16 @@ const Carousel = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {isModalOpen && (
+      <div style={{ position: "relative" }}>
         <Modal
-          content={modalContent}
           onClose={closeModal}
+          isModalOpen={isModalOpen}
+          content={content}
           position={modalPosition}
           transition={transition}
         />
-      )}
+      </div>
+
       <div className={styles.buttonContainer}>
         <Link to="/all-comments">
           <button className={styles.button}>Ver todos los comentarios</button>
