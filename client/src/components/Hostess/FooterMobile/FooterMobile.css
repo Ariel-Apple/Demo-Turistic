@@ -2,8 +2,6 @@
     display: none;
 }
 
-
-
 @media screen and (max-width: 1023px) {
     .footer-Hosstes {
         display: block;
@@ -19,6 +17,7 @@
     .container-footer-mobile {
         height: 100vh;
         z-index: 10;
+        position: relative;
     }
 
     .avatar-anfitrion-mobile {
@@ -37,10 +36,15 @@
         position: relative;
     }
 
+    #close-sesion{
+        color: #8b008b;
+    }
     .camera-hostess {
         position: absolute;
         right: 0px;
         bottom: 0px;
+        color: #00000099;
+        font-size: 40px;
     }
 
     .avatar-perfil-data {
@@ -55,8 +59,25 @@
         margin-bottom: 5px;
     }
 
-    .list-item-mobile{
+    .list-item-mobile {
         width: 100%;
+    }
+
+    .list-item-text span {
+        font-size: 24px;
+        color: #00000099;
+    }
+
+
+    #close-menu {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    #close-menu i {
+        font-size: 45px;
+        color: #8b008b;
     }
 }
 
@@ -74,6 +95,23 @@
 
     .avatar-anfitrion-mobile {
         gap: 25px;
+    }
+
+    .camera-hostess {
+        font-size: 35px;
+    }
+
+    .list-item-text span {
+        font-size: 18px;
+    }
+
+    #close-menu {
+        top: 0px;
+        right: 10px;
+    }
+
+    #close-menu i {
+        font-size: 40px;
     }
 
 }

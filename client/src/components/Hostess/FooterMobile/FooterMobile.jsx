@@ -54,6 +54,9 @@ export default function FooterMobile() {
   }, [token]);
   const list = (anchor) => (
     <div className="container-footer-mobile">
+      <Button id="close-menu" onClick={toggleDrawer(anchor, false)}>
+        <i class="ri-close-fill"></i>
+      </Button>
       <Box
         sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
         role="presentation"
@@ -83,7 +86,9 @@ export default function FooterMobile() {
                 </div>
               )}
             </Avatar>
-            <CameraOutlined className="camera-hostess" />
+            <Link to="/user/show">
+              <CameraOutlined className="camera-hostess" />
+            </Link>
           </div>
           <div className="avatar-perfil-data">
             <p>
@@ -100,7 +105,7 @@ export default function FooterMobile() {
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon></ListItemIcon>
-                  <ListItemText primary={"Inicio"} />
+                  <ListItemText primary={"Inicio"} className="list-item-text" />
                 </ListItemButton>
               </ListItem>
             </Link>
@@ -109,7 +114,10 @@ export default function FooterMobile() {
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon></ListItemIcon>
-                  <ListItemText primary={"Mi sitio"} />
+                  <ListItemText
+                    primary={"Mi sitio"}
+                    className="list-item-text"
+                  />
                 </ListItemButton>
               </ListItem>
             </Link>
@@ -117,7 +125,10 @@ export default function FooterMobile() {
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon></ListItemIcon>
-                  <ListItemText primary={"Reservaciones"} />
+                  <ListItemText
+                    primary={"Reservaciones"}
+                    className="list-item-text"
+                  />
                 </ListItemButton>
               </ListItem>
             </Link>
@@ -125,7 +136,10 @@ export default function FooterMobile() {
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon></ListItemIcon>
-                  <ListItemText primary={"Historial de reservas"} />
+                  <ListItemText
+                    primary={"Historial de reservas"}
+                    className="list-item-text"
+                  />
                 </ListItemButton>
               </ListItem>
             </Link>
@@ -133,17 +147,23 @@ export default function FooterMobile() {
               <ListItem disablePadding>
                 <ListItemButton>
                   <ListItemIcon></ListItemIcon>
-                  <ListItemText primary={"Reclamos"} />
+                  <ListItemText
+                    primary={"Reclamos"}
+                    className="list-item-text"
+                  />
                 </ListItemButton>
               </ListItem>
             </Link>
             <Link to="/anfitrion/comentarios">
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon></ListItemIcon>
-                <ListItemText primary={"Comentarios"} />
-              </ListItemButton>
-            </ListItem>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon></ListItemIcon>
+                  <ListItemText
+                    primary={"Comentarios"}
+                    className="list-item-text"
+                  />
+                </ListItemButton>
+              </ListItem>
             </Link>
           </List>
         </div>

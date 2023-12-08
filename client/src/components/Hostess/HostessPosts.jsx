@@ -168,7 +168,7 @@ const App = () => {
                     )}
                   </Avatar>
 
-                  <UploadButton className="avatar-anfitrion-camara" >
+                  <UploadButton className="avatar-anfitrion-camara">
                     <label htmlFor="upload-btn">
                       <input
                         accept="image/*"
@@ -178,9 +178,7 @@ const App = () => {
                         onChange={handleImageChange}
                       />
                       <IconButton component="span">
-                        <PhotoCamera
-                        className="photo-camera"
-                        />
+                        <PhotoCamera className="photo-camera" />
                       </IconButton>
                     </label>
                   </UploadButton>
@@ -274,54 +272,6 @@ const App = () => {
               </Link>
 
               <Link to="/anfitrion/comentarios">
-                <li className="items-anfitrion">
-                  {isMenuVisible ? (
-                    <img
-                      srcSet={require("../../assets/images/comentarios-m.png")}
-                      alt="Not found"
-                    />
-                  ) : (
-                    "Comentarios"
-                  )}
-                </li>
-              </Link>
-              <Link to="/anfitrion/reclamos">
-                <li className="items-anfitrion">
-                  {isMenuVisible ? (
-                    <img
-                      srcSet={require("../../assets/images/comentarios-m.png")}
-                      alt="Not found"
-                    />
-                  ) : (
-                    "Comentarios"
-                  )}
-                </li>
-              </Link>
-              <Link to="/anfitrion/reclamos">
-                <li className="items-anfitrion">
-                  {isMenuVisible ? (
-                    <img
-                      srcSet={require("../../assets/images/comentarios-m.png")}
-                      alt="Not found"
-                    />
-                  ) : (
-                    "Comentarios"
-                  )}
-                </li>
-              </Link>
-              <Link to="/anfitrion/reclamos">
-                <li className="items-anfitrion">
-                  {isMenuVisible ? (
-                    <img
-                      srcSet={require("../../assets/images/comentarios-m.png")}
-                      alt="Not found"
-                    />
-                  ) : (
-                    "Comentarios"
-                  )}
-                </li>
-              </Link>
-              <Link to="/anfitrion/reclamos">
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img

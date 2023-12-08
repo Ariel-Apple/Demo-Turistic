@@ -29,10 +29,13 @@
           top: -10px;
           right: -10px;
           cursor: pointer;
+          padding: 0px;
+          border: none;
+          background: transparent;
 
           i{
-            font-size: 30px;
-            color: #722a88;
+            font-size: 30px !important;
+            color: #722a88 !important;
           }
         }
 
