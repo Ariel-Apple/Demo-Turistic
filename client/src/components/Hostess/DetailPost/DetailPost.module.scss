@@ -399,9 +399,9 @@
 }
 
 @media screen and (max-width: 1023px) {
-  .imageContainer {
-    //max-width: 400px;
-  }
+  /* .imageContainer {
+    max-width: 400px;
+  } */
   .container-updatePublic {
     padding: 20px 0 60px 0;
     height: auto;
@@ -506,9 +506,9 @@
     object-fit: cover;
   }
 
-  .card-detailpost {
-    //width: 350px;
-  }
+  /* .card-detailpost {
+    width: 350px;
+  } */
 
   .card-calendar {
     height: 10em;
