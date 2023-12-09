@@ -95,12 +95,13 @@
         background: #6249ad;
         border-radius: 5rem;
         height: 100%;
+        width: auto;
         margin: auto;
         position: absolute;
-        right: 8px;
+        right: 0px;
+        padding: 0 3px;
         #icons-search-reservtion {
           color: white;
-          //font-size: 50px;
           width: 90%;
           height: 90%;
         }
@@ -370,7 +371,7 @@
 
 @media screen and (max-width: 767px) {
   .container-reservation {
-    padding: 20px 0 60px 0;
+    padding: 10px 0 60px 0;
     gap: 5px;
 
     .tittle {
@@ -401,7 +402,7 @@
         }
         .input-reservations {
           height: 50%;
-          width: 65%;
+          width: 75% !important;
 
           .btn-reservation-search {
             #icons-search-reservtion {

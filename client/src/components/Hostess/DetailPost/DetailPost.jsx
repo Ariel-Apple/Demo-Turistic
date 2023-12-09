@@ -349,7 +349,8 @@ export default function DetailPost() {
                       type="dashed"
                       className={styles["btn-delete"]}
                     >
-                      <CloseIcon id={styles["icons-reload"]} />
+                      Eliminar
+                      {/* <CloseIcon id={styles["icons-reload"]} /> */}
                     </Button>
                   </Space>
                 </div>
@@ -361,8 +362,8 @@ export default function DetailPost() {
         <div className={styles.tabletOneBottom}>
           <div className={styles["container-direction"]}>
             <div className={styles["card-direction"]}>
-              <span className="direction">Dirección</span>
-              <Card className="card-detailpost">
+              <span className={styles["direction"]}>Dirección</span>
+              <Card className={styles["card-detailpost"]}>
                 <p>
                   San Juan Chamelco a Santa Cruz, San Juan Chamelco, Alta
                   Verapaz, Guatemala.
@@ -371,7 +372,7 @@ export default function DetailPost() {
             </div>
             <div className={styles["update-title-price"]}>
               <div className={styles["card-price"]}>
-                <span className="direction">Precio fijado:</span>
+                <span className={styles["direction"]}>Precio fijado:</span>
                 <Card className={styles.price}>
                   <p> ${detailpost.price}</p>
                 </Card>
@@ -380,7 +381,7 @@ export default function DetailPost() {
                 onClick={handleShowPrice}
                 className={styles.btnEditPrice}
               >
-                <EditIcon sx={{ color: "#8B008B" }} />
+                <EditIcon className={styles["edit-icon"]} /* sx={{ color: "#8B008B" }} */ />
               </ButtonMaterial>
               <ModalBootstrap show={showPrice} onHide={handleCloseTitle}>
                 <form onSubmit={handleSubmit}>
@@ -439,7 +440,7 @@ export default function DetailPost() {
             <div className={styles["update-title-accordion"]}>
               <Accordion.Item className={styles["accordion"]} eventKey="0">
                 <div>
-                  <Accordion.Header>Resumen del Lugar</Accordion.Header>
+                  <Accordion.Header className={styles.accordionButton}>Resumen del Lugar</Accordion.Header>
                   <Accordion.Body>
                     {detailpost.summary}
                     <div className="icons-edit">
@@ -450,6 +451,8 @@ export default function DetailPost() {
                           borderRadius: "50%",
                           padding: "15px",
                         }} */
+
+                        
                       >
                         <EditIcon />
                       </ButtonMaterial>
@@ -765,7 +768,7 @@ export default function DetailPost() {
             <Card style={{ fontSize: 15, fontWeight: 700 }}>
               <p>Fecha y horario del sitio:</p>
             </Card>
-            <div className="slide-container">
+            <div className={styles["slide-container"]}>
               <Splide
                 options={{
                   type: "slide", // Tipo de transición (slide)
@@ -781,24 +784,24 @@ export default function DetailPost() {
                     gap: "1em",
                   }}
                 >
-                  <Card className="card-calendar">
+                  <Card className={styles["card-calendar"]}>
                     <p>lun</p>
                     <p>10</p>
                     <p>oct</p>
                   </Card>
-                  <Card className="card-calendar">
+                  <Card className={styles["card-calendar"]}>
                     <p>mar</p>
                     <p>10</p>
                     <p>oct</p>
                   </Card>
-                  <Card className="card-calendar">
+                  <Card className={styles["card-calendar"]}>
                     <p>mié</p>
                     <p>10</p>
                     <p>oct</p>
                   </Card>
                 </SplideSlide>
               </Splide>
-              <Card className="card-calendar1">
+              <Card className={styles["card-calendar1"]}>
                 <p>Ver todas las fechas</p>
               </Card>
             </div>

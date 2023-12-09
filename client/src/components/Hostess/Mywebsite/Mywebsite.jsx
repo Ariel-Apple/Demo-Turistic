@@ -60,14 +60,15 @@ function Mywebsite() {
                         <div>
                           <Avatar
                             sx={{
-                              width: 25,
-                              height: 25,
+                              /* width: 25,
+                              height: 25, */
                               background: datapersonal.avatar
                                 ? `url(${datapersonal.avatar})`
                                 : datapersonal.backgroundColor,
                               backgroundSize: "cover",
                             
                             }}
+                            className={styles["avatar-perfil"]}
                           >
                             {datapersonal.avatar ? (
                               <div></div>
@@ -102,9 +103,9 @@ function Mywebsite() {
                       </div>
                     </Link>
                     <Link to={`/anfitrion/mi sitio/${data.id}`}>
-                      {data.summary.split(" ").length > 15 ? (
+                      {data.summary.split(" ").length > 5 ? (
                         <p className={styles["summary-card"]}>
-                          {data.summary.split(" ").slice(0, 15).join(" ")}
+                          {data.summary.split(" ").slice(0, 5).join(" ")}
                           ...
                         </p>
                       ) : (

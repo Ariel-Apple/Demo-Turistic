@@ -1,8 +1,9 @@
+@import "../../../styles.scss";
+
 .containerMywebsite {
   margin: 0px;
   height: 100%;
   width: 100%;
-
 }
 
 .containerCards {
@@ -13,9 +14,7 @@
 }
 
 .contentCard {
-
   position: relative;
-  //margin-bottom: 150px;
   justify-content: center;
   display: grid;
   transition: transform 0.3s ease;
@@ -65,7 +64,7 @@
     flex-direction: column;
     width: 90%;
     padding: 10px 0;
-    gap: 15px;
+    gap: 0px;
 
     .card-info-flex {
       display: flex;
@@ -73,29 +72,44 @@
       align-items: center;
 
       .card-title {
+        @include paragraphBody1Bold;
         text-decoration: none;
         color: black;
         margin: 0px;
+      }
+      div {
+        .avatar-perfil {
+          width: 50px;
+          height: 50px;
+        }
       }
     }
     .summary-card {
       position: relative;
       bottom: 5px;
       font-size: 11px;
+      @include paragBody2Regular;
       color: gray;
       width: 100%;
       opacity: 0;
+      margin-top: 10px;
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
     }
-    div .price-none {
-      position: relative;
-      left: 0;
-      width: 270px;
-      margin-top: 5px;
-      font-size: 11px;
-      color: gray;
-      transition: top 0.5s ease, width 0.5s ease, transform 0.5s ease;
+    div {
+      .price-none {
+        position: relative;
+        left: 0;
+        width: 270px;
+        margin: 0px;
+        @include paragBody2Regular;
+        color: #4183c4;
+        transition: top 0.5s ease, width 0.5s ease, transform 0.5s ease;
+      }
+      span {
+        @include paragBody2Regular;
+        color: #4183c4;
+      }
     }
   }
 }
@@ -114,5 +128,30 @@
     height: auto;
     padding: 40px 30px 100px;
   }
+  .contentCard:hover {
+    transform: none;
+    position: inherit;
+    box-shadow: none;
+  }
+  .summary-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .contentCard:hover .summary-card {
+    transform: none;
+    opacity: 1;
+  }
 }
 
+@media screen and (max-width: 767px) {
+  .containerCards {
+    padding: 25px 10px 100px;
+  }
+  .contentCard {
+    width: 100%;
+  }
+  .swiperContainer{
+    width: 100.5% !important;
+  }
+}
