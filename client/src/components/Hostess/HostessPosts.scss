@@ -17,7 +17,7 @@
 /* Estilos del menú vertical */
 .vertical-menu {
   margin-left: -20% !important;
-  transition: margin-left 1s ease-in-out;
+  transition: margin-left .1s ease-in-out;
 
   .menu-anfitrion {
     align-items: flex-end;
@@ -47,7 +47,7 @@
 
 .visible {
   margin-left: 0%;
-  transition: margin-left 1s ease-in-out;
+  transition: margin-left .1s ease-in-out;
 }
 
 

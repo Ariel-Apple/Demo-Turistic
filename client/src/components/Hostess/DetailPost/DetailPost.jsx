@@ -349,7 +349,7 @@ export default function DetailPost() {
                       type="dashed"
                       className={styles["btn-delete"]}
                     >
-                      Eliminar
+                      Eliminar publicacion
                       {/* <CloseIcon id={styles["icons-reload"]} /> */}
                     </Button>
                   </Space>
