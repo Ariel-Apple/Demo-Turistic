@@ -4,18 +4,18 @@ module.exports = {
 development: {
     dialect: 'postgres',
     host: 'monorail.proxy.rlwy.net',
-    port: 32379,
+    port: 57912,
     username: 'postgres',
-    password: 'aA41d-g2E1-fd-AG5EF61EDD3*AABD*f',
+    password: 'G-3cbAB3c135Ce2BF*63EcED41DfGAFd',
     database: 'railway',
 
   },
   production: {
     dialect: 'postgres',
     host: 'monorail.proxy.rlwy.net',
-    port: 32379,
+    port: 57912,
     username: 'postgres',
-    password: 'aA41d-g2E1-fd-AG5EF61EDD3*AABD*f',
+    password: 'G-3cbAB3c135Ce2BF*63EcED41DfGAFd',
     database: 'railway',
 
   },    
