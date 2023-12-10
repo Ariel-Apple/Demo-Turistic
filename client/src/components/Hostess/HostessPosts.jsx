@@ -148,9 +148,7 @@ const App = () => {
                 <div>
                   <Avatar
                     sx={{
-                      /* width: 100,
-                      height: 100, */
-                      /* objectFit: "cover", */
+  
                       background: datapersonal.avatar
                         ? `url(${imagePreview || datapersonal.avatar})`
                         : datapersonal.backgroundColor,
