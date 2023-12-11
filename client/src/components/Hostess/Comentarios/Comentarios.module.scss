@@ -90,6 +90,11 @@
   }
 }
 
+@media screen and (max-width:1023px) {
+  .cardsContainer{
+    padding: 40px 40px 70px !important;
+  }
+}
 
 @media screen and (max-width: 767px) {
   .cardsContainer{

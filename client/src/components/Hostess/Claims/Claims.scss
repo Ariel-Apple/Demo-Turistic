@@ -91,6 +91,18 @@
       justify-content: flex-end;
       width: 80%;
       margin: 15px 0;
+
+      .button-claim-btn{
+        background: #8b008b;
+        color: #fff;
+        padding: 5px 15px;
+        border: 1px solid #8b008b;
+        border-radius: 16px;
+      }
+      .button-claim-btn:hover{
+        background: #fff;
+        color: #8b008b;
+      }
     }
     .send-claim {
       display: flex;
@@ -115,6 +127,18 @@
           width: fit-content;
           display: flex;
           align-items: flex-end;
+
+          .button-textarea-enviar-btn{
+            background: #8b008b;
+            color: #fff;
+            padding: 5px 15px;
+            border: 1px solid #8b008b;
+            border-radius: 16px;
+          }
+          .button-textarea-enviar-btn:hover{
+            background: #fff;
+            color: #8b008b;
+          }
         }
       }
     }

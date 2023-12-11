@@ -124,17 +124,18 @@ export default function Claims() {
             {/* Tu contenido existente */}
 
             <Button
-              sx={{
+              /* sx={{
                 bottom: 0,
                 background: "#8B008B",
                 color: "#fff",
                 padding: "5px 15px",
-                /* width: "15em", */
+                width: "15em",
                 borderRadius: "2em",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-              }}
+              }} */
+              className="button-claim-btn"
               disableElevation
             >
               Cerrar
@@ -153,18 +154,19 @@ export default function Claims() {
                 {/* Tu contenido existente */}
 
                 <Button
-                  sx={{
+                  /* sx={{
                     bottom: 0,
                     background: "#8B008B",
                     color: "#fff",
                     padding: "5px 15px",
-                    /*  width: "15em", */
+                     width: "15em",
                     borderRadius: "2em",
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    /*  marginTop: "2em", */
-                  }}
+                     marginTop: "2em",
+                  }} */
+                  className="button-textarea-enviar-btn"
                   disableElevation
                 >
                   Enviar

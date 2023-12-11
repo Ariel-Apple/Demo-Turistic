@@ -28,6 +28,8 @@ const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [activeLink, setActiveLink] = useState("");
+
   const datapersonal = useSelector((state) => state.datapersonal);
   const token = useSelector((state) => state.token);
   const [start, setStart] = useState(true);
@@ -148,7 +150,6 @@ const App = () => {
                 <div>
                   <Avatar
                     sx={{
-  
                       background: datapersonal.avatar
                         ? `url(${imagePreview || datapersonal.avatar})`
                         : datapersonal.backgroundColor,
@@ -175,11 +176,11 @@ const App = () => {
                         style={{ display: "none" }}
                         onChange={handleImageChange}
                       /> */}
-                      <IconButton component="span">
-                        <Link to="/user/show">
+                    <IconButton component="span">
+                      <Link to="/user/show">
                         <PhotoCamera className="photo-camera" />
-                        </Link>
-                      </IconButton>
+                      </Link>
+                    </IconButton>
                     {/* </label> */}
                   </UploadButton>
                   {/* Conditionally render Save and Cancel Buttons */}
@@ -216,12 +217,33 @@ const App = () => {
             </form>
 
             <ul className="menu-anfitrion">
-              <Link to="/anfitrion/inicio">
+              {/* <Link to="/anfitrion/inicio">
                 <li className="items-anfitrion">
                   {isMenuVisible ? <i class="ri-home-2-line"></i> : "Inicio"}
                 </li>
+              </Link> */}
+              <Link
+                to="/anfitrion/inicio"
+                className={
+                  activeLink === "/anfitrion/inicio" ? "active-link" : ""
+                }
+                onClick={() => setActiveLink("/anfitrion/inicio")}
+              >
+                <li className="items-anfitrion">
+                  {isMenuVisible ? (
+                    <i className="ri-home-2-line"></i>
+                  ) : (
+                    "Inicio"
+                  )}
+                </li>
               </Link>
-              <Link to="/anfitrion/mi sitio">
+              <Link
+                to="/anfitrion/mi sitio"
+                className={
+                  activeLink === "/anfitrion/mi sitio" ? "active-link" : ""
+                }
+                onClick={() => setActiveLink("/anfitrion/mi sitio")}
+              >
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img
@@ -233,7 +255,13 @@ const App = () => {
                   )}
                 </li>
               </Link>
-              <Link to="/anfitrion/reservaciones">
+              <Link
+                to="/anfitrion/reservaciones"
+                className={
+                  activeLink === "/anfitrion/reservaciones" ? "active-link" : ""
+                }
+                onClick={() => setActiveLink("/anfitrion/reservaciones")}
+              >
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img
@@ -246,7 +274,17 @@ const App = () => {
                 </li>
               </Link>
 
-              <Link to="/anfitrion/historial de reservas">
+              <Link
+                to="/anfitrion/historial de reservas"
+                className={
+                  activeLink === "/anfitrion/historial de reservas"
+                    ? "active-link"
+                    : ""
+                }
+                onClick={() =>
+                  setActiveLink("/anfitrion/historial de reservas")
+                }
+              >
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img
@@ -258,7 +296,11 @@ const App = () => {
                   )}
                 </li>
               </Link>
-              <Link to="/anfitrion/reclamos">
+              <Link to="/anfitrion/reclamos" 
+              className={
+                activeLink === "/anfitrion/reclamos" ? "active-link" : ""
+              }
+              onClick={() => setActiveLink("/anfitrion/reclamos")}>
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img
@@ -271,7 +313,11 @@ const App = () => {
                 </li>
               </Link>
 
-              <Link to="/anfitrion/comentarios">
+              <Link to="/anfitrion/comentarios"
+              className={
+                activeLink === "/anfitrion/comentarios" ? "active-link" : ""
+              }
+              onClick={() => setActiveLink("/anfitrion/comentarios")}>
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img
