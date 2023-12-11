@@ -26,18 +26,16 @@ export default function Login() {
           <BeatLoader color="#8B008B" size="80" />
         </div>
       ) : (
-        <div className="holaaaaa" >
+        <div>
           <Button variant="primary" onClick={handleShowLogin}>
             Launch demo modal
           </Button>
 
-          <Modal show={show} onHide={handleCloseLogin} className="holaaaaa">
+          <Modal show={show} onHide={handleCloseLogin}>
             <Modal.Header closeButton />
 
             <Modal.Body>
-              <div className="holaaaaa">
-              <LoginForms/>
-              </div>
+              <LoginForms />
             </Modal.Body>
           </Modal>
         </div>

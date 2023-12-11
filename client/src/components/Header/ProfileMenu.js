@@ -269,7 +269,7 @@ export default function BasicMenu() {
         </Box>
       </div>
       {!token ? (
-        <div>
+        <div className="container-lore" >
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -281,6 +281,7 @@ export default function BasicMenu() {
             sx={{
               ".MuiPaper-root": {
                 minWidth: "200px",
+                //height: "100vh",
                 borderRadius: "1rem",
                 boxShadow:
                   "0 1px 2px rgb(0 0 0 / 8%), 0 4px 12px rgb(0 0 0 / 5%)",
@@ -312,6 +313,7 @@ export default function BasicMenu() {
             onOk={handleOk}
             onCancel={handleCancel}
             footer={null} // Esto quita los botones "Ok" y "Cancel"
+            className="modal-login"
           >
             <LoginForms />
           </Modal>

@@ -28,9 +28,7 @@
 .logo-modal {
   width: 150px;
 }
-.modal-card {
-  margin-top: -50px;
-}
+
 .cancel-btn {
   background-color: #8b008b;
   color: #8b008b;
@@ -290,6 +288,26 @@
 
 .text-join-initial img {
   width: 50em;
+}
+.modal-card {
+  //margin-top: -50px;
+  height: 100vh !important;
+  top: 0px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+padding: 0px !important;
+}
+
+.modal-login{
+  height: 100vh !important;
+  top: 0px !important;
+  bottom: 0px !important;
+  margin: auto !important;
+  padding: 0px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 //----------------desktop-------------------
