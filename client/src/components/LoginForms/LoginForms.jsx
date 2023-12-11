@@ -166,7 +166,7 @@ export default function LoginForms() {
                 <Button
                   style={{ backgroundColor: "#05A1A1", borderColor: "#05A1A1" }}
                   type="submit"
-                  className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="flex w-full justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600  button-color-iniciar"
                 >
                   Iniciar sesión
                 </Button>

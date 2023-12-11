@@ -4,7 +4,7 @@ import BeatLoader from "react-loading";
 import "../Loading.scss";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import "../components/LoginForms/LoginForms.scss"
+import "../components/LoginForms/LoginForms.scss";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,11 +31,13 @@ export default function Login() {
             Launch demo modal
           </Button>
 
-          <Modal show={show} onHide={handleCloseLogin}>
+          <Modal show={show} onHide={handleCloseLogin} className="holaaaaa">
             <Modal.Header closeButton />
 
             <Modal.Body>
+              <div className="holaaaaa">
               <LoginForms/>
+              </div>
             </Modal.Body>
           </Modal>
         </div>
