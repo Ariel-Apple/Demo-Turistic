@@ -584,7 +584,7 @@ export default function CardDetails() {
                 </div>
               </div>
               <CommentsDetails />
-              <Carrusel/>
+              <Carrusel />
             </div>
           </div>
         </div>
@@ -600,7 +600,9 @@ export default function CardDetails() {
                 Comentar
               </button>
             )}
-            {isModalOpen && <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />}
+            {isModalOpen && (
+              <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />
+            )}
 
             <div className="btn-footer-laptop">
               {values.map(
@@ -635,12 +637,13 @@ export default function CardDetails() {
             <button
               onClick={handleComentarClick}
               className="footer-btn-comentarios"
-
             >
               Comentar
             </button>
           )}
-          {isModalOpen && <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />}
+          {isModalOpen && (
+            <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />
+          )}
 
           <div className="btn-footer-container">
             <button

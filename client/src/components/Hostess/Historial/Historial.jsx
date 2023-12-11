@@ -137,13 +137,13 @@ function rowContent(_index, row) {
           sx={{
             backgroundColor: "background.paper",
           }}
-          className={styles["table-item-title"]}
+          className={styles["table-item-content"]}
         >
           55
         </TableCell>
-        <TableCell className={styles["table-item-title"]}>15 mar. 2024 20:30</TableCell>
-        <TableCell className={styles["table-item-title"]}>Ariel alegre</TableCell>
-        <TableCell className={styles["table-item-title"]}>$200.00</TableCell>
+        <TableCell className={styles["table-item-content"]}>15 mar. 2024 20:30</TableCell>
+        <TableCell className={styles["table-item-content"]}>Ariel alegre</TableCell>
+        <TableCell className={styles["table-item-content"]}>$200.00</TableCell>
       </React.Fragment>
     </>
   );
