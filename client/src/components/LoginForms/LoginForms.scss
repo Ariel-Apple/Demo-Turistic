@@ -71,6 +71,7 @@
 
 .login-container {
   width: 100%;
+
 }
 .container-form{
     width: 100%;
@@ -90,4 +91,12 @@
 
 .holaaaaa{
   height: 100vh !important;
+}
+
+@media screen and (max-width: 767px) {
+  .login-container{
+    height: 90vh !important;
+    overflow-y: auto;
+  }
+  
 }
