@@ -207,7 +207,7 @@ export default function PreRegisterForm() {
           </div>
 
           <div className="card-preregister">
-            <div className="card-preregister-content" >
+            <div className="card-preregister-content">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl title-update">
                   Actualizar
@@ -249,15 +249,17 @@ export default function PreRegisterForm() {
                         )}
                       </Avatar>
                     </div>
-
-                    <div className="input-select-image">
+                    <button onChange={handleImageChange} className="btn-edit-image-preregister" >
+                      <i class="ri-camera-fill"></i>
+                    </button>
+                    {/* <div className="input-select-image">
                       <input
                         type="file"
                         name="avatar"
                         onChange={handleImageChange}
                         accept="image/jpeg, image/png"
                       />
-                    </div>
+                    </div> */}
                   </div>
 
                   <div className="sm:col-span-2">

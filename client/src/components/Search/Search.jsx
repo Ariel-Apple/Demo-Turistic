@@ -4,11 +4,11 @@ import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import "./Search.scss";
 import FilterCard from "../FilterCard/FilterCard";
 import InputSearch from "../InputSearch/InputSearch";
-import { useState, Fragment } from 'react';
-import { AudioOutlined } from '@ant-design/icons';
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import { Input, Space } from 'antd';
+import { useState, Fragment } from "react";
+import { AudioOutlined } from "@ant-design/icons";
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { Input, Space } from "antd";
 const { Search } = Input;
 export default function SearchMobile() {
   const [state, setState] = useState({
@@ -31,27 +31,23 @@ export default function SearchMobile() {
     setValue(newValue);
   };
 
-
-
   function OffCanvasExample({ name, ...props }) {
     const [show, setShow] = useState(false);
-    
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const onSearch = (value, _e, info) => console.log(info?.source, value);
-  
-  
+
     const suffix = (
       <AudioOutlined
         style={{
           fontSize: 16,
-          color: '#1677ff',
-          width: '50px'
+          color: "#1677ff",
+          width: "50px",
         }}
       />
     );
-  
-  
+
     return (
       <>
         <Button variant="primary" onClick={handleShow} className="me-2">
@@ -62,16 +58,12 @@ export default function SearchMobile() {
             <Offcanvas.Title></Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>
-          <Input placeholder='large size' size="large" />
+            <Input placeholder="large size" size="large" />
           </Offcanvas.Body>
         </Offcanvas>
       </>
     );
   }
-
-
-
-
 
   return (
     <div className="search-container">
@@ -83,7 +75,7 @@ export default function SearchMobile() {
               sx={{}}
               className="btn-search"
             >
-              Buscar por tipo  
+              Buscar por tipo
             </button>
             <div class="vertical-line"></div>
 
@@ -98,6 +90,7 @@ export default function SearchMobile() {
             anchor={anchor}
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
+            className="container-modal-filter"
           >
             <h3
               className="x-search"
@@ -106,11 +99,10 @@ export default function SearchMobile() {
             >
               &times;
             </h3>
-            <div>
+            <div className="content-input-search" >
               <InputSearch />
             </div>
-            <div>
-            
+            <div className="content-filter-card">
               <FilterCard />
             </div>
           </Drawer>
