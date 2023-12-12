@@ -13,7 +13,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function RegisterForm() {
+export default function RegisterForm({ setIsModalOpen, setIsModalOpenRegister}) {
   const [agreed, setAgreed] = useState(false);
   const dispatch = useDispatch();
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -25,10 +25,11 @@ export default function RegisterForm() {
     phone: " ",
   });
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  //const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(true);
+    setIsModalOpenRegister(false)
   };
 
   const handleOk = () => {

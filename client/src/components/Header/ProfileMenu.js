@@ -269,7 +269,7 @@ export default function BasicMenu() {
         </Box>
       </div>
       {!token ? (
-        <div className="container-lore" >
+        <div className="container-lore">
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -315,7 +315,11 @@ export default function BasicMenu() {
             footer={null} // Esto quita los botones "Ok" y "Cancel"
             className="modal-login"
           >
-            <LoginForms />
+            <LoginForms
+              setIsModalOpen={setIsModalOpen}
+              setIsModalOpenRegister={setIsModalOpenRegister}
+              isModalOpenRegister={isModalOpenRegister}
+            />
           </Modal>
           <Modal
             visible={isModalOpenRegister}
@@ -324,7 +328,10 @@ export default function BasicMenu() {
             footer={null} // Esto quita los botones "Ok" y "Cancel"
             className="modal-card"
           >
-            <RegisterForm />
+            <RegisterForm
+              setIsModalOpen={setIsModalOpen}
+              setIsModalOpenRegister={setIsModalOpenRegister}
+            />
           </Modal>
         </div>
       ) : (

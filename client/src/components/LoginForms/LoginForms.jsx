@@ -17,7 +17,7 @@ import RegisterForm from "../RegisterForm/RegisterForm";
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
-export default function LoginForms() {
+export default function LoginForms({setIsModalOpen, setIsModalOpenRegister, isModalOpenRegister}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -28,10 +28,11 @@ export default function LoginForms() {
   const loginError = useSelector((state) => state.loginError);
   const [fullscreen, setFullscreen] = React.useState(true);
 
-  const [isModalOpenRegister, setIsModalOpenRegister] = React.useState(false);
+  //const [isModalOpenRegister, setIsModalOpenRegister] = React.useState(false);
 
   const showModalRegister = () => {
     setIsModalOpenRegister(true);
+    setIsModalOpen(false)
   };
 
   const handleOkRegister = () => {
