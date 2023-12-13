@@ -32,9 +32,7 @@ import Card from "react-bootstrap/Card";
 import { Upload, Space, DatePicker, Select, Tag } from "antd";
 import Fab from "@mui/material/Fab";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { dataPersonal } from '../../redux/action'
-
-
+import { dataPersonal } from "../../redux/action";
 
 const steps = ["Caracterisitcas", "Fotos", "Publicar"];
 const validate = (input) => {
@@ -138,9 +136,8 @@ export default function FormStepper() {
   const [detail, setDetail] = useState(""); // Estado para el detalle que se está escribiendo
   const [info, setInfo] = useState(""); // Estado para el detalle que se está escribiendo
 
-
   React.useEffect(() => {
-    dispatch(dataPersonal(token))
+    dispatch(dataPersonal(token));
   }, [dispatch, token]);
 
   const handleDetailChange = (event) => {
@@ -698,6 +695,8 @@ export default function FormStepper() {
     "Tuvalu",
     "Vanuatu",
   ];
+
+  const tipos = [ "bosques", "playas", "montañas"];
   //retocar
   const [size, setSize] = useState("middle");
 
@@ -752,7 +751,11 @@ export default function FormStepper() {
           <div className="post-container">
             <div className="box-container">
               <div className="start-input">
-                <Form noValidate validated={validated}>
+                <Form
+                  noValidate
+                  validated={validated}
+                  className="select-form-container"
+                >
                   <Row className="mb-3">
                     <Form.Group
                       as={Col}
@@ -765,6 +768,7 @@ export default function FormStepper() {
                         onChange={handleStatus}
                         aria-label="Estado"
                         required
+                        className="select-estado"
                       >
                         <option value="">Seleccione una opción</option>
                         {status.map((option) => (
@@ -794,6 +798,33 @@ export default function FormStepper() {
                       />
                       <Form.Control.Feedback type="invalid">
                         Por favor se requiere un titulo.
+                      </Form.Control.Feedback>
+                    </Form.Group>
+                  </Row>
+
+                  <Row className="mb-3">
+                    <Form.Group
+                      as={Col}
+                      className="mb-3"
+                      controlId="validationCustomStatus"
+                    >
+                      <Form.Label className="label-status">Tipo de:</Form.Label>
+                      <Form.Select
+                        defaultValue={show.status}
+                        onChange={handleStatus}
+                        aria-label="Estado"
+                        required
+                        className="select-estado"
+                      >
+                        <option value="">Seleccione una opción</option>
+                        {tipos.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </Form.Select>
+                      <Form.Control.Feedback type="invalid">
+                        Por favor seleccione una opción.
                       </Form.Control.Feedback>
                     </Form.Group>
                   </Row>
@@ -871,7 +902,7 @@ export default function FormStepper() {
                 >
                   <Form.Group
                     as={Col}
-                    className="mb-3"
+                    className="mb-3 select-form-container2"
                     controlId="validationCustomContinent"
                   >
                     {show.status === "Privado" && (
@@ -1613,7 +1644,7 @@ export default function FormStepper() {
                   </Form.Group>
                 </div>
                 <div className={show.status === "Privado" ? "rest-info" : ""}>
-                  <Row className="mb-3">
+                  <Row className="mb-3 select-form-container">
                     {show.status === "Privado" ? (
                       <Space
                         className="label-calendar"
@@ -1624,7 +1655,11 @@ export default function FormStepper() {
                           onClick={toggleCalendar}
                           className="label-title"
                         >
-                          Abrir/Cerrar Calendario
+                          <span className="btn-calendario">
+                            {calendarOpen
+                              ? "Cerrar Calendario"
+                              : "Abrir Calendario"}
+                          </span>
                         </Button>
 
                         <DatePicker
@@ -1931,7 +1966,8 @@ export default function FormStepper() {
                                 width: 50,
                                 height: 50,
                                 backgroundColor:
-                                datapersonal.backgroundColor && datapersonal.backgroundColor,
+                                  datapersonal.backgroundColor &&
+                                  datapersonal.backgroundColor,
                               }}
                             >
                               {datapersonal.name &&

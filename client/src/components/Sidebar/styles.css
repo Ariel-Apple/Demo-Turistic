@@ -1,8 +1,8 @@
 .post-container {
-  justify-content: flex-start;
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
+  justify-content: flex-start;
+  /* margin-left: 50px; */
 
 }
 
@@ -11,6 +11,13 @@
   gap: 150px;
   justify-content: center;
 }
+
+
+/* .select-estado:focus {
+  border: 1px solid #ff0000; 
+  outline: none !important;
+} */
+
 
 .mb-3 {
   /* Estilo personalizado para el input cuando show.status es "Privado" */
@@ -103,6 +110,8 @@ input[type="number"] {
   display: flex;
   gap: 150px;
   justify-content: center;
+  max-width: 800px;
+  width: 100%;
  /* Agrega una altura máxima para que el desplazamiento funcione */
 }
 
@@ -110,27 +119,38 @@ input[type="number"] {
   display: grid;
   justify-content: center;
   box-shadow: 0px 0px 50px rgb(215, 215, 215);
-  width: 500px;
+  /* width: 500px; */
+  max-width: 400px;
+  width: 100%;
   border-radius: 10px;
   overflow-y: scroll;
   max-height: 70vh; 
 }
 
 
-.start-input::-webkit-scrollbar {
-  width: 0px; /* Ajusta el ancho según tus necesidades */
-}
+/* .start-input::-webkit-scrollbar {
+  width: 0px; 
+} */
 
-.start-input::-webkit-scrollbar-thumb {
-  background-color: transparent; /* Hacer el thumb (el "mango" de la barra de desplazamiento) transparente */
-  border: 2px solid transparent; /* Hacer el borde del thumb transparente */
-  border-radius: 4px; /* Añadir un borde redondeado al thumb */
-}
+/* .start-input::-webkit-scrollbar-thumb {
+  background-color: transparent; 
+  border: 2px solid transparent;
+  border-radius: 4px; 
+} */
 
 .start-input::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.5); /* Cambiar el color al pasar el mouse sobre la barra (puedes ajustar el valor alpha para hacerlo más o menos transparente) */
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
+.select-form-container{
+  width: 95%;
+  margin: 0 auto;
+}
+
+.select-form-container2{
+  width: 85%;
+  margin: 0 auto;
+}
 
 .rest-info::-webkit-scrollbar {
   width: 0px; /* Ajusta el ancho según tus necesidades */
@@ -163,7 +183,9 @@ input[type="number"] {
   display: grid;
   justify-content: center;
   box-shadow: 0px 0px 50px rgb(215, 215, 215);
-  width: 500px;
+  /* width: 500px; */
+  max-width: 400px;
+  width: 100%;
   border-radius: 10px;
   overflow-y: scroll;
   max-height: 70vh; 
@@ -173,7 +195,9 @@ input[type="number"] {
   display: grid;
   justify-content: center;
   box-shadow: 0px 0px 50px rgb(215, 215, 215);
-  width: 500px;
+  /* width: 500px; */
+  max-width: 400px;
+  width: 100%;
   border-radius: 10px;
   max-height: 70vh; 
   overflow-y: scroll;
@@ -190,7 +214,15 @@ input[type="number"] {
 }
 .label-title {
   font-weight: 700;
+}
 
+.btn-calendario{
+  padding: 10px 15px;
+  background: #8B008B;
+  border: 1px solid #8B008B;
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
 }
 .label-calendar {
   margin-top: 50px;
@@ -319,8 +351,11 @@ input[type="number"] {
 
 
 @media only screen and (max-width: 767px) {
-  .box-container {
+  /* .box-container {
     margin-bottom: 80px;
+  } */
+  .box-container{
+    padding: 0 20px 60px 20px !important;
   }
   .post-container {
     margin-left: 15px;
@@ -410,8 +445,18 @@ display: none;
     margin-top: 40px;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
 
+  .box-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 60px 20px !important;
+  }
+  
+  .action-box{
+    overflow-y: auto;
+  }
   .sidebar {
     width: 100%;
   }
@@ -424,15 +469,15 @@ display: none;
   }
 }
 
-@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+@media only screen and (max-width: 1439px) {
   .start-input {
-    width: 350px;
+    min-width: 300px;
   }
   .rest-info {
-    width: 350px;
+    min-width: 300px;
   }
   .action-box {
-    width: 350px;
+    min-width: 300px;
   }
   .action-box input{
     width: 340px;
@@ -444,10 +489,11 @@ display: none;
 }
 
   .action-private {
-    gap: 60px;
+    gap: 20px;
   }
   .box-container {
-    gap: 60px;
+    gap: 20px;
+    padding: 0 20px;
   }
   .hours-container {
   width: 250px;
