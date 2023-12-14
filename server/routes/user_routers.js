@@ -6,7 +6,7 @@ const { AllUser } = require('../controllers/User/AllUser');
 const { DetailUser } = require('../controllers/User/DetailsUser');
 const { DetailsPersonal } = require('../controllers/User/DetailsPersonal');
 const { Preregister } = require('../controllers/User/Preregister');
-const { User_And_Post } = require('../controllers/User/User_And_Post');
+const { User } = require('../controllers/User/User');
 const { responseGoogle, responseGoogleCallback } = require('../controllers/User/LoginGoogle');
 
 const path = require('path');
@@ -37,7 +37,7 @@ router.post('/auth/login', LoginUser);
 
 router.get('/users', AllUser);
 router.get('/user', DetailUser);
-router.get('/user/:idUser', User_And_Post);
+router.get('/user/:idUser', User);
 
 router.post('/user/data', DetailsPersonal);
 

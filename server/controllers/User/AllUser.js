@@ -1,10 +1,10 @@
-const { User, Post } = require('../../database/models') 
+const { User, Post, Comment } = require('../../database/models') 
 
 module.exports = {
   AllUser: async (req, res) => {
     try {
       const users = await User.findAll({
-        include: [{ model: Post }] // Usa 'include' en lugar de 'includes'
+        include: [{ model: Post }, {model: Comment, as: 'comments'}] // Usa 'include' en lugar de 'includes'
       });
 
       if (users.length > 0) {

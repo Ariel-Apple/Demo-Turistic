@@ -1,6 +1,5 @@
 'use strict';
 const path = require('path');
-const { STRING } = require('sequelize');
 
 
 

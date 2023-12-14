@@ -4,6 +4,9 @@ const { authenticate } = require('../helpers/middleware');
 const { PostTuristic } = require('../controllers/User/PostTuristic')
 const { AllTuristic } = require('../controllers/User/AllPost')
 const { DetailsTuristic } = require('../controllers/User/DetailsTuristic');
+const { CommentPost } = require('../controllers/User/CommentPost');
+const { ReservarLugar } = require('../controllers/User/ReservarLugar');
+
 
 
 
@@ -24,9 +27,14 @@ const upload = multer({ storage: storage });
 
 
 router.post('/post', authenticate, upload.array('imageFile', 1000), PostTuristic);
+router.post('/comment',  CommentPost);
+router.post('/api/pago', ReservarLugar)
+
 router.get('/turistic', AllTuristic)
 
+
 router.get('/turistic/:idTuristic', DetailsTuristic)
+
 
 
 

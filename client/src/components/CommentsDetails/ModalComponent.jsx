@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./ModalComponent.module.scss";
+import { CommentPost, DetailsPostTuristic } from '../../redux/action';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const ModalComponent = ({ onClose, isModalOpen }) => {
+
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.token);
+  const detailpost = useSelector((state) => state.detailpost);
+
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [comment, setComment] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  console.log(isModalOpen)
 
   const handleIconClick = (icon) => {
     setSelectedIcon(icon);
@@ -16,17 +23,30 @@ const ModalComponent = ({ onClose, isModalOpen }) => {
   const handleCommentChange = (event) => {
     setComment(event.target.value);
   };
+  
+ useEffect(() => {
+  dispatch(DetailsPostTuristic(detailpost.id));
+  
+ }, []);
+ useCallback(
+  () => {
+    
+  },
+  [],
+ );
+  const handleCommentSubmit = (e) => {
+    
+    dispatch(CommentPost({ text: comment, postId: detailpost.id }, token))
 
-  const handleCommentSubmit = () => {
-    // Aquí puedes manejar la lógica para enviar el comentario
-    // Puedes acceder a selectedIcon y comment para obtener la información necesaria
-    // ...
 
-    // Cierra el modal
     onClose();
   };
 
+  
   return (
+    <>
+    <form onSubmit={handleCommentSubmit}>
+
     <div className={`${styles.modalOverlay} ${isModalOpen ? styles.visible : styles.oculto}`}>
       <div className={styles.modalContent}>
         <button className={styles.closeButton} onClick={onClose}>
@@ -80,12 +100,16 @@ const ModalComponent = ({ onClose, isModalOpen }) => {
             onChange={handleCommentChange}
             placeholder="Escribe tu comentario aquí..."
           />
-          <button onClick={handleCommentSubmit} disabled={isButtonDisabled}>
+          <button type="submit" disabled={isButtonDisabled}>
             Comentar
           </button>
         </div>
       </div>
     </div>
+    </form>
+
+    </>
+
   );
 };
 
