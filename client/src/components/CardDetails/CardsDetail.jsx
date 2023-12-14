@@ -31,6 +31,7 @@ import CommentsDetails from "../CommentsDetails/CommentsDetails";
 import ModalComponent from "../CommentsDetails/ModalComponent";
 import Carrusel from "../CommentsDetails/Carrusel";
 
+
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
@@ -48,7 +49,6 @@ export default function CardDetails() {
   const detailpost = useSelector((state) => state.detailpost);
   const dispatch = useDispatch();
   const values = [true];
-  const valuesMobile = [true];
 
   const [fullscreen, setFullscreen] = React.useState(true);
   const [fullscreenMobile, setFullscreenMobile] = React.useState(true);
@@ -58,6 +58,7 @@ export default function CardDetails() {
 
   const [cardReserve, setCardReserve] = React.useState(false);
   const [scrollPosition, setScrollPosition] = React.useState(0);
+
   const splideRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -81,7 +82,6 @@ export default function CardDetails() {
     setFullscreenMobile(breakpoint);
     setDetailsCardReserve(true);
   }
-  console.log(detailpost.Users && detailpost.Users[0].backgroundColor);
 
   React.useEffect(() => {
     dispatch(DetailsPostTuristic(idTuristic));
@@ -583,7 +583,8 @@ export default function CardDetails() {
                   </p>
                 </div>
               </div>
-              <CommentsDetails />
+             <CommentsDetails />
+
               <Carrusel />
             </div>
           </div>

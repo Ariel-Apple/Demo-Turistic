@@ -1,11 +1,12 @@
-const { User, Post } = require('../../database/models') 
+const { User, Post, Comment } = require('../../database/models') 
 
 module.exports = {
   AllTuristic: async (req, res) => {
     try {
       const posts = await User.findAll({
-        include: [{ model: Post }] // Usa 'include' en lugar de 'includes'
+        include: [{ model: Post }, {model: Comment, as: 'comments'}]
       });
+      
 
       if (posts.length > 0) {
         res.status(200).send({User: posts});

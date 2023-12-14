@@ -5,11 +5,15 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
       // Define la relación muchos a muchos con Post a través de UserPost
+      
       User.belongsToMany(models.Post, {
         through: 'UserPosts',
         foreignKey: 'userId',
       });
+      User.hasMany(models.Comment, { foreignKey: 'userId', as: 'comments' });
     }
+  
+
   }
   User.init(
     {

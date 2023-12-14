@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
         through: 'UserPosts', // Asegúrate de usar el nombre correcto de la tabla intermedia
         foreignKey: 'postId',
       });
+      Post.hasMany(models.Comment, { foreignKey: 'postId', as: 'comments' });
     }
+
+
+
   }
 
   Post.init(

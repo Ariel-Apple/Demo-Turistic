@@ -1,11 +1,11 @@
-const { User, Post } = require('../../database/models');
+const { User, Post, Comment } = require('../../database/models');
 
 module.exports = {
-  User_And_Post: async (req, res) => {
+  User: async (req, res) => {
     const { idUser} = req.params; // Cambia el nombre del parámetro
     try {
       const UserDetails = await User.findByPk(idUser, {
-        include: [{ model: Post }] // Incluye el modelo User
+        include: [{ model: Post },{model: Comment, as: 'comments'} ] // Incluye el modelo User
       });
 
       if (UserDetails) {
