@@ -234,10 +234,10 @@
       }
       .card-detailpost {
         @include paragBody1Regular;
-        //border: 1px solid #cfcfcf;
         p {
           padding: 10px;
           border: 1px solid #cfcfcf;
+          border-radius: 8px;
         }
       }
     }
@@ -264,15 +264,16 @@
         }
       }
       .btnEditPrice {
-        color: #8b008b;
+        /* color: #8b008b;
         border-radius: 50px;
         padding: 0px;
         cursor: pointer;
 
         width: 64px;
-        height: 64px;
-        display: flex;
-        align-items: flex-end;
+        height: 64px; */
+        /* display: flex;
+        align-items: flex-end; */
+        margin: auto 0 0 0;
 
         .edit-icon {
           font-size: 30px;
@@ -339,6 +340,42 @@
   }
 }
 
+.iconsEdit{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.inputForm{
+  border: 1px solid #cfcfcf !important;
+}
+.inputForm:focus{
+  box-shadow: none !important;
+}
+
+.btnModalCancelar{
+  background-color: #000;
+  border: 1px solid #000 !important;
+  color: #fff;
+}
+.btnModalCancelar:hover{
+  background-color: #fff;
+  color: #000;
+}
+
+.btnModalGuardar{
+  background-color: #8b008b;
+  border: 1px solid #8b008b !important;
+  color: #fff;
+}
+.btnModalGuardar:hover{
+  background-color: #fff;
+  color: #8b008b;
+}
+
+.fechaHora{
+  @include paragCaptionRegular;
+  padding: 10px;
+}
 
 .slide-container {
   display: flex;
@@ -350,7 +387,6 @@
   width: 5em;
 }
 .card-calendar1 {
-  //height: 10em;
   padding: 10px;
   width: 100%;
 }

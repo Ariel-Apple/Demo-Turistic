@@ -148,8 +148,10 @@ export default function DetailPost() {
                           <Form.Control
                             type="text"
                             autoFocus
+                            placeholder={detailpost.title}
                             value={detail.title}
                             onChange={handleTitle}
+                            className={styles.inputForm}
                           />
                         </Form.Group>
                       </Form>
@@ -159,10 +161,15 @@ export default function DetailPost() {
                       <ButtonBootstrap
                         variant="secondary"
                         onClick={handleCloseTitle}
+                        className={styles.btnModalCancelar}
                       >
                         Cancelar
                       </ButtonBootstrap>
-                      <ButtonBootstrap type="submit" variant="primary">
+                      <ButtonBootstrap
+                        type="submit"
+                        variant="primary"
+                        className={styles.btnModalGuardar}
+                      >
                         Guardar cambio
                       </ButtonBootstrap>
                     </ModalBootstrap.Footer>
@@ -177,7 +184,6 @@ export default function DetailPost() {
 
                   <Button
                     variant="primary"
-                    /* className="btn-black" */
                     onClick={handleShowContinent}
                     className={styles["country-btn"]}
                   >
@@ -209,6 +215,7 @@ export default function DetailPost() {
                                   continent: e.target.value,
                                 })
                               }
+                              className={styles.inputForm}
                             />
                           </Form.Group>
                           <Form.Group
@@ -227,6 +234,7 @@ export default function DetailPost() {
                                   country: e.target.value,
                                 })
                               }
+                              className={styles.inputForm}
                             />
                           </Form.Group>
                         </Form>
@@ -235,10 +243,15 @@ export default function DetailPost() {
                         <ButtonBootstrap
                           variant="secondary"
                           onClick={handleCloseTitle}
+                          className={styles.btnModalCancelar}
                         >
                           Cancelar
                         </ButtonBootstrap>
-                        <ButtonBootstrap type="submit" variant="primary">
+                        <ButtonBootstrap
+                          type="submit"
+                          variant="primary"
+                          className={styles.btnModalGuardar}
+                        >
                           Guardar cambio
                         </ButtonBootstrap>
                       </ModalBootstrap.Footer>
@@ -276,6 +289,7 @@ export default function DetailPost() {
                               onChange={(e) =>
                                 setDetail({ ...detail, status: e.target.value })
                               }
+                              className={styles.inputForm}
                             />
                           </Form.Group>
                         </Form>
@@ -284,10 +298,15 @@ export default function DetailPost() {
                         <ButtonBootstrap
                           variant="secondary"
                           onClick={handleCloseTitle}
+                          className={styles.btnModalCancelar}
                         >
                           Cancelar
                         </ButtonBootstrap>
-                        <ButtonBootstrap type="submit" variant="primary">
+                        <ButtonBootstrap
+                          type="submit"
+                          variant="primary"
+                          className={styles.btnModalGuardar}
+                        >
                           Guardar cambio
                         </ButtonBootstrap>
                       </ModalBootstrap.Footer>
@@ -331,11 +350,12 @@ export default function DetailPost() {
                   show={show}
                   fullscreen={fullscreen}
                   onHide={() => setShow(false)}
+      
                 >
                   <ModalBootstrap.Header closeButton>
                     <ModalBootstrap.Title></ModalBootstrap.Title>
                   </ModalBootstrap.Header>
-                  <ModalBootstrap.Body>
+                  <ModalBootstrap.Body >
                     <UpdatePhoto />
                   </ModalBootstrap.Body>
                 </ModalBootstrap>
@@ -350,7 +370,6 @@ export default function DetailPost() {
                       className={styles["btn-delete"]}
                     >
                       Eliminar publicacion
-                     
                     </Button>
                   </Space>
                 </div>
@@ -380,8 +399,16 @@ export default function DetailPost() {
               <ButtonMaterial
                 onClick={handleShowPrice}
                 className={styles.btnEditPrice}
+                sx={{
+                  color: "#8B008B",
+                  borderRadius: "50px",
+                  padding: "10px",
+                  width: "40px",
+                  height: "40px",
+                  minWidth: "40px",
+                }}
               >
-                <EditIcon className={styles["edit-icon"]} /* sx={{ color: "#8B008B" }} */ />
+                <EditIcon className={styles["edit-icon"]} />
               </ButtonMaterial>
               <ModalBootstrap show={showPrice} onHide={handleCloseTitle}>
                 <form onSubmit={handleSubmit}>
@@ -402,6 +429,7 @@ export default function DetailPost() {
                           onChange={(e) =>
                             setDetail({ ...detail, price: e.target.value })
                           }
+                          className={styles.inputForm}
                         />
                       </Form.Group>
                     </Form>
@@ -410,10 +438,15 @@ export default function DetailPost() {
                     <ButtonBootstrap
                       variant="secondary"
                       onClick={handleCloseTitle}
+                      className={styles.btnModalCancelar}
                     >
                       Cancelar
                     </ButtonBootstrap>
-                    <ButtonBootstrap type="submit" variant="primary">
+                    <ButtonBootstrap
+                      type="submit"
+                      variant="primary"
+                      className={styles.btnModalGuardar}
+                    >
                       Guardar cambio
                     </ButtonBootstrap>
                   </ModalBootstrap.Footer>
@@ -438,16 +471,24 @@ export default function DetailPost() {
             defaultActiveKey="0"
           >
             <div className={styles["update-title-accordion"]}>
-              <Accordion.Item className={styles["accordion"]} eventKey="0">
+              <Accordion.Item className={styles.accordion} eventKey="0">
                 <div>
-                  <Accordion.Header className={styles.accordionButton}>Resumen del Lugar</Accordion.Header>
-                  <Accordion.Body>
+                  <Accordion.Header className={styles.accordionButton}>
+                    Resumen del Lugar
+                  </Accordion.Header>
+                  <Accordion.Body className={styles.accordionBody}>
                     {detailpost.summary}
-                    <div className={styles["icons-edit"]}>
+                    <div className={styles.iconsEdit}>
                       <ButtonMaterial
                         onClick={handleShowSummary}
                         sx={{
                           color: "#8B008B",
+                          borderRadius: "50px",
+                          padding: "10px",
+                          width: "40px",
+                          height: "40px",
+                          minWidth: "40px",
+                          margin: "0 0 0 auto"
                         }}
                       >
                         <EditIcon />
@@ -476,6 +517,7 @@ export default function DetailPost() {
                           onChange={(e) =>
                             setDetail({ ...detail, summary: e.target.value })
                           }
+                          className={styles.inputForm}
                         />
                       </Form.Group>
                     </Form>
@@ -484,10 +526,15 @@ export default function DetailPost() {
                     <ButtonBootstrap
                       variant="secondary"
                       onClick={handleCloseTitle}
+                      className={styles.btnModalCancelar}
                     >
                       Cancelar
                     </ButtonBootstrap>
-                    <ButtonBootstrap type="submit" variant="primary">
+                    <ButtonBootstrap
+                      type="submit"
+                      variant="primary"
+                      className={styles.btnModalGuardar}
+                    >
                       Guardar cambio
                     </ButtonBootstrap>
                   </ModalBootstrap.Footer>
@@ -501,13 +548,16 @@ export default function DetailPost() {
                   <Accordion.Header>Descripción</Accordion.Header>
                   <Accordion.Body>
                     {detailpost.description}
-                    <div className="icons-edit">
+                    <div className={styles.iconsEdit}>
                       <ButtonMaterial
                         onClick={handleShowDescription}
                         sx={{
                           color: "#8B008B",
-                          borderRadius: "50%",
-                          padding: "15px",
+                          borderRadius: "50px",
+                          padding: "10px",
+                          width: "40px",
+                          height: "40px",
+                          minWidth: "40px",
                         }}
                       >
                         <EditIcon />
@@ -539,6 +589,7 @@ export default function DetailPost() {
                               description: e.target.value,
                             })
                           }
+                          className={styles.inputForm}
                         />
                       </Form.Group>
                     </Form>
@@ -547,10 +598,15 @@ export default function DetailPost() {
                     <ButtonBootstrap
                       variant="secondary"
                       onClick={handleCloseTitle}
+                      className={styles.btnModalCancelar}
                     >
                       Cancelar
                     </ButtonBootstrap>
-                    <ButtonBootstrap type="submit" variant="primary">
+                    <ButtonBootstrap
+                      type="submit"
+                      variant="primary"
+                      className={styles.btnModalGuardar}
+                    >
                       Guardar cambio
                     </ButtonBootstrap>
                   </ModalBootstrap.Footer>
@@ -563,13 +619,16 @@ export default function DetailPost() {
                   <Accordion.Header>Capacidad de personas</Accordion.Header>
                   <Accordion.Body>
                     {detailpost.people}
-                    <div className="icons-edit">
+                    <div className={styles.iconsEdit}>
                       <ButtonMaterial
                         onClick={handleShowPeople}
                         sx={{
                           color: "#8B008B",
-                          borderRadius: "50%",
-                          padding: "15px",
+                          borderRadius: "50px",
+                          padding: "10px",
+                          width: "40px",
+                          height: "40px",
+                          minWidth: "40px",
                         }}
                       >
                         <EditIcon />
@@ -598,6 +657,7 @@ export default function DetailPost() {
                           onChange={(e) =>
                             setDetail({ ...detail, people: e.target.value })
                           }
+                          className={styles.inputForm}
                         />
                       </Form.Group>
                     </Form>
@@ -606,10 +666,15 @@ export default function DetailPost() {
                     <ButtonBootstrap
                       variant="secondary"
                       onClick={handleCloseTitle}
+                      className={styles.btnModalCancelar}
                     >
                       Cancelar
                     </ButtonBootstrap>
-                    <ButtonBootstrap type="submit" variant="primary">
+                    <ButtonBootstrap
+                      type="submit"
+                      variant="primary"
+                      className={styles.btnModalGuardar}
+                    >
                       Guardar cambio
                     </ButtonBootstrap>
                   </ModalBootstrap.Footer>
@@ -632,13 +697,16 @@ export default function DetailPost() {
                           </li>
                         ))}
                     </ul>
-                    <div className="icons-edit">
+                    <div className={styles.iconsEdit}>
                       <ButtonMaterial
                         onClick={handleShowList}
                         sx={{
                           color: "#8B008B",
-                          borderRadius: "50%",
-                          padding: "15px",
+                          borderRadius: "50px",
+                          padding: "10px",
+                          width: "40px",
+                          height: "40px",
+                          minWidth: "40px",
                         }}
                       >
                         <EditIcon />
@@ -670,7 +738,12 @@ export default function DetailPost() {
                             </li>
                           ))}
                       </ul>
-                      <Form.Control type="text" autoFocus value="" />
+                      <Form.Control
+                        type="text"
+                        autoFocus
+                        value=""
+                        className={styles.inputForm}
+                      />
                     </Form.Group>
                   </Form>
                 </ModalBootstrap.Body>
@@ -678,11 +751,11 @@ export default function DetailPost() {
                   <ButtonBootstrap
                     variant="secondary"
                     onClick={handleCloseTitle}
-                    className="butonCancelar"
+                    className={styles.btnModalCancelar}
                   >
                     Cancelar
                   </ButtonBootstrap>
-                  <ButtonBootstrap className="butonADD">
+                  <ButtonBootstrap className={styles.btnModalGuardar}>
                     Guardar cambio
                   </ButtonBootstrap>
                 </ModalBootstrap.Footer>
@@ -704,13 +777,16 @@ export default function DetailPost() {
                           </li>
                         ))}
                     </ul>
-                    <div className="icons-edit">
+                    <div className={styles.iconsEdit}>
                       <ButtonMaterial
                         onClick={handleShowPolitic}
                         sx={{
                           color: "#8B008B",
-                          borderRadius: "50%",
-                          padding: "15px",
+                          borderRadius: "50px",
+                          padding: "10px",
+                          width: "40px",
+                          height: "40px",
+                          minWidth: "40px",
                         }}
                       >
                         <EditIcon />
@@ -742,7 +818,12 @@ export default function DetailPost() {
                             </li>
                           ))}
                       </ul>
-                      <Form.Control type="text" autoFocus value="" />
+                      <Form.Control
+                        type="text"
+                        autoFocus
+                        value=""
+                        className={styles.inputForm}
+                      />
                     </Form.Group>
                   </Form>
                 </ModalBootstrap.Body>
@@ -750,18 +831,18 @@ export default function DetailPost() {
                   <ButtonBootstrap
                     variant="secondary"
                     onClick={handleCloseTitle}
-                    className="butonCancelar"
+                    className={styles.btnModalCancelar}
                   >
                     Cancelar
                   </ButtonBootstrap>
-                  <ButtonBootstrap className="butonADD">
+                  <ButtonBootstrap className={styles.btnModalGuardar}>
                     Guardar cambio
                   </ButtonBootstrap>
                 </ModalBootstrap.Footer>
               </ModalBootstrap>
             </div>
 
-            <Card style={{ fontSize: 15, fontWeight: 700 }}>
+            <Card className={styles.fechaHora}>
               <p>Fecha y horario del sitio:</p>
             </Card>
             <div className={styles["slide-container"]}>
