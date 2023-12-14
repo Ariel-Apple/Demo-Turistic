@@ -6,6 +6,7 @@
   display: flex;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 }
 
 .card-update {
@@ -61,7 +62,7 @@
           }
           .btnEditTitle:hover {
             transform: scale(1.3);
-            background: #faf1fa;
+            background: #e4e4e4;
           }
         }
       }
@@ -79,12 +80,12 @@
           .country-btn {
             padding: 3px 8px;
             background-color: transparent;
-            border-color: #8b008b;
-            color: #8b008b;
+            border-color: #000;
+            color: #000;
             transition: all 0.4s ease-in-out;
           }
           .country-btn:hover {
-            background-color: #8b008b;
+            background-color: #000;
             color: #fff;
           }
         }
@@ -95,12 +96,12 @@
           .status-btn {
             padding: 3px 8px;
             background-color: transparent;
-            border-color: #8b008b;
-            color: #8b008b;
+            border-color: #000;
+            color: #000;
             transition: all 0.4s ease-in-out;
           }
           .status-btn:hover {
-            background-color: #8b008b;
+            background-color: #000;
             color: #fff;
           }
         }
@@ -178,30 +179,22 @@
         justify-content: center;
         height: 15%;
         width: 100%;
-        //position: absolute;
-        //top: 0%;
-        //left: 1%;
-        //z-index: 5;
         div {
           width: 100%;
           .btn-delete {
             width: 100%;
-            background: #8b008b;
-            border: 1px solid #8b008b;
+            background: red;
+            border: 1px solid red;
             border-radius: 8px;
-            //border: none;
-            //padding: 8px;
           }
           .btn-delete:hover {
-            color: #8b008b;
+            color: red;
             background: #fff;
-            //border-color: #8b008b;
-            //border: none;
           }
 
           .btn-delete::after {
-            background-color: #8b008b;
-            border-color: #8b008b;
+            background-color: red;
+            border-color: red;
             border: none;
           }
           #icons-reload {
@@ -216,10 +209,10 @@
 
 .tabletOneBottom {
   width: 100%;
-  height: 40%;
+  //height: 40%;
   display: flex;
   justify-content: center;
-  padding-top: 10px;
+  padding: 10px 0 20px;
   border-top: 2px solid #b8b8b8;
   .container-direction {
     display: flex;
@@ -288,7 +281,7 @@
           border-radius: 50px;
         }
         .edit-icon:hover {
-          background: #faf1fa;
+          background: #e4e4e4;
           transform: scale(1.3);
         }
       }
@@ -346,12 +339,6 @@
   }
 }
 
-/* .accordionButton{
-    background: #8b008b;
-    .accordion-button{
-        background: #8b008b !important;
-    }
-} */
 
 .slide-container {
   display: flex;

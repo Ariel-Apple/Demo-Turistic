@@ -350,7 +350,7 @@ export default function DetailPost() {
                       className={styles["btn-delete"]}
                     >
                       Eliminar publicacion
-                      {/* <CloseIcon id={styles["icons-reload"]} /> */}
+                     
                     </Button>
                   </Space>
                 </div>
@@ -443,16 +443,12 @@ export default function DetailPost() {
                   <Accordion.Header className={styles.accordionButton}>Resumen del Lugar</Accordion.Header>
                   <Accordion.Body>
                     {detailpost.summary}
-                    <div className="icons-edit">
+                    <div className={styles["icons-edit"]}>
                       <ButtonMaterial
                         onClick={handleShowSummary}
-                        /* sx={{
+                        sx={{
                           color: "#8B008B",
-                          borderRadius: "50%",
-                          padding: "15px",
-                        }} */
-
-                        
+                        }}
                       >
                         <EditIcon />
                       </ButtonMaterial>
@@ -467,7 +463,7 @@ export default function DetailPost() {
                     <ModalBootstrap.Title></ModalBootstrap.Title>
                   </ModalBootstrap.Header>
                   <ModalBootstrap.Body>
-                    <Form className="modal-titleupdate">
+                    <Form className={styles["modal-titleupdate"]}>
                       <Form.Group
                         className="mb-3"
                         controlId="exampleForm.ControlInput1"
