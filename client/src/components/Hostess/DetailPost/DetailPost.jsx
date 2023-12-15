@@ -208,6 +208,7 @@ export default function DetailPost() {
                             <Form.Control
                               type="text"
                               autoFocus
+                              placeholder={detailpost.continent}
                               value={detail.continent}
                               onChange={(e) =>
                                 setDetail({
@@ -227,6 +228,7 @@ export default function DetailPost() {
                             <Form.Control
                               type="text"
                               autoFocus
+                              placeholder={detailpost.country}
                               value={detail.country}
                               onChange={(e) =>
                                 setDetail({
@@ -285,6 +287,7 @@ export default function DetailPost() {
                             <Form.Control
                               type="text"
                               autoFocus
+                              placeholder={detailpost.status}
                               value={detail.status}
                               onChange={(e) =>
                                 setDetail({ ...detail, status: e.target.value })
@@ -425,6 +428,7 @@ export default function DetailPost() {
                         <Form.Control
                           type="text"
                           autoFocus
+                          placeholder={detailpost.price}
                           value={detail.price}
                           onChange={(e) =>
                             setDetail({ ...detail, price: e.target.value })
@@ -513,6 +517,7 @@ export default function DetailPost() {
                         <Form.Control
                           type="text"
                           autoFocus
+                          placeholder={detailpost.summary}
                           value={detail.summary}
                           onChange={(e) =>
                             setDetail({ ...detail, summary: e.target.value })
@@ -582,6 +587,7 @@ export default function DetailPost() {
                         <Form.Control
                           type="text"
                           autoFocus
+                          placeholder={detailpost.description}
                           value={detail.description}
                           onChange={(e) =>
                             setDetail({
@@ -653,6 +659,7 @@ export default function DetailPost() {
                         <Form.Control
                           type="text"
                           autoFocus
+                          placeholder={detailpost.people}
                           value={detail.people}
                           onChange={(e) =>
                             setDetail({ ...detail, people: e.target.value })
@@ -741,6 +748,7 @@ export default function DetailPost() {
                       <Form.Control
                         type="text"
                         autoFocus
+                        placeholder={detailpost.listDetails}
                         value=""
                         className={styles.inputForm}
                       />
@@ -821,6 +829,7 @@ export default function DetailPost() {
                       <Form.Control
                         type="text"
                         autoFocus
+                        placeholder={detailpost.infoImportant}
                         value=""
                         className={styles.inputForm}
                       />
