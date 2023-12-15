@@ -8,9 +8,12 @@
 
 .containerCards {
   margin: 0px;
-  height: 100%;
+  height: auto;
   width: 100%;
   padding: 50px 50px 50px 100px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
 }
 
 .contentCard {
@@ -119,6 +122,13 @@
   opacity: 1;
 }
 
+@media screen and (max-width: 1439px){
+  .containerCards {
+    padding: 50px 50px 50px 60px;
+    gap: 50px;
+  }
+}
+
 @media screen and (max-width: 1023px) {
   .containerMywebsite {
     height: auto;
@@ -127,6 +137,7 @@
   .containerCards {
     height: auto;
     padding: 40px 30px 100px;
+    justify-content: center;
   }
   .contentCard:hover {
     transform: none;

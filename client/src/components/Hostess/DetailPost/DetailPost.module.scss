@@ -340,39 +340,49 @@
   }
 }
 
-.iconsEdit{
+/* styles.css (o tu archivo de estilos preferido) */
+.header-accordion:focus {
+  box-shadow: none; /* Elimina la sombra al enfocar */
+  outline: none; /* Elimina el contorno al enfocar */
+}
+
+.header-accordion:active {
+  background-color: transparent; /* Cambia el color de fondo al hacer clic */
+}
+
+.iconsEdit {
   display: flex;
   justify-content: flex-end;
 }
 
-.inputForm{
+.inputForm {
   border: 1px solid #cfcfcf !important;
 }
-.inputForm:focus{
+.inputForm:focus {
   box-shadow: none !important;
 }
 
-.btnModalCancelar{
+.btnModalCancelar {
   background-color: #000;
   border: 1px solid #000 !important;
   color: #fff;
 }
-.btnModalCancelar:hover{
+.btnModalCancelar:hover {
   background-color: #fff;
   color: #000;
 }
 
-.btnModalGuardar{
+.btnModalGuardar {
   background-color: #8b008b;
   border: 1px solid #8b008b !important;
   color: #fff;
 }
-.btnModalGuardar:hover{
+.btnModalGuardar:hover {
   background-color: #fff;
   color: #8b008b;
 }
 
-.fechaHora{
+.fechaHora {
   @include paragCaptionRegular;
   padding: 10px;
 }
@@ -466,7 +476,7 @@
         }
       }
       .contentImage {
-        width: 80%;
+        width: 100%;
       }
       .imageContainer {
         width: 100%;
@@ -477,6 +487,8 @@
       }
     }
   }
+
+  
 
   .tabletOneBottom {
     padding-top: 40px;

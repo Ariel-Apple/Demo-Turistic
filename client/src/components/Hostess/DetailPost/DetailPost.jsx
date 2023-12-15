@@ -27,6 +27,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import ButtonMaterial from "@mui/material/Button";
 
 import { updatepost } from "../../../redux/action";
+import GalleryModal from "../../CardDetails/GalleryModal.jsx";
 
 const { confirm } = Modal;
 
@@ -113,6 +114,10 @@ export default function DetailPost() {
 
   const handleSubmit = () => {
     dispatch(updatepost(postId, detail));
+  };
+
+  const handleOnClose =()=>{
+    setShow(false)
   };
 
   const handleTitle = (e) => {
@@ -338,18 +343,25 @@ export default function DetailPost() {
                     ))}
                 </Carousel>
 
-                {values.map((v, idx) => (
-                  <Button
-                    variant="primary"
-                    key={idx}
-                    className={styles["editar-hostess"]}
-                    onClick={() => handleShow(v)}
-                  >
-                    <EditIcon className={styles["icon-editar"]} />
-                    {typeof v === "string" && `below ${v.split("-")[0]}`}
-                  </Button>
-                ))}
-                <ModalBootstrap
+                {/* {values.map((v, idx) => ( */}
+                <Button
+                  variant="primary"
+                  //key={idx}
+                  className={styles["editar-hostess"]}
+                  onClick={() => handleShow(true)}
+                >
+                  <EditIcon className={styles["icon-editar"]} />
+                  {/* {typeof v === "string" && `below ${v.split("-")[0]}`} */}
+                </Button>
+
+                {show && (
+                  <GalleryModal
+                    images={detailpost.imageFile}
+                    onClose={handleOnClose}
+                  />
+                )}
+                {/* ))} */}
+                {/* <ModalBootstrap
                   show={show}
                   fullscreen={fullscreen}
                   onHide={() => setShow(false)}
@@ -359,9 +371,9 @@ export default function DetailPost() {
                     <ModalBootstrap.Title></ModalBootstrap.Title>
                   </ModalBootstrap.Header>
                   <ModalBootstrap.Body >
-                    <UpdatePhoto />
+                    <UpdatePhoto fotos={detailpost.imageFile} />
                   </ModalBootstrap.Body>
-                </ModalBootstrap>
+                </ModalBootstrap> */}
               </div>
 
               <div className={styles["btn-delete-content"]}>
@@ -477,10 +489,10 @@ export default function DetailPost() {
             <div className={styles["update-title-accordion"]}>
               <Accordion.Item className={styles.accordion} eventKey="0">
                 <div>
-                  <Accordion.Header className={styles.accordionButton}>
+                  <Accordion.Header id="header-accordion">
                     Resumen del Lugar
                   </Accordion.Header>
-                  <Accordion.Body className={styles.accordionBody}>
+                  <Accordion.Body>
                     {detailpost.summary}
                     <div className={styles.iconsEdit}>
                       <ButtonMaterial
@@ -492,7 +504,7 @@ export default function DetailPost() {
                           width: "40px",
                           height: "40px",
                           minWidth: "40px",
-                          margin: "0 0 0 auto"
+                          margin: "0 0 0 auto",
                         }}
                       >
                         <EditIcon />

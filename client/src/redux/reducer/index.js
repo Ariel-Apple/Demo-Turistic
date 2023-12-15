@@ -1,82 +1,81 @@
 const initialState = {
   loginUser: {},
   loginError: null,
-  token: localStorage.getItem('token'),
+  token: localStorage.getItem("token"),
   datapersonal: [],
   posts: [],
   allPost: [],
   detailpost: [],
   hostessuser: [],
   onlypost: [],
-  clientSecret: null
-}
-
+  clientSecret: null,
+};
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'USER_REGISTER':
+    case "USER_REGISTER":
       return {
-        ...state
+        ...state,
       };
 
-    case 'LOGIN_SUCCESS':
+    case "LOGIN_SUCCESS":
       return {
         ...state,
         token: action.payload,
       };
-    case 'LOGOUT_USER':
+    case "LOGOUT_USER":
       // Limpia el token en el estado
       return {
         ...state,
         token: null,
       };
 
-    case 'LOGIN_ERROR':
+    case "LOGIN_ERROR":
       return {
         ...state,
         loginError: true,
       };
 
-    case 'SET_DATA_PERSONAL':
+    case "SET_DATA_PERSONAL":
       return {
         ...state,
-        datapersonal: action.payload
+        datapersonal: action.payload,
       };
-    case 'POST_CREATED':
+    case "POST_CREATED":
       return {
         ...state,
         posts: [...state.posts, action.payload],
       };
 
-    case 'ALL_POST_TURISTIC':
+    case "ALL_POST_TURISTIC":
       return {
         ...state,
-        allPost: action.payload
+        allPost: action.payload,
       };
 
-    case 'DETAIL_POST_TURISTIC':
+    case "DETAIL_POST_TURISTIC":
       return {
         ...state,
-        detailpost: action.payload
+        detailpost: action.payload,
       };
 
-    case 'HOSTESS_USER':
-
+    case "HOSTESS_USER":
       return {
         ...state,
-        hostessuser: action.payload
-      }
+        hostessuser: action.payload,
+      };
 
-    case 'ONLY_POST':
-
+    case "ONLY_POST":
       return {
         ...state,
-        onlypost: action.payload
-      }
+        onlypost: action.payload,
+      };
 
     case "DELETE_POST":
       // Filtra las publicaciones para eliminar la que coincide con el postId
-      const updatedOnlyPost = state.onlypost.filter(post => post.id !== action.payload.id);
+      const updatedOnlyPost = state.onlypost.filter(
+        (post) => post.id !== action.payload.id
+      );
       return {
         ...state,
         onlypost: updatedOnlyPost,
@@ -88,38 +87,32 @@ export const rootReducer = (state = initialState, action) => {
         datapersonal: action.payload,
       };
 
-      case "USER_POST":
-        return {
-          ...state,
-          user: action.payload,
-        };
-        case "UPDATE_POST": 
-        return {
-          ...state,
-          detailpost: { ...state.detailpost, ...action.payload },
-        
-        }
+    case "USER_POST":
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case "UPDATE_POST":
+      return {
+        ...state,
+        detailpost: { ...state.detailpost, ...action.payload },
+      };
 
-        case "POST_COMMENT": 
-        return {
-          ...state,
-          detailpost: {
-            ...state.detailpost,
-            comments: [...state.detailpost.comments, action.payload],
-          },
-        };
-        case 'PAYMENT_POST':
-          return {
-            ...state,
-            clientSecret: action.payload.clientSecret,
-            // Puedes manejar otros estados relacionados con la reserva aquí
-          };
-    default: return { ...state }
+    case "POST_COMMENT":
+      return {
+        ...state,
+        detailpost: {
+          ...state.detailpost,
+          comments: [...state.detailpost.comments, action.payload],
+        },
+      };
+    case "PAYMENT_POST":
+      return {
+        ...state,
+        clientSecret: action.payload.clientSecret,
+        // Puedes manejar otros estados relacionados con la reserva aquí
+      };
+    default:
+      return { ...state };
   }
-}
-
-
-
-
-
-
+};

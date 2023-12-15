@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { Modal, Upload } from "antd";
+import { Modal, Upload, Image } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import {
   dataPersonal,
@@ -19,7 +19,7 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const UpdatePhoto = () => {
+const UpdatePhoto = (/* { fotos } */) => {
   const dispatch = useDispatch();
   const { idTuristic } = useParams();
 
@@ -30,7 +30,7 @@ const UpdatePhoto = () => {
     datapersonal &&
     datapersonal.Posts &&
     datapersonal.Posts.map((data) => data.imageFile.map((photo) => photo));
-  console.log(allPhotos);
+  //console.log(fotos);
 
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
@@ -70,7 +70,8 @@ const UpdatePhoto = () => {
   return (
     <>
       <Upload
-        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+        
+        /* action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188" */
         listType="picture-card"
         fileList={allPhotos.flat().map((photo, index) => ({
           uid: String(index),
@@ -78,6 +79,7 @@ const UpdatePhoto = () => {
           status: "done",
           url: photo,
         }))}
+        style={{ width: "500px", height: "500px", objectFit: "contain" }}
         onPreview={handlePreview}
         onChange={handleChange}
       >
@@ -89,12 +91,11 @@ const UpdatePhoto = () => {
         title={previewTitle}
         footer={null}
         onCancel={handleCancel}
-        className={styles.containerModal}
       >
-        <img
+        <Image
           alt="example"
-          style={{ width: "400px" }} src={previewImage}
-          className={styles.containerImage}
+          style={{ width: "100%", maxHeight: "70vh", objectFit: "contain" }}
+          src={previewImage}
         />
       </Modal>
     </>
