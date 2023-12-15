@@ -100,7 +100,7 @@ const ModalComponent = ({ onClose, isModalOpen }) => {
             onChange={handleCommentChange}
             placeholder="Escribe tu comentario aquí..."
           />
-          <button type="submit" disabled={isButtonDisabled}>
+          <button type="submit" disabled={isButtonDisabled} className={styles.btnComentar}>
             Comentar
           </button>
         </div>

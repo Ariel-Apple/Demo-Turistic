@@ -30,14 +30,14 @@ import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import CommentsDetails from "../CommentsDetails/CommentsDetails";
 import ModalComponent from "../CommentsDetails/ModalComponent";
 import Carrusel from "../CommentsDetails/Carrusel";
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import ModalMaterial from '@mui/material/Modal';
-import { useTheme } from '@mui/material/styles';
-import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import ModalMaterial from "@mui/material/Modal";
+import { useTheme } from "@mui/material/styles";
+import MobileStepper from "@mui/material/MobileStepper";
+import Paper from "@mui/material/Paper";
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 //import SwipeableViews from 'react-swipeable-views';
 //import { autoPlay } from 'react-swipeable-views-utils';
 
@@ -45,29 +45,26 @@ dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
 
-
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 1500,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+/* const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 90%,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
-  '@media (max-width: 768px)': {
-    width: '90%', // Cambia el ancho a un porcentaje deseado para pantallas más pequeñas
+  "@media (max-width: 768px)": {
+    width: "90%", // Cambia el ancho a un porcentaje deseado para pantallas más pequeñas
     maxWidth: 500, // Puedes establecer un ancho máximo también
   },
 
-  '@media (max-width: 1800px)': {
-    width: '100%', // Cambia el ancho a un porcentaje deseado para pantallas más pequeñas
+  "@media (max-width: 1800px)": {
+    width: "100%", // Cambia el ancho a un porcentaje deseado para pantallas más pequeñas
     maxWidth: 1200, // Puedes establecer un ancho máximo también
   },
-};
-
+}; */
 
 export default function CardDetails() {
   const { idTuristic } = useParams();
@@ -159,50 +156,51 @@ export default function CardDetails() {
   }, []);
   const list = () => (
     <div>
-    <Box sx={{ display: "grids" }}>
-      <List>
-        <div className="container-image">
-          {detailpost.imageFile.map((img, index) => (
-            <div key={index} items={[{ src: img }]}>
-              <div>
-                <img
-                  src={img}
-                  alt={`Imagen ${index + 1}`}
-                  onClick={handleOpen2}
-                />
+      <Box sx={{ display: "grids" }}>
+        <List>
+          <div className="container-image">
+            {detailpost.imageFile.map((img, index) => (
+              <div
+                key={index}
+                items={[{ src: img }]}
+                className="content-image-modal"
+              >
+                <div>
+                  <img
+                    src={img}
+                    alt={`Imagen ${index + 1}`}
+                    onClick={handleOpen2}
+                  />
+                </div>
               </div>
-            </div>
-
-             
-          ))}
-           <ModalMaterial
+            ))}
+            <ModalMaterial
               open={open2}
               onClose={handleClose2}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
+              
             >
-              <Box sx={style}>
-              <Carousel>
-              {detailpost.imageFile.map((img, index) => (
-
-                <Carousel.Item>
-          <img
-                  src={img}
-                  alt={`Imagen ${index + 1}`}
-                  onClick={handleOpen2}
-                />
-     
-      </Carousel.Item>
-        ))}
-   
-    </Carousel>
+              <Box /* sx={style} */ className="container-modal-material">
+                <Carousel>
+                  {detailpost.imageFile.map((img, index) => (
+                    <Carousel.Item>
+                      <img
+                        src={img}
+                        alt={`Imagen ${index + 1}`}
+                        onClick={handleOpen2}
+                        className="container-carusel-image"
+                      />
+                    </Carousel.Item>
+                  ))}
+                </Carousel>
               </Box>
             </ModalMaterial>
-        </div>
-      </List>
-    </Box>
-  </div>
-  /*   <div>
+          </div>
+        </List>
+      </Box>
+    </div>
+    /*   <div>
     <Button onClick={handleOpen2}>Open modal</Button>
     <ModalMaterial
       open={open2}
@@ -221,7 +219,6 @@ export default function CardDetails() {
     </ModalMaterial>
   </div> */
   );
- 
 
   //---------------- BOTON COMENTARIOS-------------------
   const [isVisible, setIsVisible] = useState(false);
@@ -660,7 +657,7 @@ export default function CardDetails() {
                   </p>
                 </div>
               </div>
-             <CommentsDetails />
+              <CommentsDetails />
 
               <Carrusel />
             </div>

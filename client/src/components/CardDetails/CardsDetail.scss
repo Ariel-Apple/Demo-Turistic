@@ -80,7 +80,7 @@
   .carrusel-scroll.slide-up {
     opacity: 1;
     transform: translateY(0);
-    background: linear-gradient(to top, transparent , #fff 50%);
+    background: linear-gradient(to top, transparent, #fff 50%);
     padding-bottom: 80px;
     //border: 1px solid rebeccapurple;
   }
@@ -235,6 +235,58 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+}
+.content-image-modal {
+  width: 45%;
+}
+.container-modal-material {
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 90%;
+  height: 80vh;
+  border-radius: 8px;
+  border: 2px solid #fff;
+  box-shadow: rgb(204, 204, 204);
+  overflow: hidden;
+  .carousel{
+    height: 100%;
+    .carousel-indicators{
+      height: 100%;
+    }
+    .carousel-inner{
+      height: 100%;
+      .carousel-item{
+        height: 100%;
+      }
+    }
+  }
+}
+.container-carusel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+.carousel-control-prev {
+  .carousel-control-prev-icon {
+    padding: 20px;
+    background-color: #000;
+    border-radius: 50px;
+    color: #000;
+  }
+}
+.carousel-control-next {
+  .carousel-control-next-icon {
+    padding: 20px;
+    background-color: #000;
+    border-radius: 50px;
+    color: #000;
+  }
 }
 
 .modal-image-mobile {
