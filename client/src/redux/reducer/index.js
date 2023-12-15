@@ -8,7 +8,9 @@ const initialState = {
   detailpost: [],
   hostessuser: [],
   onlypost: [],
-  clientSecret: null
+  clientSecret: null,
+  reservaEnProceso: false,
+  reservaError: null,
 }
 
 
@@ -114,6 +116,10 @@ export const rootReducer = (state = initialState, action) => {
             clientSecret: action.payload.clientSecret,
             // Puedes manejar otros estados relacionados con la reserva aquí
           };
+
+
+
+      
     default: return { ...state }
   }
 }

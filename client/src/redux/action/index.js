@@ -7,7 +7,7 @@ import axios from 'axios';
 
   
 
-
+/* 
    export const AllPostTuristic = () => {
     return async (dispach) => {
       const res = await axios.get('https://demo-turistic-production.up.railway.app/turistic');
@@ -248,23 +248,10 @@ import axios from 'axios';
        })
      }
     }; 
-    export const paymentReserve = (reservationData) => {
-     return async (dispatch) => {
-       try {
-         const res = await axios.post('https://demo-turistic-production.up.railway.app/api/pago', reservationData);
-         const data = res.data;
-   
-         dispatch({
-           type: 'PAYMENT_POST',
-           payload: data,
-         });
-       } catch (error) {
-         console.error('Error al realizar la reserva:', error);
-         // Puedes despachar otra acción de error si es necesario
-       }
-     };
-   };
-    
+  
+
+ 
+     */
     
    
     
@@ -283,7 +270,7 @@ import axios from 'axios';
 
 
 
-/*  export const AllPostTuristic = () => {
+  export const AllPostTuristic = () => {
  return async (dispach) => {
    const res = await axios.get('http://localhost:4000/turistic');
    const data = res.data.User
@@ -523,25 +510,6 @@ export const UserPostDetails = (idUser) => {
     })
   }
  }; 
- export const paymentReserve = (reservationData) => {
-  return async (dispatch) => {
-    try {
-      const res = await axios.post('http://localhost:4000/api/pago', reservationData);
-      const data = res.data;
-
-      dispatch({
-        type: 'PAYMENT_POST',
-        payload: data,
-      });
-    } catch (error) {
-      console.error('Error al realizar la reserva:', error);
-      // Puedes despachar otra acción de error si es necesario
-    }
-  };
-};
- 
  
 
  
-
-   */

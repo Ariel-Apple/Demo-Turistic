@@ -8,7 +8,6 @@ import InfoPersonal from "./pages/InfoPersonal";
 import Security from "./pages/Security";
 import PaymentUser from "./pages/PaymentUser";
 import TuristicPost from "./pages/PostTuristic";
-import Test from "./pages/test";
 import Profile from "./pages/Profile";
 import Hostess from "./pages/Hostess";
 import PreRegister from "./pages/PreRegister";
@@ -23,6 +22,7 @@ import Claims from "./components/Hostess/Claims/Claims";
 import Admin from "./components/Admin/Admin";
 import Comentarios from "./components/Hostess/Comentarios/Comentarios";
 import AllComments from "./pages/AllCommtens";
+import CheckoutContainer from "./pages/test.jsx";
 
 function App() {
   return (
@@ -53,7 +53,7 @@ function App() {
         <Route exact path="/preregister" element={<PreRegister />} />
         <Route exact path="/public/profile" element={<ProfilePublic />} />
 
-        <Route exact path="/test" element={<Test />} />
+        <Route  path="/test" element={<CheckoutContainer />} />
         <Route path="/anfitrion" element={<Hostess />}>
           <Route index element={<Start />} />
           <Route path="inicio" element={<Start />} />

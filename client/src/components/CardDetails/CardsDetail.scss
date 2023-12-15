@@ -1,5 +1,8 @@
 @import "../../styles.scss";
-
+.ant-design-content {
+  /* Estilos específicos de Ant Design */
+  z-index: 5000;
+}
 .detail-container {
   display: flex;
   flex-direction: column;
