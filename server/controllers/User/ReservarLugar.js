@@ -1,34 +1,45 @@
-const stripe = require('stripe')('sk_test_51N9CEhIfAWFDxcrNpQEbscLmvrzg8trDp5FSLDnyg2vglQwJ9HptMQFNapdseZVKRWlydHdTrKnYtb42BxgXzebP00GUU1PXV2');
+const stripe = require('stripe')('sk_test_51ONdk7AlajpyxreyoVzwpdS62OV4Z6p2G0OrtXhxbF8gGAd8IbIfxIv92gBQbXNU9JEI3LZFan9Za4aD2F4eLNyz00ZVVB8TRz');
+
+const Transaction = require('../../database/models'); // Importa tu modelo de transacción
 
 module.exports = {
   ReservarLugar: async (req, res) => {
     try {
       const { cantidadPersonas, token, lugarId, usuarioId } = req.body;
-      console.log('Solicitud completa:', req.body); // Verifica toda la solicitud
-
-      console.log('Cantidad de Personas:', cantidadPersonas); // Verifica el valor de cantidadPersonas
-      console.log('ID del Lugar:', lugarId); // Verifica el valor de lugarId
-      console.log('ID del Usuario:', usuarioId); // Verifica el valor de usuarioId
 
       if (!cantidadPersonas || !token || !lugarId || !usuarioId) {
         return res.status(400).json({ error: 'Faltan parámetros en la solicitud' });
       }
 
+      console.log('Solicitud completa:', req.body);
+      console.log('Cantidad de Personas:', cantidadPersonas);
+      console.log('ID del Lugar:', lugarId);
+      console.log('ID del Usuario:', usuarioId);
+
       // Lógica de manejo de reservas con Stripe
-      // Puedes ajustar y expandir esta lógica según tus necesidades
-      
-      // Ejemplo: Crear una PaymentIntent para la reserva
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: cantidadPersonas * 100, // Multiplica por 100 para convertirlo a centavos
+        amount: parseInt(cantidadPersonas) * 100,  // Convierte a número
         currency: 'usd',
         payment_method: token,
         confirmation_method: 'manual',
-        confirm: true,
+        confirm: true,  // Convierte a booleano
         metadata: {
           lugarId,
           usuarioId,
         },
       });
+
+      // Guarda la transacción en la base de datos
+      const transactionData = {
+        usuarioId,
+        lugarId,
+        cantidadPersonas,
+        transactionId: paymentIntent.id,
+        // Otros campos relevantes que desees guardar
+      };
+
+      const newTransaction = new Transaction(transactionData);
+      await newTransaction.save();
 
       // Devuelve el client secret para confirmar el pago en el frontend
       res.status(200).json({ clientSecret: paymentIntent.client_secret });

@@ -30,11 +30,44 @@ import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import CommentsDetails from "../CommentsDetails/CommentsDetails";
 import ModalComponent from "../CommentsDetails/ModalComponent";
 import Carrusel from "../CommentsDetails/Carrusel";
-
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import ModalMaterial from '@mui/material/Modal';
+import { useTheme } from '@mui/material/styles';
+import MobileStepper from '@mui/material/MobileStepper';
+import Paper from '@mui/material/Paper';
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+//import SwipeableViews from 'react-swipeable-views';
+//import { autoPlay } from 'react-swipeable-views-utils';
 
 dayjs.extend(customParseFormat);
 const { RangePicker } = DatePicker;
 const dateFormat = "YYYY/MM/DD";
+
+
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 1500,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+  '@media (max-width: 768px)': {
+    width: '90%', // Cambia el ancho a un porcentaje deseado para pantallas más pequeñas
+    maxWidth: 500, // Puedes establecer un ancho máximo también
+  },
+
+  '@media (max-width: 1800px)': {
+    width: '100%', // Cambia el ancho a un porcentaje deseado para pantallas más pequeñas
+    maxWidth: 1200, // Puedes establecer un ancho máximo también
+  },
+};
+
 
 export default function CardDetails() {
   const { idTuristic } = useParams();
@@ -44,7 +77,9 @@ export default function CardDetails() {
     bottom: false,
     right: false,
   });
-
+  const [open2, setOpen2] = React.useState(false);
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const detailpost = useSelector((state) => state.detailpost);
   const dispatch = useDispatch();
@@ -124,27 +159,69 @@ export default function CardDetails() {
   }, []);
   const list = () => (
     <div>
-      <Box sx={{ display: "grids" }}>
-        <List>
-          <div className="container-image">
-            {detailpost.imageFile.map((img, index) => (
-              <Image.PreviewGroup key={index} items={[{ src: img }]}>
-                <div>
-                  <Image
-                    src={img}
-                    alt={`Imagen ${index + 1}`}
-                    width="100%"
-                    height="50vh"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-              </Image.PreviewGroup>
-            ))}
-          </div>
-        </List>
+    <Box sx={{ display: "grids" }}>
+      <List>
+        <div className="container-image">
+          {detailpost.imageFile.map((img, index) => (
+            <div key={index} items={[{ src: img }]}>
+              <div>
+                <img
+                  src={img}
+                  alt={`Imagen ${index + 1}`}
+                  onClick={handleOpen2}
+                />
+              </div>
+            </div>
+
+             
+          ))}
+           <ModalMaterial
+              open={open2}
+              onClose={handleClose2}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={style}>
+              <Carousel>
+              {detailpost.imageFile.map((img, index) => (
+
+                <Carousel.Item>
+          <img
+                  src={img}
+                  alt={`Imagen ${index + 1}`}
+                  onClick={handleOpen2}
+                />
+     
+      </Carousel.Item>
+        ))}
+   
+    </Carousel>
+              </Box>
+            </ModalMaterial>
+        </div>
+      </List>
+    </Box>
+  </div>
+  /*   <div>
+    <Button onClick={handleOpen2}>Open modal</Button>
+    <ModalMaterial
+      open={open2}
+      onClose={handleClose2}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          Text in a modal
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+        </Typography>
       </Box>
-    </div>
+    </ModalMaterial>
+  </div> */
   );
+ 
 
   //---------------- BOTON COMENTARIOS-------------------
   const [isVisible, setIsVisible] = useState(false);

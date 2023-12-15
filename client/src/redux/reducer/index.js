@@ -9,7 +9,10 @@ const initialState = {
   hostessuser: [],
   onlypost: [],
   clientSecret: null,
-};
+  reservaEnProceso: false,
+  reservaError: null,
+}
+
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -98,21 +101,24 @@ export const rootReducer = (state = initialState, action) => {
         detailpost: { ...state.detailpost, ...action.payload },
       };
 
-    case "POST_COMMENT":
-      return {
-        ...state,
-        detailpost: {
-          ...state.detailpost,
-          comments: [...state.detailpost.comments, action.payload],
-        },
-      };
-    case "PAYMENT_POST":
-      return {
-        ...state,
-        clientSecret: action.payload.clientSecret,
-        // Puedes manejar otros estados relacionados con la reserva aquí
-      };
-    default:
-      return { ...state };
+        case "POST_COMMENT": 
+        return {
+          ...state,
+          detailpost: {
+            ...state.detailpost,
+            comments: [...state.detailpost.comments, action.payload],
+          },
+        };
+        case 'PAYMENT_POST':
+          return {
+            ...state,
+            clientSecret: action.payload.clientSecret,
+            // Puedes manejar otros estados relacionados con la reserva aquí
+          };
+
+
+
+      
+    default: return { ...state }
   }
 };
