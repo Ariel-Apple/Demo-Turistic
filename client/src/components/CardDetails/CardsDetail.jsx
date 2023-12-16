@@ -38,6 +38,7 @@ import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import ModalSeleccion from "../CommentsDetails/ModalSeleccion";
 //import SwipeableViews from 'react-swipeable-views';
 //import { autoPlay } from 'react-swipeable-views-utils';
 
@@ -165,13 +166,11 @@ export default function CardDetails() {
                 items={[{ src: img }]}
                 className="content-image-modal"
               >
-                <div>
-                  <img
-                    src={img}
-                    alt={`Imagen ${index + 1}`}
-                    onClick={handleOpen2}
-                  />
-                </div>
+                <img
+                  src={img}
+                  alt={`Imagen ${index + 1}`}
+                  onClick={handleOpen2}
+                />
               </div>
             ))}
             <ModalMaterial
@@ -179,7 +178,6 @@ export default function CardDetails() {
               onClose={handleClose2}
               aria-labelledby="modal-modal-title"
               aria-describedby="modal-modal-description"
-              
             >
               <Box /* sx={style} */ className="container-modal-material">
                 <Carousel>
@@ -676,7 +674,12 @@ export default function CardDetails() {
               </button>
             )}
             {isModalOpen && (
-              <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />
+              /* <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} /> */
+              <ModalSeleccion
+                onClose={closeModal}
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+              />
             )}
 
             <div className="btn-footer-laptop">

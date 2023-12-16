@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from "react";
-import styles from "./ModalComponent.module.scss";
+import styles from "./ModalReclamos.module.scss";
 import { CommentPost, DetailsPostTuristic } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
-const ModalComponent = ({ onClose, isModalOpen }) => {
+const ModalReclamos = ({ onClose, isModalOpen }) => {
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
+const token = useSelector((state) => state.token);
   const detailpost = useSelector((state) => state.detailpost);
 
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -47,48 +47,9 @@ const ModalComponent = ({ onClose, isModalOpen }) => {
             <button className={styles.closeButtonMobile} onClick={onClose}>
               <i class="ri-close-fill"></i>
             </button>
-            <div className={styles.boxOne}>
-              <h3 className={styles.title}>¿Te ha gustado el sitio?</h3>
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <h4>Si</h4>
-                  <span
-                    className={`${
-                      selectedIcon === "thumbsUp" && styles.selected
-                    }`}
-                    onClick={() => handleIconClick("thumbsUp")}
-                  >
-                    <i className="ri-thumb-up-line"></i>
-                  </span>
-                </div>
-                <div className={styles.icon}>
-                  <h4>No</h4>
-                  <span
-                    className={`${
-                      selectedIcon === "thumbsDown" && styles.selected
-                    }`}
-                    onClick={() => handleIconClick("thumbsDown")}
-                  >
-                    <i className="ri-thumb-down-line"></i>
-                  </span>
-                </div>
-                <div className={styles.icon}>
-                  <h4>Tal vez</h4>
-                  <span
-                    className={` ${
-                      selectedIcon === "seriousFace" && styles.selected
-                    }`}
-                    onClick={() => handleIconClick("seriousFace")}
-                  >
-                    <i className="ri-emotion-normal-line"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
             <div className={styles.boxTwo}>
               <h3 className={styles.title}>
-                ¿Qué opinas de este sitio?, hazlo saber en la sección de
-                comentarios
+                Escribe tu reclamo
               </h3>
               <textarea
                 value={comment}
@@ -110,4 +71,4 @@ const ModalComponent = ({ onClose, isModalOpen }) => {
   );
 };
 
-export default ModalComponent;
+export default ModalReclamos;

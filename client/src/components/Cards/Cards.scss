@@ -76,7 +76,7 @@
       margin: 0px !important;
       transition: top 0.5s ease, width 0.5s ease, transform 0.5s ease;
       @include paragXsRegular;
-      color: gray;
+      color: #000 !important;
     }
   }
 
@@ -178,12 +178,9 @@
     height: 390px !important;
     .carousel-container {
       .swiper-container {
-        //height: 230px !important;
-
         .text-link {
           .image-container {
             .card-img {
-              //height: 230px !important;
             }
           }
         }
@@ -245,13 +242,6 @@
     width: 95% !important;
     height: auto !important;
   }
-  /* .swiper-container{
-    height: 300px !important;
-  } */
-  /* .card-img {
-    border-radius: 8px !important;
-    height: 300px !important;
-  } */
   .carousel-container {
     position: relative;
     width: 100%;
