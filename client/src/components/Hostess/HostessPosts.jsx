@@ -148,24 +148,26 @@ const App = () => {
                 }`}
               >
                 <div>
-                  <Avatar
-                    sx={{
-                      background: datapersonal.avatar
-                        ? `url(${imagePreview || datapersonal.avatar})`
-                        : datapersonal.backgroundColor,
-                      backgroundSize: "cover",
-                    }}
-                    className="avatar-anfitrion-perfil"
-                  >
-                    {datapersonal.avatar ? (
-                      <span></span>
-                    ) : (
-                      <div>
-                        {datapersonal.name &&
-                          datapersonal.name[0].toUpperCase()}
-                      </div>
-                    )}
-                  </Avatar>
+                  <Link to="/user/show">
+                    <Avatar
+                      sx={{
+                        background: datapersonal.avatar
+                          ? `url(${imagePreview || datapersonal.avatar})`
+                          : datapersonal.backgroundColor,
+                        backgroundSize: "cover",
+                      }}
+                      className="avatar-anfitrion-perfil"
+                    >
+                      {datapersonal.avatar ? (
+                        <span></span>
+                      ) : (
+                        <div>
+                          {datapersonal.name &&
+                            datapersonal.name[0].toUpperCase()}
+                        </div>
+                      )}
+                    </Avatar>
+                  </Link>
 
                   <UploadButton className="avatar-anfitrion-camara">
                     {/* <label htmlFor="upload-btn">
@@ -296,11 +298,13 @@ const App = () => {
                   )}
                 </li>
               </Link>
-              <Link to="/anfitrion/reclamos" 
-              className={
-                activeLink === "/anfitrion/reclamos" ? "active-link" : ""
-              }
-              onClick={() => setActiveLink("/anfitrion/reclamos")}>
+              <Link
+                to="/anfitrion/reclamos"
+                className={
+                  activeLink === "/anfitrion/reclamos" ? "active-link" : ""
+                }
+                onClick={() => setActiveLink("/anfitrion/reclamos")}
+              >
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img
@@ -313,11 +317,13 @@ const App = () => {
                 </li>
               </Link>
 
-              <Link to="/anfitrion/comentarios"
-              className={
-                activeLink === "/anfitrion/comentarios" ? "active-link" : ""
-              }
-              onClick={() => setActiveLink("/anfitrion/comentarios")}>
+              <Link
+                to="/anfitrion/comentarios"
+                className={
+                  activeLink === "/anfitrion/comentarios" ? "active-link" : ""
+                }
+                onClick={() => setActiveLink("/anfitrion/comentarios")}
+              >
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
                     <img
