@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { dataPersonal } from "../../redux/action";
 import Mywebsite from "./Mywebsite/Mywebsite";
 import { CameraOutlined } from "@ant-design/icons";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { updatePersonal } from "../../redux/action";
 import FooterMobile from "./FooterMobile/FooterMobile";
 import { PhotoCamera } from "@mui/icons-material";
@@ -27,7 +27,7 @@ const App = () => {
   const [collapsed, setCollapsed] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const [activeLink, setActiveLink] = useState("");
 
   const datapersonal = useSelector((state) => state.datapersonal);
@@ -38,9 +38,13 @@ const App = () => {
     avatar: "",
   });
   const [myWebSite, setMyWebSite] = useState(false);
+
   useEffect(() => {
+    setActiveLink(location.pathname);
+
+    // Fetch personal data
     dispatch(dataPersonal(token));
-  }, [token]);
+  }, [token, dispatch]);
 
   const handleSubmit = async (e) => {
     console.log("Formulario enviado", update);
@@ -219,17 +223,10 @@ const App = () => {
             </form>
 
             <ul className="menu-anfitrion">
-              {/* <Link to="/anfitrion/inicio">
-                <li className="items-anfitrion">
-                  {isMenuVisible ? <i class="ri-home-2-line"></i> : "Inicio"}
-                </li>
-              </Link> */}
               <Link
-                to="/anfitrion/inicio"
-                className={
-                  activeLink === "/anfitrion/inicio" ? "active-link" : ""
-                }
-                onClick={() => setActiveLink("/anfitrion/inicio")}
+                to="/anfitrion"
+                className={activeLink === "/anfitrion" ? "active-link" : ""}
+                onClick={() => setActiveLink("/anfitrion")}
               >
                 <li className="items-anfitrion">
                   {isMenuVisible ? (
