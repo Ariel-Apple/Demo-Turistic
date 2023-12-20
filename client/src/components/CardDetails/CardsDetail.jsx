@@ -662,7 +662,7 @@ export default function CardDetails() {
           </div>
         </div>
       </div>
-      {detailpost.status === "Privado" && (
+      {/* {detailpost.status === "Privado" && ( */}
         <div className="footer-details">
           <div>
             {isVisible && (
@@ -707,9 +707,9 @@ export default function CardDetails() {
             </div>
           </div>
         </div>
-      )}
+      {/* )} */}
 
-      {detailpost.status === "Privado" && (
+      {/* {detailpost.status === "Privado" && ( */}
         <div className="footer-details-mobile">
           {isVisible && (
             <button
@@ -720,8 +720,12 @@ export default function CardDetails() {
             </button>
           )}
           {isModalOpen && (
-            <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />
-          )}
+              <ModalSeleccion
+                onClose={closeModal}
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+              />
+            )}
 
           <div className="btn-footer-container">
             <button
@@ -753,7 +757,7 @@ export default function CardDetails() {
                     {detailpost.price ? <span>${detailpost.price}</span> : null}
                     <div>
                       <div className="space-y-6">
-                        <h3 className="text-base text-gray-900">
+                        <h3 >
                           {detailpost.people ? (
                             <div>
                               <Diversity3RoundedIcon />
@@ -793,7 +797,7 @@ export default function CardDetails() {
             </Modal.Body>
           </Modal>
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 }

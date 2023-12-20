@@ -394,7 +394,7 @@ export default function BasicMenu() {
 
           <>
             <Button variant="transparent" onClick={handleClickOpenLogout}>
-              <MenuItem>
+              <MenuItem className="content-menu-item-close" >
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>

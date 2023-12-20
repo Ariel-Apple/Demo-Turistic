@@ -97,7 +97,7 @@ const ModalComponent = ({ onClose, isModalOpen }) => {
               />
               <button
                 type="submit"
-                disabled={isButtonDisabled}
+                disabled={isButtonDisabled || !selectedIcon || !comment.trim()}
                 className={styles.btnComentar}
               >
                 Comentar

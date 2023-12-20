@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const ModalReclamos = ({ onClose, isModalOpen }) => {
   const dispatch = useDispatch();
-const token = useSelector((state) => state.token);
+  const token = useSelector((state) => state.token);
   const detailpost = useSelector((state) => state.detailpost);
 
   const [selectedIcon, setSelectedIcon] = useState(null);
@@ -19,22 +19,32 @@ const token = useSelector((state) => state.token);
   };
 
   const handleCommentChange = (event) => {
-    setComment(event.target.value);
+    const newText = event.target.value;
+    setComment(newText);
+    // Habilita/deshabilita el botón en función de si hay texto en el textarea
+    setIsButtonDisabled(newText.trim() === "");
   };
+
+  /* const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  }; */
 
   useEffect(() => {
     dispatch(DetailsPostTuristic(detailpost.id));
   }, []);
-  useCallback(() => {}, []);
-  const handleCommentSubmit = (e) => {
-    dispatch(CommentPost({ text: comment, postId: detailpost.id }, token));
 
+  
+  useCallback(() => {}, []);
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    dispatch(CommentPost({ text: comment, postId: detailpost.id }, token));
     onClose();
   };
 
   return (
     <>
-      <form onSubmit={handleCommentSubmit}>
+       <form onSubmit={handleCommentSubmit}>
         <div
           className={`${styles.modalOverlay} ${
             isModalOpen ? styles.visible : styles.oculto
@@ -45,12 +55,10 @@ const token = useSelector((state) => state.token);
               Cancelar
             </button>
             <button className={styles.closeButtonMobile} onClick={onClose}>
-              <i class="ri-close-fill"></i>
+              <i className="ri-close-fill"></i>
             </button>
             <div className={styles.boxTwo}>
-              <h3 className={styles.title}>
-                Escribe tu reclamo
-              </h3>
+              <h3 className={styles.title}>Escribe tu reclamo</h3>
               <textarea
                 value={comment}
                 onChange={handleCommentChange}
@@ -61,7 +69,7 @@ const token = useSelector((state) => state.token);
                 disabled={isButtonDisabled}
                 className={styles.btnComentar}
               >
-                Comentar
+                Enviar reclamo
               </button>
             </div>
           </div>

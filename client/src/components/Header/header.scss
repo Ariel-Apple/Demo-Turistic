@@ -210,7 +210,12 @@
 .menu-items {
   padding: 0.5rem 1rem !important;
   font-size: 0.8rem;
-  color: var(--font-grey);
+  color: #212529 !important;
+}
+.content-menu-item-close{
+  color: #8b008b !important;
+  background-color: #e2e2e2 !important;
+  border-radius: 4px !important;
 }
 /* .modal-header{
   justify-content: flex-start;

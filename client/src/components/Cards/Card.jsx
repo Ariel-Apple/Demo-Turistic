@@ -124,7 +124,7 @@ function Card() {
                       ))}
                     </Carousel>
                     <span className="content-icon-favoritos">
-                      <i className="ri-bookmark-fill"></i>
+                    <i class="ri-bookmark-line"></i>
                     </span>
                   </div>
 
@@ -136,10 +136,6 @@ function Card() {
                     >
                       {info.status === "Público" ? (
                         <div className="shadow-card">
-                          <span className="content-info-favoritos">
-                            <i class="ri-heart-fill"></i>
-                            <p>5</p>
-                          </span>
                           <div className="card-info-flex">
                             <a href={"/rooms/" + info.id} className="text-link">
                               {/*  {info.title.split(" ").length > 2 ? (
@@ -230,10 +226,6 @@ function Card() {
                         </div>
                       ) : (
                         <div className="shadow-card">
-                          <span className="content-info-favoritos">
-                            <i class="ri-heart-fill"></i>
-                            <p>5</p>
-                          </span>
                           <div className="card-info-flex">
                             <a
                               href={"/rooms/" + info.id}

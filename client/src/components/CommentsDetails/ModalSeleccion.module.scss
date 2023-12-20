@@ -51,3 +51,12 @@
 }
 
 /* Agrega más estilos según tus necesidades */
+
+@media screen and (max-width: 767px) {
+  .modalOverlay {
+    bottom: 50px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+  }
+}
