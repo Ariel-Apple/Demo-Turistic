@@ -7,16 +7,19 @@ import {
   dataPersonal,
   DetailsPostTuristic,
   DeletePost,
+  setSelectedCardId,
 } from "../../../redux/action";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import BeatLoader from "react-loading";
 import styles from "./Mywebsite.module.scss";
+//import { setSelectedCardId } from "../../../redux/action";
 
 function Mywebsite() {
   const dispatch = useDispatch();
   const { idTuristic } = useParams();
   const datapersonal = useSelector((state) => state.datapersonal);
+  //console.log(datapersonal);
 
   const token = useSelector((state) => state.token);
   const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +29,10 @@ function Mywebsite() {
     dispatch(DetailsPostTuristic(idTuristic));
   }, [dispatch, token]);
 
+  const handleCardClick = (selectedId) => {
+    dispatch(setSelectedCardId(selectedId));
+  };
+
   return (
     <>
       <div className={styles.containerMywebsite}>
@@ -33,7 +40,11 @@ function Mywebsite() {
           {datapersonal &&
             datapersonal.Posts &&
             datapersonal.Posts.map((data, i) => (
-              <div className={styles.contentCard} key={i}>
+              <div
+                className={styles.contentCard}
+                key={i}
+                onClick={() => handleCardClick(data.id)}
+              >
                 <div className={styles.carouselContainer}>
                   <Carousel interval={null} className={styles.swiperContainer}>
                     {data.imageFile.map((imageSrc, imageIndex) => (
@@ -66,7 +77,6 @@ function Mywebsite() {
                                 ? `url(${datapersonal.avatar})`
                                 : datapersonal.backgroundColor,
                               backgroundSize: "cover",
-                            
                             }}
                             className={styles["avatar-perfil"]}
                           >

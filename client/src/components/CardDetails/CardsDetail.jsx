@@ -39,6 +39,7 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import ModalSeleccion from "../CommentsDetails/ModalSeleccion";
+import ModalReclamos from "../CommentsDetails/ModalReclamos";
 //import SwipeableViews from 'react-swipeable-views';
 //import { autoPlay } from 'react-swipeable-views-utils';
 
@@ -80,6 +81,7 @@ export default function CardDetails() {
   const handleClose2 = () => setOpen2(false);
   const [isLoading, setIsLoading] = React.useState(true);
   const detailpost = useSelector((state) => state.detailpost);
+  console.log(detailpost)
   const dispatch = useDispatch();
   const values = [true];
 
@@ -656,8 +658,8 @@ export default function CardDetails() {
                 </div>
               </div>
               <CommentsDetails />
-
               <Carrusel />
+              <ModalReclamos/>
             </div>
           </div>
         </div>
@@ -674,12 +676,12 @@ export default function CardDetails() {
               </button>
             )}
             {isModalOpen && (
-              /* <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} /> */
-              <ModalSeleccion
+               <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} /> 
+              /* <ModalSeleccion
                 onClose={closeModal}
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
-              />
+              /> */
             )}
 
             <div className="btn-footer-laptop">
@@ -720,11 +722,12 @@ export default function CardDetails() {
             </button>
           )}
           {isModalOpen && (
-              <ModalSeleccion
+            <ModalComponent onClose={closeModal} isModalOpen={isModalOpen} />
+              /* <ModalSeleccion
                 onClose={closeModal}
                 isModalOpen={isModalOpen}
                 setIsModalOpen={setIsModalOpen}
-              />
+              /> */
             )}
 
           <div className="btn-footer-container">

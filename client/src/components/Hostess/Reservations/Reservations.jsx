@@ -23,6 +23,8 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
+import { useSelector } from "react-redux";
+
 const sample = [
   ["Frozen yoghurt", 159, 6.0, 24, 4.0],
   ["Ice cream sandwich", 237, 9.0, 37, 4.3],
@@ -266,10 +268,15 @@ const Reservations = () => {
     setDay(true);
   };
 
+  // En el componente donde necesitas el ID seleccionado.
+  const selectedCardId = useSelector((state) => state.selectedCardId);
+  const datapersonal = useSelector((state) => state.datapersonal);
+  const cardPersonal = selectedCardId ? datapersonal.Posts.filter((item) => item.id === selectedCardId) : "";
+
   return (
     <div className="container-reservation">
       <div className="tittle">
-        <h1>Las Ilusiones</h1>
+        <h1>Las Ilusiones {cardPersonal[0].title}</h1>
       </div>
 
       <div className="box-reservation">
@@ -345,7 +352,6 @@ const Reservations = () => {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        
       >
         <Box /* sx={style} */ className="modal-container">
           <div className="modal-reservation">

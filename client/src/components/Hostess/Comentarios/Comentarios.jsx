@@ -1,12 +1,27 @@
 import styles from "./Comentarios.module.scss";
-import React, { useState } from "react";
-import { data } from "./Data"
+import React, { useState, useEffect } from "react";
+import { data } from "./Data";
 
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { dataPersonal, DetailsPostTuristic } from "../../../redux/action";
 
 export default function Comentarios({ onDelete }) {
   const [showOptions, setShowOptions] = useState(
     Array(data.length).fill(false)
   );
+  const { idTuristic } = useParams();
+  const dispatch = useDispatch();
+  const detailpost = useSelector((state) => state.detailpost);
+  console.log(detailpost)
+  useEffect(() => {
+    dispatch(DetailsPostTuristic(idTuristic));
+  }, [dispatch, idTuristic]);
+  if (!detailpost.comments) {
+    return null; // Puedes mostrar un mensaje de carga aquí si lo deseas
+  }
+
+  
 
   const handleButtonClick = (index) => {
     // Toggle the state for the clicked card
@@ -27,7 +42,7 @@ export default function Comentarios({ onDelete }) {
   return (
     <div className={styles.container}>
       <div className={styles.cardsContainer}>
-        {data.map((item, index) => (
+        {detailpost.comments.map((item, index) => (
           <div
             className={styles.contentCard}
             key={index}
@@ -59,9 +74,9 @@ export default function Comentarios({ onDelete }) {
                   </div>
                 </div>
               )}
-              <img src={item.image} alt={`Profile picture of ${item.name}`} />
-              <h2>{item.name}</h2>
-              <p>{item.paragraph}</p>
+              <img src={item.user.avatar} alt={item.user.name} />
+              <h2>{item.user.name}{item.user.lastName}</h2>
+              <p>{item.text}</p>
               <span>
                 {item.emoji === "corazon" ? (
                   <i className="ri-heart-fill" style={{ color: "#652c90" }}></i>

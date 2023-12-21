@@ -11,11 +11,16 @@ const initialState = {
   clientSecret: null,
   reservaEnProceso: false,
   reservaError: null,
-}
-
+  selectedCardId: null,
+};
 
 export const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_SELECTED_CARD_ID":
+      return {
+        ...state,
+        selectedCardId: action.payload,
+      };
     case "USER_REGISTER":
       return {
         ...state,
@@ -101,24 +106,22 @@ export const rootReducer = (state = initialState, action) => {
         detailpost: { ...state.detailpost, ...action.payload },
       };
 
-        case "POST_COMMENT": 
-        return {
-          ...state,
-          detailpost: {
-            ...state.detailpost,
-            comments: [...state.detailpost.comments, action.payload],
-          },
-        };
-        case 'PAYMENT_POST':
-          return {
-            ...state,
-            clientSecret: action.payload.clientSecret,
-            // Puedes manejar otros estados relacionados con la reserva aquí
-          };
+    case "POST_COMMENT":
+      return {
+        ...state,
+        detailpost: {
+          ...state.detailpost,
+          comments: [...state.detailpost.comments, action.payload],
+        },
+      };
+    case "PAYMENT_POST":
+      return {
+        ...state,
+        clientSecret: action.payload.clientSecret,
+        // Puedes manejar otros estados relacionados con la reserva aquí
+      };
 
-
-
-      
-    default: return { ...state }
+    default:
+      return { ...state };
   }
 };

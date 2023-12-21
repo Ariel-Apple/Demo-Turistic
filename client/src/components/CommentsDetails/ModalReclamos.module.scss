@@ -2,7 +2,7 @@
 
 /* Modal.module.css */
 .modalOverlay {
-  position: fixed;
+  /* position: fixed;
   bottom: 0px;
   right: 0px;
   left: 0;
@@ -10,19 +10,20 @@
   width: 100% !important;
   max-width: none !important;
   height: calc(100vh - 13vh);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); */
+  width: 100%;
 }
 
 .modalContent {
   background: white;
   padding: 50px;
-  border-radius: 8px;
-  border: 1px solid #8b008b;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: relative;
-  max-width: 600px !important;
-  width: 60% !important;
-  height: 80%;
+  //border-radius: 8px;
+  //border: 1px solid #8b008b;
+  //box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  //position: relative;
+  //max-width: 600px !important;
+  //width: 60% !important;
+  //height: 80%;
   margin: auto;
   display: flex !important;
   flex-direction: column;
@@ -140,15 +141,15 @@ button:disabled {
 .closeButtonMobile{
   display: none;
 }
-.visible {
+/* .visible {
   transform: translateY(0);
   transition: transform 0.5s ease-in-out;
-}
+} */
 
-.oculto {
+/* .oculto {
   transform: translateY(100%);
   transition: transform 0.5s ease-in-out;
-}
+} */
 
 //------------ MOBILE --------------------
 @media screen and (max-width: 767px) {

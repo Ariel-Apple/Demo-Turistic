@@ -66,7 +66,8 @@
 
         img {
           width: 70px;
-          height: auto;
+          height: 70px;
+          border-radius: 50px
         }
         h2 {
           @include paragraphBody2Medium;
